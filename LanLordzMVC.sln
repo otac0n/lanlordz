@@ -9,9 +9,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanLordz.SiteTools", "LanLo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49254B0B-0297-4C94-B295-5468291F654F}"
 	ProjectSection(SolutionItems) = preProject
+		AntiXssLibrary.dll = AntiXssLibrary.dll
 		BBCode.Net.dll = BBCode.Net.dll
 		LanLordzMVC.msbuild = LanLordzMVC.msbuild
+		Microsoft.Practices.EnterpriseLibrary.Caching.dll = Microsoft.Practices.EnterpriseLibrary.Caching.dll
+		Microsoft.Practices.EnterpriseLibrary.Common.dll = Microsoft.Practices.EnterpriseLibrary.Common.dll
+		Microsoft.Practices.ObjectBuilder2.dll = Microsoft.Practices.ObjectBuilder2.dll
+		Microsoft.SqlServer.Types.dll = Microsoft.SqlServer.Types.dll
+		nunit.framework.dll = nunit.framework.dll
+		Recaptcha.dll = Recaptcha.dll
+		Recaptcha.pdb = Recaptcha.pdb
 		Settings.StyleCop = Settings.StyleCop
+		Spark.dll = Spark.dll
+		Spark.Web.Mvc.dll = Spark.Web.Mvc.dll
+		SqlServerSpatial.dll = SqlServerSpatial.dll
+		SVG.dll = SVG.dll
+		TournamentApi.dll = TournamentApi.dll
 	EndProjectSection
 EndProject
 Global

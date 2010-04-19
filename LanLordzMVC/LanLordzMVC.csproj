@@ -59,19 +59,39 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AntiXssLibrary, Version=1.5.0.0, Culture=neutral, PublicKeyToken=5906d2bb3d8a12c4, processorArchitecture=MSIL" />
+    <Reference Include="AntiXssLibrary, Version=1.5.0.0, Culture=neutral, PublicKeyToken=5906d2bb3d8a12c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AntiXssLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="BBCode.Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=206906592674c9dd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BBCode.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.1.0.0, Culture=neutral, PublicKeyToken=6d5bbc42e3435caf, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.1.0.0, Culture=neutral, PublicKeyToken=6d5bbc42e3435caf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.SqlServer.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Recaptcha, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c5094c098a70db85, processorArchitecture=MSIL" />
-    <Reference Include="Spark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL" />
-    <Reference Include="Spark.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="SVG, Version=1.0.3600.26538, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Recaptcha, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c5094c098a70db85, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Spark.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SVG, Version=1.0.3600.26538, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SVG.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -97,7 +117,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
-    <Reference Include="TournamentApi, Version=1.0.3600.26357, Culture=neutral, PublicKeyToken=2fee7df17d58780e, processorArchitecture=MSIL" />
+    <Reference Include="TournamentApi, Version=1.0.3600.26357, Culture=neutral, PublicKeyToken=2fee7df17d58780e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TournamentApi.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
@@ -275,10 +298,6 @@
       <DependentUpon>LanLordz.dbml</DependentUpon>
     </None>
     <None Include="CustomDictionary.xml" />
-    <None Include="Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
-    <None Include="Microsoft.Practices.EnterpriseLibrary.Common.dll" />
-    <None Include="Microsoft.Practices.ObjectBuilder2.dll" />
-    <None Include="Microsoft.SqlServer.Types.dll" />
     <None Include="Resources\SvgScriptBlock.txt" />
     <Content Include="Scripts\jquery.Jcrop.min.js" />
     <Content Include="Scripts\jquery.maphilight.min.js" />
@@ -298,11 +317,6 @@
     <Content Include="Skins\PngFix.htc" />
     <Content Include="Skins\Astro\SpaceAge.eot" />
     <Content Include="Skins\Astro\SpaceAge.ttf" />
-    <None Include="TournamentApi.dll" />
-    <None Include="SVG.dll" />
-    <None Include="SqlServerSpatial.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Views\Crew\DoorPrizes.spark" />
     <Content Include="Views\Forums\_ThreadListView.spark" />
     <Content Include="Views\Home\Index.spark" />
@@ -435,8 +449,6 @@
     <Content Include="Skins\Suprise.png" />
     <Content Include="Skins\Tongue.png" />
     <Content Include="Skins\Wink.png" />
-    <None Include="Spark.dll" />
-    <None Include="Spark.Web.Mvc.dll" />
     <Content Include="Views\Events\CreateTournament.spark" />
     <Content Include="Views\Events\CreateEvent.spark" />
     <Content Include="Views\Images\ViewImage.spark" />
