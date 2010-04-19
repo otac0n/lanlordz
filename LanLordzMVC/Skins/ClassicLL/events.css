@@ -1,0 +1,108 @@
+﻿.EventTournamentStandings
+{
+    width : 66%;
+    float : left;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRoundsList
+{
+    width : 66%;
+    float : left;
+    margin-bottom : 1em;
+}
+
+.EventTournamentTeamsList
+{
+    width : 32%;
+    float : right;
+    margin-bottom : 1em;
+}
+
+.EventTournamentStandingsTable
+{
+    margin-top : 1em;
+    font-size : smaller;
+}
+
+.EventTournamentStandingsTableStandingTeam
+{
+    padding-right : 1em;
+}
+
+.EventTournamentStandingsTableStandingDetails
+{
+    font-family : Monospace;
+}
+
+.EventTournamentTeamsListTitle
+{
+    font-weight : bold;
+    border-bottom : 1px solid white;
+}
+
+.EventTournamentTeam
+{
+    margin-top : 1em;
+}
+
+.EventTournamentTeamMembers
+{
+    margin-left : 2em;
+}
+
+.EventTournamentRoundsListTitle
+{
+    font-weight : bold;
+    border-bottom : 1px solid white;
+}
+
+.EventTournamentStandingsTitle
+{
+    font-weight : bold;
+    border-bottom : 1px solid white;
+}
+
+.EventTournamentRound
+{
+    margin-top : 1em;
+}
+
+.EventTournamentRoundPairingsList
+{
+    margin-left : 2em;
+}
+
+.EventTournamentRoundPairing
+{
+    border-left : 1px solid white;
+    padding-left : 0.25em;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRoundPairingTeamsList
+{
+    font-size : smaller;
+}
+
+.EventTournamentRoundPairingTeamName
+{
+    width : 12em;
+    margin-right : 2em;
+}
+
+.EventTournamentRoundPairingTeamScore
+{
+}
+
+.EventTournamentManageTeamTeamsTableHeaderUsername, .EventTournamentManageTeamTeamsTableHeaderTeamCaptain,
+.EventTournamentManageTeamTeamsTableMemberUsername, .EventTournamentManageTeamTeamsTableMemberTeamCaptain
+{
+    padding-right : 2em;
+}
+
+.EventTournamentJoinTeamTeamMembers
+{
+    margin-left : 2em;
+    margin-bottom : 1em;
+}

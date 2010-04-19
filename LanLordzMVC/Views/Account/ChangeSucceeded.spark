@@ -1,0 +1,7 @@
+<use pageBaseType="LanLordz.Views.BasePage"/>
+<content name="title">Change Succeeded</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Change Succeeded</h2>
+    <p>The change you have requested has been completed successfully.</p>
+</content>

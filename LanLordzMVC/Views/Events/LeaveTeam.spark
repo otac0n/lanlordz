@@ -1,0 +1,17 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.LeaveTeamModel]]"/> 
+<content name="title">${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; ${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</div>
+    <h2>${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     !{Html.ValidationSummary("There was an error leaving your team:", new { @class = "ErrorText" })}
+     Are you sure you would like to leave ${Model.Tournament.TeamSize > 1 ? "your team" : "the tournament"}?<br /><br />
+     <input type="submit" value="Yes, Leave" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID })}<br /><br />
+     <if condition="Model.Team.UsersTeams.Count() > 1 && Model.UserTeam.IsTeamCaptain">
+     !{Html.CheckBox("Disband")} Also disband team.
+     </if>
+    # }
+</content>

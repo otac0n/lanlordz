@@ -1,0 +1,19 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.StatsEventsModel]]"/> 
+<content name="title">Events Stats</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Events Stats</h2>
+    <PaginationView PageInfo="Model.PageInfo" />
+    <table class="EventStatsTable">
+     <tr class="EventStatsTableHeader"><th>Title</th><th>Start Date</th><th>Venue</th><th>Seats</th><th>Registrations</th><th>Attendees</th></tr>
+     <tr each="var e in Model.Events" class="EventStatsTableRow">
+      <td class="EventStatsTableRowTitle">!{Html.ActionLink(e.Event.Title, "Details", "Events", new { id = e.Event.EventID, title = Model.Controller.CreateUrlTitle(e.Event.Title) }, null)}</td>
+      <td class="EventStatsTableRowStartDate">${Model.ConvertDateTime(e.Event.BeginDateTime)}</td>
+      <td class="EventStatsTableRowVenue">${e.Event.Venue.Name}</td>
+      <td class="EventStatsTableRowSeats">${e.Event.Seats}</td>
+      <td class="EventStatsTableRowRegistrations">${e.Registrations}</td>
+      <td class="EventStatsTableRowAttendees">${e.CheckIns}</td>
+     </tr>
+    </table>
+    <PaginationView PageInfo="Model.PageInfo" />
+</content>

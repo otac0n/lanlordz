@@ -1,0 +1,49 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.DoorPrizesModel]]"/> 
+<content name="title">Door Prizes</content>
+<content name="headers">
+  <script type="text/javascript" language="javascript">
+      //<![CDATA[
+      function Draw(prizeId) {
+          $('#Action').val('DRW');
+          $('#Value').val(prizeId);
+          $('#Value').parents('form:first').submit();
+      }
+
+      function Add(prizeName) {
+          $('#Action').val('ADD');
+          $('#Value').val(prizeName);
+          $('#Value').parents('form:first').submit();
+      }
+
+      function Revoke(prizeId) {
+          $('#Action').val('RVK');
+          $('#Value').val(prizeId);
+          $('#Value').parents('form:first').submit();
+      }
+
+      function Delete(prizeId) {
+          $('#Action').val('DEL');
+          $('#Value').val(prizeId);
+          $('#Value').parents('form:first').submit();
+      }
+      //]]>
+  </script>
+</content>
+<content name="main">
+    <h2>Assign Door Prizes</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     !{Html.Hidden("Action")}
+     !{Html.Hidden("Value")}
+     <p>Door Prizes:</p>
+     <table>
+      <tr each="var prize in Model.Prizes">
+       <td>${prize.Name}</td><td>${prize.WinnerUserId.HasValue ? prize.User.Username : "(unassigned)"}</td><td><button if="!prize.WinnerUserId.HasValue" onclick="Draw(${prize.PrizeId})">Draw</button><button if="!prize.WinnerUserId.HasValue" onclick="Delete(${prize.PrizeId})">Delete</button><button if="prize.WinnerUserId.HasValue" onclick="Revoke(${prize.PrizeId})">Revoke</button></td>
+      </tr>
+     </table>
+    # }
+	<div>
+     <input id="NewPrizeName" type="text" /> <button onclick="Add($('#NewPrizeName').val())">Add Prize</button>
+	</div>
+</content>

@@ -1,0 +1,1 @@
+﻿#header, #userinfo, #main, #footer, .HeaderSiteTagline, .ForumIndicator, .ThreadIndicator, div.ForumQuoteAttribution, .ForumSmiley, .PostAuthor img, .PostText img, .ForumGroup td div, .ThreadEven, .PostEven .PostAuthor, .PostEven .PostHeader

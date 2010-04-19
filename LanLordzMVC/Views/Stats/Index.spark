@@ -1,0 +1,53 @@
+﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.SiteStatisticsModel]]"/> 
+<content name="title">Stats Index</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Stats Index</h2>
+    <div if="!(Model.BiggestEventStats == null || Model.BiggestEventStats.Count == 0) || !(Model.AllEventsStats == null || Model.AllEventsStats.Count == 0)" class="StatsSection">
+      <div class="StatsHeader">
+        <div class="StatsHeaderTitle">Event Stats</div>
+        <div class="StatsHeaderMoreInfoLink">!{Html.ActionLink("View All Events", "Events")}</div>
+      </div>
+      <div if="Model.BiggestEventStats != null && Model.BiggestEventStats.Count > 0" class="StatsItem">
+        <div class="StatsItemTitle">Largest Past Event:</div>
+        <div class="StatsItemValue">!{Html.ActionLink(Model.BiggestEvent.Title, "Details", "Events", new { id = Model.BiggestEvent.EventID, title = Model.Controller.CreateUrlTitle(Model.BiggestEvent.Title) }, null)}</div>
+        <div class="StatsItemDetail">${Model.BiggestEventStats.CheckIns} users checked in.</div>
+      </div>
+      <div if="Model.RecentEventsStats != null && Model.RecentEventsStats.Count > 0" class="StatsItem">
+        <div class="StatsItemTitle">Average Event Attendance (Last ${Model.RecentEventsStats.Count} Events):</div>
+        <div class="StatsItemValue">${Math.Round((decimal)Model.RecentEventsStats.CheckIns / Model.RecentEventsStats.Count)} users checked in.</div>
+        <div if="Model.RecentEventsStats.Registrations > 0" class="StatsItemDetail">(${Math.Round((decimal)100 * Model.RecentEventsStats.CheckIns / Model.RecentEventsStats.Registrations)}% of registrations)</div>
+      </div>
+      <div if="Model.AllEventsStats != null && Model.AllEventsStats.Count > 0" class="StatsItem">
+        <div class="StatsItemTitle">Average Event Attendance (Overall):</div>
+        <div class="StatsItemValue">${Math.Round((decimal)Model.AllEventsStats.CheckIns / Model.AllEventsStats.Count)} users checked in.</div>
+        <div if="Model.AllEventsStats.Registrations > 0" class="StatsItemDetail">(${Math.Round((decimal)100 * Model.AllEventsStats.CheckIns / Model.AllEventsStats.Registrations)}% of registrations)</div>
+      </div>
+    </div>
+    <div class="StatsSection">
+      <div class="StatsHeader">
+        <div class="StatsHeaderTitle">User Stats</div>
+        <div class="StatsHeaderMoreInfoLink">!{Html.ActionLink("View All Users", "Users")}</div>
+      </div>
+      <div class="StatsItem">
+        <div class="StatsItemTitle">Newest User:</div>
+        <div class="StatsItemValue">!{UserLink(Model.NewestUser)}</div>
+        <div class="StatsItemDetail">Joined ${Model.ConvertDateTime(Model.NewestUser.CreateDate).ToShortDateString()}.</div>
+      </div>
+    </div>
+    <div class="StatsSection">
+      <div class="StatsHeader">
+        <div class="StatsHeaderTitle">Forum Stats</div>
+      </div>
+      <div class="StatsItem">
+        <div class="StatsItemTitle">Most Active Poster:</div>
+        <div class="StatsItemValue">!{UserLink(Model.MostActivePoster)}</div>
+        <div class="StatsItemDetail">${Model.MostActivePoster.Posts} posts.</div>
+      </div>
+      <div class="StatsItem">
+        <div class="StatsItemTitle">Total Threads:</div>
+        <div class="StatsItemValue">${Model.TotalThreads} threads.</div>
+        <div class="StatsItemDetail">${Model.TotalPosts} posts.</div>
+      </div>
+    </div>
+</content>

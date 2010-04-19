@@ -1,0 +1,5 @@
+﻿<content name="title">Home</content>
+<content name="headers"></content>
+<content name="main">
+!{Model.Config.MainPageHtml}
+</content>

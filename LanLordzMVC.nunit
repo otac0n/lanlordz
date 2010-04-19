@@ -1,0 +1,7 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" appbase="D:\Projects\LanLordzMVC\LanLordzTests" />
+  <Config name="Debug" appbase="bin\Debug" binpathtype="Auto">
+    <assembly path="LanLordzTests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>

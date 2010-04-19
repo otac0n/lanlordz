@@ -1,0 +1,9 @@
+﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.PollsIndexModel]]"/> 
+<content name="title">Polls</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Polls</h2>
+    <div each="var poll in Model.Polls">
+     !{Html.ActionLink(poll.Title, "Details", new { id = poll.PollId, title = Model.Controller.CreateUrlTitle(poll.Title) })}
+    </div>
+</content>

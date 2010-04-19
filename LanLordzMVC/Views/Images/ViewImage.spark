@@ -1,0 +1,169 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ViewImageModel]]"/> 
+<content name="title">View Image</content>
+<content name="headers">
+# if (Model.UserTags.Any())
+# {
+  <script type="text/javascript" src="${Response.ApplyAppPathModifier("~/Scripts/jquery.maphilight.min.js")}"></script>
+  <script type="text/javascript">
+    //<![CDATA[
+    $(function () {
+
+#     Response.Write("      var tags = [\r\n");
+#     int n = 0;               
+#     foreach (var t in Model.UserTags)
+#     {
+#         var points = t.TagRegion.STNumPoints().Value;
+#         if (n > 0)
+#         {
+#             Response.Write(",\r\n");
+#         }
+#         n = 1;
+#         Response.Write("        { userId: " + t.UserId + ", username: " + Microsoft.Security.Application.AntiXss.JavaScriptEncode(t.Username) + ", points : [");
+#         for (int i = 1; i <= points; i++)
+#         {
+#     	    var pt = t.TagRegion.STPointN(i);
+#     	    if (i > 1)
+#           {
+#               Response.Write(", ");
+#           }
+#     	    Response.Write("{ x: " + pt.STX.Value + ", y: " + pt.STY.Value + " }");
+#         }
+#         Response.Write("] }");
+#     }
+#     Response.Write("\r\n      ];");
+      
+      $(".ViewImageImage img").each(function () {
+        var image = new Image();
+        image.src = $(this).attr('src');
+
+        if (image.complete)        
+          imageLoaded();        
+        else        
+          image.onload = imageLoaded;
+      });
+      
+      function imageLoaded() {
+        var img = $('.ViewImageImage img')[0];
+        var width = img.offsetWidth;
+        var height = img.offsetHeight;
+        
+        $(".ViewImageImage").append('<map name="imageMap"></map>');
+        
+        $map = $('.ViewImageImage map');
+        
+        $.each(tags, function(i, item) {
+          var area = document.createElement("area");
+          area.setAttribute("shape","poly");
+          area.setAttribute("title",item.username);
+          var coords = "";
+          $.each(item.points, function(j, point) {
+            coords += (coords == "" ? "" : ",") + (point.x * width) + "," + (point.y * height);
+          });
+          area.setAttribute("coords",coords);
+          $map.append(area);
+        });
+        
+        $(img).attr("usemap", "#imageMap");
+        $(img).maphilight();
+      }
+    });
+	//]]>
+  </script>
+# }
+# if (Model.AllowTagging)
+# {
+  <script type="text/javascript" src="${Response.ApplyAppPathModifier("~/Scripts/jquery.Jcrop.min.js")}"></script>
+  <script type="text/javascript">
+    //<![CDATA[
+	$(function () {
+	  $('.ImageTags').append('<div class="ImageTagsAddTag"><button class="ImageTagsAddTagTagButton" onclick="beginTagging()">Tag</button></div>');
+	});
+	
+	function beginTagging() {
+	  $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" onkeyup="searchUsers()" /><ul id="searchResults" class="ImageTagsNewTagSearchResults"></ul><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
+	  
+      var img = $('.ViewImageImage img')[0];
+      var width = img.offsetWidth;
+      var height = img.offsetHeight;
+
+	  var crop = $.Jcrop('.ViewImageImage img',{
+        onSelect: updateForm,
+        sideHandles: false,
+        setSelect: [ 0, 0, 1, 1 ]
+      });
+
+      crop.animateTo([ width * 0.35, height * 0.20, width * 0.65, height * 0.80 ]);
+
+      $("#input_x1").val(0.35);
+      $("#input_y1").val(0.20);
+      $("#input_x2").val(0.65);
+      $("#input_y2").val(0.80);
+
+      function updateForm(coords)
+      {
+          $("#input_x1").val(coords.x / width);
+          $("#input_y1").val(coords.y / height);
+          $("#input_x2").val(coords.x2 / width);
+          $("#input_y2").val(coords.y2 / height);
+      };
+	}
+	
+	function searchUsers() {
+	  var username = $("#input_username").val();
+	  
+	  if(username == '') {
+	    $("#searchResults li").remove();
+	    return;
+	  }
+	  
+	  var url = '!{(new Uri(Url.RequestContext.HttpContext.Request.Url, Url.Action("SearchUsers", "Account"))).AbsoluteUri}' + '?q=' + escape(username);
+	  
+	  $.getJSON(url,
+        function(data){
+          $("#searchResults li").remove();
+          $.each(data, function(i, item){
+            var li = document.createElement('li');
+            li.className = 'ImageTagsNewTagSearchResultsItem';
+            var text = document.createTextNode(item.username);
+            li.appendChild(text);
+			$("#searchResults").append(li);
+          });
+          $("#searchResults li").click(function() {
+            $("#input_username").val(this.innerHTML);
+          });
+        });
+	}
+	//]]>
+  </script>
+# }
+</content>
+<content name="main">
+    <div class="GalleryNavigator">
+    !{Html.ActionLink("Image Gallery", "Gallery")} &gt; 
+	<test if="Model.Event != null && Model.User == null">
+		!{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt;
+	<else if="Model.Event != null && Model.User != null" />
+		!{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; !{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { @event = Model.Event.EventID, user = Model.User.UserID })} &gt;
+	<else if="Model.Event == null && Model.User != null" />
+		!{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { user = Model.User.UserID })} &gt;
+	</test>
+    View Image
+	</div>
+    <h2>View Image</h2>
+    <div class="ViewImage">
+     <div class="ViewImageImage">
+      <img src="${Url.Action("Image", "Images", new { id = Model.Image.EventImageID, hash = CalculateScrapeBuster(Model.Image.ScrapeBusterKey, null) })}" />
+     </div>
+    </div>
+    <div class="ImageTags">
+     <div class="ImageTagsLabel">In this image:</div>
+     <div class="ImageTaggedNobody" if="!Model.UserTags.Any()">Nobody</div>
+     <div class="ImageTaggedUser" each="var userTag in Model.UserTags">${userTag.Username}</div>
+    </div>
+    <div class="ImagePager">
+		# var pager = Model.AppManager.Controller.Skins.GetDefaultImagePager();
+        # var item = Model.Images.IndexOf(Model.Image) + 1;
+        # var pagerText = pager.CreatePager(item, Model.Images.Count, 1, i => { var image = Model.Images[i - 1]; return Url.Action("Image", "Images", new { id = image.EventImageID, hash = CalculateScrapeBuster(image.ScrapeBusterKey, 150), thumbnail = 150 }); }, i => Url.Action("ViewImage", "Images", new { id = i, @event = Model.Event == null ? (long?)null : Model.Event.EventID, user = Model.User == null ? (long?)null : Model.User.UserID }));
+        !{pagerText}
+    </div>
+</content>

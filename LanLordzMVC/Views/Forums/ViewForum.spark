@@ -1,0 +1,14 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ForumDetailsModel]]"/> 
+<content name="title">${this.Model.Forum.Name} | View Forum</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="ForumNavigator"><span>!{Html.ActionLink(Model.Config.SiteName + " Forum Index", "Index")}</span> &gt; <span>${this.Model.Forum.Name}</span></div>
+    <div if="Model.UserAccess.CanPost" class="ForumTools">
+     <div class="ForumToolsNewThread">
+      !{Html.ActionLink("New Thread", "CreatePost", new { forum = Model.Forum.ForumID })}
+     </div>
+    </div>
+    <div class="ForumPagination"><PaginationView PageInfo="Model.PageInfo" /></div>
+    <ThreadListView Threads="Model.Threads.Threads" />
+    <div class="ForumPagination"><PaginationView PageInfo="Model.PageInfo" /></div>
+</content>

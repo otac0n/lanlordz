@@ -1,0 +1,61 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ForumThreadModel]]"/> 
+<content name="title">${string.IsNullOrEmpty(this.Model.Thread.Title) ? "(No Title)" : this.Model.Thread.Title} | View Thread</content>
+<content name="headers">
+    <script type="text/javascript">
+        $(function() {
+            $('.ForumPoll').each(function() {
+                var $current = $(this);
+                $.post($current.attr('href') + "?partial=1", function(data) {
+                    $current.replaceWith('<div class="ForumPoll">' + data + '</div>');
+                })
+            });
+        });
+    </script>
+</content>
+<content name="main">
+    <div class="ForumNavigator"><span>!{Html.ActionLink(Model.Config.SiteName + " Forum Index", "Index")}</span> &gt; <span>!{Html.ActionLink(this.Model.Thread.Forum.Name, "ViewForum", new { id = this.Model.Thread.Forum.ForumID })}</span> &gt; <span>${string.IsNullOrEmpty(this.Model.Thread.Title) ? "(No Title)" : this.Model.Thread.Title}</span></div>
+    <div class="ThreadPagination"><PaginationView PageInfo="Model.PageInfo" /></div>
+    <table class="PostsTable" cellpadding="0" cellspacing="0">
+     <tr>
+      <th>Author</th>
+      <th>Post</th>
+     </tr>
+     # var lastPost = Model.Posts.OrderByDescending(p => p.Post.CreateDate).FirstOrDefault();
+     <tr each="var post in Model.Posts.OrderBy(p => p.Post.CreateDate)" class="Post">
+      <td class="PostAuthor">
+       !{UserLink(post.UserID, post.Username)}<br />
+       !{UserAvatar(post.UserID, post.Username, post.UserHasAvatar, post.UserEmail)}<br />
+       Posts: ${post.UserPosts}<br />
+       Joined: ${post.UserJoinedDate.ToShortDateString()}
+       <div if="!string.IsNullOrEmpty(post.UserTitle)" class="PostAuthorBadge PostAuthorUserBadge">${post.UserTitle}</div>
+       <div if="!string.IsNullOrEmpty(post.GroupTitle)" class="PostAuthorBadge PostAuthorGroupBadge">${post.GroupTitle}</div>
+       <div if="!string.IsNullOrEmpty(post.PostCountTitle)" class="PostAuthorBadge PostAuthorPostCountBadge">${post.PostCountTitle}</div>
+      </td>
+      <td class="PostData">
+       <div class="PostHeader">
+        <div class="PostTitle"><a name="${post.Post.PostID}">${post.Post.Title}</a></div>
+        <div class="PostDate">Posted: ${Model.ConvertDateTime(post.Post.CreateDate)}</div>
+        <div class="PostTools">
+         <div if="Model.UserAccess.CanPost && (!Model.Thread.IsLocked || Model.UserAccess.CanModerate)" class="PostToolReply">!{Html.ActionLink("Reply", "CreatePost", new { replyto = post.Post.PostID })}</div>
+         <div if="Model.UserAccess.CanPost && Model.CurrentUser != null && Model.CurrentUser.UserID == post.UserID && (!Model.Thread.IsLocked || Model.UserAccess.CanModerate)" class="PostToolEdit">!{Html.ActionLink("Edit", "EditPost", new { id = post.Post.PostID })}</div>
+         <div if="Model.UserAccess.CanModerate && Model.CurrentUser != null && Model.CurrentUser.UserID != post.UserID" class="PostToolModerate">!{Html.ActionLink("Moderate", "EditPost", new { id = post.Post.PostID })}</div>
+         <div if="Model.UserAccess.CanModerate || (Model.UserAccess.CanPost && Model.CurrentUser != null && Model.CurrentUser.UserID == post.UserID && post.Post.PostID == lastPost.Post.PostID && !Model.Thread.IsLocked)" class="PostToolDelete">!{Html.ActionLink("Delete", "DeletePost", new { id = post.Post.PostID })}</div>
+        </div>
+       </div>
+       <div class="PostText">
+!{FormatPostText(post.Post.Text)}
+<if condition="!string.IsNullOrEmpty(post.UserSignature)">
+<hr/>
+!{FormatPostText(post.UserSignature)}
+</if>
+       </div>
+      </td>
+     </tr>
+    </table>
+    <div class="ThreadPagination"><PaginationView PageInfo="Model.PageInfo" /></div>
+    <div if="Model.UserAccess.CanPost" class="ThreadTools">
+     <div class="ThreadToolsNewPost">
+      !{Html.ActionLink("New Post", "CreatePost", new { thread = Model.Thread.ThreadID })}
+     </div>
+    </div>
+</content>

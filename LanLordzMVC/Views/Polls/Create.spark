@@ -1,0 +1,44 @@
+﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.CreatePollModel]]"/> 
+<content name="title">Create a Poll</content>
+<content name="headers">
+  <script type="text/javascript">
+   //<![CDATA[
+   var responses = !{Math.Max(5, Model.Responses.Count)};
+
+   $(document).ready(function(){
+    $("#AddResponseDiv").show();
+   });
+
+   function AddResponse() {
+    responses++;
+    $("#ResponseList").append("<input name=\"Response" + responses + "\" type=\"text\" /><br/>");
+   }
+   //]]>
+  </script>
+</content>
+<content name="main">
+    <h2>Create a Poll</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     !{Html.ValidationSummary("There was an error creating your poll:", new { @class = "ErrorText" })}
+     <table class="CreatePollTable">
+      <tr><td>Title:</td><td><input name="Title" type="text" class="CreatePollTitleBox" value="${Model.Title}" /> (60 Character Limit)</td></tr>
+      <tr><td>Description:</td><td><textarea name="Description" class="CreatPollDescriptionBox">${Model.Description}</textarea></td>
+      <tr><td>Options:</td><td><input name="IsPrivate" id="IsPrivate" type="checkbox"!{Model.IsPrivate ? " checked=\"checked\"" : ""} /><label for="IsPrivate">Private (Answers visible to you and Administrators only)</label><br/><input name="IsMultiAnswer" id="IsMultiAnswer" type="checkbox"!{Model.IsMultiAnswer ? " checked=\"checked\"" : ""} /><label for="IsMultiAnswer">Multiple Answers Allowed</label></td>
+      <tr>
+       <td>Respones:</td>
+       <td id="ResponseList">
+       # int modelCount = Model.Responses.Count;
+       # int count = Math.Max(5, modelCount);
+       # for (int i = 1; i <= count; i++)
+       # {
+        <input name="Response${i}" type="text"!{i <= modelCount ? " value=\"" + Html.Encode(Model.Responses[i - 1]) + "\"" : ""} />${i == 1 ? " (60 Character Limit)" : ""}<br/>
+       # }
+       </td>
+      </tr>
+      <tr><td></td><td><div style="display : none" id="AddResponseDiv"><button onclick="AddResponse(); return false;">Add</button></div><noscript>Enable JavaScript to add more responses.</noscript></td></tr>
+      <tr><td></td><td><input type="submit" value="Create" /></td></tr>
+     </table>
+    # }
+</content>

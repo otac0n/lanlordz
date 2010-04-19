@@ -1,0 +1,8 @@
+<use pageBaseType="LanLordz.Views.BasePage"/>
+<content name="title">Registration Successful</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Registration Successful</h2>
+    <p>You have successfully registered with the site.  An email has been sent to the address you specififed.  Confirming your address will help keep you account more secure.</p>
+    <p if="Model.Config.ConfirmEmail">The administrators have chosen to require you to confirm your address before you are allowed to log in to the site.  Please check your email.</p>
+</content>

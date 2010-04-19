@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PagerStyle>
+  <NumberRun collapseAdjacentSeperators="True" collapseAdjacentElements="True">
+    <Regions>
+      <Current adjacentMin="2" adjacentMax="4" />
+    </Regions>
+    <Format>
+      <Current><![CDATA[<div class="ImagePagerItem ImagePagerCurrentItem"><div class="ImagePagerItemImage"><img src="{0}" /></div></div>]]></Current>
+      <Other><![CDATA[<div class="ImagePagerItem"><div class="ImagePagerItemImage"><a href="{1}"><img src="{0}" /></a></div></div>]]></Other>
+    </Format>
+  </NumberRun>
+</PagerStyle>

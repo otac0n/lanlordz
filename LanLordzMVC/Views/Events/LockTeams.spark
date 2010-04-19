@@ -1,0 +1,14 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.TournamentActionModel]]"/> 
+<content name="title">Lock Teams</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Lock Teams</div>
+    <h2>Lock Teams</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     !{Html.ValidationSummary("There was an error locking the teams:", new { @class = "ErrorText" })}
+     Are you sure you want to lock the teams?  This will prevent users from creating, deleting, joining, or leaving teams.<br /><br />
+     <input type="submit" value="Lock" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID })}
+    # }
+</content>

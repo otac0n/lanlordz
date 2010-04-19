@@ -1,0 +1,20 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.InputScoresModel]]"/> 
+<content name="title">Input Scores</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Input Scores</div>
+    <h2>Input Scores</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+    <div each="var pairing in Model.Round.Pairings" style="margin-bottom : 20px;">
+     <table>
+      <tr each="var teamPairing in pairing.TeamsPairings">
+       <td>${teamPairing.Team.TeamName}</td>
+       <td><input name="${"score-" + pairing.PairingID + "-" + teamPairing.TeamID}" type="text" value="${teamPairing.Score}" style="width : 60px;" /></td>
+      </tr>
+     </table>
+    </div>
+    <input type="submit" value="Save" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID, title = Model.Controller.CreateUrlTitle(Model.Tournament.Title) })}
+    # }
+</content>

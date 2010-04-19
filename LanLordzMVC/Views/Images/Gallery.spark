@@ -1,0 +1,28 @@
+﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ImageGalleryModel]]"/> 
+<content name="title">Image Gallery</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="GalleryNavigator">
+	<test if="Model.Event == null && Model.User == null">
+		Image Gallery &gt; All Images
+	<else if="Model.Event != null && Model.User == null" />
+		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${Model.Event.Title + " Images"}
+	<else if="Model.Event != null && Model.User != null" />
+		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; !{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; ${"Images of " + Model.User.Username}
+	<else if="Model.Event == null && Model.User != null" />
+		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${"Images of " + Model.User.Username}
+	</test>
+	</div>
+    <h2>Image Gallery</h2>
+    <div class="GalleryPagination"><var PageInfo="Model.PageInfo">
+     <PaginationView />
+    </var></div>
+    <div class="GalleryImagesList"><var i="(Model.PageInfo.CurrentPage - 1) * Model.PageInfo.ItemsPerPage + 1">
+     <div class="GalleryImagesListItem" each="var image in Model.Images">
+      <div class="GalleryImagesListItemImage"><a href="${Url.Action("ViewImage", "Images", new { id = i++, @event = Model.Event == null ? (long?)null : Model.Event.EventID, user = Model.User == null ? (long?)null : Model.User.UserID })}"><img src="${Url.Action("Image", "Images", new { id = image.EventImageID, thumbnail = 100, hash = CalculateScrapeBuster(image.ScrapeBusterKey, 100) })}" /></a></div>
+     </div>
+    </var></div>
+    <div class="GalleryPagination"><var PageInfo="Model.PageInfo">
+     <PaginationView />
+    </var></div>
+</content>

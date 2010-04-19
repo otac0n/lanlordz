@@ -1,0 +1,1185 @@
+﻿html
+{
+ font-family : Verdana, Arial, Sans-Serif;
+ padding : 0;
+}
+
+body
+{
+    background : url(Background.png);
+    background-repeat : repeat;
+}
+
+a:link
+{
+    color : #848;
+    text-decoration : none;
+}
+
+a:visited
+{
+    color : #848;
+    text-decoration : none;
+}
+
+a:hover
+{
+    color : #848;
+    text-decoration : underline;
+}
+
+a:active
+{
+    color : #848;
+    text-decoration : none;
+}
+
+img
+{
+	border : 0;
+}
+
+th
+{
+	text-align : left;
+}
+
+#surround
+{
+    margin-top : 200px;
+    margin-left : 121px;
+    /*margin-right : 30px;*/
+    width : auto;
+    background : #FFFFFF;
+    border : solid 3px #AAAAAA;
+}
+
+#header
+{
+    position : absolute;
+    top : 10px;
+    left : 13.5%;
+    width : 610px;
+    height : 70px;
+    background : url(HeaderBackground.png);
+    background-repeat : no-repeat;
+    color : White;
+    font-weight : bold;
+    padding : 100px 0 0 240px;
+}
+
+#menu
+{
+ position : absolute;
+ left : 0px;
+ top : 40px;
+ width : 110px;
+ height : 250px;
+ vertical-align : middle;
+ background : url(MenuBar.png);
+ color : White;
+
+}
+
+.Menu
+{
+    margin : 0px;
+ margin-left : auto;
+ margin-right : auto;
+ padding : 15px 0 0 0;
+}
+
+.MenuItem
+{
+  margin : 0.75em 0 0.75em 1em;
+  list-style-type : none;
+  padding : 0;
+  font-weight : bold;
+}
+
+#menu a:link
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#menu a:visited
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#menu a:hover
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#menu a:active
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#userinfo
+{
+    background : #992323;
+    color : White;
+    font-size : smaller;
+    border : solid 3px #FFFFFF;
+    border-bottom : 0;
+    padding : 5px;
+}
+
+.UserInfoBoxLoggedOnInfo
+{
+    display : inline;
+    margin : 0.5em;
+}
+
+.UserInfoBoxInput
+{
+    display : inline;
+    margin : 0.5em;
+}
+
+.UserInfoBoxInput input
+{
+    margin-left : 0.25em;
+    margin-right : 0.25em;
+}
+
+.UserInfoBoxAction
+{
+    display : inline;
+    margin : 0.5em;
+}
+
+
+#userinfo a:link
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#userinfo a:visited
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#userinfo a:hover
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#userinfo a:active
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#main
+{
+    padding : 0.5em 1em;
+}
+
+#footer
+{
+    background : #992323;
+    color : White;
+    border : solid 3px #FFFFFF;
+    border-top : 0;
+    padding : 5px;
+    clear : both;
+}
+
+#footer table
+{
+    width : 100%;
+    padding : 0;
+    margin : 0;
+}
+
+.Sponsor
+{
+    text-align : center;
+    border : none;
+    padding : 1em;
+    width : 500px;
+    margin-left : auto;
+    margin-right : auto;
+    margin-bottom : 5px;
+}
+
+.SponsorBlurb
+{
+    display : block;
+}
+
+.NewsPost
+{
+    margin-bottom : 2em;
+}
+
+.NewsPostTitle
+{
+    font-weight : bold;
+    font-size : 140%;
+    display : block;
+}
+
+.NewsPostDate
+{
+    margin-bottom : 0.5em;
+    font-size : smaller;
+    display : block;
+}
+
+.NewsPostAuthor
+{
+    margin-top : 0.5em;
+    display : block;
+}
+
+.UserProfileAvatar
+{
+    float : left;
+    margin-right : 1em;
+    margin-bottom : 0.5em;
+}
+
+.UserProfileUsername
+{
+    font-size : 150%;
+    font-weight : bold;
+    margin-bottom : 0.5em;
+}
+
+.UserProfileGenderLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileGenderValue
+{
+    display : inline;
+}
+
+.UserProfileEmailLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileEmailAddress
+{
+    display : inline;
+}
+
+.UserProfileJoinedLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileJoinedDate
+{
+    display : inline;
+}
+
+.UserProfilePosts
+{
+    clear : both;
+}
+
+.UserProfilePostsLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfilePostsCount
+{
+    display : inline;
+}
+
+.UserProfileLocationLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileLocationText
+{
+    display : inline;
+}
+
+.UserProfileWebsiteLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileWebsiteAddress
+{
+    display : inline;
+}
+
+.UserProfileOccupationLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileOccupationText
+{
+    display : inline;
+}
+
+.UserProfileInterestsLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileInterestsText
+{
+    display : inline;
+}
+
+.UserProfileBiographyLabel
+{
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileBiographyCount
+{
+    display : inline;
+}
+
+.AdminEditConfiguration
+{
+    width : 100%;
+}
+
+.AdminEditConfigurationHeading th
+{
+    padding-top : 2em;
+}
+
+.AdminEditConfigurationItem textarea
+{
+    width : 100%;
+}
+
+.AdminEditConfigurationItem textarea
+{
+    height : 300px;
+}
+
+.AdminEditConfigurationItem select, .AdminEditConfigurationItem input[type=text]
+{
+    width : 75%;
+}
+
+.PollResponsesTable
+{
+    width : 100%;
+}
+
+.PollResponsesTable th
+{
+    padding : 2px;
+}
+
+.PollResponseResultBar
+{
+    width : 250px;
+    height : 20px;
+    border : solid 1px #AAA;
+    padding : 2px;
+    text-align : center;
+    float : left;
+    margin-right : 20px;
+    background : #CCC;
+}
+
+.PollResponseResultBarFill
+{
+    height : 100%;
+    background : #848;
+}
+
+.PollResponseResultBarValue
+{
+    position : relative;
+    top : -20px;
+    color : White;
+}
+
+.PollResponseResultBarDetails
+{
+    display : inline;
+    white-space : nowrap;
+}
+
+.EventTournamentStandings
+{
+    width : 66%;
+    float : left;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRoundsList
+{
+    width : 66%;
+    float : left;
+    margin-bottom : 1em;
+}
+
+.EventTournamentTeamsList
+{
+    width : 32%;
+    float : right;
+    margin-bottom : 1em;
+}
+
+.EventTournamentStandingsTable
+{
+    margin-top : 1em;
+    font-size : smaller;
+}
+
+.EventTournamentStandingsTableStandingTeam
+{
+    padding-right : 1em;
+}
+
+.EventTournamentStandingsTableStandingDetails
+{
+    font-family : Monospace;
+}
+
+.EventTournamentTeamsListTitle, .EventTournamentStandingsTitle, .EventTournamentRoundsListTitle
+{
+    margin-top : 1em;
+    padding : 2px;
+    padding-left : 6px;
+    background : #848;
+    color : white;
+    font-weight : bold;
+}
+
+.EventTournamentTeam
+{
+    margin-top : 1em;
+}
+
+.EventTournamentTeamMembers
+{
+    margin-left : 2em;
+}
+
+.EventTournamentRound
+{
+    margin-top : 1em;
+}
+
+.EventTournamentRoundPairingsList
+{
+    margin-left : 2em;
+}
+
+.EventTournamentRoundPairing
+{
+    border-left : 2px solid #992323;
+    padding-left : 0.25em;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRoundPairingTeamsList
+{
+    font-size : smaller;
+}
+
+.EventTournamentRoundPairingTeamName
+{
+    width : 12em;
+    margin-right : 2em;
+}
+
+.EventTournamentRoundPairingTeamScore
+{
+}
+
+.EventTournamentManageTeamTeamsTableHeaderUsername, .EventTournamentManageTeamTeamsTableHeaderTeamCaptain,
+.EventTournamentManageTeamTeamsTableMemberUsername, .EventTournamentManageTeamTeamsTableMemberTeamCaptain
+{
+    padding-right : 2em;
+}
+
+.EventTournamentJoinTeamTeamMembers
+{
+    margin-left : 2em;
+    margin-bottom : 1em;
+}
+
+.EventRosterTitle, .EventTournamentsTitle, .EventImagesTitle
+{
+    margin-top : 1em;
+    padding : 2px;
+    padding-left : 6px;
+    background : #848;
+    color : white;
+    font-weight : bold;
+}
+
+.EventListItem
+{
+	list-style-type : none;
+	margin-bottom : 1em;
+}
+
+.EventListEventName 
+{
+	font-size : larger;
+	font-weight : bold;
+}
+
+.EventListVenue
+{
+	margin-top : 0.15em;
+	margin-bottom : 0.15em;
+}
+
+.EventListVenueName
+{
+	font-weight : bold;
+	margin-right : 0.75em;
+}
+
+.EventListVenueAddress
+{
+	font-size : smaller;
+}
+
+.EventListTimesEnd
+{
+	font-size : smaller;
+}
+
+.EventCrewMember
+{
+	clear : both;
+	margin-top : 2em;
+}
+
+.EventCrewMemberAvatar
+{
+	float : left;
+	margin-right : 0.5em;
+	margin-top : 0.5em;
+	margin-bottom : 1em;
+	width : 105px;
+	height : 100%;
+}
+
+.EventCrewMemberName
+{
+	font-size : larger;
+}
+
+.EventCrewMemberRegisterDate
+{
+	margin : 0.5em;
+}
+
+.EventImagesListItem, .EditImagesListItem, .GalleryImagesListItem, .ImagePagerItem
+{
+	float : left;
+	margin : 0.3em;
+	border : solid 1px black;
+	background : #888;
+	text-align : center;
+}
+
+.EventImagesListItem, .EditImagesListItem, .GalleryImagesListItem
+{
+	width : 100px;
+	height : 100px;
+}
+
+.ImagePagerItem
+{
+	width : 150px;
+	height : 150px;
+}
+
+.ViewImage
+{
+	width : 800px;
+	height : 600px;
+}
+
+.EventImagesListItemImage, .EditImagesListItemImage, .GalleryImagesListItemImage
+{
+	font-size : 87px;
+    vertical-align : middle;
+}
+
+.ImagePagerItemImage
+{
+	font-size : 130px;
+    vertical-align : middle;
+}
+
+.GalleryPagination
+{
+    clear : both;
+}
+
+.EditImagesUpload
+{
+	clear : both;
+	padding : 1em;
+}
+
+.EventInfoName
+{
+	text-align : center;
+}
+
+.EventVenue
+{
+    /*float : right;*/
+	width : 505px;
+}
+
+.EventImages
+{
+    float : right;
+    width : 68%;
+}
+
+.EventRoster
+{
+	float : left;
+	width : 30%;
+}
+
+.EventSignupLink
+{
+	width : 100%;
+}
+
+.EventSignupLink
+{
+	margin-bottom : 1em;
+	font-size : larger;
+}
+
+.EventVenueLocationName
+{
+	display : inline;
+	font-weight : bold;
+	margin-right : 1em;
+}
+
+.EventVenueLocationAddress
+{
+	display : inline;
+}
+
+.EventVenueLocation
+{
+	margin-top : 0.5em;
+	margin-bottom : 1em;
+}
+
+.EventRosterEmptyText, .EventImagesEmptyText
+{
+	margin : 1em;
+	font-style : italic;
+}
+
+.ForumBold
+{
+ font-weight : bold;
+}
+
+.ForumItalics
+{
+ font-style : italic;
+}
+
+.ForumUnderline
+{
+ text-decoration : underline;
+}
+
+.ForumStrikethrough
+{
+ text-decoration : line-through;
+}
+
+.ForumCode
+{
+ margin : 0.5em;
+ padding : 0.25em;
+ border : 1px solid Black;
+ background : #EEE;
+ font-family : Monospace;
+ white-space : pre;
+}
+
+.ForumQuote
+{
+ margin : 0.5em;
+ padding : 0.25em;
+ border : 1px dashed #888;
+ background : #FFF;
+}
+
+.ForumQuoteAttribution
+{
+ background : url(Quote.png);
+ background-repeat : no-repeat;
+ padding-left : 18px;
+ margin-bottom : 0.25em;
+ font-size : 12px;
+ font-weight : bold;
+}
+
+.ForumSmiley
+{
+ width : 16px;
+ height : 16px;
+}
+
+.ForumColorRed
+{
+ color : Red;
+}
+
+.ForumColorGreen
+{
+ color : Green;
+}
+
+.ForumColorBlue
+{
+ color : Blue;
+}
+
+.ForumColorYellow
+{
+ color : Yellow;
+}
+
+.ForumColorPurple
+{
+ color : Purple;
+}
+
+.ForumColorOrange
+{
+ color : Orange;
+}
+
+.ForumColorred
+{
+ color : Red;
+}
+
+.ForumColorgreen
+{
+ color : Green;
+}
+
+.ForumColorblue
+{
+ color : Blue;
+}
+
+.ForumColoryellow
+{
+ color : Yellow;
+}
+
+.ForumColorpurple
+{
+ color : Purple;
+}
+
+.ForumColororange
+{
+ color : Orange;
+}
+
+.ForumSize8
+{
+ font-size : 8pt;
+}
+
+.ForumSize9
+{
+ font-size : 9pt;
+}
+
+.ForumSize10
+{
+ font-size : 10pt;
+}
+
+.ForumSize11
+{
+ font-size : 11pt;
+}
+
+.ForumSize12
+{
+ font-size : 12pt;
+}
+
+.ForumSize14
+{
+ font-size : 14pt;
+}
+
+.ForumSize16
+{
+ font-size : 16pt;
+}
+
+.ForumSize18
+{
+ font-size : 18pt;
+}
+
+.ForumSize20
+{
+ font-size : 20pt;
+}
+
+.ForumSize22
+{
+ font-size : 22pt;
+}
+
+.ForumSize24
+{
+ font-size : 24pt;
+}
+
+.StatsSection
+{
+	margin-top : 1em;
+}
+
+.StatsHeaderTitle
+{
+	font-size : larger;
+	font-weight : bold;
+	display : inline;
+	margin-right : 1em;
+}
+
+.StatsHeaderMoreInfoLink
+{
+	display : inline;
+}
+
+.StatsItem, .StatsItemValue, .StatsItemDetail
+{
+	margin-left : 1em;
+}
+
+.StatsItem
+{
+	margin-top : 0.5em;
+}
+
+.EventStatsTable
+{
+	width : 100%;
+}
+
+.UserStatsTable
+{
+	width : 100%;
+}
+
+.ForumsTable, .ThreadsTable, .PostsTable
+{
+    width : 100%;
+    clear : both;
+}
+
+.ForumNavigator
+{
+	font-size : smaller;
+	padding-bottom : 1em;
+}
+
+.ForumSearch
+{
+    float : right;
+    margin-bottom : 1em;
+}
+
+.ForumIndexTools
+{
+	margin-bottom : 1em;
+}
+
+.ForumIndexTools div
+{
+	display : inline;
+	margin-right : 1em;
+	font-size : 16px;
+	background-position : left center;
+	background-repeat : no-repeat;
+	padding-top : 3px;
+	padding-bottom : 3px;
+}
+
+.ForumIndexToolsMarkAllRead
+{
+	padding-left : 26px;
+	background-image : url(MarkRead.png);
+}
+
+.ForumIndexToolsViewUnread
+{
+	padding-left : 26px;
+	background-image : url(ViewUnread.png);
+}
+
+.ForumsTable th
+{
+	white-space : nowrap;
+	font-size : small;
+	padding-right : 5px;
+}
+
+.ForumGroup td div
+{
+    width : 100%;
+    margin-top : 1em;
+    padding : 2px;
+    padding-left : 6px;
+    background : #848;
+    color : white;
+    font-weight : bold;
+}
+
+.ForumIndicator
+{
+	margin-left : 0.5em;
+	margin-right : 0.5em;
+}
+
+.ForumDescriptionTitle
+{
+	display : block;
+	margin-top : 5px;
+}
+
+.ForumDescriptionText
+{
+	font-size : smaller;
+	display : block;
+}
+
+.ForumLastPostDate
+{
+    white-space : nowrap;
+}
+
+.ForumIndicator
+{
+	width : 24px;
+	height : 24px;
+	background-repeat : no-repeat;
+}
+
+.ForumUnread .ForumIndicator
+{
+	background : url(ForumUnread.png);
+}
+
+.ForumRead .ForumIndicator
+{
+	background : url(ForumRead.png);
+}
+
+.ForumThreadCount, .ForumPostCount
+{
+	padding-left : 6px;
+}
+
+.ForumLastPost
+{
+	font-size : smaller;
+}
+
+.ForumNewThread
+{
+    margin : 1em 0;
+}
+
+.ThreadsTable
+{
+    border : 2px solid #848;
+    margin-bottom : 1.5em;
+}
+
+.Thread td
+{
+    border-top : 1px solid #848;
+}
+
+.ThreadsTable th
+{
+    background : #848;
+    color : White;
+}
+
+.ThreadIndicator
+{
+	width : 24px;
+	height : 24px;
+	background-repeat : no-repeat;
+	margin : 0 0.5em;
+}
+
+.ThreadNormalUnread .ThreadIndicator
+{
+	background : url(ForumUnread.png);
+}
+
+.ThreadNormalRead .ThreadIndicator
+{
+	background : url(ForumRead.png);
+}
+
+.ThreadAnnouncementUnread .ThreadIndicator
+{
+	background : url(AnnouncementUnread.png);
+}
+
+.ThreadAnnouncementRead .ThreadIndicator
+{
+	background : url(AnnouncementRead.png);
+}
+
+.ThreadStickyUnread .ThreadIndicator
+{
+	background : url(StickyUnread.png);
+}
+
+.ThreadStickyRead .ThreadIndicator
+{
+	background : url(StickyRead.png);
+}
+
+.ThreadLastPostDate
+{
+    white-space : nowrap;
+}
+
+.PostsTable
+{
+    border : 2px solid #848;
+
+}
+
+.PostsTable th
+{
+    background : #848;
+    color : White;
+}
+
+.Post td
+{
+    border-top : 2px solid #848;
+    vertical-align : top;
+}
+
+.PostAuthor
+{
+    background : #DDD;
+    width : 0;
+    padding : 0.5em;
+    white-space : nowrap;
+}
+
+.PostHeader
+{
+    background : #DDD;
+    padding : 0.1em 0;
+}
+
+.PostTitle
+{
+    display : inline;
+    white-space : nowrap;
+    font-weight : bold;
+    margin-right : 0.5em;
+}
+
+.PostDate
+{
+    display : inline;
+    font-size : smaller;
+}
+
+.PostToolReply, .PostToolModerate, .PostToolEdit, .PostToolDelete
+{
+    display : inline;
+    font-size : smaller;
+    margin-right : 0.5em;
+}
+
+.PostTools
+{
+    float : right;
+}
+
+.PostText
+{
+    padding : 0.25em; 
+    padding-top : 1em;
+    background : white;
+}
+
+.EditPostTitleBox, .EditPostBodyBox
+{
+	width : 550px;
+}
+
+.EditPostBodyBox
+{
+	height : 200px;
+}

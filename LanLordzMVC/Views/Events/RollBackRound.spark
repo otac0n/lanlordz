@@ -1,0 +1,14 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.RollBackRoundModel]]"/> 
+<content name="title">Roll Back Round</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Roll Back Round</div>
+    <h2>Roll Back Round</h2>
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     Are you sure you would like to roll back the last round in the tournament?<br />
+     This CANNOT be undone!<br /><br />
+     <input type="submit" value="Yes, Roll Back" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID })}
+   # }
+</content>

@@ -1,0 +1,5 @@
+﻿.MenuItem
+{
+    display : inline;
+    list-style-type : none;
+}

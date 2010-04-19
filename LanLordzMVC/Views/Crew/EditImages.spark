@@ -1,0 +1,32 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EditImagesModel]]"/> 
+<content name="title">Edit Event Images</content>
+<content name="headers">
+</content>
+<content name="main">
+    <h2>Edit Event Images</h2>
+    # using (Html.BeginForm(Html.BeginForm("EditImages", "Crew", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    # {
+     !{Html.AntiForgeryToken()}
+     <p>Delete Images:</p>
+     <div class="EditImagesList">
+       <div class="EditImagesListItem" each="var image in Model.Images">
+        <input type="checkbox" name="${"delete-" + image.EventImageID}" />
+        <div class="EditImagesListItemImage"><img src="${Url.Action("Image", "Images", new { id = image.EventImageID, thumbnail = 100, hash = CalculateScrapeBuster(image.ScrapeBusterKey, 100) })}" /></div>
+       </div>
+     </div>
+     <br style="clear : both" />
+     <br />
+     <table>
+      <tr><td>Add Images:</td><td><input type="file" name="image1" /></td></tr>
+      <tr><td></td><td><input type="file" name="image2" /></td></tr>
+      <tr><td></td><td><input type="file" name="image3" /></td></tr>
+      <tr><td></td><td><input type="file" name="image4" /></td></tr>
+      <tr><td></td><td><input type="file" name="image5" /></td></tr>
+      <tr><td></td><td><input type="file" name="image6" /></td></tr>
+      <tr><td></td><td><input type="file" name="image7" /></td></tr>
+      <tr><td></td><td><input type="file" name="image8" /></td></tr>
+     </table>
+     <br />
+     <input type="submit" value="Save" />
+    # }
+</content>

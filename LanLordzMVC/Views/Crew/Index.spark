@@ -1,0 +1,11 @@
+<use pageBaseType="LanLordz.Views.BasePage"/> 
+<content name="title">Crew Index</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Crew Index</h2>
+    <ul>
+     <li>!{Html.ActionLink("Check Users In", "UserCheckIn")}</li>
+     <li>!{Html.ActionLink("Add / Edit Images", "EditImages")}</li>
+     <li>!{Html.ActionLink("Door Prizes", "DoorPrizes")}</li>
+    </ul>
+</content>

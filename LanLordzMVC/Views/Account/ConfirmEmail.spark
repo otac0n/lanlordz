@@ -1,0 +1,12 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ConfirmEmailModel]]"/>
+<content name="title">Confirm Email</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>Confirm Email</h2>
+    !{Html.ValidationSummary("Confirmation Failed.", new { @class = "ErrorText" })}
+    # using (Html.BeginForm())
+    # {
+     !{Html.AntiForgeryToken()}
+     Key: !{Html.TextBox("Key", Model.Key)} <input type="submit" value="Confirm" />
+    # }
+</content>

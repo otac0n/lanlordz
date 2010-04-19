@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bbcode>
+  <tags>
+    <tag name="B" type="normal" parameter="false">
+      <open><![CDATA[<span class="ForumBold">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="I" type="normal" parameter="false">
+      <open><![CDATA[<span class="ForumItalics">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="U" type="normal" parameter="false">
+      <open><![CDATA[<span class="ForumUnderline">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="S" type="normal" parameter="false">
+      <open><![CDATA[<span class="ForumStrikethrough">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="LINK" type="literal" parameter="false">
+      <open><![CDATA[<a href="]]></open>
+      <close><![CDATA[" rel="nofollow">{1}</a>]]></close>
+    </tag>
+    <tag name="LINK" type="normal" parameter="true">
+      <open><![CDATA[<a href="{0}" rel="nofollow">]]></open>
+      <close><![CDATA[</a>]]></close>
+    </tag>
+    <tag name="URL" type="literal" parameter="false">
+      <open><![CDATA[<a href="]]></open>
+      <close><![CDATA[" rel="nofollow">{1}</a>]]></close>
+    </tag>
+    <tag name="URL" type="normal" parameter="true">
+      <open><![CDATA[<a href="{0}" rel="nofollow">]]></open>
+      <close><![CDATA[</a>]]></close>
+    </tag>
+    <tag name="CODE" type="literal" parameter="false">
+      <open><![CDATA[<div class="ForumCode">]]></open>
+      <close><![CDATA[</div>]]></close>
+    </tag>
+    <tag name="IMG" type="literal" parameter="false">
+      <open><![CDATA[<img alt="" src="]]></open>
+      <close><![CDATA[" />]]></close>
+    </tag>
+    <tag name="IMG" type="literal" parameter="true">
+      <open><![CDATA[<img alt="{0}" src="]]></open>
+      <close><![CDATA[" />]]></close>
+    </tag>
+    <tag name="YOUTUBE" type="newcontext" parameter="true">
+      <open><![CDATA[<div><object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/{0}&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/{0}&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object><div class="ForumVideoCaption">]]></open>
+      <close><![CDATA[</div></div>]]></close>
+    </tag>
+    <tag name="QUOTE" type="newcontext" parameter="true">
+      <open><![CDATA[<div class="ForumQuote"><div class="ForumQuoteAttribution">{0}</div>]]></open>
+      <close><![CDATA[</div>]]></close>
+    </tag>
+    <tag name="QUOTE" type="newcontext" parameter="false">
+      <open><![CDATA[<div class="ForumQuote">]]></open>
+      <close><![CDATA[</div>]]></close>
+    </tag>
+    <tag name="SPOILER" type="newcontext" parameter="true">
+      <open><![CDATA[<div class="ForumSpoiler">{0} <input type="button" value="Show" onclick="if(this.parentNode.childNodes[2].style.display == 'none') this.parentNode.childNodes[2].style.display = 'block'; else this.parentNode.childNodes[2].style.display = 'none';" /><div style="display : none;">]]></open>
+      <close><![CDATA[</div></div>]]></close>
+    </tag>
+    <tag name="SPOILER" type="newcontext" parameter="false">
+      <open><![CDATA[<div class="ForumSpoiler">Spoiler: <input type="button" value="Show" onclick="if(this.parentNode.childNodes[2].style.display == 'none') {{ this.parentNode.childNodes[2].style.display = 'block'; this.value = 'Hide'; }} else {{ this.parentNode.childNodes[2].style.display = 'none'; this.value = 'Show'; }}" /><div style="display : none;">]]></open>
+      <close><![CDATA[</div></div>]]></close>
+    </tag>
+    <tag name="COLOR" type="normal" parameter="true">
+      <open><![CDATA[<span class="ForumColor{0}">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="SIZE" type="normal" parameter="true">
+      <open><![CDATA[<span class="ForumSize{0}">]]></open>
+      <close><![CDATA[</span>]]></close>
+    </tag>
+    <tag name="POLL" type="normal" parameter="true">
+      <open><![CDATA[<a class="ForumPoll" href="/Polls/Details/{0}">]]></open>
+      <close><![CDATA[</a>]]></close>
+    </tag>
+  </tags>
+  <literalReplacements>
+    <replacement>
+      <oldvalue><![CDATA[&#13;&#10;]]></oldvalue>
+      <newvalue><![CDATA[&#10;]]></newvalue>
+    </replacement>
+  </literalReplacements>
+  <replacements>
+    <replacement>
+      <oldvalue><![CDATA[&#13;&#10;]]></oldvalue>
+      <newvalue><![CDATA[&#10;]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[&#10;]]></oldvalue>
+      <newvalue><![CDATA[<br />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[&#13;]]></oldvalue>
+      <newvalue><![CDATA[<br />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;&#41;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":)" src="~/Skins/Smile.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;&#40;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":(" src="~/Skins/Frown.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;D((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":D" src="~/Skins/Grin.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;P((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":P" src="~/Skins/Tongue.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;p((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":p" src="~/Skins/Tongue.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;&#47;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":/" src="~/Skins/Bored.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;&#124;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":|" src="~/Skins/Blank.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;o((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":o" src="~/Skins/Suprise.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;O((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":O" src="~/Skins/Suprise.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;s((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":s" src="~/Skins/Confused.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;S((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":S" src="~/Skins/Confused.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;&#63;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":?" src="~/Skins/Confused.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;x((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":x" src="~/Skins/Scowl.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#58;X((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=":X" src="~/Skins/Scowl.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#59;&#41;((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt=";)" src="~/Skins/Wink.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[(^|(?<=\s|\<br \/\>))&#60;3((?=\s|\<br \/\>)|$)]]></oldvalue>
+      <newvalue><![CDATA[<img class="ForumSmiley" alt="&#60;3" src="~/Skins/Love.png" />]]></newvalue>
+    </replacement>
+    <replacement>
+      <oldvalue><![CDATA[~/]]></oldvalue>
+      <newvalue><![CDATA[/]]></newvalue>
+    </replacement>
+  </replacements>
+</bbcode>

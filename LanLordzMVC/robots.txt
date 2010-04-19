@@ -1,0 +1,13 @@
+User-Agent: *
+Allow: /
+Disallow: /Admin/
+Disallow: /Crew/
+Disallow: /Forums/DeletePost/
+Disallow: /Forums/DeletePost
+Disallow: /Forums/EditPost/
+Disallow: /Forums/EditPost
+Disallow: /Forums/CreatePost/
+Disallow: /Forums/CreatePost
+Disallow: /Forums/ViewUnread/
+Disallow: /Forums/ViewUnread
+Disallow: /Images/

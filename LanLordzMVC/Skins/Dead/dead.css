@@ -1,0 +1,204 @@
+﻿@font-face
+{  
+ font-family: "TwentyEightDaysLater";  
+ src: url(TwentyEightDaysLater.eot); /* IE */  
+ src: local("28 Days Later"), url(TwentyEightDaysLater.ttf) format("truetype"); /* non-IE */  
+}
+
+html{padding:0;margin:0;}
+h1,h2,h3,h4,h5{font-family:TwentyEightDaysLater;}
+img{border:none;}
+body{background:Black url(Background.png) no-repeat fixed center top;font-family:Sans-Serif;color:White;text-align:center;padding:0;margin:0;}
+a:link,a:visited,a:active{color:Red;text-decoration:none;}
+a:hover{color:Red;text-decoration:underline;}
+#surround{padding:0;margin:0 auto 0 auto;width:1000px;}
+#header,#menu,#userinfo{background:url(HeaderBG.png) repeat-y;text-align:center;padding:0;margin:0;}
+#menu{background:url(MenuBG.png) no-repeat;position:relative;height:81px;top:60px;}
+#userinfo{position:relative;height:40px;top:-81px;padding:20px 0 0 0;}
+#main{background:url(MainBG.png) repeat-y;padding:10px 20px;width:960px;text-align:left;}
+#footer{background:url(FooterBG.png) no-repeat center bottom;padding:10px 20px;width:960px;text-align:left;}
+.Menu{margin:0 auto 0 auto;padding:0;height:81px;width:840px;}
+.MenuItem{padding:0;margin:0 20px 0 0;list-style-type:none;float:left;width:100px;height:81px;font-family:TwentyEightDaysLater;font-size:18pt;font-weight:bold;color:White;background:url(NavButton.png) no-repeat center top;}
+.MenuItem a:link,.MenuItem a:visited,.MenuItem a:active{color:White;text-decoration:none;}
+.MenuItem a:hover{color:Red;text-decoration:none;}
+.UserInfoBox{padding:0;margin:0;}
+.UserInfoBoxLoggedOnInfo,.UserInfoBoxAction,.UserInfoBoxInput{display:inline;margin:0 10px 0 0;}
+.UserInfoBoxAction{font-weight:bold;}
+.FooterCopyright{display:inline;}
+.FooterVisitors{float:right;}
+.Sponsor{text-align:center;border:none;padding:1em;width:500px;margin-left:auto;margin-right:auto;margin-bottom:5px;}
+.SponsorName{font-weight:bold;}
+.SponsorBlurb{display:block;}
+.NewsPost{margin-bottom:2em;}
+.NewsPostTitle{font-family:TwentyEightDaysLater;font-weight:bold;font-size:140%;display:block;color:Red;}
+.NewsPostDate{margin-bottom:.5em;font-size:smaller;display:block;}
+.NewsPostAuthor{margin-top:.5em;display:block;}
+.UserProfileAvatar{float:left;margin-right:1em;margin-bottom:.5em;}
+.UserProfileUsername{font-size:150%;font-weight:bold;margin-bottom:.5em;}
+.UserProfileGenderLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileGenderValue{display:inline;}
+.UserProfileEmailLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileEmailAddress{display:inline;}
+.UserProfileJoinedLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileJoinedDate{display:inline;}
+.UserProfilePosts{clear:both;}
+.UserProfilePostsLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfilePostsCount{display:inline;}
+.UserProfileLocationLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileLocationText{display:inline;}
+.UserProfileWebsiteLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileWebsiteAddress{display:inline;}
+.UserProfileOccupationLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileOccupationText{display:inline;}
+.UserProfileInterestsLabel{display:inline;font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileInterestsText{display:inline;}
+.UserProfileBiographyLabel{font-weight:bold;margin-right:.5em;line-height:1.5;}
+.UserProfileBiographyCount{display:inline;}
+.StatsSection{margin-top:1em;}
+.StatsHeaderTitle{font-size:larger;font-weight:bold;display:inline;margin-right:1em;}
+.StatsHeaderMoreInfoLink{display:inline;}
+.StatsItem,.StatsItemValue,.StatsItemDetail{margin-left:1em;}
+.StatsItem{margin-top:.5em;}
+.EventStatsTable{width:100%;}
+.UserStatsTable{width:100%;}
+.StatsHeaderTitle{font-family:TwentyEightDaysLater;}
+.EventRosterTitle,.EventTournamentsTitle,.EventImagesTitle{font-family:TwentyEightDaysLater;margin-top:1em;padding:2px;padding-left:6px;font-weight:bold;}
+.EventListItem{list-style-type:none;margin-bottom:1em;}
+.EventListEventName{font-size:larger;font-weight:bold;}
+.EventListVenue{margin-top:.15em;margin-bottom:.15em;}
+.EventListVenueName{font-weight:bold;margin-right:.75em;}
+.EventListVenueAddress{font-size:smaller;}
+.EventListTimesEnd{font-size:smaller;}
+.EventCrewMember{clear:both;margin-top:2em;}
+.EventCrewMemberAvatar{float:left;margin-right:.5em;margin-top:.5em;margin-bottom:1em;width:105px;height:100%;}
+.EventCrewMemberName{font-size:larger;}
+.EventCrewMemberRegisterDate{margin:.5em;}
+.EditImagesUpload{clear:both;padding:1em;}
+.EventInfoName{text-align:center;}
+.EventVenue{width:505px;}
+.ViewImage{margin-left:auto;margin-right:auto;text-align:center;border:solid 1px black;width:800px;height:600px;padding:20px;background:url(Darken.png) repeat;border-bottom:none;}
+.ImageTags{margin-left:auto;margin-right:auto;border:solid 1px black;width:800px;background:url(Darken.png) repeat;padding:20px;border-top:none;}
+.ImagePager{margin-left:auto;margin-right:auto;text-align:center;width:810px;}
+.ImagePagerItem{margin:5px;float:left;text-align:center;border:solid 1px black;width:150px;height:150px;background:url(Darken.png) repeat;}
+.ImagePagerItemImage{display:inline;font-size:144px;vertical-align:middle;}
+.ImagePagerCurrentItem{border-color:white;}
+.EventImagesListItem,.EditImagesListItem,.GalleryImagesListItem{margin:.3em;float:left;text-align:center;border:solid 1px black;width:100px;height:100px;background:url(Darken.png) repeat;}
+.EventImagesListItemImage,.EditImagesListItemImage,.GalleryImagesListItemImage{display:inline;font-size:96px;vertical-align:middle;}
+.GalleryPagination{clear:both;}
+.ImageTagsNewTag{width:750px;border:solid 1px black;background:#999;padding:20px;}
+.ImageTagsNewTagSearchBox,.ImageTagsNewTagSearchResults{width:120px;background:white;color:black;margin:0;}
+.ImageTagsNewTagSearchBox{border:solid 1px #333;}
+.ImageTagsNewTagSearchResults{border:solid 1px black;border-top:none;overflow:auto;height:100px;padding:0;}
+.ImageTagsNewTagSearchResultsItem{list-style-type:none;padding:2px;margin:0;height:16px;font-size:10pt;}
+.EventRoster{width:30%;}
+.EventSignupLink{width:100%;}
+.EventSignupLink{margin-bottom:1em;font-size:larger;}
+.EventVenueLocationName{display:inline;font-weight:bold;margin-right:1em;}
+.EventVenueLocationAddress{display:inline;}
+.EventVenueLocation{margin-top:.5em;margin-bottom:1em;}
+.EventRosterEmptyText,.EventImagesEmptyText{margin:1em;font-style:italic;}
+.EventTournamentStandings{width:66%;float:right;margin-bottom:1em;margin-top:1.5em;}
+.EventTournamentRoundsList{clear:both;margin-bottom:1em;margin-top:1.5em;}
+.EventTournamentTeamsList{width:32%;float:left;margin-bottom:1em;margin-right:1em;margin-top:1.5em;}
+.EventTournamentStandingsTable{margin-top:1em;font-size:smaller;}
+.EventTournamentStandingsTableStandingTeam{padding-right:1em;}
+.EventTournamentStandingsTableStandingDetails{font-family:Monospace;}
+.EventTournamentTeamsListTitle{font-family:TwentyEightDaysLater;font-weight:bold;margin-bottom:1em;}
+.EventTournamentTeamMembers{margin-left:2em;margin-bottom:1em;}
+.EventTournamentRoundsListTitle{font-family:TwentyEightDaysLater;font-weight:bold;margin-bottom:1em;}
+.EventTournamentStandingsTitle{font-family:TwentyEightDaysLater;font-weight:bold;margin-bottom:1em;}
+.EventTournamentRoundPairingsList{margin-left:2em;}
+.EventTournamentRoundPairing{border-left:1px solid Red;padding-left:.25em;margin-bottom:1em;}
+.EventTournamentRoundPairingTeamsList{font-size:smaller;}
+.EventTournamentRoundPairingTeamName{width:12em;margin-right:2em;}
+.EventTournamentManageTeamTeamsTableHeaderUsername,.EventTournamentManageTeamTeamsTableHeaderTeamCaptain,.EventTournamentManageTeamTeamsTableMemberUsername,.EventTournamentManageTeamTeamsTableMemberTeamCaptain{padding-right:2em;}
+.EventTournamentJoinTeamTeamMembers{margin-left:2em;margin-bottom:1em;}
+.ForumsTable,.ThreadsTable,.PostsTable{width:100%;clear:both;}
+.ForumNavigator{font-size:smaller;padding-bottom:1em;}
+.ForumSearch{float:right;margin-bottom:1em;}
+.ForumIndexTools{margin-bottom:1em;}
+.ForumIndexTools div{display:inline;margin-right:1em;font-size:16px;background-position:left center;background-repeat:no-repeat;padding-top:6px;padding-bottom:6px;}
+.ForumIndexToolsMarkAllRead{padding-left:34px;background-image:url(MarkRead.png);}
+.ForumIndexToolsViewUnread{padding-left:40px;background-image:url(ViewUnread.png);}
+.ForumTools{margin-bottom:1em;}
+.ForumTools div{display:inline;margin-right:1em;font-size:16px;background-position:left center;background-repeat:no-repeat;padding-top:6px;padding-bottom:6px;}
+.ForumToolsNewThread{padding-left:34px;background-image:url(NewThread.png);}
+.ForumsTable th{white-space:nowrap;font-size:small;padding-right:5px;}
+.ForumGroup td div{width:100%;margin-top:1em;padding:2px;padding-left:6px;font-weight:bold;font-family:TwentyEightDaysLater;}
+.ForumIndicator{margin-left:.5em;margin-right:.5em;}
+.ForumDescriptionTitle{display:block;}
+.ForumDescriptionText{font-size:smaller;display:block;}
+.ForumLastPostDate{white-space:nowrap;}
+.ForumIndicator{width:32px;height:32px;background-repeat:no-repeat;}
+.ForumUnread .ForumIndicator{background:url(ForumUnread.png);}
+.ForumRead .ForumIndicator{background:url(ForumRead.png);}
+.ForumThreadCount,.ForumPostCount{padding-left:6px;}
+.ForumLastPost{font-size:smaller;}
+.ForumNewThread{margin:1em 0;}
+.ThreadIndicator{width:24px;height:24px;background-repeat:no-repeat;margin:0 .5em;}
+.ThreadNormalUnread .ThreadIndicator{background:url(ThreadUnread.png);}
+.ThreadNormalRead .ThreadIndicator{background:url(ThreadRead.png);}
+.ThreadAnnouncementUnread .ThreadIndicator{background:url(AnnouncementUnread.png);}
+.ThreadAnnouncementRead .ThreadIndicator{background:url(AnnouncementRead.png);}
+.ThreadStickyUnread .ThreadIndicator{background:url(StickyUnread.png);}
+.ThreadStickyRead .ThreadIndicator{background:url(StickyRead.png);}
+.ThreadLastPostDate{white-space:nowrap;}
+.ThreadTools{margin-top:1em;}
+.ThreadTools div{display:inline;margin-right:1em;font-size:16px;background-position:left center;background-repeat:no-repeat;padding-top:6px;padding-bottom:6px;}
+.ThreadToolsNewPost{padding-left:34px;background-image:url(NewPost.png);}
+.Post td{vertical-align:top;border-top:solid 2px black;}
+.PostAuthor{background:url(Darken.png) repeat;width:0;padding:.5em;white-space:nowrap;}
+.PostHeader{background:url(Darken.png) repeat;padding:.1em 0;height:30px;}
+.PostTitle{display:inline;white-space:nowrap;font-weight:bold;margin-right:.5em;}
+.PostDate{display:inline;font-size:smaller;}
+.PostTools{float:right;}
+.PostTools div{height:24px;background-repeat:no-repeat;vertical-align:top;float:left;margin-right:20px;margin-top:3px;padding-left:26px;font-size:smaller;font-family:TwentyEightDaysLater;}
+.PostToolReply{background:url(Reply.png);}
+.PostToolModerate{background:url(Edit.png);}
+.PostToolEdit{background:url(Edit.png);}
+.PostToolDelete{background:url(Delete.png);}
+.PostText{padding:.25em;padding-top:1em;overflow:auto;}
+.EditPostTitleBox,.EditPostBodyBox{width:550px;}
+.EditPostBodyBox{height:200px;}
+.ForumBold{font-weight:bold;}
+.ForumItalics{font-style:italic;}
+.ForumUnderline{text-decoration:underline;}
+.ForumStrikethrough{text-decoration:line-through;}
+.ForumCode{margin:.5em;padding:.25em;background:url(CodeBG.png) repeat;font-family:Monospace;white-space:pre;font-size:10pt;}
+.ForumQuote{margin:.5em;padding:.25em;border:1px dashed #888;}
+.ForumQuoteAttribution{background:url(Quote.png);background-repeat:no-repeat;padding-left:18px;margin-bottom:.25em;font-size:12px;font-weight:bold;}
+.ForumSmiley{width:16px;height:16px;}
+.ForumColorRed{color:Red;}
+.ForumColorGreen{color:Green;}
+.ForumColorBlue{color:Blue;}
+.ForumColorYellow{color:Yellow;}
+.ForumColorPurple{color:Purple;}
+.ForumColorOrange{color:Orange;}
+.ForumColorred{color:Red;}
+.ForumColorgreen{color:Green;}
+.ForumColorblue{color:Blue;}
+.ForumColoryellow{color:Yellow;}
+.ForumColorpurple{color:Purple;}
+.ForumColororange{color:Orange;}
+.ForumSize8{font-size:8pt;}
+.ForumSize9{font-size:9pt;}
+.ForumSize10{font-size:10pt;}
+.ForumSize11{font-size:11pt;}
+.ForumSize12{font-size:12pt;}
+.ForumSize14{font-size:14pt;}
+.ForumSize16{font-size:16pt;}
+.ForumSize18{font-size:18pt;}
+.ForumSize20{font-size:20pt;}
+.ForumSize22{font-size:22pt;}
+.ForumSize24{font-size:24pt;}
+.AdminEditConfiguration{width:100%;}
+.AdminEditConfigurationHeading th{padding-top:2em;}
+.AdminEditConfigurationItem textarea{width:100%;}
+.AdminEditConfigurationItem textarea{height:300px;}
+.AdminEditConfigurationItem select,.AdminEditConfigurationItem input[type=text]{width:75%;}
+.PollResponsesTable{width:100%;}
+.PollResponsesTable th{padding:2px;}
+.PollResponseResultBar{width:250px;height:20px;border:solid 1px White;padding:2px;text-align:center;float:left;margin-right:20px;}
+.PollResponseResultBarFill{height:100%;background:#7c0000;}
+.PollResponseResultBarValue{position:relative;top:-20px;}
+.PollResponseResultBarDetails{display:inline;white-space:nowrap;}

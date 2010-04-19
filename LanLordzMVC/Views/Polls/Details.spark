@@ -1,0 +1,7 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.PollDetailsModel]]"/> 
+<content name="title">${Model.Poll.Title} | Poll Details</content>
+<content name="headers"></content>
+<content name="main">
+    <h2>${Model.Poll.Title}</h2>
+    <PollDetails/>
+</content>

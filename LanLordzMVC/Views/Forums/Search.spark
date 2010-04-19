@@ -1,0 +1,7 @@
+<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ThreadList]]"/> 
+<content name="title">Forum Search</content>
+<content name="headers"></content>
+<content name="main">
+    <div class="ForumNavigator"><span>!{Html.ActionLink(Model.Config.SiteName + " Forum Index", "Index")}</span> &gt; <span>Search</span></div>
+    <ThreadListView Threads="Model.Threads" />
+</content>

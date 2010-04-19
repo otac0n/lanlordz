@@ -1,0 +1,165 @@
+﻿.EventListItem
+{
+	list-style-type : none;
+	margin-bottom : 1em;
+}
+
+.EventListEventName 
+{
+	font-size : larger;
+	font-weight : bold;
+}
+
+.EventListVenue
+{
+	margin-top : 0.15em;
+	margin-bottom : 0.15em;
+}
+
+.EventListVenueName
+{
+	font-weight : bold;
+	margin-right : 0.75em;
+}
+
+.EventListVenueAddress
+{
+	font-size : smaller;
+}
+
+.EventListTimesEnd
+{
+	font-size : smaller;
+}
+
+.EventInfoName
+{
+	font-weight : bold;
+	border-bottom : 1px solid white;
+}
+
+.EventVenueMap
+{
+	float : left;
+}
+
+.EventVenueLocation
+{
+	float : left;
+	margin-left : 1em;
+}
+
+.EventVenueLocationName
+{
+	display : block;
+	font-weight : bold;
+}
+
+.EventSignupLink
+{
+	clear : both;
+	padding-top : 1em;
+}
+
+.EventTournaments
+{
+	clear : both;
+	padding-top : 1em;
+	width : 97%;
+}
+
+.EventTournamentsTitle
+{
+	font-weight : bold;
+	border-bottom : 1px solid white;
+}
+
+.EventRoster
+{
+	padding-top : 1em;
+	float : left;
+	width : 42%;
+}
+
+.EventRosterTitle
+{
+	font-weight : bold;
+	border-bottom : 1px solid white;
+}
+
+.EventRosterList
+{
+	padding : 0;
+}
+
+.EventRosterList li
+{
+	padding : 0;
+	margin : 0;
+	list-style-type : none;
+}
+
+.EventRosterEmptyText
+{
+    font-style : italic;
+    margin-bottom : 1em;
+}
+
+.EventImages
+{
+	padding-top : 1em;
+	float : right;
+	width : 55%
+}
+
+.EventImagesTitle
+{
+	font-weight : bold;
+	border-bottom : 1px solid white;
+}
+
+.EventImagesEmptyText
+{
+    font-style : italic;
+    margin-bottom : 1em;
+}
+
+.EventCrewMember
+{
+	clear : both;
+	margin-top : 2em;
+}
+
+.EventCrewMemberAvatar
+{
+	float : left;
+	margin-right : 0.5em;
+	margin-top : 0.5em;
+	margin-bottom : 1em;
+	width : 105px;
+	height : 100%;
+	text-align : center;
+	vertical-align : middle;
+}
+
+.EventCrewMemberName
+{
+	font-size : larger;
+}
+
+.EventCrewMemberRegisterDate
+{
+	margin : 0.5em;
+}
+
+.EditImagesListItem
+{
+	float : left;
+	margin : 0.3em;
+}
+
+.EditImagesUpload
+{
+	clear : both;
+	padding : 1em;
+}

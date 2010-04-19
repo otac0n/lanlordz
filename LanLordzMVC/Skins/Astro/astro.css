@@ -1,0 +1,1236 @@
+@font-face
+{  
+ font-family: "SpaceAge";  
+ src: url(SpaceAge.eot); /* IE */  
+ src: local("Space Age"), url(SpaceAge.ttf) format("truetype"); /* non-IE */  
+}
+
+html
+{
+ font-family : Veranda, Arial, Sans-Serif;
+ padding : 0;
+}
+
+body
+{
+ background : url(Explore_1920.jpg) black;
+ background-repeat : no-repeat; background-attachment : fixed;
+ background-position : center center;
+}
+
+a:link
+{
+ color : #dbd300;
+ text-decoration : none;
+}
+
+a:visited
+{
+ color : #dbd300;
+ text-decoration : none;
+}
+
+a:hover
+{
+ color : #dbd300;
+ text-decoration : underline;
+}
+
+a:active
+{
+ color : #dbd300;
+ text-decoration : none;
+}
+
+img
+{
+ border : 0;
+}
+
+th
+{
+ text-align : left;
+}
+
+h1, h2, h3, h4, h5
+{
+ font-family : SpaceAge, Veranda, Arial, Sans-Serif;
+ color : #00c8ff;
+}
+
+#surround
+{
+ position : absolute;
+ left : 216px;
+ top : 200;
+ padding : 0;
+}
+
+#header
+{
+ color : White;
+ font-weight : bold;
+ background : url(BoxTop.png);
+ background-repeat : no-repeat;
+ margin : 0;
+ padding : 55px 0 0 0;
+}
+
+#userinfo
+{
+ position : absolute;
+ left : -182px;
+ top : 350px;
+ width : 127px;
+ height : 540px;
+ color : White;
+ font-size : smaller;
+ border-bottom : 0;
+ padding : 10px;
+ background : url(BlueLineSmall.png);
+ background-repeat : no-repeat;
+ color : #bababa;
+}
+
+#menu
+{
+ position : absolute;
+ left : -240px;
+ top : 80px;
+ width : 240px;
+ height : 540px;
+ vertical-align : middle;
+ color : White;
+ background : url(NavBorder.png);
+ background-repeat : no-repeat;
+}
+
+#main
+{
+ margin : 0;
+ padding : 0;
+ width : 753px;
+ background : url(BoxMid.png);
+ background-repeat : repeat-y;
+ border : none;
+ color : #bababa;
+}
+
+#footer
+{
+ background : url(BoxBot.png);
+ /*background-position : left bottom;*/
+ color : White;
+ padding : 0 20px 20px 20px;
+ clear : both;
+ background-repeat : no-repeat;
+ margin-bottom : 10px;
+}
+
+.HeaderBanner
+{
+ height : 46px;
+}
+
+.HeaderSiteTagline
+{
+ background : url(BoxMid.png);
+ background-repeat : repeat-y;
+ text-align : center;
+ padding-top : 5px;
+ font-family : SpaceAge;
+}
+
+#Username, #Password
+{
+ width : 123px;
+}
+
+
+.UserInfoBoxAction
+{
+ background : url(SingleArrow.png);
+ background-repeat : no-repeat;
+ background-position : left center;
+ padding : 0 0 0 15px;
+}
+
+.Menu
+{
+ position : absolute;
+ top : 10px;
+ left : 20%;
+ margin : 70px;
+ margin-left : auto;
+ margin-right : auto;
+ padding : 15px 0 0 0;
+}
+
+.MenuItem
+{
+ background : url(NavButton.png);
+ background-repeat : no-repeat;
+ margin : 5px 0 5px 15px;
+ padding : 0px 10px 0px 17px;
+ width : 150px;
+ height : 19px;
+ list-style-type : none;
+ font-family : SpaceAge, Verdana;
+}
+
+#menu a:link
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#menu a:visited
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#menu a:hover
+{
+    color : #fff;
+    text-decoration : underline;
+}
+
+#menu a:active
+{
+    color : #fff;
+    text-decoration : none;
+}
+
+#userinfo a:link
+{
+    color : #dbd300;
+    text-decoration : underline;
+}
+
+#userinfo a:visited
+{
+    color : #dbd300;
+    text-decoration : underline;
+}
+
+#userinfo a:hover
+{
+    color : #dbd300;
+    text-decoration : underline;
+}
+
+#userinfo a:active
+{
+    color : #dbd300;
+    text-decoration : underline;
+}
+
+#main
+{
+    padding : 0.5em 1em;
+}
+
+.FooterCopyright
+{
+    display : inline;
+}
+
+.FooterVisitors
+{
+    float : right;
+}
+
+/* ========================================== */
+
+.Sponsor
+{
+    text-align : center;
+    border : none;
+    padding : 1em;
+    width : 500px;
+    margin-left : auto;
+    margin-right : auto;
+    margin-bottom : 5px;
+}
+
+.SponsorBlurb
+{
+    display : block;
+}
+
+.NewsPost
+{
+    margin-bottom : 2em;
+}
+
+.NewsPostTitle
+{
+    font-family : SpaceAge;
+    font-weight : bold;
+    font-size : 140%;
+    color : Yellow;
+    display : block;
+}
+
+.NewsPostDate
+{
+    margin-bottom : 0.5em;
+    font-size : smaller;
+    color : #00c8ff;
+    display : block;
+}
+
+.NewsPostAuthor
+{
+    margin-top : 0.5em;
+    display : block;
+}
+
+.UserProfileAvatar
+{
+    float : left;
+    margin-right : 1em;
+    margin-bottom : 0.5em;
+}
+
+.UserProfileUsername
+{
+    font-size : 150%;
+    font-weight : bold;
+    margin-bottom : 0.5em;
+}
+
+.UserProfileGenderLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileGenderValue
+{
+    display : inline;
+}
+
+.UserProfileEmailLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileEmailAddress
+{
+    display : inline;
+}
+
+.UserProfileJoinedLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileJoinedDate
+{
+    display : inline;
+}
+
+.UserProfilePosts
+{
+    clear : both;
+}
+
+.UserProfilePostsLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfilePostsCount
+{
+    display : inline;
+}
+
+.UserProfileLocationLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileLocationText
+{
+    display : inline;
+}
+
+.UserProfileWebsiteLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileWebsiteAddress
+{
+    display : inline;
+}
+
+.UserProfileOccupationLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileOccupationText
+{
+    display : inline;
+}
+
+.UserProfileInterestsLabel
+{
+    display : inline;
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileInterestsText
+{
+    display : inline;
+}
+
+.UserProfileBiographyLabel
+{
+    font-weight : bold;
+    margin-right : 0.5em;
+    line-height : 1.5;
+}
+
+.UserProfileBiographyCount
+{
+    display : inline;
+}
+
+.EventTournamentStandings
+{
+    width : 60%;
+    float : right;
+    margin-bottom : 1em;
+    margin-top : 1.5em;
+}
+
+.EventTournamentRoundsList
+{
+    clear : both;
+    margin-bottom : 1em;
+    margin-top : 1.5em;
+}
+
+.EventTournamentTeamsList
+{
+    clear : both;
+    width : 32%;
+    float : left;
+    margin-bottom : 1em;
+    margin-right : 1em;
+    margin-top : 1.5em;
+}
+
+.EventTournamentStandingsTable
+{
+    margin-top : 1em;
+    font-size : smaller;
+}
+
+.EventTournamentStandingsTableStandingTeam
+{
+    padding-right : 1em;
+}
+
+.EventTournamentStandingsTableStandingDetails
+{
+    font-family : Monospace;
+}
+
+.EventTournamentTeamsListTitle, .EventTournamentRoundsListTitle, .EventTournamentStandingsTitle
+{
+    font-weight : bold;
+    border-bottom : 1px solid white;
+    margin-bottom : 1em;
+}
+
+.EventTournamentTeam
+{
+}
+
+.EventTournamentTeamMembers
+{
+    margin-left : 2em;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRound
+{
+}
+
+.EventTournamentRoundPairingsList
+{
+    margin-left : 2em;
+}
+
+.EventTournamentRoundPairing
+{
+    border-left : 1px solid white;
+    padding-left : 0.25em;
+    margin-bottom : 1em;
+}
+
+.EventTournamentRoundPairingTeamsList
+{
+    font-size : smaller;
+}
+
+.EventTournamentRoundPairingTeamName
+{
+    width : 12em;
+    margin-right : 2em;
+}
+
+.EventTournamentRoundPairingTeamScore
+{
+}
+
+.EventTournamentRoundsListVisualization object
+{
+}
+
+.EventTournamentManageTeamTeamsTableHeaderUsername, .EventTournamentManageTeamTeamsTableHeaderTeamCaptain,
+.EventTournamentManageTeamTeamsTableMemberUsername, .EventTournamentManageTeamTeamsTableMemberTeamCaptain
+{
+    padding-right : 2em;
+}
+
+.EventTournamentJoinTeamTeamMembers
+{
+    margin-left : 2em;
+    margin-bottom : 1em;
+}
+
+
+/*======================================*/
+
+.ForumsTable, .ThreadsTable, .PostsTable
+{
+    width : 100%;
+    clear : both;
+}
+
+.ForumNavigator
+{
+	font-size : smaller;
+	padding-bottom : 1em;
+}
+
+.ForumSearch
+{
+    float : right;
+    margin-bottom : 1em;
+}
+
+.ForumIndexTools
+{
+	margin-bottom : 1em;
+}
+
+.ForumsTable th
+{
+	white-space : nowrap;
+	font-size : small;
+	padding-right : 5px;
+}
+
+.ForumGroup td div
+{
+    width : 100%;
+    margin-top : 1em;
+    padding : 2px;
+    padding-left : 6px;
+    background : url(Darken.png);
+    background-repeat : repeat;
+    font-family : SpaceAge;
+    color : #00c8ff;
+    font-weight : bold;
+}
+
+.ForumIndicator
+{
+ width : 59px;
+ height : 32px;
+ background-repeat : no-repeat;
+ margin : 0 0.5em;
+}
+
+.ForumUnread .ForumIndicator
+{
+ background-image : url(ForumUnread.png);
+}
+
+.ForumRead .ForumIndicator
+{
+ background-image : url(ForumRead.png);
+}
+
+.ForumDescriptionTitle
+{
+	margin-top : 5px;
+}
+
+.ForumDescriptionText
+{
+	font-size : smaller;
+}
+
+.ForumLastPostDate
+{
+    white-space : nowrap;
+}
+
+.ForumThreadCount, .ForumPostCount
+{
+	padding-left : 6px;
+	padding-right : 6px;
+}
+
+.ForumLastPost
+{
+	font-size : smaller;
+}
+
+.ThreadIndicator
+{
+	width : 16px;
+	height : 16px;
+	background-repeat : no-repeat;
+	margin : 0 0.5em;
+}
+
+.ThreadNormalUnread .ThreadIndicator
+{
+	background : url(ThreadUnread.png);
+}
+
+.ThreadNormalRead .ThreadIndicator
+{
+	background : url(ThreadRead.png);
+}
+
+.ThreadAnnouncementUnread .ThreadIndicator
+{
+	background : url(AnnouncementUnread.png);
+}
+
+.ThreadAnnouncementRead .ThreadIndicator
+{
+	background : url(AnnouncementRead.png);
+}
+
+.ThreadStickyUnread .ThreadIndicator
+{
+	background : url(StickyUnread.png);
+}
+
+.ThreadStickyRead .ThreadIndicator
+{
+	background : url(StickyRead.png);
+}
+
+.ThreadLastPostDate
+{
+    white-space : nowrap;
+}
+
+.ThreadEven
+{
+    background : url(Darken.png);
+    background-repeat : repeat;
+}
+
+.Post td
+{
+    vertical-align : top;
+}
+
+.PostAuthor
+{
+    width : 0;
+    padding : 0.5em;
+    white-space : nowrap;
+}
+
+.PostAuthorBadge
+{
+    background : url(Darken.png);
+    text-align : center;
+    font-size : 8pt;
+    color : #00c8ff;
+}
+
+.PostHeader
+{
+    padding : 0.1em 0;
+}
+
+.PostEven .PostAuthor
+{
+    background : url(Darken.png);
+}
+
+.PostEven .PostHeader
+{
+    background : url(Darken.png);
+}
+
+
+.PostTitle
+{
+    display : inline;
+    white-space : nowrap;
+    font-weight : bold;
+    margin-right : 0.5em;
+}
+
+.PostDate
+{
+    display : inline;
+    font-size : smaller;
+}
+
+.PostTools a, .PostTools a:link, .PostTools a:visited, .ForumTools a, .ForumTools a:link, .ForumTools a:visited, .ThreadTools a, .ThreadTools a:link, .ThreadTools a:visited, .ForumIndexTools a, .ForumIndexTools a:link, .ForumIndexTools a:visited, .TournamentTools a, .TournamentTools a:link, .TournamentTools a:visited
+{
+    color : #00c8ff;
+    text-decoration : none;
+    border : none;
+}
+
+.PostTools a:hover, .ForumTools a:hover, .ThreadTools a:hover, .ForumIndexTools a:hover, .TournamentTools a:hover
+{
+    color : white;
+    text-decoration : none;
+    border : none;
+}
+
+.PostTools a:active, .ForumTools a:active, .ThreadTools a:active, .ForumIndexTools a:active, .TournamentTools a:active
+{
+    color : #00c8ff;
+    border : none;
+}
+
+.PostToolReply, .PostToolEdit, .PostToolModerate, .PostToolDelete, .ForumToolsNewThread, .ThreadToolsNewPost, .ForumIndexToolsViewUnread, .ForumIndexToolsMarkAllRead, .TournamentToolsCreateTeam, .TournamentToolsJoinTeam, .TournamentToolsLeaveTeam, .TournamentToolsManageTeam, .TournamentToolsLockTeams, .TournamentToolsUnlockTeams, .TournamentToolsEditTeams, .TournamentToolsInputScores, .TournamentToolsStartNextRound, .TournamentToolsRollBackRound
+{
+ float : left;
+ background : url(PostToolRT.png) no-repeat 100% 0;
+ padding : 0 1em 0 0;
+ height : 31px;
+}
+
+.PostToolReply a, .PostToolEdit a, .PostToolModerate a, .PostToolDelete a, .ForumToolsNewThread a, .ThreadToolsNewPost a, .ForumIndexToolsViewUnread a, .ForumIndexToolsMarkAllRead a, .TournamentToolsCreateTeam a, .TournamentToolsJoinTeam a, .TournamentToolsLeaveTeam a, .TournamentToolsManageTeam a, .TournamentToolsLockTeams a, .TournamentToolsUnlockTeams a, .TournamentToolsEditTeams a, .TournamentToolsInputScores a, .TournamentToolsStartNextRound a, .TournamentToolsRollBackRound a
+{
+ display : block;
+ background : url(PostToolBG.png) no-repeat 0 0;
+ padding : 0 0 0 1em;
+ height : 31px;
+ line-height : 31px;
+ text-align : center;
+ white-space : nowrap;
+}
+
+.PostToolReply:hover, .PostToolEdit:hover, .PostToolModerate:hover, .PostToolDelete:hover, .ForumToolsNewThread:hover, .ThreadToolsNewPost:hover, .ForumIndexToolsViewUnread:hover, .ForumIndexToolsMarkAllRead:hover, .TournamentToolsCreateTeam:hover, .TournamentToolsJoinTeam:hover, .TournamentToolsLeaveTeam:hover, .TournamentToolsManageTeam:hover, .TournamentToolsLockTeams:hover, .TournamentToolsUnlockTeams:hover, .TournamentToolsEditTeams:hover, .TournamentToolsInputScores:hover, .TournamentToolsStartNextRound:hover, .TournamentToolsRollBackRound:hover
+{
+ background-position : 100% -31px;
+}
+
+.PostToolReply:hover a, .PostToolEdit:hover a, .PostToolModerate:hover a, .PostToolDelete:hover a, .ForumToolsNewThread:hover a, .ThreadToolsNewPost:hover a, .ForumIndexToolsViewUnread:hover a, .ForumIndexToolsMarkAllRead:hover a, .TournamentToolsCreateTeam:hover a, .TournamentToolsJoinTeam:hover a, .TournamentToolsLeaveTeam:hover a, .TournamentToolsManageTeam:hover a, .TournamentToolsLockTeams:hover a, .TournamentToolsUnlockTeams:hover a, .TournamentToolsEditTeams:hover a, .TournamentToolsInputScores:hover a, .TournamentToolsStartNextRound:hover a, .TournamentToolsRollBackRound:hover a
+{
+ background-position : 0 -31px;
+}
+
+.PostTools
+{
+ float : right;
+}
+
+.PostText
+{
+ padding : 1em 0.25em 1.5em 0.25em; 
+ width : 600px;
+ overflow : auto;
+}
+
+.ForumPagination, .ThreadPagination
+{
+    clear : both;
+    text-align : right;
+}
+
+.EditPostTitleBox, .EditPostBodyBox
+{
+	width : 550px;
+}
+
+.EditPostBodyBox
+{
+	height : 200px;
+}
+
+.ForumCode
+{
+    background : url(CodeBG.png);
+    background-repeat : repeat;
+    padding : 8px;
+    white-space : pre;
+    font-family : Monospace;
+}
+
+.ForumQuote
+{
+    background : url(QuoteBG.png);
+    background-repeat : repeat;
+    padding : 8px;
+}
+
+.ForumQuoteAttribution
+{
+    background : url(Quote.png);
+    background-repeat : no-repeat;
+    padding-left : 16px;
+    height : 16px;
+    margin-bottom : 12px;
+}
+
+.ForumBold
+{
+ font-weight : bold;
+}
+
+.ForumItalics
+{
+ font-style : italic;
+}
+
+.ForumUnderline
+{
+ text-decoration : underline;
+}
+
+.ForumStrikethrough
+{
+ text-decoration : line-through;
+}
+
+.ForumSmiley
+{
+ width : 16px;
+ height : 16px;
+}
+
+.ForumColorRed
+{
+ color : Red;
+}
+
+.ForumColorGreen
+{
+ color : Green;
+}
+
+.ForumColorBlue
+{
+ color : Blue;
+}
+
+.ForumColorYellow
+{
+ color : Yellow;
+}
+
+.ForumColorPurple
+{
+ color : Purple;
+}
+
+.ForumColorOrange
+{
+ color : Orange;
+}
+
+.ForumColorred
+{
+ color : Red;
+}
+
+.ForumColorgreen
+{
+ color : Green;
+}
+
+.ForumColorblue
+{
+ color : Blue;
+}
+
+.ForumColoryellow
+{
+ color : Yellow;
+}
+
+.ForumColorpurple
+{
+ color : Purple;
+}
+
+.ForumColororange
+{
+ color : Orange;
+}
+
+.ForumSize8
+{
+ font-size : 8pt;
+}
+
+.ForumSize9
+{
+ font-size : 9pt;
+}
+
+.ForumSize10
+{
+ font-size : 10pt;
+}
+
+.ForumSize11
+{
+ font-size : 11pt;
+}
+
+.ForumSize12
+{
+ font-size : 12pt;
+}
+
+.ForumSize14
+{
+ font-size : 14pt;
+}
+
+.ForumSize16
+{
+ font-size : 16pt;
+}
+
+.ForumSize18
+{
+ font-size : 18pt;
+}
+
+.ForumSize20
+{
+ font-size : 20pt;
+}
+
+.ForumSize22
+{
+ font-size : 22pt;
+}
+
+.ForumSize24
+{
+ font-size : 24pt;
+}
+
+/* ======================= */
+
+.EventRosterTitle, .EventTournamentsTitle, .EventImagesTitle
+{
+    margin-top : 1em;
+    padding : 2px;
+    padding-left : 6px;
+    font-weight : bold;
+    border-bottom : solid 1px white;
+}
+
+.EventListItem
+{
+	list-style-type : none;
+	margin-bottom : 1em;
+}
+
+.EventListEventName 
+{
+	font-size : larger;
+	font-weight : bold;
+}
+
+.EventListVenue
+{
+	margin-top : 0.15em;
+	margin-bottom : 0.15em;
+}
+
+.EventListVenueName
+{
+	font-weight : bold;
+	margin-right : 0.75em;
+}
+
+.EventListVenueAddress
+{
+	font-size : smaller;
+}
+
+.EventListTimesEnd
+{
+	font-size : smaller;
+}
+
+.EventTournamentsListTournament
+{
+    list-style-type : none;
+}
+
+.EventCrewMember
+{
+	clear : both;
+	margin-top : 2em;
+}
+
+.EventCrewMemberAvatar
+{
+	float : left;
+	margin-right : 0.5em;
+	margin-top : 0.5em;
+	margin-bottom : 1em;
+	width : 105px;
+	height : 100%;
+}
+
+.EventCrewMemberName
+{
+	font-size : larger;
+}
+
+.EventCrewMemberRegisterDate
+{
+	margin : 0.5em;
+}
+
+.EventImagesList
+{
+	text-align : center;
+    margin : 1em 0 0 1em;
+}
+
+.EventImagesListItem, .EditImagesListItem
+{
+	display : inline;
+}
+
+.EventImagesListItemImage, .EditImagesListItemImage
+{
+	display : inline;
+	margin : 0.3em 0.3em 0.3em 0;
+}
+
+.EditImagesUpload
+{
+	clear : both;
+	padding : 1em;
+}
+
+.EventInfoName
+{
+}
+
+.EventVenue
+{
+    /*float : right;*/
+	width : 505px;
+}
+
+.EventImages
+{
+}
+
+.EventRoster
+{
+}
+
+.EventRosterList
+{
+    padding : 0;
+	text-align : center;
+}
+
+.EventRosterList li
+{
+    display : inline;
+    list-style-type : none;
+    margin : 0 1em;
+}
+
+.EventSignupLink
+{
+	width : 100%;
+}
+
+.EventSignupLink
+{
+	margin-bottom : 1em;
+	font-size : larger;
+}
+
+.EventVenueLocationName
+{
+	display : inline;
+	font-weight : bold;
+	margin-right : 1em;
+}
+
+.EventVenueLocationAddress
+{
+	display : inline;
+}
+
+.EventVenueLocation
+{
+	margin-top : 0.5em;
+	margin-bottom : 1em;
+}
+
+.EventRosterEmptyText, .EventImagesEmptyText
+{
+	margin : 1em;
+	font-style : italic;
+}
+
+/* ======================== */
+
+.StatsSection
+{
+	margin-top : 1em;
+}
+
+.StatsHeaderTitle
+{
+	font-size : larger;
+	font-weight : bold;
+	display : inline;
+	margin-right : 1em;
+}
+
+.StatsHeaderMoreInfoLink
+{
+	display : inline;
+}
+
+.StatsItem, .StatsItemValue, .StatsItemDetail
+{
+	margin-left : 1em;
+}
+
+.StatsItem
+{
+	margin-top : 0.5em;
+}
+
+.EventStatsTable
+{
+	width : 100%;
+}
+
+.UserStatsTable
+{
+	width : 100%;
+}
+
+.AdminEditConfiguration
+{
+    width : 100%;
+}
+
+.AdminEditConfigurationHeading th
+{
+    padding-top : 2em;
+}
+
+.AdminEditConfigurationItem textarea
+{
+    width : 100%;
+}
+
+.AdminEditConfigurationItem textarea
+{
+    height : 300px;
+}
+
+.AdminEditConfigurationItem select, .AdminEditConfigurationItem input[type=text]
+{
+    width : 75%;
+}
+
+.PollResponsesTable
+{
+    width : 100%;
+    white-space : nowrap;
+}
+
+.PollResponsesTable th
+{
+    padding : 2px;
+}
+
+.PollResponseResultBar
+{
+    width : 200px;
+    height : 20px;
+    border : solid 1px White;
+    padding : 2px;
+    text-align : center;
+    float : left;
+    margin-right : 20px;
+}
+
+.PollResponseResultBarFill
+{
+    height : 100%;
+    background : Gray;
+}
+
+.PollResponseResultBarValue
+{
+    position : relative;
+    top : -20px;
+    color : Yellow;
+}
+
+.PollResponseResultBarDetails
+{
+    display : inline;
+}
+
+.ForumPoll .PollResponseResultBar
+{
+    width : 120px;
+}
+

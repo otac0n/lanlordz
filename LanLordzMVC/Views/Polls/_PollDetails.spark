@@ -1,0 +1,14 @@
+<div class="PollDetails">!{this.FormatPostText(Model.Poll.Text)}</div>
+# bool showYourVote = Model.CurrentUserResponses != null;
+# int usersVoted = Model.UsersResponses == null ? 0 : (from ur in Model.UsersResponses
+#                                                      group ur by ur.UserId into g
+#                                                      select g.Key).Count();
+# using (Html.BeginForm("Vote", "Polls", new { id = Model.Poll.PollId }))
+# {
+ !{Html.AntiForgeryToken()}
+ <table class="PollResponsesTable">
+  <tr><th>Response</th><th if="showYourVote">Your Vote</th><th if="usersVoted != 0">Results</th></tr>
+  <tr each="var r in Model.Responses"><td>${r.Label}</td><td if="showYourVote"><input type="${Model.Poll.IsMultiAnswer ? "checkbox" : "radio"}" name="Response" value="${r.PollResponseId}"!{Model.CurrentUserResponses.Where(ur => ur.PollResponseId == r.PollResponseId && ur.IsSelected).Any() ? " checked=\"checked\"" : ""} /></td><td if="usersVoted != 0"><var votes="Model.UsersResponses.Where(ur => ur.IsSelected && ur.PollResponseId == r.PollResponseId).Count()"><div class="PollResponseResultBar"><div class="PollResponseResultBarFill" style="width : ${Math.Round((100 * (decimal)votes) / usersVoted, 1)}%;"></div><div class="PollResponseResultBarValue">${Math.Round((100 * (decimal)votes) / usersVoted, 1)}%</div></div><div class="PollResponseResultDetails">${votes} user${votes != 1 ? "s" : ""}</div></var></td></tr>
+  <tr if="showYourVote"><td></td><td><input type="submit" value="Save" /></td><td></td></tr>
+ </table>
+# }

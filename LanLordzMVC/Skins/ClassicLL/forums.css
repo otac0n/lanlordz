@@ -1,0 +1,125 @@
+﻿.ForumsTable, .ThreadsTable, .PostsTable
+{
+ width : 100%;
+}
+
+.Forum td
+{
+	vertical-align : middle;
+}
+
+.ForumNavigator
+{
+ font-size : smaller;
+ padding-bottom : 1em;
+}
+
+.ForumsTable
+{
+	font-size : 10pt;
+	border : 0.15em solid #933;
+}
+
+.ForumsTable th, .ForumsTable td
+{
+	font-size : 10pt;
+}
+
+.ForumsTable th
+{
+	border-bottom : 0.15em solid #933;
+	height : 23px;
+}
+
+.ForumGroup
+{
+	background : #111;
+	color : Goldenrod;
+	text-align : center;
+	vertical-align : baseline;
+	height : 23px;
+}
+
+.Forum td
+{
+	height : 4em;
+	border-bottom : 0.15em solid #111;
+}
+
+.ForumIndicator
+{
+	width : 46px;
+	height : 25px;
+	background-repeat : no-repeat;
+}
+
+.ForumRead .ForumIndicator
+{
+	background-image : url(ForumRead.gif);
+}
+
+.ForumUnread .ForumIndicator
+{
+	background-image : url(ForumUnread.gif);
+}
+
+.ForumDescriptionTitle
+{
+	display : block;
+}
+
+.ThreadsTable
+{
+	font-size : 10pt;
+	border : 0.15em solid #933;
+}
+
+.ThreadsTable td
+{
+	vertical-align : middle;
+}
+
+.ThreadsTable th
+{
+	border-bottom : 0.15em solid #933;
+	height : 23px;
+}
+
+.ThreadIndicator
+{
+	width : 19px;
+	height : 19px;
+	margin-left : 1em;
+	background-repeat : no-repeat;
+}
+
+.ThreadNormalUnread .ThreadIndicator
+{
+	background-image : url(ThreadUnread.gif);
+}
+
+.ThreadNormalRead .ThreadIndicator
+{
+	background-image : url(ThreadRead.gif);
+}
+
+.ThreadLocked .ThreadIndicator
+{
+	background-image : url(ThreadLockedUnread.gif);
+}
+
+.ThreadLocked .ThreadIndicator
+{
+	background-image : url(ThreadLockedRead.gif);
+}
+
+.ThreadAnnouncementUnread .ThreadIndicator, .ThreadAnnouncementRead .ThreadIndicator
+{
+	background-image : url(ThreadAnnouncement.gif);
+}
+
+.ThreadStickyUnread .ThreadIndicator, .ThreadStickyRead .ThreadIndicator
+{
+	background-image : url(ThreadSticky.gif);
+}
+

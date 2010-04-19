@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PagerStyle>
+  <ItemCount>
+    <Format><![CDATA[<span class="PaginationItemCount">{0} items</span>]]></Format>
+  </ItemCount>
+  <Literal><![CDATA[ &bull; ]]></Literal>
+  <PageCount>
+    <Format><![CDATA[<span class="PaginationPageCount">Page <strong>{0}</strong> of <strong>{1}</strong></span>]]></Format>
+  </PageCount>
+  <Literal><![CDATA[ &bull; ]]></Literal>
+  <Literal><![CDATA[<span class="PaginationPagesList">]]></Literal>
+  <NumberRun collapseAdjacentSeperators="True" collapseAdjacentElements="True">
+    <Regions>
+      <First number="1"/>
+      <FirstSeperator><![CDATA[ ... ]]></FirstSeperator>
+      <Current adjacentMin="3" adjacentMax="4" />
+      <LastSeperator><![CDATA[ ... ]]></LastSeperator>
+      <Last number="1"/>
+    </Regions>
+    <Format>
+      <Current><![CDATA[<strong>{0}</strong>]]></Current>
+      <Other><![CDATA[<a href="{1}">{0}</a>]]></Other>
+      <Seperator><![CDATA[&nbsp;]]></Seperator>
+    </Format>
+  </NumberRun>
+  <Literal><![CDATA[</span>]]></Literal>
+</PagerStyle>

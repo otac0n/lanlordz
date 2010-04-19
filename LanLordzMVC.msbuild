@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="BuildAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+  </PropertyGroup>
+
+  <Target Name="Rebuild" DependsOnTargets="Clean;Compile" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="LanLordzMVC.sln" Properties="Configuration=$(Configuration)" Targets="Clean" />
+  </Target>
+
+  <Target Name="Compile">
+    <MSBuild Projects="LanLordzMVC.sln" Properties="Configuration=$(Configuration)"/>
+  </Target>
+</Project>

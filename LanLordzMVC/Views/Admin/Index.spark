@@ -1,0 +1,19 @@
+<use pageBaseType="LanLordz.Views.BasePage"/> 
+<content name="title">Admin Index</content>
+<content name="headers">
+</content>
+<content name="main">
+    <h2>Admin Index</h2>
+    <dl>
+     <dt>Site Administration</dt>
+     <dd>!{Html.ActionLink("Master Configuration", "EditConfig")}</dd>
+     <dd>!{Html.ActionLink("Edit Groups / Memberships", "EditGroups")}</dd>
+     <dd>!{Html.ActionLink("Edit Sponsors", "EditSponsors")}</dd>
+     <dt>Forum Management</dt>
+     <dd>!{Html.ActionLink("Edit Forum ACLs", "EditForumAccess")}</dd>
+     <dt>Event Management</dt>
+     <dd>!{Html.ActionLink("Edit Events", "EditEvents")}</dd>
+     <dt>Send Mail</dt>
+     <dd>!{Html.ActionLink("Send Mail To Users", "SendMail")}</dd>
+    </dl>
+</content>

@@ -1,0 +1,32 @@
+﻿.StatsSection
+{
+	margin-top : 1em;
+}
+
+.StatsHeaderTitle
+{
+	font-size : larger;
+	font-weight : bold;
+	display : inline;
+	margin-right : 1em;
+}
+
+.StatsHeaderMoreInfoLink
+{
+	display : inline;
+}
+
+.StatsItem, .StatsItemValue, .StatsItemDetail
+{
+	margin-left : 1em;
+}
+
+.StatsItem
+{
+	margin-top : 0.5em;
+}
+
+.EventStatsTable
+{
+	width : 100%;
+}

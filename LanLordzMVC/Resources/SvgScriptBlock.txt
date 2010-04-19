@@ -1,0 +1,62 @@
+<script type="text/ecmascript">
+SVGDocument = null;
+top.SetTournamentTextStyle = SetTournamentTextStyle;
+top.SetTournamentTextContrastStyle = SetTournamentTextContrastStyle;
+top.SetTournamentAccentStyle = SetTournamentAccentStyle;
+top.GetTournamentTextStyle = GetTournamentTextStyle;
+top.GetTournamentTextContrastStyle = GetTournamentTextContrastStyle;
+top.GetTournamentAccentStyle = GetTournamentAccentStyle;
+top.SetTournamentTextTransform = SetTournamentTextTransform;
+top.GetTournamentTextTransform = GetTournamentTextTransform;
+
+
+function Initialize(LoadEvent) {
+  SVGDocument = LoadEvent.target.ownerDocument
+}
+
+function SetTournamentTextStyle(style) {
+  setElementsAttribute('text', 'style', style);
+}
+
+function SetTournamentTextContrastStyle(style) {
+  setElementsAttribute('rect', 'style', style);
+}
+
+function SetTournamentAccentStyle(style) {
+  setElementsAttribute('line', 'style', style);
+}
+
+function SetTournamentTextTransform(transform) {
+  return setElementsAttribute('text', 'transform', transform);
+}
+
+function GetTournamentTextStyle() {
+  return getElementsAttribute('text', 'style');
+}
+
+function GetTournamentTextContrastStyle() {
+  return getElementsAttribute('rect', 'style');
+}
+
+function GetTournamentAccentStyle() {
+  return getElementsAttribute('line', 'style');
+}
+
+function GetTournamentTextTransform() {
+  return getElementsAttribute('text', 'transform');
+}
+
+function setElementsAttribute(tag, attribute, value) {
+  var elements = SVGDocument.getElementsByTagName(tag);
+  for (var i = 0; i &lt; elements.length; i++) {
+    elements.item(i).setAttribute(attribute, value);
+  }
+}
+
+function getElementsAttribute(tag, attribute) {
+  var elements = SVGDocument.getElementsByTagName(tag);
+  for (var i = 0; i &lt; elements.length; i++) {
+    return elements.item(i).getAttribute(attribute);
+  }
+}
+</script>
