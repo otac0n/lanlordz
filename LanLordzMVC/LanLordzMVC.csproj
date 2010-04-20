@@ -299,6 +299,10 @@
     </None>
     <None Include="CustomDictionary.xml" />
     <None Include="Resources\SvgScriptBlock.txt" />
+    <None Include="..\SqlServerSpatial.dll">
+      <Link>SqlServerSpatial.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Scripts\jquery.Jcrop.min.js" />
     <Content Include="Scripts\jquery.maphilight.min.js" />
     <Content Include="Skins\Astro\Jcrop.gif" />
