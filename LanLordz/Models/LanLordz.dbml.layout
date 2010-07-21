@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 17, 44.625" name="LanLordz">
+  <DataContextMoniker Name="/LanLordzDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ea2f7591-00b2-41d9-9765-4754361d5a13" absoluteBounds="0.5, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/LanLordzDataContext/Configuration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c42d2893-d512-48a2-a6bf-45e815a25487" absoluteBounds="0.51500000059604645, 1.2100000008940697, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="919dbdae-2880-4bd9-ad09-64fc6c3bfbd7" absoluteBounds="6.5, 21, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/UsersRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bc0b5f0d-4457-4ba5-a7de-546ddb595fa0" absoluteBounds="6.515, 21.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d6f48f0-7ad4-415c-a8b4-76316c152156" absoluteBounds="0.75, 2.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/LanLordzDataContext/EmailConfirm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be7b3a10-cf7a-4df6-a75a-48bc6b11189f" absoluteBounds="0.76500000000000012, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="09196c2c-92c3-499d-8e32-631ddfe3f4a1" absoluteBounds="3.75, 0.75, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/LanLordzDataContext/Sponsor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b88f3f3-c8ac-4c04-a6aa-41ff6f9ef802" absoluteBounds="3.7650000000000006, 1.2100000000000009, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4649db61-0474-423f-b76d-390aaca7e888" absoluteBounds="3.5, 17.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/LanLordzDataContext/Title" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e4662ac-04eb-45d9-ae69-2f09dbf53db4" absoluteBounds="3.5149999999999997, 18.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b1975b85-1570-4de1-a3b3-cbcad6890d00" absoluteBounds="3.5, 42.75, 2, 1.5785953776041595">
+      <DataClassMoniker Name="/LanLordzDataContext/UserAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="51267bde-55f7-464f-a4dd-322e57cf3716" absoluteBounds="3.5150000005960464, 43.21000000089407, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="27eaa688-9a50-4455-bc7e-d09faa990e81" absoluteBounds="3.5, 31.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/LanLordzDataContext/UserAvatar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a8a26963-33fd-47fd-b327-57d47d5fc916" absoluteBounds="3.515, 32.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="74553abf-eec8-4438-8916-79357345ae97" absoluteBounds="0.75, 17.125, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/LanLordzDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b5bca25-1ca6-4d0f-8d87-d6725fa846f1" absoluteBounds="0.76500000059604645, 17.58500000089407, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eca4ca3d-2d53-4aed-ae5b-db95e965f109" absoluteBounds="6.5, 29.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/EventImage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81ddb97f-3082-48f3-8b25-9e2f3a6c6663" absoluteBounds="6.5150000005960464, 30.33500000089407, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="25367bd0-a85c-4315-ad09-75732d3f8f03" absoluteBounds="3.75, 24.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/LanLordzDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d586b50-3e13-4180-b8aa-391494fc3e9f" absoluteBounds="3.765, 25.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="98e36da0-5685-4d89-97a0-43ed8851e629" absoluteBounds="12, 22.875, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/LanLordzDataContext/Pairing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc6a7832-c482-45a8-9d53-10b2135c0880" absoluteBounds="12.015, 23.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4ad3ad16-ed58-4297-a4db-b122ce9e32f2" absoluteBounds="3.5, 20.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/Registration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b60af18-33d5-41bd-9e5f-12df8374af62" absoluteBounds="3.5149999999999997, 21.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="71244147-d435-4b5b-a8b5-b4c48a40589e" absoluteBounds="9.25, 22.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/Round" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c81b12e9-c054-4ab9-b7f5-7d67e2f2a549" absoluteBounds="9.265, 23.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="041c031f-0922-47d5-ae1e-7c7e3ca20f2a" absoluteBounds="9.25, 25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/Team" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d072a4ac-3a86-4efe-8613-48c042cf430d" absoluteBounds="9.265, 25.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2245d96b-5c2a-404d-9f12-840159576358" absoluteBounds="14.75, 23.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/TeamsPairing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7626373d-50b3-4612-ab0a-a310c2f790a5" absoluteBounds="14.765, 24.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="791afa90-ca27-4b5b-8483-4b0b4d9ebf9d" absoluteBounds="6.5, 23.125, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/LanLordzDataContext/Tournament" />
+      <nestedChildShapes>
+        <elementListCompartment Id="45a1f7b6-a24e-4f9a-b6ab-c753340ec310" absoluteBounds="6.5150000000000006, 23.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2251e1a4-a2c6-49cc-849e-27f2ba45bf51" absoluteBounds="12, 19.875, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/LanLordzDataContext/UsersTeam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="965e8af3-59b0-4b4e-b090-6827d5b9118c" absoluteBounds="12.015, 20.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cb872d6b-eb09-4348-9be1-5f0ea5deb5fc" absoluteBounds="1, 24.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/LanLordzDataContext/Venue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa5e5081-83f1-4b19-a87c-f20d21c570d4" absoluteBounds="1.0150000000000001, 25.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="76b1be98-caea-45ab-8270-b6d2061f9e21" absoluteBounds="1.75, 7, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/ForumGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="552dab5d-a66e-416c-a6cb-f05f4bd94d88" absoluteBounds="1.7650000000000001, 7.4600000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e47456b5-afc4-413b-9ce3-c29e5171c6b7" absoluteBounds="7.5, 2.375, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/ForumGroupsAccess" />
+      <nestedChildShapes>
+        <elementListCompartment Id="844ff1a7-a388-4f35-aca5-5f7fe3c3a79d" absoluteBounds="7.5150000000000006, 2.8350000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="29db475b-ab9d-4f04-a23c-75c395596a07" absoluteBounds="1, 9.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/LanLordzDataContext/Forum" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87242255-5e9c-42c6-ab94-d913d00e26a5" absoluteBounds="1.0150000000000001, 10.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="efe3ab6f-9371-42b2-ae22-3a9e7dd97227" absoluteBounds="7.5, 8.875, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/LanLordzDataContext/ForumsAccess" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de34e395-fbdd-4237-a596-a0b5e8e64a77" absoluteBounds="7.5150000000000006, 9.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="70c88361-3ac7-4dfa-83dd-f11607bfd694" absoluteBounds="6.5, 14.375, 2, 2.73240397135417">
+      <DataClassMoniker Name="/LanLordzDataContext/Post" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a201834a-bb19-4eba-bc35-7db8d8561e8a" absoluteBounds="6.5150000000000006, 14.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="23449b29-3616-4b37-b4f9-be5e4dc66da2" absoluteBounds="1, 12.375, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/LanLordzDataContext/ThreadLevel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b47c036-cf8b-4fbb-a88f-756aafc10ea6" absoluteBounds="1.0150000000000001, 12.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d8f6ad4e-64ef-4beb-8fbf-49a767a57c5b" absoluteBounds="3.5, 14.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/ThreadRead" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3221fb9-f951-487b-b92f-d426a3aa96c2" absoluteBounds="3.5150000005960464, 15.33500000089407, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="30e22733-fa71-4305-b7f7-1bcfccfbbedb" absoluteBounds="3.75, 10.625, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/LanLordzDataContext/Thread" />
+      <nestedChildShapes>
+        <elementListCompartment Id="369d952d-e2b4-4fe1-ad27-f40f84982a71" absoluteBounds="3.765, 11.085, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4ba5364e-59f0-4d0c-b589-a3951f866fc1" absoluteBounds="7.5, 5.375, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/LanLordzDataContext/AccessControlItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a6f0d821-1bd8-4c42-a90b-01346f3f1d73" absoluteBounds="7.5150000005960464, 5.83500000089407, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d980d95-89e3-4d6b-b350-b29dfd57641a" absoluteBounds="4.75, 3.625, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/LanLordzDataContext/AccessControlList" />
+      <nestedChildShapes>
+        <elementListCompartment Id="12b11cd4-c264-4ac0-8ff9-8b02c40c0a37" absoluteBounds="4.7650000005960464, 4.08500000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f7a816f-772b-4d21-86aa-7e3abb887184" absoluteBounds="3.5, 33.625, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/AuthFailure" />
+      <nestedChildShapes>
+        <elementListCompartment Id="08baf4cc-5416-44c5-81fd-964e598b8e1f" absoluteBounds="3.5150000005960464, 34.08500000089407, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f5834026-edc8-4ebf-b949-e6ab13da0df0" absoluteBounds="3.5, 38.5, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/AutoLogin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67ba6935-9a71-4fbb-acfd-0e2a793ee50d" absoluteBounds="3.5150000005960464, 38.96000000089407, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bdd02b97-0294-41f7-8241-61ec138fc91c" absoluteBounds="0.75, 21.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="931eee87-29ad-412c-9e87-baead90240c9" absoluteBounds="0.76500000000000012, 22.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="784f4c1e-60de-4b4e-ac3f-587000b39e6b" absoluteBounds="3.5, 40.625, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/SecurityKey" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4c5880b4-dc45-4097-a2be-f3092dd9c0f2" absoluteBounds="3.5150000005960464, 41.08500000089407, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 20.2404673746598); (3.12653946153846 : 20.6170068361983); (6.04166666666667 : 20.6170068361983 : JumpStart); (6.20833333333333 : 20.6170068361983 : JumpEnd); (7.5 : 20.6170068361983); (7.5 : 21)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_UsersRole" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="919dbdae-2880-4bd9-ad09-64fc6c3bfbd7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 18.6354484049479); (3.5 : 18.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Title" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="4649db61-0474-423f-b76d-390aaca7e888" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 20.2420068359375); (1.75 : 21.625); (2.94823757421877 : 21.625 : JumpStart); (3.11490424088543 : 21.625 : JumpEnd); (3.25 : 21.625); (3.25 : 43.5392976888021); (3.5 : 43.5392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_UserAttribute" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="b1975b85-1570-4de1-a3b3-cbcad6890d00" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.281252 : 20.2420068359375); (2.281252 : 21.375); (3.07291666666667 : 21.375 : JumpStart); (3.23958333333333 : 21.375 : JumpEnd); (3.375 : 21.375); (3.375 : 32.3469962565104); (3.5 : 32.3469962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_UserAvatar" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="27eaa688-9a50-4455-bc7e-d09faa990e81" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 26.7804996744792); (4.75 : 30.6642976888021); (6.5 : 30.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Event/Event_EventImage" />
+      <nodes>
+        <classShapeMoniker Id="25367bd0-a85c-4315-ad09-75732d3f8f03" />
+        <classShapeMoniker Id="eca4ca3d-2d53-4aed-ae5b-db95e965f109" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 24.625); (4.625 : 22.4535953776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Event/Event_Registration" />
+      <nodes>
+        <classShapeMoniker Id="25367bd0-a85c-4315-ad09-75732d3f8f03" />
+        <classShapeMoniker Id="4ad3ad16-ed58-4297-a4db-b122ce9e32f2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 20.1604673746598); (3.09732443490112 : 20.5077918095609 : JumpStart); (3.21517556509888 : 20.6256429397587 : JumpEnd); (3.40625 : 20.8167173746598); (3.40625 : 20.7800366958634); (3.50121330413662 : 20.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Registration" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="4ad3ad16-ed58-4297-a4db-b122ce9e32f2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 23.4719962565104); (12 : 23.4719962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Round/Round_Pairing" />
+      <nodes>
+        <classShapeMoniker Id="71244147-d435-4b5b-a8b5-b4c48a40589e" />
+        <classShapeMoniker Id="98e36da0-5685-4d89-97a0-43ed8851e629" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14 : 23.3749995); (15.75 : 23.3749995); (15.75 : 23.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Pairing/Pairing_TeamsPairing" />
+      <nodes>
+        <classShapeMoniker Id="98e36da0-5685-4d89-97a0-43ed8851e629" />
+        <classShapeMoniker Id="2245d96b-5c2a-404d-9f12-840159576358" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 25.2267976888021); (14.75 : 25.2267976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Team/Team_TeamsPairing" />
+      <nodes>
+        <classShapeMoniker Id="041c031f-0922-47d5-ae1e-7c7e3ca20f2a" />
+        <classShapeMoniker Id="2245d96b-5c2a-404d-9f12-840159576358" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 23.6306469726563); (9.01041666666667 : 23.6306469726563 : JumpStart); (9.17708333333333 : 23.6306469726563 : JumpEnd); (9.25 : 23.6306469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Tournament/Tournament_Round" />
+      <nodes>
+        <classShapeMoniker Id="791afa90-ca27-4b5b-8483-4b0b4d9ebf9d" />
+        <classShapeMoniker Id="71244147-d435-4b5b-a8b5-b4c48a40589e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 25.6210034179688); (9.01041666666667 : 25.6210034179688 : JumpStart); (9.17708333333333 : 25.6210034179688 : JumpEnd); (9.25 : 25.6210034179688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Tournament/Tournament_Team" />
+      <nodes>
+        <classShapeMoniker Id="791afa90-ca27-4b5b-8483-4b0b4d9ebf9d" />
+        <classShapeMoniker Id="041c031f-0922-47d5-ae1e-7c7e3ca20f2a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 25.4335034179688); (6.5 : 25.4335034179688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Event/Event_Tournament" />
+      <nodes>
+        <classShapeMoniker Id="25367bd0-a85c-4315-ad09-75732d3f8f03" />
+        <classShapeMoniker Id="791afa90-ca27-4b5b-8483-4b0b4d9ebf9d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.70076923076923 : 20.2420068359375); (3.125 : 20.666237605429); (3.125 : 22.75); (3.16666666666667 : 22.75 : JumpStart); (3.45833333333333 : 22.75 : JumpEnd); (6.125 : 22.75); (6.5 : 23.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Tournament" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="791afa90-ca27-4b5b-8483-4b0b4d9ebf9d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 25); (11.4098244349011 : 24.8401755650989 : JumpStart); (11.5276755650989 : 24.7223244349011 : JumpEnd); (11.625 : 24.625); (11.625 : 20.7604484049479); (12 : 20.7604484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Team/Team_UsersTeam" />
+      <nodes>
+        <classShapeMoniker Id="041c031f-0922-47d5-ae1e-7c7e3ca20f2a" />
+        <classShapeMoniker Id="2251e1a4-a2c6-49cc-849e-27f2ba45bf51" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 17.40625); (13 : 17.40625); (13 : 19.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_UsersTeam" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="2251e1a4-a2c6-49cc-849e-27f2ba45bf51" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 25.6354484049479); (3.10416666666667 : 25.6354484049479 : JumpStart); (3.27083333333333 : 25.6354484049479 : JumpEnd); (3.29166666666667 : 25.6354484049479 : JumpStart); (3.45833333333333 : 25.6354484049479 : JumpEnd); (3.75 : 25.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Venue/Venue_Event" />
+      <nodes>
+        <classShapeMoniker Id="cb872d6b-eb09-4348-9be1-5f0ea5deb5fc" />
+        <classShapeMoniker Id="25367bd0-a85c-4315-ad09-75732d3f8f03" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 7); (4.125 : 6.625); (4.125 : 3.13785012109375); (7.5 : 3.13785012109375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LanLordzDataContext/ForumGroup/ForumGroup_ForumGroupsAccess" />
+      <nodes>
+        <classShapeMoniker Id="76b1be98-caea-45ab-8270-b6d2061f9e21" />
+        <classShapeMoniker Id="e47456b5-afc4-413b-9ce3-c29e5171c6b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.375 : 8.3862939453125); (2.375 : 9.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/ForumGroup/ForumGroup_Forum" />
+      <nodes>
+        <classShapeMoniker Id="76b1be98-caea-45ab-8270-b6d2061f9e21" />
+        <classShapeMoniker Id="29db475b-ab9d-4f04-a23c-75c395596a07" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 10.0056469726562); (7.5 : 10.0056469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Forum/Forum_ForumsAccess" />
+      <nodes>
+        <classShapeMoniker Id="29db475b-ab9d-4f04-a23c-75c395596a07" />
+        <classShapeMoniker Id="efe3ab6f-9371-42b2-ae22-3a9e7dd97227" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 17.125); (1.75 : 14.6328112500062); (6.5 : 14.6328112500062)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Post" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="70c88361-3ac7-4dfa-83dd-f11607bfd694" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 17.125); (2.2812525 : 16.8117496744792); (6.5 : 16.8117496744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Post1" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="70c88361-3ac7-4dfa-83dd-f11607bfd694" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.2187475 : 17.125); (1.2187475 : 15.6642976888021); (3.5 : 15.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_ThreadRead" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="d8f6ad4e-64ef-4beb-8fbf-49a767a57c5b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.65625 : 12.9728011067708); (5.65625 : 16.6326700260417); (6.5 : 16.6326700260417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Thread/Thread_Post" />
+      <nodes>
+        <classShapeMoniker Id="30e22733-fa71-4305-b7f7-1bcfccfbbedb" />
+        <classShapeMoniker Id="70c88361-3ac7-4dfa-83dd-f11607bfd694" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 12.9728011067708); (4.625 : 14.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Thread/Thread_ThreadRead" />
+      <nodes>
+        <classShapeMoniker Id="30e22733-fa71-4305-b7f7-1bcfccfbbedb" />
+        <classShapeMoniker Id="d8f6ad4e-64ef-4beb-8fbf-49a767a57c5b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 11.0729484049479); (3.75 : 11.0729484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Forum/Forum_Thread" />
+      <nodes>
+        <classShapeMoniker Id="29db475b-ab9d-4f04-a23c-75c395596a07" />
+        <classShapeMoniker Id="30e22733-fa71-4305-b7f7-1bcfccfbbedb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 12.6739005533854); (3.75 : 12.6739005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/ThreadLevel/ThreadLevel_Thread" />
+      <nodes>
+        <classShapeMoniker Id="23449b29-3616-4b37-b4f9-be5e4dc66da2" />
+        <classShapeMoniker Id="30e22733-fa71-4305-b7f7-1bcfccfbbedb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.75 : 4.29014372916667); (8.5 : 4.29014372916667); (8.5 : 3.7612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LanLordzDataContext/AccessControlList/AccessControlList_ForumGroupsAccess" />
+      <nodes>
+        <classShapeMoniker Id="4d980d95-89e3-4d6b-b350-b29dfd57641a" />
+        <classShapeMoniker Id="e47456b5-afc4-413b-9ce3-c29e5171c6b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 4.81899251302083); (5.75 : 9.40907098632812); (7.5 : 9.40907098632812)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/AccessControlList/AccessControlList_ForumsAccess" />
+      <nodes>
+        <classShapeMoniker Id="4d980d95-89e3-4d6b-b350-b29dfd57641a" />
+        <classShapeMoniker Id="efe3ab6f-9371-42b2-ae22-3a9e7dd97227" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.2812525 : 4.81899251302083); (6.2812525 : 6.35659912109375); (7.5 : 6.35659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/AccessControlList/AccessControlList_AccessControlItem" />
+      <nodes>
+        <classShapeMoniker Id="4d980d95-89e3-4d6b-b350-b29dfd57641a" />
+        <classShapeMoniker Id="4ba5364e-59f0-4d0c-b589-a3951f866fc1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.218748 : 20.2420068359375); (1.218748 : 21.75); (2.82323757421877 : 21.75 : JumpStart); (2.98990424088543 : 21.75 : JumpEnd); (3.04166666666667 : 21.75 : JumpStart); (3.27083333333333 : 21.75 : JumpEnd); (3.3125 : 21.75); (3.3125 : 34.3181469726563); (3.5 : 34.3181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_AuthFailure" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="4f7a816f-772b-4d21-86aa-7e3abb887184" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.015626 : 20.2420068359375); (2.015626 : 21.5); (3.1875 : 21.5); (3.1875 : 39.1931469726563); (3.5 : 39.1931469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_AutoLogin" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="f5834026-edc8-4ebf-b949-e6ab13da0df0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 23.4232367741887); (2.90625 : 23.5794867741887); (2.90625 : 22.7612939453125); (3.10416666666667 : 22.7612939453125 : JumpStart); (3.52083333333333 : 22.7612939453125 : JumpEnd); (4.54166666666667 : 22.7612939453125 : JumpStart); (4.70833333333333 : 22.7612939453125 : JumpEnd); (6.125 : 22.7612939453125); (6.5 : 22.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Role/Role_UsersRole" />
+      <nodes>
+        <classShapeMoniker Id="bdd02b97-0294-41f7-8241-61ec138fc91c" />
+        <classShapeMoniker Id="919dbdae-2880-4bd9-ad09-64fc6c3bfbd7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 21.9065709075521); (3.15625 : 21.5003209075521); (3.15625 : 19.1094246074219); (3.5 : 19.1094246074219)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Role/Role_Title" />
+      <nodes>
+        <classShapeMoniker Id="bdd02b97-0294-41f7-8241-61ec138fc91c" />
+        <classShapeMoniker Id="4649db61-0474-423f-b76d-390aaca7e888" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.484374 : 20.2420068359375); (1.484374 : 21.25); (1.66666666666667 : 21.25 : JumpStart); (1.83333333333333 : 21.25 : JumpEnd); (1.93229266666667 : 21.25 : JumpStart); (2.09895933333333 : 21.25 : JumpEnd); (2.19791866666667 : 21.25 : JumpStart); (2.36458533333333 : 21.25 : JumpEnd); (3.04166666666667 : 21.25 : JumpStart); (3.23958333333333 : 21.25 : JumpEnd); (3.4375 : 21.25); (3.4375 : 41.3181469726563); (3.5 : 41.3181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_SecurityKey" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="784f4c1e-60de-4b4e-ac3f-587000b39e6b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e7a26826-86f8-46e6-b449-1a9136945bdb" absoluteBounds="6.5, 17.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/Prize" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe3d367d-fc88-41c5-8404-0a0f779aa5a7" absoluteBounds="6.515, 18.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 24.625); (6.125 : 24.25); (6.125 : 18.6642976888021); (6.5 : 18.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Event/Event_Prize" />
+      <nodes>
+        <classShapeMoniker Id="25367bd0-a85c-4315-ad09-75732d3f8f03" />
+        <classShapeMoniker Id="e7a26826-86f8-46e6-b449-1a9136945bdb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 19.8406795922778); (3.07291666666667 : 19.8406795922778 : JumpStart); (3.23958333333333 : 19.8406795922778 : JumpEnd); (6.04166666666667 : 19.8406795922778 : JumpStart); (6.20833333333333 : 19.8406795922778 : JumpEnd); (7.5 : 19.8406795922778); (7.5 : 19.4535953776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Prize" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="e7a26826-86f8-46e6-b449-1a9136945bdb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d0ed4b0e-0bec-4119-8f14-4be5bcb4469f" absoluteBounds="3.5, 35.875, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/LanLordzDataContext/Poll" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ba2b7778-5ead-4a9e-bfb0-a18c08fd7bb5" absoluteBounds="3.5150000005960464, 36.33500000089407, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2a1b9029-a283-44d1-87b5-e555f35f0d53" absoluteBounds="6.25, 36.125, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/LanLordzDataContext/PollResponse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de508197-62bd-4035-8a61-dc580aaaea8e" absoluteBounds="6.2650000005960464, 36.58500000089407, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="604e6fb8-baa5-4a81-b596-3965d33d12c6" absoluteBounds="9, 27.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LanLordzDataContext/UsersPollResponse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90df27c3-fd08-4920-83f1-3a79bfd670c5" absoluteBounds="9.015, 27.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(0.953122 : 20.2420068359375); (0.953122 : 21.6875); (2.88573757421877 : 21.6875 : JumpStart); (3.05240424088543 : 21.6875 : JumpEnd); (3.0625 : 21.6875); (3.0625 : 36.8565991210938); (3.10416666666667 : 36.8565991210938 : JumpStart); (3.33333333333333 : 36.8565991210938 : JumpEnd); (3.5 : 36.8565991210938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_Poll" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="d0ed4b0e-0bec-4119-8f14-4be5bcb4469f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 36.8181469726563); (6.25 : 36.8181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/Poll/Poll_PollResponse" />
+      <nodes>
+        <classShapeMoniker Id="d0ed4b0e-0bec-4119-8f14-4be5bcb4469f" />
+        <classShapeMoniker Id="2a1b9029-a283-44d1-87b5-e555f35f0d53" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.34375 : 36.125); (6.34375 : 28.2892976888021); (9 : 28.2892976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/PollResponse/PollResponse_UsersPollResponse" />
+      <nodes>
+        <classShapeMoniker Id="2a1b9029-a283-44d1-87b5-e555f35f0d53" />
+        <classShapeMoniker Id="604e6fb8-baa5-4a81-b596-3965d33d12c6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 17.5781275); (9.09375 : 17.5781275); (9.09375 : 27.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_UsersPollResponse" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="604e6fb8-baa5-4a81-b596-3965d33d12c6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="34ec3504-889c-4ac0-b4cd-2b5d43ba6265" absoluteBounds="10, 1.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LanLordzDataContext/EventImageUserTag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="748853f4-e398-41c9-862b-bf6dfbe9dc7c" absoluteBounds="10.015, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 17.2343725); (10.3697891666667 : 17.2343725 : JumpStart); (10.5364558333333 : 17.2343725 : JumpEnd); (10.96093625 : 17.2343725); (10.96093625 : 3.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_EventImageUserTag" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="34ec3504-889c-4ac0-b4cd-2b5d43ba6265" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 30.6642976888021); (11.46875 : 30.6642976888021); (11.46875 : 3.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/EventImage/EventImage_EventImageUserTag" />
+      <nodes>
+        <classShapeMoniker Id="eca4ca3d-2d53-4aed-ae5b-db95e965f109" />
+        <classShapeMoniker Id="34ec3504-889c-4ac0-b4cd-2b5d43ba6265" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 19.6807857010868); (3.07291666666667 : 19.6807857010868 : JumpStart); (3.23958333333333 : 19.6807857010868 : JumpEnd); (6.04166666666667 : 19.6807857010868 : JumpStart); (6.20833333333333 : 19.6807857010868 : JumpEnd); (7.41666666666667 : 19.6807857010868 : JumpStart); (7.58333333333333 : 19.6807857010868 : JumpEnd); (9.01041666666667 : 19.6807857010868 : JumpStart); (9.17708333333333 : 19.6807857010868 : JumpEnd); (10.4531225 : 19.6807857010868); (10.4531225 : 3.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LanLordzDataContext/User/User_EventImageUserTag1" />
+      <nodes>
+        <classShapeMoniker Id="74553abf-eec8-4438-8916-79357345ae97" />
+        <classShapeMoniker Id="34ec3504-889c-4ac0-b4cd-2b5d43ba6265" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

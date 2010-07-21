@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="lanlordz_web" Class="LanLordzDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=lanlordz.net;Initial Catalog=lanlordz_web;Persist Security Info=True;User ID=lanlordz_web" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="lanlordz_webConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Configuration" Member="Configurations">
+    <Type Name="Configuration">
+      <Column Name="Property" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="security.UsersRoles" Member="UsersRoles">
+    <Type Name="UsersRole">
+      <Column Name="UserRoleID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="User_UsersRole" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Role_UsersRole" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmailConfirm" Member="EmailConfirms">
+    <Type Name="EmailConfirm">
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sponsors" Member="Sponsors">
+    <Type Name="Sponsor">
+      <Column Name="SponsorID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Info" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Titles" Member="Titles">
+    <Type Name="Title">
+      <Column Name="TitleID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PostCountThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TitleText" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Title" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Role_Title" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserAttributes" Member="UserAttributes">
+    <Type Name="UserAttribute">
+      <Column Name="UserAttributeID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Attribute" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_UserAttribute" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserAvatars" Member="UserAvatars">
+    <Type Name="UserAvatar">
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Avatar" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="User_UserAvatar" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="Char(88) NOT NULL" CanBeNull="false" />
+      <Column Name="SecurityQuestion" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SecurityAnswer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShowEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ReceiveAdminEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ShowGender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsEmailConfirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_UsersRole" Member="UsersRoles" ThisKey="UserID" OtherKey="UserID" Type="UsersRole" />
+      <Association Name="User_Title" Member="Titles" ThisKey="UserID" OtherKey="UserID" Type="Title" />
+      <Association Name="User_UserAttribute" Member="UserAttributes" ThisKey="UserID" OtherKey="UserID" Type="UserAttribute" />
+      <Association Name="User_UserAvatar" Member="UserAvatar" ThisKey="UserID" OtherKey="UserID" Type="UserAvatar" Cardinality="One" />
+      <Association Name="User_Registration" Member="Registrations" ThisKey="UserID" OtherKey="UserID" Type="Registration" />
+      <Association Name="User_Tournament" Member="Tournaments" ThisKey="UserID" OtherKey="TournamentDirectorUserID" Type="Tournament" />
+      <Association Name="User_UsersTeam" Member="UsersTeams" ThisKey="UserID" OtherKey="UserID" Type="UsersTeam" />
+      <Association Name="User_Post" Member="ModifiedPosts" ThisKey="UserID" OtherKey="ModifyUserID" Type="Post" />
+      <Association Name="User_Post1" Member="Posts" ThisKey="UserID" OtherKey="UserID" Type="Post" />
+      <Association Name="User_ThreadRead" Member="ThreadReads" ThisKey="UserID" OtherKey="UserID" Type="ThreadRead" />
+      <Association Name="User_AuthFailure" Member="AuthFailures" ThisKey="UserID" OtherKey="UserID" Type="AuthFailure" />
+      <Association Name="User_AutoLogin" Member="AutoLogins" ThisKey="UserID" OtherKey="UserID" Type="AutoLogin" />
+      <Association Name="User_SecurityKey" Member="SecurityKey" ThisKey="UserID" OtherKey="UserID" Type="SecurityKey" Cardinality="One" />
+      <Association Name="User_Prize" Member="Prizes" ThisKey="UserID" OtherKey="WinnerUserId" Type="Prize" />
+      <Association Name="User_Poll" Member="Polls" ThisKey="UserID" OtherKey="CreatorUserId" Type="Poll" />
+      <Association Name="User_UsersPollResponse" Member="UsersPollResponses" ThisKey="UserID" OtherKey="UserId" Type="UsersPollResponse" />
+      <Association Name="User_EventImageUserTag1" Member="ImageTagsOf" ThisKey="UserID" OtherKey="TaggedUserUserId" Type="EventImageUserTag" />
+    </Type>
+  </Table>
+  <Table Name="events.EventImages" Member="EventImages">
+    <Type Name="EventImage">
+      <Column Name="EventImageID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ScrapeBusterKey" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" IsDelayLoaded="true" />
+      <Association Name="EventImage_EventImageUserTag" Member="UserTags" ThisKey="EventImageID" OtherKey="EventImageId" Type="EventImageUserTag" />
+      <Association Name="Event_EventImage" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Events" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VenueID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Info" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="BeginDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Seats" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Event_EventImage" Member="EventImages" ThisKey="EventID" OtherKey="EventID" Type="EventImage" />
+      <Association Name="Event_Registration" Member="Registrations" ThisKey="EventID" OtherKey="EventID" Type="Registration" />
+      <Association Name="Event_Tournament" Member="Tournaments" ThisKey="EventID" OtherKey="EventID" Type="Tournament" />
+      <Association Name="Event_Prize" Member="Prizes" ThisKey="EventID" OtherKey="EventId" Type="Prize" />
+      <Association Name="Venue_Event" Member="Venue" ThisKey="VenueID" OtherKey="VenueID" Type="Venue" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Pairings" Member="Pairings">
+    <Type Name="Pairing">
+      <Column Name="PairingID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoundID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Pairing_TeamsPairing" Member="TeamsPairings" ThisKey="PairingID" OtherKey="PairingID" Type="TeamsPairing" />
+      <Association Name="Round_Pairing" Member="Round" ThisKey="RoundID" OtherKey="RoundID" Type="Round" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Registrations" Member="Registrations">
+    <Type Name="Registration">
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RegistrationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsCheckedIn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Event_Registration" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+      <Association Name="User_Registration" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Rounds" Member="Rounds">
+    <Type Name="Round">
+      <Column Name="RoundID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TournamentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RoundNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Round_Pairing" Member="Pairings" ThisKey="RoundID" OtherKey="RoundID" Type="Pairing" />
+      <Association Name="Tournament_Round" Member="Tournament" ThisKey="TournamentID" OtherKey="TournamentID" Type="Tournament" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Teams" Member="Teams">
+    <Type Name="Team">
+      <Column Name="TeamID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TournamentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TeamName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamTagFormat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Team_TeamsPairing" Member="TeamsPairings" ThisKey="TeamID" OtherKey="TeamID" Type="TeamsPairing" />
+      <Association Name="Team_UsersTeam" Member="UsersTeams" ThisKey="TeamID" OtherKey="TeamID" Type="UsersTeam" />
+      <Association Name="Tournament_Team" Member="Tournament" ThisKey="TournamentID" OtherKey="TournamentID" Type="Tournament" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.TeamsPairings" Member="TeamsPairings">
+    <Type Name="TeamsPairing">
+      <Column Name="TeamPairingID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PairingID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Score" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Pairing_TeamsPairing" Member="Pairing" ThisKey="PairingID" OtherKey="PairingID" Type="Pairing" IsForeignKey="true" />
+      <Association Name="Team_TeamsPairing" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Tournaments" Member="Tournaments">
+    <Type Name="Tournament">
+      <Column Name="TournamentID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TournamentDirectorUserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Game" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ScoreMode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PairingsGenerator" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamSize" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AllowLateEntry" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="GameInfo" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ServerSettings" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Tournament_Round" Member="Rounds" ThisKey="TournamentID" OtherKey="TournamentID" Type="Round" />
+      <Association Name="Tournament_Team" Member="Teams" ThisKey="TournamentID" OtherKey="TournamentID" Type="Team" />
+      <Association Name="Event_Tournament" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+      <Association Name="User_Tournament" Member="User" ThisKey="TournamentDirectorUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.UsersTeams" Member="UsersTeams">
+    <Type Name="UsersTeam">
+      <Column Name="UserTeamID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="IsTeamCaptain" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Team_UsersTeam" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+      <Association Name="User_UsersTeam" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Venues" Member="Venues">
+    <Type Name="Venue">
+      <Column Name="VenueID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(8,5)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(8,5)" CanBeNull="true" />
+      <Association Name="Venue_Event" Member="Events" ThisKey="VenueID" OtherKey="VenueID" Type="Event" />
+    </Type>
+  </Table>
+  <Table Name="forums.ForumGroups" Member="ForumGroups">
+    <Type Name="ForumGroup">
+      <Column Name="ForumGroupID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ForumGroup_ForumGroupsAccess" Member="ForumGroupsAccesses" ThisKey="ForumGroupID" OtherKey="ForumGroupID" Type="ForumGroupsAccess" />
+      <Association Name="ForumGroup_Forum" Member="Forums" ThisKey="ForumGroupID" OtherKey="ForumGroupID" Type="Forum" />
+    </Type>
+  </Table>
+  <Table Name="forums.ForumGroupsAccess" Member="ForumGroupsAccesses">
+    <Type Name="ForumGroupsAccess">
+      <Column Name="ForumGroupID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessType" Type="System.String" DbType="NVarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessControlListID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="ForumGroup_ForumGroupsAccess" Member="ForumGroup" ThisKey="ForumGroupID" OtherKey="ForumGroupID" Type="ForumGroup" IsForeignKey="true" />
+      <Association Name="AccessControlList_ForumGroupsAccess" Member="AccessControlList" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="AccessControlList" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="forums.Forums" Member="Forums">
+    <Type Name="Forum">
+      <Column Name="ForumID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ForumGroupID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_ForumsAccess" Member="ForumsAccesses" ThisKey="ForumID" OtherKey="ForumID" Type="ForumsAccess" />
+      <Association Name="Forum_Thread" Member="Threads" ThisKey="ForumID" OtherKey="ForumID" Type="Thread" />
+      <Association Name="ForumGroup_Forum" Member="ForumGroup" ThisKey="ForumGroupID" OtherKey="ForumGroupID" Type="ForumGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="forums.ForumsAccess" Member="ForumsAccesses">
+    <Type Name="ForumsAccess">
+      <Column Name="ForumID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessType" Type="System.String" DbType="NVarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccessControlListID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_ForumsAccess" Member="Forum" ThisKey="ForumID" OtherKey="ForumID" Type="Forum" IsForeignKey="true" />
+      <Association Name="AccessControlList_ForumsAccess" Member="AccessControlList" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="AccessControlList" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="forums.Posts" Member="Posts">
+    <Type Name="Post">
+      <Column Name="PostID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ThreadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ResponseToPostID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_Post" Member="ModifyUser" ThisKey="ModifyUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Post1" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Thread_Post" Member="Thread" ThisKey="ThreadID" OtherKey="ThreadID" Type="Thread" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="forums.ThreadLevels" Member="ThreadLevels">
+    <Type Name="ThreadLevel">
+      <Column Name="[Level]" Member="Level" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ThreadLevel_Thread" Member="Threads" ThisKey="Level" OtherKey="Level" Type="Thread" />
+    </Type>
+  </Table>
+  <Table Name="forums.ThreadRead" Member="ThreadReads">
+    <Type Name="ThreadRead">
+      <Column Name="ThreadReadID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ThreadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DateRead" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_ThreadRead" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Thread_ThreadRead" Member="Thread" ThisKey="ThreadID" OtherKey="ThreadID" Type="Thread" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="forums.Threads" Member="Threads">
+    <Type Name="Thread">
+      <Column Name="ThreadID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ForumID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Level]" Member="Level" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Views" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Thread_Post" Member="Posts" ThisKey="ThreadID" OtherKey="ThreadID" Type="Post" />
+      <Association Name="Thread_ThreadRead" Member="ThreadReads" ThisKey="ThreadID" OtherKey="ThreadID" Type="ThreadRead" />
+      <Association Name="Forum_Thread" Member="Forum" ThisKey="ForumID" OtherKey="ForumID" Type="Forum" IsForeignKey="true" />
+      <Association Name="ThreadLevel_Thread" Member="ThreadLevel" ThisKey="Level" OtherKey="Level" Type="ThreadLevel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="security.AccessControlItems" Member="AccessControlItems">
+    <Type Name="AccessControlItem">
+      <Column Name="AccessControlItemID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccessControlListID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Char" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="[For]" Member="For" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Allow" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AccessControlList_AccessControlItem" Member="AccessControlList" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="AccessControlList" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="security.AccessControlLists" Member="AccessControlLists">
+    <Type Name="AccessControlList">
+      <Column Name="AccessControlListID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="AccessControlList_ForumGroupsAccess" Member="ForumGroupsAccesses" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="ForumGroupsAccess" />
+      <Association Name="AccessControlList_ForumsAccess" Member="ForumsAccesses" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="ForumsAccess" />
+      <Association Name="AccessControlList_AccessControlItem" Member="AccessControlItems" ThisKey="AccessControlListID" OtherKey="AccessControlListID" Type="AccessControlItem" />
+    </Type>
+  </Table>
+  <Table Name="security.AuthFailures" Member="AuthFailures">
+    <Type Name="AuthFailure">
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OriginatingHostIP" Type="System.String" DbType="NVarChar(39) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="User_AuthFailure" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="security.AutoLogin" Member="AutoLogins">
+    <Type Name="AutoLogin">
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_AutoLogin" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="security.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="RoleID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsAdministrator" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Role_UsersRole" Member="UsersRoles" ThisKey="RoleID" OtherKey="RoleID" Type="UsersRole" />
+      <Association Name="Role_Title" Member="Titles" ThisKey="RoleID" OtherKey="RoleID" Type="Title" />
+    </Type>
+  </Table>
+  <Table Name="security.SecurityKeys" Member="SecurityKeys">
+    <Type Name="SecurityKey">
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_SecurityKey" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.Prizes" Member="Prizes">
+    <Type Name="Prize">
+      <Column Name="PrizeId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="WinnerUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="Event_Prize" Member="Event" ThisKey="EventId" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+      <Association Name="User_Prize" Member="User" ThisKey="WinnerUserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Polls" Member="Polls">
+    <Type Name="Poll">
+      <Column Name="PollId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreatorUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="IsPrivate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsMultiAnswer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Poll_PollResponse" Member="PollResponses" ThisKey="PollId" OtherKey="PollId" Type="PollResponse" />
+      <Association Name="User_Poll" Member="User" ThisKey="CreatorUserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PollResponses" Member="PollResponses">
+    <Type Name="PollResponse">
+      <Column Name="PollResponseId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PollId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="PollResponse_UsersPollResponse" Member="UsersPollResponses" ThisKey="PollResponseId" OtherKey="PollResponseId" Type="UsersPollResponse" />
+      <Association Name="Poll_PollResponse" Member="Poll" ThisKey="PollId" OtherKey="PollId" Type="Poll" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsersPollResponses" Member="UsersPollResponses">
+    <Type Name="UsersPollResponse">
+      <Column Name="UserPollResponseId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PollResponseId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="PollResponse_UsersPollResponse" Member="PollResponse" ThisKey="PollResponseId" OtherKey="PollResponseId" Type="PollResponse" IsForeignKey="true" />
+      <Association Name="User_UsersPollResponse" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="events.EventImagesUserTags" Member="EventImageUserTags">
+    <Type Name="EventImageUserTag">
+      <Column Name="EventImageUserTagId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventImageId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TaggedUserUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatorUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Region" Type="System.Data.Linq.Binary" DbType="VarBinary(200) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="User_EventImageUserTag" Member="Creator" ThisKey="CreatorUserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="EventImage_EventImageUserTag" Member="EventImage" ThisKey="EventImageId" OtherKey="EventImageID" Type="EventImage" IsForeignKey="true" />
+      <Association Name="User_EventImageUserTag1" Member="TaggedUser" ThisKey="TaggedUserUserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

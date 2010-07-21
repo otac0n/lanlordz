@@ -5,15 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{13E447EA-301C-4A94-B15E-CA358CFB8F00}</ProjectGuid>
+    <ProjectGuid>{558C5794-20E4-4693-AEAF-E145F5D56D24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LanLordz.SiteTools</RootNamespace>
-    <AssemblyName>LanLordz.SiteTools</AssemblyName>
+    <RootNamespace>LanLordz.Tests</RootNamespace>
+    <AssemblyName>LanLordz.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\LanLordz\LanLordz.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,14 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Recaptcha">
-      <HintPath>..\Recaptcha.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.5.2.9222, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,27 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcceptList.cs" />
-    <Compile Include="AddressDetails.cs" />
-    <Compile Include="AntiXss.cs" />
-    <Compile Include="Appointment.cs" />
-    <Compile Include="CaptchaHelper.cs" />
-    <Compile Include="CompressFilter.cs" />
-    <Compile Include="Converter.cs" />
-    <Compile Include="GoogleGeocoder.cs" />
-    <Compile Include="ImageResult.cs" />
-    <Compile Include="NotModifiedResult.cs" />
-    <Compile Include="Pager.cs" />
-    <Compile Include="Placemark.cs" />
-    <Compile Include="PlacemarkPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureRandom.cs" />
-    <Compile Include="HttpErrorResult.cs" />
+    <Compile Include="SiteToolsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\LanLordz\LanLordz.pfx">
-      <Link>LanLordz.pfx</Link>
-    </None>
+    <None Include="LanLordz.Tests.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LanLordz.SiteTools\LanLordz.SiteTools.csproj">
+      <Project>{13E447EA-301C-4A94-B15E-CA358CFB8F00}</Project>
+      <Name>LanLordz.SiteTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

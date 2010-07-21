@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BAA8A63B-5DA6-4D02-9CDC-97ED826ACEE0}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LanLordz</RootNamespace>
+    <AssemblyName>LanLordz</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>LanLordz.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=1.5.0.0, Culture=neutral, PublicKeyToken=5906d2bb3d8a12c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="BBCode.Net">
+      <HintPath>..\BBCode.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
+      <HintPath>..\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark">
+      <HintPath>..\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark.Web.Mvc">
+      <HintPath>..\Spark.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SVG">
+      <HintPath>..\SVG.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TournamentApi">
+      <HintPath>..\TournamentApi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CachedRepositories\ConfigurationRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\EventRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\ForumRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\PluginRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\PollRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\SecurityRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\SkinRepository.cs" />
+    <Compile Include="Controllers\CachedRepositories\UserRepository.cs" />
+    <Compile Include="Controllers\CrewController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\ForumsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\LanLordzBaseController.cs" />
+    <Compile Include="Controllers\PollsController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Exceptions\Exceptions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccessControlList.cs" />
+    <Compile Include="Models\CachedModels\CachedEvent.cs" />
+    <Compile Include="Models\CachedModels\CachedEventRegistration.cs" />
+    <Compile Include="Models\CachedModels\CachedPoll.cs" />
+    <Compile Include="Models\CachedModels\CachedTournament.cs" />
+    <Compile Include="Models\CachedModels\CachedVenue.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventImageUserTag.cs" />
+    <Compile Include="Models\EventRegistrationInformation.cs" />
+    <Compile Include="Models\EventsStatistics.cs" />
+    <Compile Include="Models\EventStats.cs" />
+    <Compile Include="Models\ForumAccess.cs" />
+    <Compile Include="Models\ForumInformation.cs" />
+    <Compile Include="Models\LanLordz.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanLordz.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LanLordzApplicationManager.cs" />
+    <Compile Include="Models\PaginationInformation.cs" />
+    <Compile Include="Models\Poll.cs" />
+    <Compile Include="Models\PollResponse.cs" />
+    <Compile Include="Models\PostInformation.cs" />
+    <Compile Include="Models\Prize.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RuleViolation.cs" />
+    <Compile Include="Models\SiteTheme.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\ThreadInformation.cs" />
+    <Compile Include="Models\Tournament.cs" />
+    <Compile Include="Models\TournamentAccess.cs" />
+    <Compile Include="Models\TournamentInformation.cs" />
+    <Compile Include="Models\TournamentStandingInformation.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserAttributesSet.cs" />
+    <Compile Include="Models\UserInformation.cs" />
+    <Compile Include="Models\ViewModels\BlankModel.cs" />
+    <Compile Include="Models\ViewModels\ChangeAvatarModel.cs" />
+    <Compile Include="Models\ViewModels\ChangePasswordModel.cs" />
+    <Compile Include="Models\ViewModels\ChooseEventModel.cs" />
+    <Compile Include="Models\ViewModels\ConfirmationFailedModel.cs" />
+    <Compile Include="Models\ViewModels\ConfirmEmailModel.cs" />
+    <Compile Include="Models\ViewModels\ControllerResponse.cs" />
+    <Compile Include="Models\ViewModels\CreateEventModel.cs" />
+    <Compile Include="Models\ViewModels\CreatePollModel.cs" />
+    <Compile Include="Models\ViewModels\CreatePostModel.cs" />
+    <Compile Include="Models\ViewModels\CreateTeamModel.cs" />
+    <Compile Include="Models\ViewModels\CreateTournamentModel.cs" />
+    <Compile Include="Models\ViewModels\CrewDetailsModel.cs" />
+    <Compile Include="Models\ViewModels\DeletePostModel.cs" />
+    <Compile Include="Models\ViewModels\DoorPrizesModel.cs" />
+    <Compile Include="Models\ViewModels\EditImagesModel.cs" />
+    <Compile Include="Models\ViewModels\EditPostModel.cs" />
+    <Compile Include="Models\ViewModels\EditProfileModel.cs" />
+    <Compile Include="Models\ViewModels\EditTournamentModel.cs" />
+    <Compile Include="Models\ViewModels\ErrorInfoModel.cs" />
+    <Compile Include="Models\ViewModels\EventDetailsModel.cs" />
+    <Compile Include="Models\ViewModels\EventImageThumbnailModel.cs" />
+    <Compile Include="Models\ViewModels\EventsIndexModel.cs" />
+    <Compile Include="Models\ViewModels\ForumDetailsModel.cs" />
+    <Compile Include="Models\ViewModels\ForumsIndexModel.cs" />
+    <Compile Include="Models\ViewModels\ForumThreadModel.cs" />
+    <Compile Include="Models\ViewModels\ImageGalleryModel.cs" />
+    <Compile Include="Models\ViewModels\InputScoresModel.cs" />
+    <Compile Include="Models\ViewModels\JoinTeamModel.cs" />
+    <Compile Include="Models\ViewModels\LeaveTeamModel.cs" />
+    <Compile Include="Models\ViewModels\LogOnAttemptModel.cs" />
+    <Compile Include="Models\ViewModels\ManageTeamModel.cs" />
+    <Compile Include="Models\ViewModels\MasterConfigModel.cs" />
+    <Compile Include="Models\ViewModels\PollDetailsModel.cs" />
+    <Compile Include="Models\ViewModels\PollsIndexModel.cs" />
+    <Compile Include="Models\ViewModels\RegistrationModel.cs" />
+    <Compile Include="Models\ViewModels\RollBackRoundModel.cs" />
+    <Compile Include="Models\ViewModels\SendMailModel.cs" />
+    <Compile Include="Models\ViewModels\SiteStatistics.cs" />
+    <Compile Include="Models\ViewModels\StatsEventsModel.cs" />
+    <Compile Include="Models\ViewModels\StatsUsersModel.cs" />
+    <Compile Include="Models\ViewModels\ThreadList.cs" />
+    <Compile Include="Models\ViewModels\TournamentActionModel.cs" />
+    <Compile Include="Models\ViewModels\TournamentDetailsModel.cs" />
+    <Compile Include="Models\ViewModels\UserCheckInModel.cs" />
+    <Compile Include="Models\ViewModels\UserInformationModel.cs" />
+    <Compile Include="Models\ViewModels\UserTag.cs" />
+    <Compile Include="Models\ViewModels\ViewImageModel.cs" />
+    <Compile Include="Models\ViewModels\ViewNewsModel.cs" />
+    <Compile Include="Models\ViewModels\ViewSponsorsModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\BaseView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SqlServerSpatial.dll">
+      <Link>SqlServerSpatial.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="apple-touch-icon-precomposed.png" />
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <None Include="Models\lanlordz db schema.sql" />
+    <None Include="LanLordz.pfx" />
+    <None Include="Models\LanLordz.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>LanLordz.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\SvgScriptBlock.txt" />
+    <Content Include="Plugins\StandardTournaments.dll" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\jquery.maphilight.min.js" />
+    <Content Include="Scripts\svgcheck.js" />
+    <Content Include="Scripts\svgcheck.vbs" />
+    <Content Include="Skins\Astro\AnnouncementRead.png" />
+    <Content Include="Skins\Astro\AnnouncementUnread.png" />
+    <Content Include="Skins\Astro\astro.css" />
+    <Content Include="Skins\Astro\Banner.txt" />
+    <Content Include="Skins\Astro\BlueLineSmall.png" />
+    <Content Include="Skins\Astro\BoxBot.png" />
+    <Content Include="Skins\Astro\BoxMid.png" />
+    <Content Include="Skins\Astro\BoxTop.png" />
+    <Content Include="Skins\Astro\CodeBG.png" />
+    <Content Include="Skins\Astro\Darken.png" />
+    <Content Include="Skins\Astro\Explore_1920.jpg" />
+    <Content Include="Skins\Astro\ForumRead.png" />
+    <Content Include="Skins\Astro\ForumUnread.png" />
+    <Content Include="Skins\Astro\Jcrop.gif" />
+    <Content Include="Skins\Astro\jquery.Jcrop.css" />
+    <Content Include="Skins\Astro\LANLordz.png" />
+    <Content Include="Skins\Astro\NavBorder.png" />
+    <Content Include="Skins\Astro\NavButton.png" />
+    <Content Include="Skins\Astro\PngFixSelector.txt" />
+    <Content Include="Skins\Astro\PostToolBG.png" />
+    <Content Include="Skins\Astro\PostToolRT.png" />
+    <Content Include="Skins\Astro\Quote.png" />
+    <Content Include="Skins\Astro\QuoteBG.png" />
+    <Content Include="Skins\Astro\SingleArrow.png" />
+    <Content Include="Skins\Astro\skin.js" />
+    <Content Include="Skins\Astro\StickyRead.png" />
+    <Content Include="Skins\Astro\StickyUnread.png" />
+    <Content Include="Skins\Astro\SpaceAge.eot" />
+    <Content Include="Skins\Astro\SpaceAge.ttf" />
+    <Content Include="Skins\Astro\ThreadRead.png" />
+    <Content Include="Skins\Astro\ThreadUnread.png" />
+    <Content Include="Skins\BBCode.xml" />
+    <Content Include="Skins\blank.gif" />
+    <Content Include="Skins\Blank.png" />
+    <Content Include="Skins\Bored.png" />
+    <Content Include="Skins\ClassicLL\banner.jpg" />
+    <Content Include="Skins\ClassicLL\bbcode.css" />
+    <Content Include="Skins\ClassicLL\Button.gif" />
+    <Content Include="Skins\ClassicLL\events.css" />
+    <Content Include="Skins\ClassicLL\ForumRead.gif" />
+    <Content Include="Skins\ClassicLL\forums.css" />
+    <Content Include="Skins\ClassicLL\ForumUnread.gif" />
+    <Content Include="Skins\ClassicLL\iestyles.txt" />
+    <Content Include="Skins\ClassicLL\Jcrop.gif" />
+    <Content Include="Skins\ClassicLL\jquery.Jcrop.css" />
+    <Content Include="Skins\ClassicLL\lan.css" />
+    <Content Include="Skins\ClassicLL\lanlordz.css" />
+    <Content Include="Skins\ClassicLL\PngFixSelector.txt" />
+    <Content Include="Skins\ClassicLL\skin.js" />
+    <Content Include="Skins\ClassicLL\stats.css" />
+    <Content Include="Skins\ClassicLL\ThreadAnnouncement.gif" />
+    <Content Include="Skins\ClassicLL\ThreadLockedRead.gif" />
+    <Content Include="Skins\ClassicLL\ThreadLockedUnread.gif" />
+    <Content Include="Skins\ClassicLL\ThreadRead.gif" />
+    <Content Include="Skins\ClassicLL\ThreadSticky.gif" />
+    <Content Include="Skins\ClassicLL\ThreadUnread.gif" />
+    <Content Include="Skins\Confused.png" />
+    <Content Include="Skins\Dead\AnnouncementRead.png" />
+    <Content Include="Skins\Dead\AnnouncementUnread.png" />
+    <Content Include="Skins\Dead\Background.png" />
+    <Content Include="Skins\Dead\Banner.png" />
+    <Content Include="Skins\Dead\Banner.txt" />
+    <Content Include="Skins\Dead\CodeBG.png" />
+    <Content Include="Skins\Dead\Darken.png" />
+    <Content Include="Skins\Dead\dead.css" />
+    <Content Include="Skins\Dead\Delete.png" />
+    <Content Include="Skins\Dead\Edit.png" />
+    <Content Include="Skins\Dead\FooterBG.png" />
+    <Content Include="Skins\Dead\ForumRead.png" />
+    <Content Include="Skins\Dead\ForumUnread.png" />
+    <Content Include="Skins\Dead\HeaderBG.png" />
+    <Content Include="Skins\Dead\Jcrop.gif" />
+    <Content Include="Skins\Dead\jquery.Jcrop.css" />
+    <Content Include="Skins\Dead\MainBG.png" />
+    <Content Include="Skins\Dead\MarkRead.png" />
+    <Content Include="Skins\Dead\MenuBG.png" />
+    <Content Include="Skins\Dead\NavButton.png" />
+    <Content Include="Skins\Dead\NewPost.png" />
+    <Content Include="Skins\Dead\NewThread.png" />
+    <Content Include="Skins\Dead\Quote.png" />
+    <Content Include="Skins\Dead\Reply.png" />
+    <Content Include="Skins\Dead\skin.js" />
+    <Content Include="Skins\Dead\StickyRead.png" />
+    <Content Include="Skins\Dead\StickyUnread.png" />
+    <Content Include="Skins\Dead\ThreadRead.png" />
+    <Content Include="Skins\Dead\ThreadUnread.png" />
+    <Content Include="Skins\Dead\TwentyEightDaysLater.eot" />
+    <Content Include="Skins\Dead\TwentyEightDaysLater.ttf" />
+    <Content Include="Skins\Dead\ViewUnread.png" />
+    <Content Include="Skins\DefaultForumPager.xml" />
+    <Content Include="Skins\DefaultGalleryPager.xml" />
+    <Content Include="Skins\DefaultImagePager.xml" />
+    <Content Include="Skins\DefaultPager.xml" />
+    <Content Include="Skins\DefaultThreadPager.xml" />
+    <Content Include="Skins\Default\AnnouncementRead.png" />
+    <Content Include="Skins\Default\AnnouncementUnread.png" />
+    <Content Include="Skins\Default\banner.png" />
+    <Content Include="Skins\Default\Banner.txt" />
+    <Content Include="Skins\Default\banner_bg.png" />
+    <Content Include="Skins\Default\bg.png" />
+    <Content Include="Skins\Default\default.css" />
+    <Content Include="Skins\Default\Delete.png" />
+    <Content Include="Skins\Default\Edit.png" />
+    <Content Include="Skins\Default\ForumRead.png" />
+    <Content Include="Skins\Default\ForumUnread.png" />
+    <Content Include="Skins\Default\Jcrop.gif" />
+    <Content Include="Skins\Default\Locked.gif" />
+    <Content Include="Skins\Default\MarkRead.png" />
+    <Content Include="Skins\Default\Moderate.png" />
+    <Content Include="Skins\Default\NewThread.png" />
+    <Content Include="Skins\Default\PngFixSelector.txt" />
+    <Content Include="Skins\Default\Quote.png" />
+    <Content Include="Skins\Default\Reply.png" />
+    <Content Include="Skins\Default\skin.js" />
+    <Content Include="Skins\Default\StickyRead.png" />
+    <Content Include="Skins\Default\StickyUnread.png" />
+    <Content Include="Skins\Default\ThreadRead.png" />
+    <Content Include="Skins\Default\ThreadUnread.png" />
+    <Content Include="Skins\Default\UserInfoBG.png" />
+    <Content Include="Skins\Default\ViewUnread.png" />
+    <Content Include="Skins\Frown.png" />
+    <Content Include="Skins\Grin.png" />
+    <Content Include="Skins\KT\AnnouncementRead.png" />
+    <Content Include="Skins\KT\AnnouncementUnread.png" />
+    <Content Include="Skins\KT\Background.png" />
+    <Content Include="Skins\KT\Banner.png" />
+    <Content Include="Skins\KT\ForumRead.png" />
+    <Content Include="Skins\KT\ForumUnread.png" />
+    <Content Include="Skins\KT\HeaderBackground.png" />
+    <Content Include="Skins\KT\Jcrop.gif" />
+    <Content Include="Skins\KT\jquery.Jcrop.css" />
+    <Content Include="Skins\KT\kt.css" />
+    <Content Include="Skins\KT\MarkRead.png" />
+    <Content Include="Skins\KT\MenuBackground.png" />
+    <Content Include="Skins\KT\MenuBar.png" />
+    <Content Include="Skins\KT\PngFixSelector.txt" />
+    <Content Include="Skins\KT\Quote.png" />
+    <Content Include="Skins\KT\skin.js" />
+    <Content Include="Skins\KT\StickyRead.png" />
+    <Content Include="Skins\KT\StickyUnread.png" />
+    <Content Include="Skins\KT\ViewUnread.png" />
+    <Content Include="Skins\Love.png" />
+    <Content Include="Skins\Mobile\Jcrop.gif" />
+    <Content Include="Skins\Mobile\jquery.Jcrop.css" />
+    <Content Include="Skins\PngFix.htc" />
+    <Content Include="Skins\Scowl.png" />
+    <Content Include="Skins\Smile.png" />
+    <Content Include="Skins\Suprise.png" />
+    <Content Include="Skins\Tongue.png" />
+    <Content Include="Skins\Wink.png" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\ChangeAvatar.spark" />
+    <Content Include="Views\Account\ChangePassword.spark" />
+    <Content Include="Views\Account\ChangeSucceeded.spark" />
+    <Content Include="Views\Account\ConfirmEmail.spark" />
+    <Content Include="Views\Account\ConfirmSuccess.spark" />
+    <Content Include="Views\Account\EditProfile.spark" />
+    <Content Include="Views\Account\Index.spark" />
+    <Content Include="Views\Account\LogOn.spark" />
+    <Content Include="Views\Account\Register.spark" />
+    <Content Include="Views\Account\RegistrationSuccessful.spark" />
+    <Content Include="Views\Account\ViewProfile.spark" />
+    <Content Include="Views\Admin\EditConfig.spark" />
+    <Content Include="Views\Admin\Index.spark" />
+    <Content Include="Views\Admin\SendMail.spark" />
+    <Content Include="Views\Admin\SendMailSuccess.spark" />
+    <Content Include="Views\Crew\ChooseEvent.spark" />
+    <Content Include="Views\Crew\DoorPrizes.spark" />
+    <Content Include="Views\Crew\EditImages.spark" />
+    <Content Include="Views\Crew\Index.spark" />
+    <Content Include="Views\Crew\UserCheckIn.spark" />
+    <Content Include="Views\Events\CreateEvent.spark" />
+    <Content Include="Views\Events\CreateTeam.spark" />
+    <Content Include="Views\Events\CreateTournament.spark" />
+    <Content Include="Views\Events\Details.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Events\EditTournament.spark" />
+    <Content Include="Views\Events\Index.spark" />
+    <Content Include="Views\Events\InputScores.spark" />
+    <Content Include="Views\Events\InputScoresPickRound.spark" />
+    <Content Include="Views\Events\JoinTeam.spark" />
+    <Content Include="Views\Events\LeaveTeam.spark" />
+    <Content Include="Views\Events\LockTeams.spark" />
+    <Content Include="Views\Events\ManageTeam.spark" />
+    <Content Include="Views\Events\RollBackRound.spark" />
+    <Content Include="Views\Events\StartNextRound.spark" />
+    <Content Include="Views\Events\UnlockTeams.spark" />
+    <Content Include="Views\Events\ViewTournament.spark" />
+    <Content Include="Views\Forums\CreatePost.spark" />
+    <Content Include="Views\Forums\DeletePost.spark" />
+    <Content Include="Views\Forums\EditPost.spark" />
+    <Content Include="Views\Forums\Index.spark" />
+    <Content Include="Views\Forums\Search.spark" />
+    <Content Include="Views\Forums\ViewForum.spark" />
+    <Content Include="Views\Forums\ViewThread.spark" />
+    <Content Include="Views\Forums\ViewUnread.spark" />
+    <Content Include="Views\Forums\_ThreadListView.spark" />
+    <Content Include="Views\Home\Index.spark" />
+    <Content Include="Views\Home\ViewCrew.spark" />
+    <Content Include="Views\Home\ViewNews.spark" />
+    <Content Include="Views\Home\ViewSponsors.spark" />
+    <Content Include="Views\Images\Gallery.spark" />
+    <Content Include="Views\Images\ViewImage.spark" />
+    <Content Include="Views\Layouts\Application.spark" />
+    <Content Include="Views\Polls\Create.spark" />
+    <Content Include="Views\Polls\Details.spark" />
+    <Content Include="Views\Polls\DetailsPartial.spark" />
+    <Content Include="Views\Polls\Index.spark" />
+    <Content Include="Views\Polls\_PollDetails.spark" />
+    <Content Include="Views\Shared\Error.spark" />
+    <Content Include="Views\Shared\NotAuthorized.spark" />
+    <Content Include="Views\Shared\NotAvailable.spark" />
+    <Content Include="Views\Shared\NotFound.spark" />
+    <Content Include="Views\Shared\_PaginationView.spark" />
+    <Content Include="Views\Shared\_UserAvatar.spark" />
+    <Content Include="Views\Shared\_UserInfoBox.spark" />
+    <Content Include="Views\Stats\Events.spark" />
+    <Content Include="Views\Stats\Index.spark" />
+    <Content Include="Views\Stats\Users.spark" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LanLordz.SiteTools\LanLordz.SiteTools.csproj">
+      <Project>{81842D3B-BE87-4540-9F3B-134809403D60}</Project>
+      <Name>LanLordz.SiteTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\LanLordz.dbml.layout">
+      <DependentUpon>LanLordz.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

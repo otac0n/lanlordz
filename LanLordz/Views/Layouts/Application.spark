@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <title><use content="title" /> | ${Model.Config.SiteName}</title>
+  <var skin="Model.AppManager.Controller.Skins.GetSkin(this.Theme)" />
+  <if condition="skin != null">
+  <link each="var ss in skin.Stylesheets" type="text/css" href="${Model.Controller.ApplyCoralCdn(Response.ApplyAppPathModifier(ss))}" rel="stylesheet" />
+  <if condition="!string.IsNullOrEmpty(skin.PngFixSelector)">
+  !{"<!--[if lt IE 7]>"}
+  <style type="text/css">
+   ${(skin.PngFixSelector)}{behavior:url(${Model.Controller.ApplyCoralCdn(Response.ApplyAppPathModifier("~/PngFix.htc"))});}
+  </style>
+  !{"<![endif]-->"}
+  </if>
+  </if>
+  <script type="text/javascript" src="${Model.Controller.ApplyCoralCdn(Response.ApplyAppPathModifier("~/Scripts/jquery-1.4.1.min.js"))}"></script>
+  <use content="headers" />
+ </head>
+ <body id="body">
+  <div id="surround">
+   <div id="header">
+    <div if="skin != null && !string.IsNullOrEmpty(skin.Banner)" class="HeaderBanner"><img class="HeaderBannerImage" src="${Model.Controller.ApplyCoralCdn(Response.ApplyAppPathModifier(skin.Banner))}" alt="Banner" /></div>
+    <div class="HeaderSiteTagline">${Model.Config.SiteTagline}</div>
+   </div>
+   <div id="menu">
+    <ul class="Menu">
+     <li class="MenuItem">!{Html.ActionLink("Home", "Index", "Home")}</li>
+     <li class="MenuItem">!{Html.ActionLink("Events", "Index", "Events")}</li>
+     <li class="MenuItem">!{Html.ActionLink("Crew", "ViewCrew", "Home")}</li>
+     <li class="MenuItem">!{Html.ActionLink("Sponsors", "ViewSponsors", "Home")}</li>
+     <li class="MenuItem">!{Html.ActionLink("News", "ViewNews", "Home")}</li>
+     <li class="MenuItem">!{Html.ActionLink("Forums", "Index", "Forums")}</li>
+     <li class="MenuItem">!{Html.ActionLink("Stats", "Index", "Stats")}</li>
+    </ul>
+   </div>
+   <div id="userinfo">
+
+    <UserInfoBox />
+   </div>
+   <div id="main">
+	<use content="main" />
+   </div>
+   <div id="footer">
+    <div class="FooterCopyright">${(Model.Config.SiteCopyright)}</div><div class="FooterVisitors">${(Model.Config.ShowVisitors ? "" + Model.Config.Visitors + " Visitors" : "")}</div>
+   </div>
+  </div>
+  <if condition="skin != null">
+  <script each="var js in skin.Scripts" type="text/javascript" src="${Model.Controller.ApplyCoralCdn(Response.ApplyAppPathModifier(js))}"></script>
+  </if>
+  <if condition="Model.Config.UseGoogleAnalytics">
+  <script type="text/javascript">
+   var gaJsHost=(("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+   try{var pageTracker=_gat._getTracker('${Model.Config.GoogleAnalyticsAccount}');pageTracker._trackPageview();}catch(err){}
+  </script>
+  </if>
+ </body>
+</html>
