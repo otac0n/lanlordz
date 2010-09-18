@@ -175,7 +175,7 @@ GO
 CREATE TABLE [security].[AccessControlItems] (
 	[AccessControlItemId] bigint NOT NULL IDENTITY,
 	[AccessControlListId] bigint NOT NULL,
-	[Type] nvarchar(1) NOT NULL,
+	[Type] char(1) NOT NULL,
 	[For] nvarchar(50) NOT NULL,
 	[Allow] bit NOT NULL,
 	[Order] int NOT NULL,
