@@ -17,6 +17,7 @@
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -222,7 +223,6 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <None Include="Models\lanlordz db schema.sql" />
     <None Include="Models\LanLordz.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>LanLordz.designer.cs</LastGenOutput>
