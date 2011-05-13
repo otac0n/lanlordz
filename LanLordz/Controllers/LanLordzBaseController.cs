@@ -35,6 +35,7 @@ namespace LanLordz.Controllers
     using LanLordz.SiteTools;
     using Microsoft.Practices.EnterpriseLibrary.Caching;
 
+    [ValidateInput(enableValidation: false)]
     public class LanLordzBaseController : Controller
     {
         private const string UserKey = "User";

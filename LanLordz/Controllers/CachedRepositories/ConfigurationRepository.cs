@@ -643,7 +643,7 @@ namespace LanLordz.Controllers.CachedRepositories
                 var conf = new Configuration()
                 {
                     Property = property,
-                    Value = value
+                    Value = value ?? ""
                 };
 
                 this.db.Configurations.InsertOnSubmit(conf);
@@ -652,7 +652,7 @@ namespace LanLordz.Controllers.CachedRepositories
             }
             else
             {
-                this.config[propertyKey].Value = value;
+                this.config[propertyKey].Value = value ?? "";
             }
         }
     }
