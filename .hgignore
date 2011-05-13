@@ -4,4 +4,6 @@ syntax: glob
 **/sql/**
 *.suo
 *.user
+*.dbmdl
+*.schemaview
 StyleCop.Cache
