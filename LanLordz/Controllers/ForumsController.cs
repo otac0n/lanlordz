@@ -459,7 +459,7 @@ namespace LanLordz.Controllers
             return View("ViewUnread", tl);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Post(FormCollection values)
         {
             if (CurrentUser == null)
@@ -661,7 +661,7 @@ namespace LanLordz.Controllers
             this.Db.SubmitChanges();
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult MarkAllRead(FormCollection values)
         {
             if (this.CurrentUser != null)
@@ -857,7 +857,7 @@ namespace LanLordz.Controllers
             return View("EditPost", epm);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditPost(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -925,7 +925,7 @@ namespace LanLordz.Controllers
             return RedirectToAction("ViewThread", new { id = t.ThreadID });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult DeletePost(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1003,7 +1003,7 @@ namespace LanLordz.Controllers
             return View("Search", threads);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Search(FormCollection values)
         {
             if (!string.IsNullOrEmpty(values["SearchTerms"]))

@@ -309,7 +309,7 @@ namespace LanLordz.Controllers
             return View("CreateTournament", model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult CreateTournament(FormCollection values)
         {
             if (!this.Security.IsUserAdministrator(this.CurrentUser))
@@ -408,7 +408,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditTournament(long? id, FormCollection values)
         {
             if (!this.Security.IsUserAdministrator(this.CurrentUser))
@@ -512,7 +512,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult CreateEvent(FormCollection values)
         {
             if (!this.Security.IsUserAdministrator(this.CurrentUser))
@@ -796,7 +796,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult CreateTeam(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -950,7 +950,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult JoinTeam(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1055,7 +1055,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult LeaveTeam(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1157,7 +1157,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult ManageTeam(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1266,7 +1266,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult LockTeams(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1331,7 +1331,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult UnlockTeams(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1399,7 +1399,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult StartNextRound(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1542,7 +1542,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult RollBackRound(long? id, FormCollection values)
         {
             if (!id.HasValue)
@@ -1625,7 +1625,7 @@ namespace LanLordz.Controllers
             }
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult InputScores(long? id, int? roundNumber, FormCollection values)
         {
             if (!id.HasValue)
@@ -1691,7 +1691,7 @@ namespace LanLordz.Controllers
             return this.RedirectToAction("InputScores", new { id = id, roundNumber = rnb });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Register(long? id)
         {
             if (!id.HasValue)

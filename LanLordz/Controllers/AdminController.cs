@@ -64,7 +64,7 @@ namespace LanLordz.Controllers
             return View("EditConfig", model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditConfig(FormCollection values)
         {
             // Prevent saving of cached data.
@@ -110,7 +110,7 @@ namespace LanLordz.Controllers
             return View("SendMail", model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult SendMail(FormCollection values)
         {
             var roleId = long.Parse(values["Role"]);

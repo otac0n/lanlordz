@@ -50,7 +50,7 @@ namespace LanLordz.Controllers
             return View("LogOn", new LogOnAttemptModel(this));
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult LogOn(FormCollection values)
         {
             if (CurrentUser != null)
@@ -141,7 +141,7 @@ namespace LanLordz.Controllers
             return Json(users, JsonRequestBehavior.AllowGet);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult LogOff(FormCollection values)
         {
             string returnUrl = values["ReturnUrl"];
@@ -176,7 +176,7 @@ namespace LanLordz.Controllers
             return View("Register", new RegistrationModel(this));
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Register(FormCollection values)
         {
             if (CurrentUser != null)
@@ -253,7 +253,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Confirm(FormCollection values)
         {
             var key = values["Key"];
@@ -298,7 +298,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditProfile(FormCollection values)
         {
             if (CurrentUser == null)
@@ -377,7 +377,7 @@ namespace LanLordz.Controllers
             });
         }
         
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult ChangeAvatar(FormCollection values)
         {
             if (CurrentUser == null)
@@ -498,7 +498,7 @@ namespace LanLordz.Controllers
                 });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult ChangePassword(long? id, FormCollection values)
         {
             var ip = Request.UserHostAddress;

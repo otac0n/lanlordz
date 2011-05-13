@@ -88,7 +88,7 @@ namespace LanLordz.Controllers
             }
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Vote(int id, FormCollection values)
         {
             if (this.CurrentUser == null)
@@ -202,7 +202,7 @@ namespace LanLordz.Controllers
             });
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult Create(FormCollection values)
         {
             if (this.CurrentUser == null)

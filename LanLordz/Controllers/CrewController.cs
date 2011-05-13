@@ -116,7 +116,7 @@ namespace LanLordz.Controllers
             return this.View("UserCheckIn", uci);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult UserCheckIn(long? id, FormCollection values)
         {
             if (this.CurrentUser == null || !this.Security.IsUserInRole(CurrentUser, this.Config.CrewGroup))
@@ -196,7 +196,7 @@ namespace LanLordz.Controllers
             return this.View("DoorPrizes", uci);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult DoorPrizes(long? id, FormCollection values)
         {
             if (this.CurrentUser == null || !this.Security.IsUserInRole(CurrentUser, this.Config.CrewGroup))
@@ -364,7 +364,7 @@ namespace LanLordz.Controllers
             return this.View("EditImages", uci);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditImages(long? id, FormCollection values)
         {
             if (this.CurrentUser == null || !this.Security.IsUserInRole(CurrentUser, this.Config.CrewGroup))
