@@ -30,21 +30,28 @@ namespace LanLordz.Controllers
 
     public class AdminController : LanLordzBaseController
     {
+        protected override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            if (!this.UserIsAuthorized())
+            {
+                filterContext.Result = this.View("NotAuthorized");
+            }
+        }
+
+        private bool UserIsAuthorized()
+        {
+            return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
+        }
+
         [CompressFilter]
         public ActionResult Index()
         {
-            return !this.UserIsAuthorized() ? this.View("NotAuthorized") : this.View();
+            return this.View();
         }
 
         [CompressFilter]
         public ActionResult EditConfig()
         {
-            if (!this.UserIsAuthorized())
-            {
-                return View("NotAuthorized");
-            }
-            
-            // Prevent reading of Cached Data.
             this.Config.Freshen();
 
             var model = new MasterConfigModel(this)
@@ -60,11 +67,6 @@ namespace LanLordz.Controllers
         [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
         public ActionResult EditConfig(FormCollection values)
         {
-            if (!this.UserIsAuthorized())
-            {
-                return View("NotAuthorized");
-            }
-
             // Prevent saving of cached data.
             this.Config.Freshen();
 
@@ -96,11 +98,6 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult SendMail()
         {
-            if (!this.UserIsAuthorized())
-            {
-                return View("NotAuthorized");
-            }
-
             var roles = this.AppManager.GetAllRoles().ToList();
             var events = this.Events.GetUpcomingEvents();
 
@@ -116,11 +113,6 @@ namespace LanLordz.Controllers
         [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
         public ActionResult SendMail(FormCollection values)
         {
-            if (!this.UserIsAuthorized())
-            {
-                return View("NotAuthorized");
-            }
-
             var roleId = long.Parse(values["Role"]);
             var subject = values["Subject"];
             var body = this.FormatPostText(values["Body"]);
@@ -134,11 +126,6 @@ namespace LanLordz.Controllers
             this.AppManager.SendMail(CurrentUser, roleId, subject, body, eventId);
 
             return View("SendMailSuccess");
-        }
-
-        private bool UserIsAuthorized()
-        {
-            return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
         }
     }
 }
