@@ -1,7 +1,10 @@
 ﻿<viewdata model="LanLordz.Models.ViewNewsModel"/>
 <content name="title">News</content>
-<content name="headers"></content>
+<content name="headers">
+  <link rel="alternate" type="application/atom+xml" href="?format=atom" title="${Controller.Config.SiteName} News (Atom 1.0)"/>
+</content>
 <content name="main">
+    <div if="Model.Posts != null" class="NewsIcon"><a href="?format=atom"><img src="${Url.Content("~/Content/FeedIcon.png")}" /></a></div>
     <h2>News</h2>
     <div if="Model.Posts == null">The administrators have not configured the news page.</div>
     <div if="Model.Posts != null" each="var post in Model.Posts" class="NewsPost">

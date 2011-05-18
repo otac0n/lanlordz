@@ -29,6 +29,7 @@ img{border:0;}
 .Menu a:visited{color:#fff;text-decoration:none;}
 .Menu a:hover{color:#fff;text-decoration:underline;}
 .Menu a:active{color:#fff;text-decoration:none;}
+.NewsIcon{float : right;}
 .NewsPostTitle{display:block;font-size:x-large;color:#ffdd47;text-align:center;font-weight:bold;}
 .NewsPostDate{font-size:large;font-weight:bold;}
 .NewsPost{margin-bottom:2em;}

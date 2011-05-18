@@ -26,6 +26,9 @@ namespace LanLordz.Controllers
     using System.Web.Mvc;
     using LanLordz.Models;
     using LanLordz.SiteTools;
+    using System.ServiceModel.Syndication;
+    using System;
+    using System.Collections.Generic;
 
     public class HomeController : LanLordzBaseController
     {
@@ -68,15 +71,50 @@ namespace LanLordz.Controllers
         }
 
         [CompressFilter]
-        public ActionResult ViewNews()
+        public ActionResult ViewNews(string format = "html")
         {
-            return View(new ViewNewsModel
-            {
-                Posts = (from p in this.Db.Posts
+            var posts = (from p in this.Db.Posts
                          where p.ThreadID == this.Config.NewsThread
                          orderby p.CreateDate descending
-                         select p).Take(10).ToList()
-            });
+                         select p).Take(10).ToList();
+
+            if (format == "atom")
+            {
+                var items = new List<SyndicationItem>();
+
+                foreach (var p in posts)
+                {
+                    var u = p.User;
+                    var content = new TextSyndicationContent(
+                        this.FormatPostText(p.Text),
+                        TextSyndicationContentKind.Html);
+
+                    var item = new SyndicationItem(
+                         title: p.Title,
+                         content: content,
+                         itemAlternateLink: new Uri(this.Request.Url, Url.Action("ViewNews")),
+                         id: p.PostID.ToString(),
+                         lastUpdatedTime: p.ModifyDate);
+
+                    var person = new SyndicationPerson(
+                        u.Email,
+                        u.Username,
+                        Url.Action("ViewProfile", "Account", new { id = u.UserID, title = this.CreateUrlTitle(u.Username) }));
+
+                    item.Authors.Add(person);
+
+                    items.Add(item);
+                }
+
+                return this.Atom(this.Config.SiteName + " News", items);
+            }
+            else
+            {
+                return View(new ViewNewsModel
+                {
+                    Posts = posts
+                });
+            }
         }
     }
 }

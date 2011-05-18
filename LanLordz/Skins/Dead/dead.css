@@ -29,6 +29,7 @@ a:hover{color:Red;text-decoration:underline;}
 .Sponsor{text-align:center;border:none;padding:1em;width:500px;margin-left:auto;margin-right:auto;margin-bottom:5px;}
 .SponsorName{font-weight:bold;}
 .SponsorBlurb{display:block;}
+.NewsIcon{float : right;}
 .NewsPost{margin-bottom:2em;}
 .NewsPostTitle{font-family:TwentyEightDaysLater;font-weight:bold;font-size:140%;display:block;color:Red;}
 .NewsPostDate{margin-bottom:.5em;font-size:smaller;display:block;}

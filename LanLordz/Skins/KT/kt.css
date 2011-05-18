@@ -218,6 +218,11 @@ th
     display : block;
 }
 
+.NewsIcon
+{
+    float : right;
+}
+
 .NewsPost
 {
     margin-bottom : 2em;

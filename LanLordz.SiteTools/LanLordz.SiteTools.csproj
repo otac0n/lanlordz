@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -53,6 +54,7 @@
     <Compile Include="AddressDetails.cs" />
     <Compile Include="AntiXss.cs" />
     <Compile Include="Appointment.cs" />
+    <Compile Include="AtomResult.cs" />
     <Compile Include="CaptchaHelper.cs" />
     <Compile Include="CompressFilter.cs" />
     <Compile Include="Converter.cs" />
