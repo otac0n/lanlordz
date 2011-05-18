@@ -199,7 +199,19 @@ namespace LanLordz.Controllers
                 }
             }
 
-            return this.AppManager.ConvertDateTime(dateTime, this.userTimeZone);
+            return this.ConvertDateTime(dateTime, this.userTimeZone);
+        }
+
+        public DateTime ConvertDateTime(DateTime utcDateTime, TimeZoneInfo targetTimeZone)
+        {
+            TimeSpan ts = targetTimeZone.GetUtcOffset(utcDateTime);
+            return utcDateTime.Add(ts);
+        }
+
+        public DateTime ConvertDateTimeToUtc(DateTime utcDateTime, TimeZoneInfo sourceTimeZone)
+        {
+            TimeSpan ts = sourceTimeZone.GetUtcOffset(utcDateTime);
+            return utcDateTime.Subtract(ts);
         }
 
         public static string ComputeHash(string data)

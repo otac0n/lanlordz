@@ -113,18 +113,6 @@ namespace LanLordz.Models
             this.db.SubmitChanges();
         }
 
-        public DateTime ConvertDateTime(DateTime utcDateTime, TimeZoneInfo targetTimeZone)
-        {
-            TimeSpan ts = targetTimeZone.GetUtcOffset(utcDateTime);
-            return utcDateTime.Add(ts);
-        }
-
-        public DateTime ConvertDateTimeToUtc(DateTime utcDateTime, TimeZoneInfo sourceTimeZone)
-        {
-            TimeSpan ts = sourceTimeZone.GetUtcOffset(utcDateTime);
-            return utcDateTime.Subtract(ts);
-        }
-
         public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
         {
             if (String.IsNullOrEmpty(email))
@@ -244,11 +232,6 @@ namespace LanLordz.Models
             catch
             {
             }
-        }
-
-        public IQueryable<Role> GetAllRoles()
-        {
-            return this.db.Roles;
         }
 
         public Role GetRoleByName(string roleName)
@@ -666,8 +649,8 @@ namespace LanLordz.Models
 
                 Appointment apt = new Appointment
                 {
-                    StartTime = this.ConvertDateTime(evt.BeginDateTime, this.controller.Config.DefaultTimeZoneInfo),
-                    EndTime = this.ConvertDateTime(evt.EndDateTime, this.controller.Config.DefaultTimeZoneInfo),
+                    StartTime = this.Controller.ConvertDateTime(evt.BeginDateTime, this.controller.Config.DefaultTimeZoneInfo),
+                    EndTime = this.Controller.ConvertDateTime(evt.EndDateTime, this.controller.Config.DefaultTimeZoneInfo),
                     Title = evt.Title,
                     Description = evt.Info,
                     Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,

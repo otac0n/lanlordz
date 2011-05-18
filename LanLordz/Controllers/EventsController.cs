@@ -564,8 +564,8 @@ namespace LanLordz.Controllers
                 Info = viewModel.Info,
                 Seats = seats,
                 VenueID = viewModel.VenueId,
-                BeginDateTime = this.AppManager.ConvertDateTimeToUtc(beginDateTime, tzi),
-                EndDateTime = this.AppManager.ConvertDateTimeToUtc(endDateTime, tzi)
+                BeginDateTime = this.ConvertDateTimeToUtc(beginDateTime, tzi),
+                EndDateTime = this.ConvertDateTimeToUtc(endDateTime, tzi)
             };
 
             if (!evt.IsValid)

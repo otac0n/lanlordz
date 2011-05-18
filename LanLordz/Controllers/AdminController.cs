@@ -58,7 +58,7 @@ namespace LanLordz.Controllers
             {
                 AvailableThemes = this.AppManager.GetAvailableThemes(false),
                 AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
-                Groups = this.AppManager.GetAllRoles().ToList(),
+                Groups = this.Db.Roles.ToList(),
             };
 
             return View("EditConfig", model);
@@ -83,7 +83,7 @@ namespace LanLordz.Controllers
                 {
                     AvailableThemes = this.AppManager.GetAvailableThemes(false),
                     AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
-                    Groups = this.AppManager.GetAllRoles().ToList(),
+                    Groups = this.Db.Roles.ToList(),
                 };
 
                 return View("EditConfig", model);
@@ -98,7 +98,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult SendMail()
         {
-            var roles = this.AppManager.GetAllRoles().ToList();
+            var roles = this.Db.Roles.ToList();
             var events = this.Events.GetUpcomingEvents();
 
             var model = new SendMailModel
