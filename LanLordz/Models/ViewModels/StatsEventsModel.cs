@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class StatsEventsModel : ControllerResponse
+    public class StatsEventsModel
     {
-        public StatsEventsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<EventStats> Events
         {
             get;

@@ -24,13 +24,8 @@ namespace LanLordz.Models
 {
     using LanLordz.Controllers;
 
-    public class ChangePasswordModel : ControllerResponse
+    public class ChangePasswordModel
     {
-        public ChangePasswordModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public User User
         {
             get;

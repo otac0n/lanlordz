@@ -24,13 +24,8 @@ namespace LanLordz.Models
 {
     using LanLordz.Controllers;
 
-    public class ChangeAvatarModel : ControllerResponse
+    public class ChangeAvatarModel
     {
-        public ChangeAvatarModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public UserInformation UserInfo
         {
             get;

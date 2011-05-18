@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class StatsUsersModel : ControllerResponse
+    public class StatsUsersModel
     {
-        public StatsUsersModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<UserInformation> Users
         {
             get;

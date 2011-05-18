@@ -25,13 +25,8 @@ namespace LanLordz.Models
     using System.Collections.Generic;
     using LanLordz.Controllers;
 
-    public class CreateEventModel : ControllerResponse
+    public class CreateEventModel
     {
-        public CreateEventModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string BeginDateTime
         {
             get;

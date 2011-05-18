@@ -228,7 +228,7 @@ namespace LanLordz.Controllers
 
             var viewImages = images.Skip((page.Value - 1) * pageSize).Take(pageSize).ToList();
 
-            return this.View(new ImageGalleryModel(this)
+            return this.View(new ImageGalleryModel
             {
                 Event = viewEvent,
                 User = viewUser,
@@ -293,7 +293,7 @@ namespace LanLordz.Controllers
                             TagRegion = t.RegionGeometry
                         }).ToList();
 
-            return this.View(new ViewImageModel(this)
+            return this.View(new ViewImageModel
             {
                 Event = viewEvent,
                 User = viewUser,

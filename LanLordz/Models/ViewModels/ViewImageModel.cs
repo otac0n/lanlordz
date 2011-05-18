@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ViewImageModel : ControllerResponse
+    public class ViewImageModel
     {
-        public ViewImageModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public bool AllowTagging { get; set; }
         public UserInformation User { get; set; }
         public CachedEvent Event { get; set; }

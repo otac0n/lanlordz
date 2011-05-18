@@ -26,11 +26,6 @@ namespace LanLordz.Models
 
     public class CreateTeamModel : TournamentActionModel
     {
-        public CreateTeamModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string TeamName
         {
             get;

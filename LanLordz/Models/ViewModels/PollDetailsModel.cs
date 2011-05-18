@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class PollDetailsModel : ControllerResponse
+    public class PollDetailsModel
     {
-        public PollDetailsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Poll Poll { get; set; }
 
         public IEnumerable<PollResponse> Responses { get; set; }

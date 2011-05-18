@@ -25,13 +25,8 @@ namespace LanLordz.Models
     using System.Collections.Generic;
     using LanLordz.Controllers;
 
-    public class DoorPrizesModel : ControllerResponse
+    public class DoorPrizesModel
     {
-        public DoorPrizesModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Prize> Prizes
         {
             get;

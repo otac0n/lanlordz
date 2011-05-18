@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EditPostModel : ControllerResponse
+    public class EditPostModel
     {
-        public EditPostModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public ForumAccess UserAccess
         {
             get;

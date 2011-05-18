@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ViewNewsModel : ControllerResponse
+    public class ViewNewsModel
     {
-        public ViewNewsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Post> Posts { get; set; }
     }
 }

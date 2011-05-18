@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class TournamentActionModel : ControllerResponse
+    public class TournamentActionModel
     {
-        public TournamentActionModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public CachedTournament Tournament { get; set; }
         public CachedEvent Event { get; set; }
         public IEnumerable<Round> Rounds { get; set; }

@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class SendMailModel : ControllerResponse
+    public class SendMailModel
     {
-        public SendMailModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Role> Roles { get; set; }
 
         public IEnumerable<CachedEvent> UpcomingEvents { get; set; }

@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EventImageThumbnailModel : ControllerResponse
+    public class EventImageThumbnailModel
     {
-        public EventImageThumbnailModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public EventImage Image
         {
             get;

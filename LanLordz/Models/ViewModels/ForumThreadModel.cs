@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ForumThreadModel : ControllerResponse
+    public class ForumThreadModel
     {
-        public ForumThreadModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Thread Thread
         {
             get;

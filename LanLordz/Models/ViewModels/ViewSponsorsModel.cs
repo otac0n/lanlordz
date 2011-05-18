@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ViewSponsorsModel : ControllerResponse
+    public class ViewSponsorsModel
     {
-        public ViewSponsorsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Sponsor> Sponsors { get; set; }
     }
 }

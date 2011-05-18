@@ -25,13 +25,8 @@ namespace LanLordz.Models
     using System.Collections.Generic;
     using LanLordz.Controllers;
 
-    public class CreatePollModel : ControllerResponse
+    public class CreatePollModel
     {
-        public CreatePollModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string Title
         {
             get;

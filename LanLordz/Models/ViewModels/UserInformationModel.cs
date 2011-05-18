@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class UserInformationModel : ControllerResponse
+    public class UserInformationModel
     {
-        public UserInformationModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public UserInformation UserInfo { get; set; }
     }
 }

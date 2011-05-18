@@ -43,7 +43,7 @@ namespace LanLordz.Controllers
             var eventList = this.Events.GetAllEvents();
             var venues = this.Events.GetAllVenues();
 
-            var events = new EventsIndexModel(this)
+            var events = new EventsIndexModel
             {
                 Venues = venues,
                 Upcoming = EventRepository.FilterFutureOnly(eventList),
@@ -69,7 +69,7 @@ namespace LanLordz.Controllers
                 return View("NotFound");
             }
 
-            var e = new EventDetailsModel(this)
+            var e = new EventDetailsModel
             {
                 Event = evt,
                 Registrants = this.Events.GetEventRegistrations(id.Value),
@@ -275,7 +275,7 @@ namespace LanLordz.Controllers
 
             var userAccess = this.GetUserTournamentAccess(tmt, this.CurrentUser);
 
-            var tdm = new TournamentDetailsModel(this)
+            var tdm = new TournamentDetailsModel
             {
                 Tournament = tmt,
                 Rounds = rounds,
@@ -299,7 +299,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var model = new CreateTournamentModel(this)
+            var model = new CreateTournamentModel
             {
                 Events = this.Events.GetAllEvents(),
                 PairingsGenerators = this.Plugins.GetPairingsGeneratorList(),
@@ -317,7 +317,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var tmtModel = new CreateTournamentModel(this)
+            var tmtModel = new CreateTournamentModel
             {
                 Events = this.Events.GetAllEvents(),
                 PairingsGenerators = this.Plugins.GetPairingsGeneratorList(),
@@ -399,7 +399,7 @@ namespace LanLordz.Controllers
                 return View("NotFound");
             }
 
-            return View("EditTournament", new EditTournamentModel(this)
+            return View("EditTournament", new EditTournamentModel
             {
                 Tournament = tmt,
                 TDUsername = tmt.User != null ? tmt.User.Username : string.Empty,
@@ -440,7 +440,7 @@ namespace LanLordz.Controllers
             {
                 ModelState.AddModelError("Form", ex.Message);
 
-                return View("EditTournament", new EditTournamentModel(this)
+                return View("EditTournament", new EditTournamentModel
                 {
                     Tournament = tmt,
                     TDUsername = values["TDUsername"],
@@ -461,7 +461,7 @@ namespace LanLordz.Controllers
                 {
                     ModelState.AddModelError("Form", "The user you entered could not be found.");
 
-                    return View("EditTournament", new EditTournamentModel(this)
+                    return View("EditTournament", new EditTournamentModel
                     {
                         Tournament = tmt,
                         TDUsername = values["TDUsername"],
@@ -483,7 +483,7 @@ namespace LanLordz.Controllers
             {
                 ModelState.AddModelError("Form", ex.Message);
 
-                return View("EditTournament", new EditTournamentModel(this)
+                return View("EditTournament", new EditTournamentModel
                 {
                     Tournament = tmt,
                     PairingsGenerators = this.Plugins.GetPairingsGeneratorList(),
@@ -505,7 +505,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View(new CreateEventModel(this)
+            return View(new CreateEventModel
             {
                 RegisterCrew = true,
                 AvailableVenues = this.Db.Venues.ToList()
@@ -520,7 +520,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var viewModel = new CreateEventModel(this)
+            var viewModel = new CreateEventModel
             {
                 AvailableVenues = this.Db.Venues.ToList()
             };
@@ -787,7 +787,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("CreateTeam", new CreateTeamModel(this)
+            return View("CreateTeam", new CreateTeamModel
             {
                 Tournament = tmt,
                 Event = evt,
@@ -863,7 +863,7 @@ namespace LanLordz.Controllers
                 {
                     ModelState.AddModelError("Form", "You are already on a team.");
 
-                    return View("CreateTeam", new CreateTeamModel(this)
+                    return View("CreateTeam", new CreateTeamModel
                     {
                         Tournament = tmt,
                         Event = evt,
@@ -886,7 +886,7 @@ namespace LanLordz.Controllers
                         this.ModelState.AddModelError("Form", rule.ErrorMessage);
                     }
 
-                    return this.View("CreateTeam", new CreateTeamModel(this)
+                    return this.View("CreateTeam", new CreateTeamModel
                                               {
                                                   Tournament = tmt,
                                                   Event = evt,
@@ -942,7 +942,7 @@ namespace LanLordz.Controllers
                         where t.UsersTeams.Count() < tmt.TeamSize
                         select t;
 
-            return View("JoinTeam", new JoinTeamModel(this)
+            return View("JoinTeam", new JoinTeamModel
             {
                 Tournament = tmt,
                 Event = evt,
@@ -985,7 +985,7 @@ namespace LanLordz.Controllers
             {
                 this.ModelState.AddModelError("Form", "The team you chose is no longer available.");
 
-                return View("JoinTeam", new JoinTeamModel(this)
+                return View("JoinTeam", new JoinTeamModel
                 {
                     Tournament = tmt,
                     Event = evt,
@@ -1046,7 +1046,7 @@ namespace LanLordz.Controllers
             var team = currentTeam.Single();
             var userTeam = team.UsersTeams.Where(ut => ut.UserID == CurrentUser.UserID).Single();
 
-            return View("LeaveTeam", new LeaveTeamModel(this)
+            return View("LeaveTeam", new LeaveTeamModel
             {
                 Tournament = tmt,
                 Event = evt,
@@ -1110,7 +1110,7 @@ namespace LanLordz.Controllers
             {
                 this.ModelState.AddModelError("Form", "You may not leave your team, because you are the last team captain.  Either disband the team or grant team captain to another player first.");
 
-                return this.View("LeaveTeam", new LeaveTeamModel(this)
+                return this.View("LeaveTeam", new LeaveTeamModel
                                          {
                                              Tournament = tmt,
                                              Event = evt,
@@ -1149,7 +1149,7 @@ namespace LanLordz.Controllers
 
             var team = this.Db.Teams.Where(t => t.TournamentID == tmt.TournamentID && t.UsersTeams.Where(ut => ut.UserID == this.CurrentUser.UserID).Any()).Single();
 
-            return View("ManageTeam", new ManageTeamModel(this)
+            return View("ManageTeam", new ManageTeamModel
             {
                 Tournament = tmt,
                 Team = team,
@@ -1196,7 +1196,7 @@ namespace LanLordz.Controllers
                         this.ModelState.AddModelError("Form", violation.ErrorMessage);
                     }
 
-                    return View("ManageTeam", new ManageTeamModel(this)
+                    return View("ManageTeam", new ManageTeamModel
                     {
                         Tournament = tmt,
                         Team = team,
@@ -1257,7 +1257,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("LockTeams", new TournamentActionModel(this)
+            return View("LockTeams", new TournamentActionModel
             {
                 Tournament = tmt,
                 Event = evt,
@@ -1322,7 +1322,7 @@ namespace LanLordz.Controllers
 
             var evt = this.Events.GetEvent(tmt.EventID);
 
-            return View("UnlockTeams", new TournamentActionModel(this)
+            return View("UnlockTeams", new TournamentActionModel
             {
                 Tournament = tmt,
                 Event = evt,
@@ -1390,7 +1390,7 @@ namespace LanLordz.Controllers
             var rounds = this.Db.Rounds.Where(r => r.TournamentID == tmt.TournamentID).ToList();
             var teams = this.Db.Teams.Where(t => t.TournamentID == tmt.TournamentID).ToList();
 
-            return View("StartNextRound", new TournamentActionModel(this)
+            return View("StartNextRound", new TournamentActionModel
             {
                 Tournament = tmt,
                 Rounds = rounds,
@@ -1435,7 +1435,7 @@ namespace LanLordz.Controllers
                 {
                     this.ModelState.AddModelError("Form", "The value you entered for max pairings is invalid.");
 
-                    return View("StartNextRound", new TournamentActionModel(this)
+                    return View("StartNextRound", new TournamentActionModel
                     {
                         Tournament = tmt,
                         Rounds = rounds,
@@ -1467,7 +1467,7 @@ namespace LanLordz.Controllers
             {
                 ModelState.AddModelError("Form", ex.Message);
 
-                return View("StartNextRound", new TournamentActionModel(this)
+                return View("StartNextRound", new TournamentActionModel
                 {
                     Tournament = tmt,
                     Rounds = rounds,
@@ -1535,7 +1535,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("RollBackRound", new RollBackRoundModel(this)
+            return View("RollBackRound", new TournamentActionModel
             {
                 Tournament = tmt,
                 Event = evt
@@ -1607,7 +1607,7 @@ namespace LanLordz.Controllers
 
             if (roundNumber.HasValue)
             {
-                return View("InputScores", new InputScoresModel(this)
+                return View("InputScores", new InputScoresModel
                 {
                     Tournament = tmt,
                     Round = this.Db.Rounds.Where(r => r.TournamentID == tmt.TournamentID && r.RoundNumber == roundNumber.Value).Single(),
@@ -1616,7 +1616,7 @@ namespace LanLordz.Controllers
             }
             else
             {
-                return View("InputScoresPickRound", new TournamentActionModel(this)
+                return View("InputScoresPickRound", new TournamentActionModel
                 {
                     Tournament = tmt,
                     Rounds = this.Db.Rounds.Where(r => r.TournamentID == tmt.TournamentID).ToList(),
@@ -1680,7 +1680,7 @@ namespace LanLordz.Controllers
             {
                 this.ModelState.AddModelError("Form", "Could not parse the round number.");
 
-                return this.View("InputScoresPickRound", new TournamentActionModel(this)
+                return this.View("InputScoresPickRound", new TournamentActionModel
                                                     {
                                                         Tournament = tmt,
                                                         Rounds = this.Db.Rounds.Where(r => r.TournamentID == tmt.TournamentID).ToList(),

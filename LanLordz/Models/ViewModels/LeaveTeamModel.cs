@@ -32,11 +32,6 @@ namespace LanLordz.Models
 {
     public class LeaveTeamModel : TournamentActionModel
     {
-        public LeaveTeamModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public UsersTeam UserTeam
         {
             get;

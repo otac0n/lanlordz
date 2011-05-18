@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ImageGalleryModel : ControllerResponse
+    public class ImageGalleryModel
     {
-        public ImageGalleryModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public UserInformation User { get; set; }
         public CachedEvent Event { get; set; }
         public IEnumerable<EventImage> Images { get; set; }

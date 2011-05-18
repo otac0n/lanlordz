@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class UserCheckInModel : ControllerResponse
+    public class UserCheckInModel
     {
-        public UserCheckInModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Event> Events { get; set; }
         public IEnumerable<EventRegistrationInformation> Registrations { get; set; }
     }

@@ -26,14 +26,8 @@ namespace LanLordz.Models
     using LanLordz.Controllers;
     using LanLordz.Models.CachedModels;
 
-    public class CreateTournamentModel : ControllerResponse
+    public class CreateTournamentModel
     {
-        public CreateTournamentModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-            this.TeamSize = 1;
-        }
-
         public IEnumerable<CachedEvent> Events
         {
             get;

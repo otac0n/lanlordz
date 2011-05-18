@@ -28,13 +28,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ErrorInfoModel : ControllerResponse
+    public class ErrorInfoModel
     {
-        public ErrorInfoModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Exception Exception { get; set; }
 
         public string ErrorMessage { get; set; }

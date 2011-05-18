@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class RegistrationModel : ControllerResponse
+    public class RegistrationModel
     {
-        public RegistrationModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string Username { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }

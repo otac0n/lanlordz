@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class LogOnAttemptModel : ControllerResponse
+    public class LogOnAttemptModel
     {
-        public LogOnAttemptModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string ReturnUrl
         {
             get;

@@ -36,7 +36,7 @@ namespace LanLordz.Controllers
         {
             var allPolls = this.Polls.GetAllPolls();
 
-            var model = new PollsIndexModel(this)
+            var model = new PollsIndexModel
             {
                 Polls = allPolls
             };
@@ -70,7 +70,7 @@ namespace LanLordz.Controllers
                 currentUserResponses = this.Db.UsersPollResponses.Where(ur => ur.UserId == this.CurrentUser.UserID && this.Db.PollResponses.Where(r => r.PollId == poll.PollId && r.PollResponseId == ur.PollResponseId).Any()).ToList();
             }
 
-            var model = new PollDetailsModel(this)
+            var model = new PollDetailsModel
             {
                 Poll = poll,
                 Responses = responses,
@@ -113,7 +113,7 @@ namespace LanLordz.Controllers
                 long vote = 0;
                 if (!long.TryParse(r, out vote))
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could save your vote because at least one of your votes was invalid."
                     });
@@ -124,7 +124,7 @@ namespace LanLordz.Controllers
                       where pr.PollResponseId == vote
                       select pr).Any())
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could save your vote because at least one of your votes was for a response that was not found."
                     });
@@ -135,7 +135,7 @@ namespace LanLordz.Controllers
 
             if (!poll.IsMultiAnswer && votes.Count > 1)
             {
-                return View("Error", new ErrorInfoModel(this)
+                return View("Error", new ErrorInfoModel
                 {
                     ErrorMessage = "Could save your vote because you specified more than one response for a poll that was not listed as multi-answer."
                 });
@@ -192,7 +192,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("Create", new CreatePollModel(this)
+            return View("Create", new CreatePollModel
             {
                 Title = "",
                 Description = "",
@@ -250,7 +250,7 @@ namespace LanLordz.Controllers
                     this.ModelState.AddModelError("Responses", "You must specify at least one poll response.");
                 }
 
-                return View("Create", new CreatePollModel(this)
+                return View("Create", new CreatePollModel
                 {
                     Title = poll.Title,
                     Description = poll.Text,

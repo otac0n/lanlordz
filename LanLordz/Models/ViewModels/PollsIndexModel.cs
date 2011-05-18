@@ -28,13 +28,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class PollsIndexModel : ControllerResponse
+    public class PollsIndexModel
     {
-        public PollsIndexModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<CachedPoll> Polls
         {
             get;

@@ -32,13 +32,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class TournamentDetailsModel : ControllerResponse
+    public class TournamentDetailsModel
     {
-        public TournamentDetailsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Event Event
         {
             get;

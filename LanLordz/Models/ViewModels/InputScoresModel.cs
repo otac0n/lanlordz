@@ -32,11 +32,6 @@ namespace LanLordz.Models
 {
     public class InputScoresModel : TournamentActionModel
     {
-        public InputScoresModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Round Round
         {
             get;

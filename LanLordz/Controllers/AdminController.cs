@@ -54,7 +54,7 @@ namespace LanLordz.Controllers
         {
             this.Config.Freshen();
 
-            var model = new MasterConfigModel(this)
+            var model = new MasterConfigModel
             {
                 AvailableThemes = this.AppManager.GetAvailableThemes(false),
                 AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
@@ -79,7 +79,7 @@ namespace LanLordz.Controllers
             {
                 this.ModelState.AddModelError("Form", ex.Message);
 
-                var model = new MasterConfigModel(this)
+                var model = new MasterConfigModel
                 {
                     AvailableThemes = this.AppManager.GetAvailableThemes(false),
                     AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
@@ -101,7 +101,7 @@ namespace LanLordz.Controllers
             var roles = this.AppManager.GetAllRoles().ToList();
             var events = this.Events.GetUpcomingEvents();
 
-            var model = new SendMailModel(this)
+            var model = new SendMailModel
             {
                 Roles = roles,
                 UpcomingEvents = events

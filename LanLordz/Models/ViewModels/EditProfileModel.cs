@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EditProfileModel : ControllerResponse
+    public class EditProfileModel
     {
-        public EditProfileModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public UserInformation UserInfo { get; set; }
 
         public Dictionary<string, string> AvailableThemes { get; set; }

@@ -48,7 +48,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult ViewCrew()
         {
-            return View(new CrewDetailsModel(this)
+            return View(new CrewDetailsModel
             {
                 Members = this.Users.GetUserInformation(from u in this.Db.Users
                                                         join ur in this.Db.UsersRoles on u.UserID equals ur.UserID
@@ -61,7 +61,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult ViewSponsors()
         {
-            return View(new ViewSponsorsModel(this)
+            return View(new ViewSponsorsModel
             {
                 Sponsors = this.AppManager.GetSponsors().ToList()
             });
@@ -70,7 +70,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult ViewNews()
         {
-            return View(new ViewNewsModel(this)
+            return View(new ViewNewsModel
             {
                 Posts = (from p in this.Db.Posts
                          where p.ThreadID == this.Config.NewsThread

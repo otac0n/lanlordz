@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ThreadList : ControllerResponse
+    public class ThreadList
     {
-        public ThreadList(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<ThreadInformation> Threads
         {
             get;

@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class SiteStatisticsModel : ControllerResponse
+    public class SiteStatisticsModel
     {
-        public SiteStatisticsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public int TotalThreads
         {
             get;

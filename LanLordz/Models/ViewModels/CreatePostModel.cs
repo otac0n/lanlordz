@@ -25,13 +25,8 @@ namespace LanLordz.Models
     using System.Collections.Generic;
     using LanLordz.Controllers;
 
-    public class CreatePostModel : ControllerResponse
+    public class CreatePostModel
     {
-        public CreatePostModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public ForumAccess UserAccess
         {
             get;

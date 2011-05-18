@@ -24,13 +24,8 @@ namespace LanLordz.Models
 {
     using LanLordz.Controllers;
 
-    public class ConfirmationFailedModel : ControllerResponse
+    public class ConfirmationFailedModel
     {
-        public ConfirmationFailedModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string Key
         {
             get;

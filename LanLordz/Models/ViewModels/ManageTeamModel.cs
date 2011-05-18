@@ -32,11 +32,6 @@ namespace LanLordz.Models
 {
     public class ManageTeamModel : TournamentActionModel
     {
-        public ManageTeamModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Team Team { get; set; }
     }
 }

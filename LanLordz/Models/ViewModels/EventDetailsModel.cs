@@ -31,13 +31,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EventDetailsModel : ControllerResponse
+    public class EventDetailsModel
     {
-        public EventDetailsModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public CachedEvent Event
         {
             get;

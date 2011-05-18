@@ -204,7 +204,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult Index()
         {
-            ForumsIndexModel fmi = new ForumsIndexModel(this);
+            ForumsIndexModel fmi = new ForumsIndexModel();
             fmi.ForumGroups = this.Forums.GetViewableForumGroups(CurrentUser);
             fmi.Forums = this.Forums.GetViewableForums(CurrentUser, fmi.ForumGroups);
 
@@ -240,7 +240,7 @@ namespace LanLordz.Controllers
             {
                 if (f != null)
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "You may not reply to a thread and another post at the same time."
                     });
@@ -260,7 +260,7 @@ namespace LanLordz.Controllers
             {
                 if (f != null)
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "You may not create a new thread in reply to another item."
                     });
@@ -290,7 +290,7 @@ namespace LanLordz.Controllers
                 text = "[quote=" + p.User.Username + "]" + p.Text + "[/quote]";
             }
 
-            var cpm = new CreatePostModel(this)
+            var cpm = new CreatePostModel
             {
                 Title = title,
                 Text = text,
@@ -334,12 +334,12 @@ namespace LanLordz.Controllers
             int pages = Pager.PageCount(threadCount, pageSize);
             page = Pager.ClampPage(page, pages);
 
-            var threadsList = new ThreadList(this)
+            var threadsList = new ThreadList
             {
                 Threads = threads.OrderByDescending(t => t.LastPostDate).OrderByDescending(t => t.Thread.Level).Skip((page.Value - 1) * pageSize).Take(pageSize).ToList()
             };
 
-            var fd = new ForumDetailsModel(this)
+            var fd = new ForumDetailsModel
             {
                 Forum = f,
                 UserAccess = a,
@@ -422,7 +422,7 @@ namespace LanLordz.Controllers
 
             posts = posts.OrderBy(p => p.Post.CreateDate).Skip((page.Value - 1) * pageSize).Take(pageSize);
 
-            ForumThreadModel tm = new ForumThreadModel(this)
+            ForumThreadModel tm = new ForumThreadModel
             {
                 Thread = t,
                 Posts = posts.ToList(),
@@ -451,7 +451,7 @@ namespace LanLordz.Controllers
                 return RedirectToAction("Index");
             }
 
-            var tl = new ThreadList(this)
+            var tl = new ThreadList
             {
                 Threads = GetUnreadThreads(CurrentUser).OrderByDescending(t => t.LastPostDate)
             };
@@ -690,7 +690,7 @@ namespace LanLordz.Controllers
         public ActionResult Search()
         {
             // TODO:  Must update the search view to handle a blank search.
-            return View("Search", new BlankModel(this));
+            return View("Search");
         }
 
         private IEnumerable<ThreadInformation> GetSearchResults(User user, string terms, bool isInclusive)
@@ -805,7 +805,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var del = new DeletePostModel(this)
+            var del = new DeletePostModel
             {
                 Post = p,
                 UserAccess = access,
@@ -845,7 +845,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var epm = new EditPostModel(this)
+            var epm = new EditPostModel
             {
                 Forum = f,
                 Thread = t,
@@ -995,7 +995,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult Search(string searchTerms)
         {
-            var threads = new ThreadList(this)
+            var threads = new ThreadList
             {
                 Threads = this.GetSearchResults(this.CurrentUser, searchTerms, true).OrderByDescending(t => t.LastPostDate)
             };

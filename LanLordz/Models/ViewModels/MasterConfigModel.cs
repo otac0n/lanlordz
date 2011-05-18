@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class MasterConfigModel : ControllerResponse
+    public class MasterConfigModel
     {
-        public MasterConfigModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Dictionary<string, string> AvailableThemes { get; set; }
 
         public Dictionary<string, string> AvailableTimezones { get; set; }

@@ -47,7 +47,7 @@ namespace LanLordz.Controllers
                 RedirectToAction("ViewProfile", new { id = CurrentUser.UserID });
             }
 
-            return View("LogOn", new LogOnAttemptModel(this));
+            return View("LogOn", new LogOnAttemptModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken, CompressFilter]
@@ -62,7 +62,7 @@ namespace LanLordz.Controllers
 
             var hasFailedTooMuch = !IsLogOnAttemptUnderThreshold(ip);
 
-            var attempt = new LogOnAttemptModel(this)
+            var attempt = new LogOnAttemptModel
             {
                 ReturnUrl = values["ReturnUrl"],
                 Username = values["Username"],
@@ -173,7 +173,7 @@ namespace LanLordz.Controllers
                 RedirectToAction("ViewProfile", new { id = CurrentUser.UserID });
             }
 
-            return View("Register", new RegistrationModel(this));
+            return View("Register", new RegistrationModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken, CompressFilter]
@@ -184,7 +184,7 @@ namespace LanLordz.Controllers
                 RedirectToAction("ViewProfile", new { id = CurrentUser.UserID });
             }
 
-            var registration = new RegistrationModel(this)
+            var registration = new RegistrationModel
             {
                 Username = values["Username"],
                 Password = values["Password"],
@@ -247,7 +247,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult Confirm(string key)
         {
-            return View("ConfirmEmail", new ConfirmEmailModel(this)
+            return View("ConfirmEmail", new ConfirmEmailModel
             {
                 Key = key
             });
@@ -265,7 +265,7 @@ namespace LanLordz.Controllers
             else
             {
                 this.ModelState.AddModelError("Form", "That key could not be found.");
-                return View("ConfirmEmail", new ConfirmEmailModel(this)
+                return View("ConfirmEmail", new ConfirmEmailModel
                 {
                     Key = key
                 });
@@ -276,7 +276,7 @@ namespace LanLordz.Controllers
         public ActionResult ViewProfile(long id)
         {
             var u = this.AppManager.GetUserInformation(id, false);
-            return View("ViewProfile", new UserInformationModel(this)
+            return View("ViewProfile", new UserInformationModel
             {
                 UserInfo = u
             });
@@ -290,7 +290,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("EditProfile", new EditProfileModel(this)
+            return View("EditProfile", new EditProfileModel
             {
                 UserInfo = this.AppManager.GetUserInformation(CurrentUser.UserID, true),
                 AvailableThemes = this.AppManager.GetAvailableThemes(true),
@@ -329,7 +329,7 @@ namespace LanLordz.Controllers
                 info.ShowGender = (values["ShowGender"] == "on");
                 info.ReceiveAdminEmail = (values["ReceiveAdminEmail"] == "on");
 
-                return View("EditProfile", new EditProfileModel(this)
+                return View("EditProfile", new EditProfileModel
                 {
                     UserInfo = info,
                     AvailableThemes = this.AppManager.GetAvailableThemes(true),
@@ -371,7 +371,7 @@ namespace LanLordz.Controllers
 
             var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
 
-            return View("ChangeAvatar", new ChangeAvatarModel(this)
+            return View("ChangeAvatar", new ChangeAvatarModel
             {
                 UserInfo = info
             });
@@ -389,7 +389,7 @@ namespace LanLordz.Controllers
             {
                 this.ModelState.AddModelError("Form", "You must choose a file.");
                 var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
-                return View("ChangeAvatar", new ChangeAvatarModel(this)
+                return View("ChangeAvatar", new ChangeAvatarModel
                 {
                     UserInfo = info
                 });
@@ -401,7 +401,7 @@ namespace LanLordz.Controllers
                 {
                     this.ModelState.AddModelError("Form", "The file you have chosen is empty.");
                     var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
-                    return View("ChangeAvatar", new ChangeAvatarModel(this)
+                    return View("ChangeAvatar", new ChangeAvatarModel
                     {
                         UserInfo = info
                     });
@@ -416,7 +416,7 @@ namespace LanLordz.Controllers
                             this.ModelState.AddModelError("Form", violation.ErrorMessage);
                         }
                         var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
-                        return View("ChangeAvatar", new ChangeAvatarModel(this)
+                        return View("ChangeAvatar", new ChangeAvatarModel
                         {
                             UserInfo = info
                         });
@@ -491,7 +491,7 @@ namespace LanLordz.Controllers
 
             return View(
                 "ChangePassword",
-                new ChangePasswordModel(this)
+                new ChangePasswordModel
                 {
                     User = u,
                     RequireCaptcha = hasFailedTooMuch && this.Config.UseRecaptcha,
@@ -507,7 +507,7 @@ namespace LanLordz.Controllers
 
             var u = this.CurrentUser;
             
-            var cpm = new ChangePasswordModel(this)
+            var cpm = new ChangePasswordModel
             {
                 User = u,
                 RequireCaptcha = hasFailedTooMuch && this.Config.UseRecaptcha
@@ -618,7 +618,7 @@ namespace LanLordz.Controllers
                 else
                 {
                     u = this.GetUser(values["Username"]);
-                    cpm = new ChangePasswordModel(this)
+                    cpm = new ChangePasswordModel
                     {
                         User = u
                     };

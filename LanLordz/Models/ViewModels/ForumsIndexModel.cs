@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class ForumsIndexModel : ControllerResponse
+    public class ForumsIndexModel
     {
-        public ForumsIndexModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<ForumGroup> ForumGroups
         {
             get;

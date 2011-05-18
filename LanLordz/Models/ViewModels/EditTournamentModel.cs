@@ -25,13 +25,8 @@ namespace LanLordz.Models
     using System.Collections.Generic;
     using LanLordz.Controllers;
 
-    public class EditTournamentModel : ControllerResponse
+    public class EditTournamentModel
     {
-        public EditTournamentModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Tournament Tournament
         {
             get;

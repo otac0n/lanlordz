@@ -29,13 +29,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EditImagesModel : ControllerResponse
+    public class EditImagesModel
     {
-        public EditImagesModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<EventImage> Images
         {
             get;

@@ -39,7 +39,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            return View("Index", new BlankModel(this));
+            return View("Index");
         }
 
         private void DeleteEventImage(long eventImageId)
@@ -100,7 +100,7 @@ namespace LanLordz.Controllers
 
             if (!id.HasValue)
             {
-                var cem = new ChooseEventModel(this)
+                var cem = new ChooseEventModel
                 {
                     Events = this.Events.GetAllEvents()
                 };
@@ -108,7 +108,7 @@ namespace LanLordz.Controllers
                 return View("ChooseEvent", cem);
             }
 
-            var uci = new UserCheckInModel(this)
+            var uci = new UserCheckInModel
             {
                 Registrations = this.Events.GetEventRegistrations(id.Value)
             };
@@ -180,7 +180,7 @@ namespace LanLordz.Controllers
 
             if (!id.HasValue)
             {
-                var cem = new ChooseEventModel(this)
+                var cem = new ChooseEventModel
                 {
                     Events = this.Events.GetAllEvents()
                 };
@@ -188,7 +188,7 @@ namespace LanLordz.Controllers
                 return View("ChooseEvent", cem);
             }
 
-            var uci = new DoorPrizesModel(this)
+            var uci = new DoorPrizesModel
             {
                 Prizes = this.Db.Prizes.Where(p => p.EventId == id.Value).ToList()
             };
@@ -236,7 +236,7 @@ namespace LanLordz.Controllers
                 long prizeId = 0;
                 if (!long.TryParse(values["Value"], out prizeId))
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not convert value passed into a PrizeId"
                     });
@@ -251,7 +251,7 @@ namespace LanLordz.Controllers
 
                 if (prize.WinnerUserId.HasValue)
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not delete the prize, because it has already been drawn."
                     });
@@ -266,7 +266,7 @@ namespace LanLordz.Controllers
                 long prizeId = 0;
                 if (!long.TryParse(values["Value"], out prizeId))
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not convert value passed into a PrizeId"
                     });
@@ -281,7 +281,7 @@ namespace LanLordz.Controllers
 
                 if (prize.WinnerUserId != null)
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not draw the prize, because it has already been drawn."
                     });
@@ -305,7 +305,7 @@ namespace LanLordz.Controllers
                 long prizeId = 0;
                 if (!long.TryParse(values["Value"], out prizeId))
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not convert value passed into a PrizeId"
                     });
@@ -320,7 +320,7 @@ namespace LanLordz.Controllers
 
                 if (!prize.WinnerUserId.HasValue)
                 {
-                    return View("Error", new ErrorInfoModel(this)
+                    return View("Error", new ErrorInfoModel
                     {
                         ErrorMessage = "Could not revoke the prize, because it has not been drawn."
                     });
@@ -348,7 +348,7 @@ namespace LanLordz.Controllers
 
             if (!id.HasValue)
             {
-                var cem = new ChooseEventModel(this)
+                var cem = new ChooseEventModel
                 {
                     Events = this.Events.GetAllEvents()
                 };
@@ -356,7 +356,7 @@ namespace LanLordz.Controllers
                 return View("ChooseEvent", cem);
             }
 
-            var uci = new EditImagesModel(this)
+            var uci = new EditImagesModel
             {
                 Images = this.Events.GetEventImages(id.Value)
             };

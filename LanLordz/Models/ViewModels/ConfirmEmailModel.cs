@@ -28,13 +28,8 @@ namespace LanLordz.Models
     using System.Text;
     using LanLordz.Controllers;
 
-    public class ConfirmEmailModel : ControllerResponse
+    public class ConfirmEmailModel
     {
-        public ConfirmEmailModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public string Key
         {
             get;

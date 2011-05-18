@@ -24,13 +24,8 @@ namespace LanLordz.Models
 {
     using LanLordz.Controllers;
 
-    public class DeletePostModel : ControllerResponse
+    public class DeletePostModel
     {
-        public DeletePostModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public Post Post
         {
             get;

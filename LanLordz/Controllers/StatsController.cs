@@ -52,7 +52,7 @@ namespace LanLordz.Controllers
             long activeUserId = usersByPostCount.FirstOrDefault();
 
 
-            return new SiteStatisticsModel(this)
+            return new SiteStatisticsModel
             {
                 AllEventsStats = this.AppManager.GetEventsStats(previousEvents),
                 RecentEventsStats = this.AppManager.GetEventsStats(previousEvents.Take(5)),
@@ -85,7 +85,7 @@ namespace LanLordz.Controllers
 
             events = events.OrderByDescending(t => t.Event.BeginDateTime).Skip((page.Value - 1) * pageSize).Take(pageSize);
 
-            return View("Events", new StatsEventsModel(this)
+            return View("Events", new StatsEventsModel
             {
                 Events = events,
                 PageInfo = new PaginationInformation
@@ -117,7 +117,7 @@ namespace LanLordz.Controllers
 
             users = users.OrderByDescending(u => u.EventsCheckedIn).Skip((page.Value - 1) * pageSize).Take(pageSize);
 
-            return View("Users", new StatsUsersModel(this)
+            return View("Users", new StatsUsersModel
             {
                 Users = users,
                 PageInfo = new PaginationInformation

@@ -157,13 +157,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserAttributesSet.cs" />
     <Compile Include="Models\UserInformation.cs" />
-    <Compile Include="Models\ViewModels\BlankModel.cs" />
     <Compile Include="Models\ViewModels\ChangeAvatarModel.cs" />
     <Compile Include="Models\ViewModels\ChangePasswordModel.cs" />
     <Compile Include="Models\ViewModels\ChooseEventModel.cs" />
     <Compile Include="Models\ViewModels\ConfirmationFailedModel.cs" />
     <Compile Include="Models\ViewModels\ConfirmEmailModel.cs" />
-    <Compile Include="Models\ViewModels\ControllerResponse.cs" />
     <Compile Include="Models\ViewModels\CreateEventModel.cs" />
     <Compile Include="Models\ViewModels\CreatePollModel.cs" />
     <Compile Include="Models\ViewModels\CreatePostModel.cs" />
@@ -193,7 +191,6 @@
     <Compile Include="Models\ViewModels\PollDetailsModel.cs" />
     <Compile Include="Models\ViewModels\PollsIndexModel.cs" />
     <Compile Include="Models\ViewModels\RegistrationModel.cs" />
-    <Compile Include="Models\ViewModels\RollBackRoundModel.cs" />
     <Compile Include="Models\ViewModels\SendMailModel.cs" />
     <Compile Include="Models\ViewModels\SiteStatistics.cs" />
     <Compile Include="Models\ViewModels\StatsEventsModel.cs" />

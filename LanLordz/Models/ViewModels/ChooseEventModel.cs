@@ -26,13 +26,8 @@ namespace LanLordz.Models
     using LanLordz.Controllers;
     using LanLordz.Models.CachedModels;
 
-    public class ChooseEventModel : ControllerResponse
+    public class ChooseEventModel
     {
-        public ChooseEventModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<CachedEvent> Events
         {
             get;

@@ -30,13 +30,8 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
-    public class EventsIndexModel : ControllerResponse
+    public class EventsIndexModel
     {
-        public EventsIndexModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<CachedVenue> Venues { get; set; }
         public IEnumerable<CachedEvent> Upcoming { get; set; }
         public IEnumerable<CachedEvent> Current { get; set; }

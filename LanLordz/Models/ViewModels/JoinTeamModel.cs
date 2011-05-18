@@ -32,11 +32,6 @@ namespace LanLordz.Models
 {
     public class JoinTeamModel : TournamentActionModel
     {
-        public JoinTeamModel(LanLordzBaseController controller)
-            : base(controller)
-        {
-        }
-
         public IEnumerable<Team> AvailableTeams { get; set; }
     }
 }
