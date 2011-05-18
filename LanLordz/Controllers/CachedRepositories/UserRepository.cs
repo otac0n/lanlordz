@@ -158,6 +158,33 @@ namespace LanLordz.Controllers.CachedRepositories
             }
         }
 
+        public void SetUserConfigProperty(string property, long userId, string value)
+        {
+            var a = from prop in this.db.UserAttributes
+                    where prop.Attribute == property.ToUpperInvariant() && prop.UserID == userId
+                    select prop;
+
+            var attr = a.SingleOrDefault();
+
+            if (attr == null)
+            {
+                attr = new UserAttribute()
+                {
+                    Attribute = property.ToUpperInvariant(),
+                    UserID = userId,
+                    Value = value
+                };
+
+                this.db.UserAttributes.InsertOnSubmit(attr);
+            }
+            else
+            {
+                attr.Value = value;
+            }
+
+            this.db.SubmitChanges();
+        }
+
         public void UpdateUserAvatar(long userId, byte[] newAvatar)
         {
             var ua = this.GetUserAvatar(userId);

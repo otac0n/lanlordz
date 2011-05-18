@@ -346,14 +346,14 @@ namespace LanLordz.Controllers
                 this.Db.SubmitChanges();
 
                 long userId = u.UserID;
-                AppManager.SetUserConfigProperty("Location", userId, attrs.Location);
-                AppManager.SetUserConfigProperty("Website", userId, attrs.Website);
-                AppManager.SetUserConfigProperty("Occupation", userId, attrs.Occupation);
-                AppManager.SetUserConfigProperty("Interests", userId, attrs.Interests);
-                AppManager.SetUserConfigProperty("Signature", userId, attrs.Signature);
-                AppManager.SetUserConfigProperty("Biography", userId, attrs.Biography);
-                AppManager.SetUserConfigProperty("Theme", userId, attrs.Theme);
-                AppManager.SetUserConfigProperty("TimeZone", userId, attrs.TimeZone);
+                this.Users.SetUserConfigProperty("Location", userId, attrs.Location);
+                this.Users.SetUserConfigProperty("Website", userId, attrs.Website);
+                this.Users.SetUserConfigProperty("Occupation", userId, attrs.Occupation);
+                this.Users.SetUserConfigProperty("Interests", userId, attrs.Interests);
+                this.Users.SetUserConfigProperty("Signature", userId, attrs.Signature);
+                this.Users.SetUserConfigProperty("Biography", userId, attrs.Biography);
+                this.Users.SetUserConfigProperty("Theme", userId, attrs.Theme);
+                this.Users.SetUserConfigProperty("TimeZone", userId, attrs.TimeZone);
 
                 UserInformation info = this.GetUserInformation(u.UserID, true);
 

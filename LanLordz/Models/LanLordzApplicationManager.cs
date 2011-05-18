@@ -64,44 +64,6 @@ namespace LanLordz.Models
             }
         }
 
-        internal string GetUserConfigProperty(string property, long userId)
-        {
-            var a = from prop in this.db.UserAttributes
-                    where prop.Attribute == property.ToUpperInvariant() && prop.UserID == userId
-                    select prop;
-
-            var attr = a.SingleOrDefault();
-
-            return (attr == null ? "" : (attr.Value ?? ""));
-        }
-
-        internal void SetUserConfigProperty(string property, long userId, string value)
-        {
-            var a = from prop in this.db.UserAttributes
-                    where prop.Attribute == property.ToUpperInvariant() && prop.UserID == userId
-                    select prop;
-
-            var attr = a.SingleOrDefault();
-
-            if (attr == null)
-            {
-                attr = new UserAttribute()
-                {
-                    Attribute = property.ToUpperInvariant(),
-                    UserID = userId,
-                    Value = value
-                };
-
-                this.db.UserAttributes.InsertOnSubmit(attr);
-            }
-            else
-            {
-                attr.Value = value;
-            }
-
-            this.db.SubmitChanges();
-        }
-
         public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
         {
             if (String.IsNullOrEmpty(email))
