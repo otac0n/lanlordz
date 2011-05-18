@@ -139,7 +139,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LanLordz.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\LanLordzApplicationManager.cs" />
     <Compile Include="Models\PaginationInformation.cs" />
     <Compile Include="Models\Poll.cs" />
     <Compile Include="Models\PollResponse.cs" />

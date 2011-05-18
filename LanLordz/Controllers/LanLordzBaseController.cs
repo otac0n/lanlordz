@@ -62,8 +62,6 @@ namespace LanLordz.Controllers
         {
             this.Db = new LanLordzDataContext();
 
-            this.AppManager = new LanLordzApplicationManager(this, this.Db);
-
             var cache = LanLordzBaseController.dataCache;
             this.Config = new ConfigurationRepository(this.Db, cache);
             this.Security = new SecurityRepository(this.Db, cache, this.Config);
@@ -71,12 +69,6 @@ namespace LanLordz.Controllers
             this.Polls = new PollRepository(this.Db, cache, this.Config);
             this.Users = new UserRepository(this.Db, cache, this.Config);
             this.Forums = new ForumRepository(this.Db, cache, this.Config, this.Security);
-        }
-
-        public LanLordzApplicationManager AppManager
-        {
-            get;
-            private set;
         }
 
         public ConfigurationRepository Config
