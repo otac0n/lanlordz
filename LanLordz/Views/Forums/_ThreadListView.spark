@@ -10,7 +10,7 @@
      <if condition="Threads != null && Threads.Count() > 0">
      <tr each="var thread in Threads" class="Thread ThreadLocked?{thread.Thread.IsLocked} ${"Thread" + thread.Level + (thread.Read ? "Read" : "Unread")}">
       <td><div class="ThreadIndicator"></div></td>
-      <td class="ThreadDescription"><a href="${Url.Action("ViewThread", new { id = thread.Thread.ThreadID, title = Model.Controller.CreateUrlTitle(thread.Thread.Title), page = LanLordz.SiteTools.Pager.PageCount(thread.Posts > thread.ReadCount ? thread.ReadCount + 1 : thread.ReadCount, 25) }) + (thread.FirstUnreadID.HasValue ? "#" + thread.FirstUnreadID.Value.ToString() : "")}">${string.IsNullOrEmpty(thread.Thread.Title) ? "(No Title)" : thread.Thread.Title}</a></td>
+      <td class="ThreadDescription"><a href="${Url.Action("ViewThread", new { id = thread.Thread.ThreadID, title = Controller.CreateUrlTitle(thread.Thread.Title), page = LanLordz.SiteTools.Pager.PageCount(thread.Posts > thread.ReadCount ? thread.ReadCount + 1 : thread.ReadCount, 25) }) + (thread.FirstUnreadID.HasValue ? "#" + thread.FirstUnreadID.Value.ToString() : "")}">${string.IsNullOrEmpty(thread.Thread.Title) ? "(No Title)" : thread.Thread.Title}</a></td>
       <td class="ThreadPostCount">${thread.Posts}</td>
       <td class="ThreadViewCount">${thread.Thread.Views}</td>
       <td class="ThreadOwner">
@@ -18,7 +18,7 @@
        No Posts
        </if>
        <else>
-       !{Html.ActionLink(thread.FirstPostUsername, "ViewProfile", "Account", new { id = thread.FirstPostUserID.Value, title = Model.Controller.CreateUrlTitle(thread.FirstPostUsername) }, null)}
+       !{Html.ActionLink(thread.FirstPostUsername, "ViewProfile", "Account", new { id = thread.FirstPostUserID.Value, title = Controller.CreateUrlTitle(thread.FirstPostUsername) }, null)}
        </else>
       </td>
       <td class="ThreadLastPost">
@@ -26,8 +26,8 @@
        No Posts
        </if>
        <else>
-       <div class="ThreadLastPostDate">${Model.ConvertDateTime(thread.LastPostDate)}</div>
-       <div class="ThreadLastPostUser">!{Html.ActionLink(thread.LastPostUsername, "ViewProfile", "Account", new { id = thread.LastPostUserID.Value, title = Model.Controller.CreateUrlTitle(thread.LastPostUsername) }, null)}</div>
+       <div class="ThreadLastPostDate">${Controller.ConvertDateTime(thread.LastPostDate)}</div>
+       <div class="ThreadLastPostUser">!{Html.ActionLink(thread.LastPostUsername, "ViewProfile", "Account", new { id = thread.LastPostUserID.Value, title = Controller.CreateUrlTitle(thread.LastPostUsername) }, null)}</div>
        </else>
       </td>
      </tr>

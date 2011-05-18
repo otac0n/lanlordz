@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EditPostModel]]"/> 
+<viewdata model="LanLordz.Models.EditPostModel"/>
 <content name="title">Edit Post</content>
 <content name="headers">
   <script type="text/javascript">

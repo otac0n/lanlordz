@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.LogOnAttemptModel]]"/> 
+<viewdata model="LanLordz.Models.LogOnAttemptModel"/>
 <use namespace="LanLordz.SiteTools"/>
 <content name="title">Log On</content>
 <content name="headers"></content>
@@ -24,7 +24,7 @@
       </tr>
       <tr if="Model.RequireCaptcha">
        <td>Human?:</td>
-       <td>!{Html.Captcha(Model.Config.RecaptchaPublicKey, Model.Config.RecaptchaPrivateKey)}</td>
+       <td>!{Html.Captcha(Controller.Config.RecaptchaPublicKey, Controller.Config.RecaptchaPrivateKey)}</td>
       </tr>
       <tr>
        <td></td>

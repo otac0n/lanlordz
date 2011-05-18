@@ -27,11 +27,45 @@ using System.Web.Mvc.Html;
 using LanLordz.Models;
 using Spark.Web.Mvc;
 using System.Web.Mvc;
+using LanLordz.Controllers;
 
 namespace LanLordz.Views
 {
-    public abstract class BaseView<TModel> : SparkView<TModel> where TModel : ControllerResponse
+    public abstract class BaseView : BaseView<object>
     {
+    }
+
+    public abstract class BaseView<TModel> : SparkView<TModel>
+    {
+        public LanLordzBaseController Controller
+        {
+            get
+            {
+                return ViewBag.Controller;
+            }
+        }
+
+        protected string Theme
+        {
+            get
+            {
+                var controller = this.Controller;
+
+                var theme = string.Empty;
+                if (this.Controller.CurrentUser != null)
+                {
+                    theme = controller.AppManager.GetUserInformation(controller.CurrentUser.UserID, false).Theme;
+                }
+
+                if (string.IsNullOrEmpty(theme))
+                {
+                    theme = controller.Config.DefaultTheme;
+                }
+
+                return theme;
+            }
+        }
+
         protected string HashString(string Value)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -49,7 +83,7 @@ namespace LanLordz.Views
 
         protected string FormatPostText(string postText)
         {
-            return this.Model.AppManager.Controller.FormatPostText(postText);
+            return this.Controller.FormatPostText(postText);
         }
 
         protected static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
@@ -77,7 +111,7 @@ namespace LanLordz.Views
             var routeValues = new
             {
                 id = userId,
-                title = Model.Controller.CreateUrlTitle(username)
+                title = this.Controller.CreateUrlTitle(username)
             };
 
             return Html.ActionLink(displayName, "ViewProfile", "Account", routeValues, null);

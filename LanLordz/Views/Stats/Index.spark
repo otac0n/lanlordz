@@ -1,4 +1,4 @@
-﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.SiteStatisticsModel]]"/> 
+﻿<viewdata model="LanLordz.Models.SiteStatisticsModel"/>
 <content name="title">Stats Index</content>
 <content name="headers"></content>
 <content name="main">
@@ -10,7 +10,7 @@
       </div>
       <div if="Model.BiggestEventStats != null && Model.BiggestEventStats.Count > 0" class="StatsItem">
         <div class="StatsItemTitle">Largest Past Event:</div>
-        <div class="StatsItemValue">!{Html.ActionLink(Model.BiggestEvent.Title, "Details", "Events", new { id = Model.BiggestEvent.EventID, title = Model.Controller.CreateUrlTitle(Model.BiggestEvent.Title) }, null)}</div>
+        <div class="StatsItemValue">!{Html.ActionLink(Model.BiggestEvent.Title, "Details", "Events", new { id = Model.BiggestEvent.EventID, title = Controller.CreateUrlTitle(Model.BiggestEvent.Title) }, null)}</div>
         <div class="StatsItemDetail">${Model.BiggestEventStats.CheckIns} users checked in.</div>
       </div>
       <div if="Model.RecentEventsStats != null && Model.RecentEventsStats.Count > 0" class="StatsItem">
@@ -32,7 +32,7 @@
       <div class="StatsItem">
         <div class="StatsItemTitle">Newest User:</div>
         <div class="StatsItemValue">!{UserLink(Model.NewestUser)}</div>
-        <div class="StatsItemDetail">Joined ${Model.ConvertDateTime(Model.NewestUser.CreateDate).ToShortDateString()}.</div>
+        <div class="StatsItemDetail">Joined ${Controller.ConvertDateTime(Model.NewestUser.CreateDate).ToShortDateString()}.</div>
       </div>
     </div>
     <div class="StatsSection">

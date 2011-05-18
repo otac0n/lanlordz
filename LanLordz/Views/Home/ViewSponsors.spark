@@ -1,4 +1,4 @@
-﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ViewSponsorsModel]]" />
+﻿<viewdata model="LanLordz.Models.ViewSponsorsModel"/>
 <content name="title">Sponsors</content>
 <content name="headers"></content>
 <content name="main">

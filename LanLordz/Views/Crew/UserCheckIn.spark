@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.UserCheckInModel]]"/> 
+<viewdata model="LanLordz.Models.UserCheckInModel"/>
 <content name="title">User Check In</content>
 <content name="headers">
   <script type="text/javascript" language="javascript">

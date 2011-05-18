@@ -3,5 +3,5 @@
 <content name="main">
     <h2>Not Authorized</h2>
     <p>You are not authorized to view this resource.</p>
-    <p if="Model.CurrentUser == null">You may need to <%= Html.ActionLink("register", "Register", "Account") %> or log on before you can proceed.</p>
+    <p if="Controller.CurrentUser == null">You may need to <%= Html.ActionLink("register", "Register", "Account") %> or log on before you can proceed.</p>
 </content>

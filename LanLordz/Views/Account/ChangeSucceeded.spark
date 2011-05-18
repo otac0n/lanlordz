@@ -1,4 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage"/>
 <content name="title">Change Succeeded</content>
 <content name="headers"></content>
 <content name="main">

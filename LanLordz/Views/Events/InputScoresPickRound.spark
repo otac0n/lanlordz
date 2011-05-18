@@ -1,8 +1,8 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.TournamentActionModel]]"/> 
+<viewdata model="LanLordz.Models.TournamentActionModel"/>
 <content name="title">Input Scores</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Input Scores</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Input Scores</div>
     <h2>Input Scores</h2>
     <p>Pick a round for which to input scores:</p>
     # using (Html.BeginForm())

@@ -1,4 +1,4 @@
-﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ViewNewsModel]]"/> 
+﻿<viewdata model="LanLordz.Models.ViewNewsModel"/>
 <content name="title">News</content>
 <content name="headers"></content>
 <content name="main">
@@ -6,7 +6,7 @@
     <div if="Model.Posts == null">The administrators have not configured the news page.</div>
     <div if="Model.Posts != null" each="var post in Model.Posts" class="NewsPost">
      <div class="NewsPostTitle">${string.IsNullOrEmpty(post.Title) ? "(no title)" : post.Title}</div>
-     <div class="NewsPostDate">${Model.ConvertDateTime(post.CreateDate).ToShortDateString()}</div>
+     <div class="NewsPostDate">${Controller.ConvertDateTime(post.CreateDate).ToShortDateString()}</div>
      <div class="NewsPostText">!{this.FormatPostText(post.Text)}</div>
      <div class="NewsPostAuthor">- ${post.User.Username}</div>
     </div>

@@ -47,6 +47,7 @@ namespace LanLordz.Controllers
 
         private bool userLoaded;
         private User currentUser;
+        private TimeZoneInfo userTimeZone;
 
         private Regex invalidUrlCharacters = new Regex(@"[^\w]+", RegexOptions.Compiled);
 
@@ -151,16 +152,9 @@ namespace LanLordz.Controllers
             }
             protected set
             {
-                if (value == null)
-                {
-                    this.Session[UserKey] = null;
-                    this.currentUser = null;
-                }
-                else
-                {
-                    this.Session[UserKey] = value;
-                    this.currentUser = value;
-                }
+                this.Session[UserKey] = value;
+                this.currentUser = value;
+                this.userTimeZone = null;
             }
         }
 
@@ -187,6 +181,25 @@ namespace LanLordz.Controllers
 
                 return theme;
             }
+        }
+
+        public DateTime ConvertDateTime(DateTime dateTime)
+        {
+            if (this.userTimeZone == null)
+            {
+                this.userTimeZone = this.Config.DefaultTimeZoneInfo;
+
+                if (this.CurrentUser != null)
+                {
+                    var ui = this.AppManager.GetUserInformation(this.CurrentUser.UserID, false);
+                    if (!string.IsNullOrEmpty(ui.TimeZone))
+                    {
+                        this.userTimeZone = TimeZoneInfo.FindSystemTimeZoneById(ui.TimeZone);
+                    }
+                }
+            }
+
+            return this.AppManager.ConvertDateTime(dateTime, this.userTimeZone);
         }
 
         public static string ComputeHash(string data)
@@ -422,62 +435,55 @@ namespace LanLordz.Controllers
             }
         }
 
-        [Obsolete]
-        protected new ViewResult View(string viewName, object model)
+        #region New View() implementations.
+        protected new ViewResult View()
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException("model");
-            }
-
-            if (!(model is ControllerResponse))
-            {
-                throw new ArgumentException("The model you passed is not a valid model.", "model");
-            }
-
-            return base.View(viewName, model);
+            ViewBag.Controller = this;
+            return base.View();
         }
 
-        [Obsolete]
+        protected new ViewResult View(IView view)
+        {
+            ViewBag.Controller = this;
+            return base.View(view);
+        }
+
         protected new ViewResult View(object model)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException("model");
-            }
-
-            if (!(model is ControllerResponse))
-            {
-                throw new ArgumentException("The model you passed is not a valid model.", "model");
-            }
-
+            ViewBag.Controller = this;
             return base.View(model);
-        }
-
-        protected ViewResult View(string viewName, ControllerResponse model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException("model");
-            }
-
-            return base.View(viewName, (object)model);
         }
 
         protected new ViewResult View(string viewName)
         {
-            return base.View(viewName, new BlankModel(this));
+            ViewBag.Controller = this;
+            return base.View(viewName);
         }
 
-        protected ViewResult View(ControllerResponse model)
+        protected new ViewResult View(IView view, object model)
         {
-            return base.View((object)model);
+            ViewBag.Controller = this;
+            return base.View(view, model);
         }
 
-        protected new ViewResult View()
+        protected new ViewResult View(string viewName, object model)
         {
-            return base.View(new BlankModel(this));
+            ViewBag.Controller = this;
+            return base.View(viewName, model);
         }
+
+        protected new ViewResult View(string viewName, string masterName)
+        {
+            ViewBag.Controller = this;
+            return base.View(viewName, masterName);
+        }
+
+        protected new ViewResult View(string viewName, string masterName, object model)
+        {
+            ViewBag.Controller = this;
+            return base.View(viewName, masterName, model);
+        }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

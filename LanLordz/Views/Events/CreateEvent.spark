@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.CreateEventModel]]"/> 
+<viewdata model="LanLordz.Models.CreateEventModel"/>
 <content name="title">Create Event</content>
 <content name="headers"></content>
 <content name="main">

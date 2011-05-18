@@ -1,15 +1,14 @@
-<use pageBaseType="LanLordz.Views.BasePage"/>
 <content name="title">Account Tools</content>
 <content name="headers"></content>
 <content name="main">
     <h2>Account Tools</h2>
-    <ul if="Model.CurrentUser == null">
+    <ul if="Controller.CurrentUser == null">
      <li>!{Html.ActionLink("Forgot Password", "ChangePassword")}</li>
      <li>!{Html.ActionLink("Forgot Username", "ForgotUsername")}</li>
      <li>!{Html.ActionLink("Change Email Address", "ChangeEmail")}</li>
      <li>!{Html.ActionLink("Resend Confirmation Email", "ResendConfirmation")}</li>
     </ul>
-    <ul if="Model.CurrentUser != null">
+    <ul if="Controller.CurrentUser != null">
      <li>!{Html.ActionLink("Edit Profile", "EditProfile")}</li>
      <li>!{Html.ActionLink("Change Avatar", "ChangeAvatar")}</li>
      <li>!{Html.ActionLink("Change Password", "ChangePassword")}</li>

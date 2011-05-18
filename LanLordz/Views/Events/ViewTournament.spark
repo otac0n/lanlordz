@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.TournamentDetailsModel]]"/> 
+<viewdata model="LanLordz.Models.TournamentDetailsModel"/>
 <content name="title">${Model.Tournament.Title} | View Tournament</content>
 <content name="headers">
   <!--[if IE]>
@@ -7,7 +7,7 @@
   <![endif]-->
 </content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; ${Model.Tournament.Title}</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; ${Model.Tournament.Title}</div>
     <h2>${Model.Tournament.Title}</h2>
     <dl>
      <dt>Team Size:</dt><dd>${Model.Tournament.TeamSize}</dd>

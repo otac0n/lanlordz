@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EditProfileModel]]"/> 
+<viewdata model="LanLordz.Models.EditProfileModel"/>
 <content name="title">Edit Profile</content>
 <content name="headers"></content>
 <content name="main">

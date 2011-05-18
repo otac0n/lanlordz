@@ -1,3 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.PollDetailsModel]]"/>
+<viewdata model="LanLordz.Models.PollDetailsModel"/>
 <div class="PollTitle">${Model.Poll.Title}</div>
 <PollDetails/>

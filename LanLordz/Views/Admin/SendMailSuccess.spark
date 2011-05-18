@@ -1,4 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage"/> 
 <content name="title">Send Mail</content>
 <content name="headers">
 </content>

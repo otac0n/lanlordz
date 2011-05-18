@@ -1,8 +1,8 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.LeaveTeamModel]]"/> 
+<viewdata model="LanLordz.Models.LeaveTeamModel"/>
 <content name="title">${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; ${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; ${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</div>
     <h2>${Model.Tournament.TeamSize > 1 ? "Leave Team" : "Leave Tournament"}</h2>
     # using (Html.BeginForm())
     # {

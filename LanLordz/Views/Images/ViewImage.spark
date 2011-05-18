@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ViewImageModel]]"/> 
+<viewdata model="LanLordz.Models.ViewImageModel"/>
 <content name="title">View Image</content>
 <content name="headers">
 # if (Model.UserTags.Any())
@@ -21,12 +21,12 @@
 #         Response.Write("        { userId: " + t.UserId + ", username: " + Microsoft.Security.Application.AntiXss.JavaScriptEncode(t.Username) + ", points : [");
 #         for (int i = 1; i <= points; i++)
 #         {
-#     	    var pt = t.TagRegion.STPointN(i);
-#     	    if (i > 1)
+#           var pt = t.TagRegion.STPointN(i);
+#           if (i > 1)
 #           {
 #               Response.Write(", ");
 #           }
-#     	    Response.Write("{ x: " + pt.STX.Value + ", y: " + pt.STY.Value + " }");
+#           Response.Write("{ x: " + pt.STX.Value + ", y: " + pt.STY.Value + " }");
 #         }
 #         Response.Write("] }");
 #     }
@@ -67,7 +67,7 @@
         $(img).maphilight();
       }
     });
-	//]]>
+  //]]>
   </script>
 # }
 # if (Model.AllowTagging)
@@ -75,18 +75,18 @@
   <script type="text/javascript" src="${Response.ApplyAppPathModifier("~/Scripts/jquery.Jcrop.min.js")}"></script>
   <script type="text/javascript">
     //<![CDATA[
-	$(function () {
-	  $('.ImageTags').append('<div class="ImageTagsAddTag"><button class="ImageTagsAddTagTagButton" onclick="beginTagging()">Tag</button></div>');
-	});
-	
-	function beginTagging() {
-	  $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" onkeyup="searchUsers()" /><ul id="searchResults" class="ImageTagsNewTagSearchResults"></ul><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
-	  
+  $(function () {
+    $('.ImageTags').append('<div class="ImageTagsAddTag"><button class="ImageTagsAddTagTagButton" onclick="beginTagging()">Tag</button></div>');
+  });
+  
+  function beginTagging() {
+    $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" onkeyup="searchUsers()" /><ul id="searchResults" class="ImageTagsNewTagSearchResults"></ul><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
+    
       var img = $('.ViewImageImage img')[0];
       var width = img.offsetWidth;
       var height = img.offsetHeight;
 
-	  var crop = $.Jcrop('.ViewImageImage img',{
+    var crop = $.Jcrop('.ViewImageImage img',{
         onSelect: updateForm,
         sideHandles: false,
         setSelect: [ 0, 0, 1, 1 ]
@@ -106,19 +106,19 @@
           $("#input_x2").val(coords.x2 / width);
           $("#input_y2").val(coords.y2 / height);
       };
-	}
-	
-	function searchUsers() {
-	  var username = $("#input_username").val();
-	  
-	  if(username == '') {
-	    $("#searchResults li").remove();
-	    return;
-	  }
-	  
-	  var url = '!{(new Uri(Url.RequestContext.HttpContext.Request.Url, Url.Action("SearchUsers", "Account"))).AbsoluteUri}' + '?q=' + escape(username);
-	  
-	  $.getJSON(url,
+  }
+  
+  function searchUsers() {
+    var username = $("#input_username").val();
+    
+    if(username == '') {
+      $("#searchResults li").remove();
+      return;
+    }
+    
+    var url = '!{(new Uri(Url.RequestContext.HttpContext.Request.Url, Url.Action("SearchUsers", "Account"))).AbsoluteUri}' + '?q=' + escape(username);
+    
+    $.getJSON(url,
         function(data){
           $("#searchResults li").remove();
           $.each(data, function(i, item){
@@ -126,29 +126,29 @@
             li.className = 'ImageTagsNewTagSearchResultsItem';
             var text = document.createTextNode(item.username);
             li.appendChild(text);
-			$("#searchResults").append(li);
+      $("#searchResults").append(li);
           });
           $("#searchResults li").click(function() {
             $("#input_username").val(this.innerHTML);
           });
         });
-	}
-	//]]>
+  }
+  //]]>
   </script>
 # }
 </content>
 <content name="main">
     <div class="GalleryNavigator">
     !{Html.ActionLink("Image Gallery", "Gallery")} &gt; 
-	<test if="Model.Event != null && Model.User == null">
-		!{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt;
-	<else if="Model.Event != null && Model.User != null" />
-		!{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; !{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { @event = Model.Event.EventID, user = Model.User.UserID })} &gt;
-	<else if="Model.Event == null && Model.User != null" />
-		!{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { user = Model.User.UserID })} &gt;
-	</test>
+  <test if="Model.Event != null && Model.User == null">
+    !{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt;
+  <else if="Model.Event != null && Model.User != null" />
+    !{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; !{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { @event = Model.Event.EventID, user = Model.User.UserID })} &gt;
+  <else if="Model.Event == null && Model.User != null" />
+    !{Html.ActionLink("Images of " + Model.User.Username, "Gallery", new { user = Model.User.UserID })} &gt;
+  </test>
     View Image
-	</div>
+  </div>
     <h2>View Image</h2>
     <div class="ViewImage">
      <div class="ViewImageImage">
@@ -161,7 +161,7 @@
      <div class="ImageTaggedUser" each="var userTag in Model.UserTags">${userTag.Username}</div>
     </div>
     <div class="ImagePager">
-		# var pager = Model.AppManager.Controller.Skins.GetDefaultImagePager();
+    # var pager = Controller.Skins.GetDefaultImagePager();
         # var item = Model.Images.IndexOf(Model.Image) + 1;
         # var pagerText = pager.CreatePager(item, Model.Images.Count, 1, i => { var image = Model.Images[i - 1]; return Url.Action("Image", "Images", new { id = image.EventImageID, hash = CalculateScrapeBuster(image.ScrapeBusterKey, 150), thumbnail = 150 }); }, i => Url.Action("ViewImage", "Images", new { id = i, @event = Model.Event == null ? (long?)null : Model.Event.EventID, user = Model.User == null ? (long?)null : Model.User.UserID }));
         !{pagerText}

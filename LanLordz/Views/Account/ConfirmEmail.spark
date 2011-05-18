@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ConfirmEmailModel]]"/>
+<viewdata model="LanLordz.Models.ConfirmEmailModel"/>
 <content name="title">Confirm Email</content>
 <content name="headers"></content>
 <content name="main">

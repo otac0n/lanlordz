@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EditTournamentModel]]"/> 
+<viewdata model="LanLordz.Models.EditTournamentModel"/>
 <content name="title">Edit Tournament</content>
 <content name="headers"></content>
 <content name="main">

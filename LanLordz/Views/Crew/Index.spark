@@ -1,4 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage"/> 
 <content name="title">Crew Index</content>
 <content name="headers"></content>
 <content name="main">

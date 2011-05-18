@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ChooseEventModel]]"/> 
+<viewdata model="LanLordz.Models.ChooseEventModel"/>
 <content name="title">Choose Event</content>
 <content name="headers"></content>
 <content name="main">

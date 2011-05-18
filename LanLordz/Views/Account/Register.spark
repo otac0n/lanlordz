@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.RegistrationModel]]"/> 
+<viewdata model="LanLordz.Models.RegistrationModel"/>
 <use namespace="LanLordz.SiteTools"/>
 <content name="title">Register</content>
 <content name="headers"></content>
@@ -20,14 +20,14 @@
        <td>Gender:</td>
        <td>
         <table border="0">
-		 <tr><td><input id="GenderM" type="radio" name="Gender" value="M" checked="checked?{Model.Gender == (char)'M'}" /><label for="GenderM">Male</label></td></tr>
-		 <tr><td><input id="GenderF" type="radio" name="Gender" value="F" checked="checked?{Model.Gender == (char)'F'}" /><label for="GenderF">Female</label></td></tr>
-	    </table>
-	   </td>
-	  </tr>
+     <tr><td><input id="GenderM" type="radio" name="Gender" value="M" checked="checked?{Model.Gender == (char)'M'}" /><label for="GenderM">Male</label></td></tr>
+     <tr><td><input id="GenderF" type="radio" name="Gender" value="F" checked="checked?{Model.Gender == (char)'F'}" /><label for="GenderF">Female</label></td></tr>
+      </table>
+     </td>
+    </tr>
       <tr><td>Display Email:</td><td><input id="ShowEmail" type="checkbox" name="ShowEmail" checked="checked?{Model.ShowEmail}" /></td></tr>
       <tr><td>Display Gender:</td><td><input id="ShowGender" type="checkbox" name="ShowGender" checked="checked?{Model.ShowGender}" /></td></tr>
-      <tr if="Model.Config.UseRecaptcha"><td>Human?:</td><td>!{Html.Captcha(Model.Config.RecaptchaPublicKey, Model.Config.RecaptchaPrivateKey)}</td></tr>
+      <tr if="Controller.Config.UseRecaptcha"><td>Human?:</td><td>!{Html.Captcha(Controller.Config.RecaptchaPublicKey, Controller.Config.RecaptchaPrivateKey)}</td></tr>
       <tr><td></td><td><input type="submit" value="Register" /></td></tr>
      </table>
     # }

@@ -1,16 +1,16 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EventsIndexModel]]"/> 
+<viewdata model="LanLordz.Models.EventsIndexModel"/>
 <content name="title">Events</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="EventsNavigator">${Model.Config.SiteName + " Events"}</div>
+    <div class="EventsNavigator">${Controller.Config.SiteName + " Events"}</div>
     <if condition="Model.Current.Count() > 0">
     <h2>Current Events</h2>
     <ol class="EventList">
      <li each="var item in Model.Current.OrderBy(e => e.BeginDateTime)" class="EventListItem">
       <var venue="Model.Venues.Where(v => v.VenueID == item.VenueID).Single()" />
-      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Model.Controller.CreateUrlTitle(item.Title) })}</div>
+      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Controller.CreateUrlTitle(item.Title) })}</div>
       <div class="EventListVenue"><span class="EventListVenueName">${venue.Name}</span><span class="EventListVenueAddress">${venue.Address}</span></div>
-      <div class="EventListTimes"><span class="EventListTimesBegin">${Model.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Model.ConvertDateTime(item.EndDateTime)}</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">${Controller.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Controller.ConvertDateTime(item.EndDateTime)}</span></div>
      </li>
     </ol>
     </if>
@@ -19,9 +19,9 @@
     <ol class="EventList">
      <li each="var item in Model.Upcoming.OrderBy(e => e.BeginDateTime)" class="EventListItem">
       <var venue="Model.Venues.Where(v => v.VenueID == item.VenueID).Single()" />
-      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Model.Controller.CreateUrlTitle(item.Title) })}</div>
+      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Controller.CreateUrlTitle(item.Title) })}</div>
       <div class="EventListVenue"><span class="EventListVenueName">${venue.Name}</span><span class="EventListVenueAddress">${venue.Address}</span></div>
-      <div class="EventListTimes"><span class="EventListTimesBegin">${Model.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Model.ConvertDateTime(item.EndDateTime)}</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">${Controller.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Controller.ConvertDateTime(item.EndDateTime)}</span></div>
      </li>
     </ol>
     </if>
@@ -30,9 +30,9 @@
     <ol class="EventList">
      <li each="var item in Model.Past.OrderByDescending(e => e.BeginDateTime)" class="EventListItem">
       <var venue="Model.Venues.Where(v => v.VenueID == item.VenueID).Single()" />
-      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Model.Controller.CreateUrlTitle(item.Title) })}</div>
+      <div class="EventListEventName">!{Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = Controller.CreateUrlTitle(item.Title) })}</div>
       <div class="EventListVenue"><span class="EventListVenueName">${venue.Name}</span><span class="EventListVenueAddress">${venue.Address}</span></div>
-      <div class="EventListTimes"><span class="EventListTimesBegin">${Model.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Model.ConvertDateTime(item.EndDateTime)}</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">${Controller.ConvertDateTime(item.BeginDateTime)}</span><span class="EventListTimesEnd"> to ${Controller.ConvertDateTime(item.EndDateTime)}</span></div>
      </li>
     </ol>
     </if>

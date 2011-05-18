@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EventDetailsModel]]"/> 
+<viewdata model="LanLordz.Models.EventDetailsModel"/>
 <content name="title">${Model.Event.Title} | Event Details</content>
 <content name="headers">
     <script type="text/javascript">
@@ -13,25 +13,25 @@
     </script>
 </content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; ${Model.Event.Title}</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; ${Model.Event.Title}</div>
     <div class="EventInfo">
      <h2 class="EventInfoName">${Model.Event.Title}</h2>
      <p class="EventInfoInfo">!{FormatPostText(Model.Event.Info)}</p>
-     <p class="EventInfoStart">Start: ${Model.ConvertDateTime(Model.Event.BeginDateTime)}</p>
-     <p class="EventInfoEnd">End: ${Model.ConvertDateTime(Model.Event.EndDateTime)}</p>
+     <p class="EventInfoStart">Start: ${Controller.ConvertDateTime(Model.Event.BeginDateTime)}</p>
+     <p class="EventInfoEnd">End: ${Controller.ConvertDateTime(Model.Event.EndDateTime)}</p>
      <p class="EventInfoSeats">Seats: ${Model.Event.Seats}</p>
     </div>
     <div class="EventVenue">
-     <div if="!string.IsNullOrEmpty(Model.Config.GoogleMapsKey)" class="EventVenueMap">
-      <img src="http://maps.google.com/staticmap?size=500x300&amp;zoom=15&amp;markers=${Model.Venue.Longitude},${Model.Venue.Latitude},blue&amp;key=${Model.Config.GoogleMapsKey}" alt="${Model.Venue.Address}" style="height:300px;width:500px;border-width:0px;" />
+     <div if="!string.IsNullOrEmpty(Controller.Config.GoogleMapsKey)" class="EventVenueMap">
+      <img src="http://maps.google.com/staticmap?size=500x300&amp;zoom=15&amp;markers=${Model.Venue.Longitude},${Model.Venue.Latitude},blue&amp;key=${Controller.Config.GoogleMapsKey}" alt="${Model.Venue.Address}" style="height:300px;width:500px;border-width:0px;" />
      </div>
      <div class="EventVenueLocation">
       <div class="EventVenueLocationName">${Model.Venue.Name}</div>
       <div class="EventVenueLocationAddress">${Model.Venue.Address}</div>
      </div>
     </div>
-    <if condition="Model.Event.EndDateTime > DateTime.UtcNow && Model.CurrentUser != null">
-    <div if="!Model.Registrants.Where(r => r.UserID == Model.CurrentUser.UserID).Any()" class="EventSignupLink">
+    <if condition="Model.Event.EndDateTime > DateTime.UtcNow && Controller.CurrentUser != null">
+    <div if="!Model.Registrants.Where(r => r.UserID == Controller.CurrentUser.UserID).Any()" class="EventSignupLink">
      # using (Html.BeginForm("Register", "Events", new { id = Model.Event.EventID }))
      # {
       !{Html.AntiForgeryToken()}
@@ -39,7 +39,7 @@
      # }
     </div>
     </if>
-    <else if="Model.Event.EndDateTime > DateTime.UtcNow && Model.CurrentUser == null">
+    <else if="Model.Event.EndDateTime > DateTime.UtcNow && Controller.CurrentUser == null">
     <div class="EventSignupLink">
      You are not logged on.  You must !{Html.ActionLink("register", "Register", "Account")} or log on before you can sign up.
     </div>
@@ -47,7 +47,7 @@
     <div class="EventTournaments">
      <div class="EventTournamentsTitle">Tournaments</div>
      <ul class="EventTournamentsList">
-       <li each="var ti in Model.Tournaments" class="EventTournamentsListTournament">!{Html.ActionLink(ti.Title, "ViewTournament", new { id = ti.TournamentID, title = Model.Controller.CreateUrlTitle(ti.Title) })}</li>
+       <li each="var ti in Model.Tournaments" class="EventTournamentsListTournament">!{Html.ActionLink(ti.Title, "ViewTournament", new { id = ti.TournamentID, title = Controller.CreateUrlTitle(ti.Title) })}</li>
      </ul>
     </div>
     <div class="EventRoster">

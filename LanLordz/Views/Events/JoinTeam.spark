@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.JoinTeamModel]]"/> 
+<viewdata model="LanLordz.Models.JoinTeamModel"/>
 <content name="title">Join Team</content>
 <content name="headers">
   <script type="text/javascript" language="javascript">
@@ -11,7 +11,7 @@
   </script>
 </content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Join Team</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; Join Team</div>
     <h2>Join Team</h2>
     <if condition="!Model.AvailableTeams.Any()">
     <p>There are no teams available to join.  You may, however, be able to !{Html.ActionLink("create a team", "CreateTeam", new { id = Model.Tournament.TournamentID })}.</p>

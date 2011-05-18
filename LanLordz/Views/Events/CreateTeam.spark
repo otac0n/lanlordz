@@ -1,8 +1,8 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.CreateTeamModel]]"/> 
+<viewdata model="LanLordz.Models.CreateTeamModel"/>
 <content name="title">${Model.Tournament.TeamSize > 1 ? "Create Team" : "Join Tournament"}</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="EventsNavigator">!{Html.ActionLink(Model.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; ${Model.Tournament.TeamSize > 1 ? "Create Team" : "Join Tournament"}</div>
+    <div class="EventsNavigator">!{Html.ActionLink(Controller.Config.SiteName + " Events", "Index")} &gt; !{Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID })} &gt; !{Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID })} &gt; ${Model.Tournament.TeamSize > 1 ? "Create Team" : "Join Tournament"}</div>
     <h2>${Model.Tournament.TeamSize > 1 ? "Create Team" : "Join Tournament"} - ${Model.Event.Title}</h2>
     # using (Html.BeginForm())
     # {
@@ -23,13 +23,13 @@
       <input name="Rating" value="100" type="radio" />100% &nbsp 
      </div><br />
      <if condition="Model.Tournament.TeamSize == 1">
-     <input type="submit" value="Join" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID, title = Model.Controller.CreateUrlTitle(Model.Tournament.Title) })}
+     <input type="submit" value="Join" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID, title = Controller.CreateUrlTitle(Model.Tournament.Title) })}
      </if>
      <else>
      <table>
       <tr><td>Team Name:</td><td>!{Html.TextBox("TeamName", Model.TeamName)}</td></tr>
       <tr><td>Tag Format:</td><td>!{Html.TextBox("TeamTagFormat", Model.TeamTagFormat)} Use '{0}' as a placeholder for the username.</td></tr>
-      <tr><td></td><td><input type="submit" value="Create" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID, title = Model.Controller.CreateUrlTitle(Model.Tournament.Title) })}</td></tr>
+      <tr><td></td><td><input type="submit" value="Create" /> !{Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID, title = Controller.CreateUrlTitle(Model.Tournament.Title) })}</td></tr>
      </table>
      </else>
     # }

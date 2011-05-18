@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.EditImagesModel]]"/> 
+<viewdata model="LanLordz.Models.EditImagesModel"/>
 <content name="title">Edit Event Images</content>
 <content name="headers">
 </content>

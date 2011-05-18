@@ -28,69 +28,8 @@ namespace LanLordz.Models
 
     public class ControllerResponse
     {
-        private TimeZoneInfo userTimeZone;
-
         public ControllerResponse(LanLordzBaseController controller)
         {
-            if (controller == null)
-            {
-                throw new ArgumentNullException("controller");
-            }
-
-            this.Controller = controller;
-        }
-
-        private ControllerResponse()
-        {
-        }
-
-        public LanLordzBaseController Controller
-        {
-            get;
-            private set;
-        }
-
-        public ConfigurationRepository Config
-        {
-            get
-            {
-                return this.Controller.Config;
-            }
-        }
-
-        public LanLordzApplicationManager AppManager
-        {
-            get
-            {
-                return this.Controller.AppManager;
-            }
-        }
-
-        public User CurrentUser
-        {
-            get
-            {
-                return this.Controller.CurrentUser;
-            }
-        }
-
-        public DateTime ConvertDateTime(DateTime dateTime)
-        {
-            if (this.userTimeZone == null)
-            {
-                this.userTimeZone = this.Config.DefaultTimeZoneInfo;
-
-                if (this.CurrentUser != null)
-                {
-                    var ui = this.AppManager.GetUserInformation(this.CurrentUser.UserID, false);
-                    if (!string.IsNullOrEmpty(ui.TimeZone))
-                    {
-                        this.userTimeZone = TimeZoneInfo.FindSystemTimeZoneById(ui.TimeZone);
-                    }
-                }
-            }
-
-            return this.AppManager.ConvertDateTime(dateTime, this.userTimeZone);
         }
     }
 }

@@ -1,18 +1,18 @@
-﻿<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ImageGalleryModel]]"/> 
+﻿<viewdata model="LanLordz.Models.ImageGalleryModel"/>
 <content name="title">Image Gallery</content>
 <content name="headers"></content>
 <content name="main">
     <div class="GalleryNavigator">
-	<test if="Model.Event == null && Model.User == null">
-		Image Gallery &gt; All Images
-	<else if="Model.Event != null && Model.User == null" />
-		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${Model.Event.Title + " Images"}
-	<else if="Model.Event != null && Model.User != null" />
-		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; !{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; ${"Images of " + Model.User.Username}
-	<else if="Model.Event == null && Model.User != null" />
-		!{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${"Images of " + Model.User.Username}
-	</test>
-	</div>
+  <test if="Model.Event == null && Model.User == null">
+    Image Gallery &gt; All Images
+  <else if="Model.Event != null && Model.User == null" />
+    !{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${Model.Event.Title + " Images"}
+  <else if="Model.Event != null && Model.User != null" />
+    !{Html.ActionLink("Image Gallery", "Gallery")} &gt; !{Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID })} &gt; ${"Images of " + Model.User.Username}
+  <else if="Model.Event == null && Model.User != null" />
+    !{Html.ActionLink("Image Gallery", "Gallery")} &gt; ${"Images of " + Model.User.Username}
+  </test>
+  </div>
     <h2>Image Gallery</h2>
     <div class="GalleryPagination"><var PageInfo="Model.PageInfo">
      <PaginationView />

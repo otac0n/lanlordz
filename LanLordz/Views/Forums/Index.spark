@@ -1,8 +1,8 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ForumsIndexModel]]"/> 
+<viewdata model="LanLordz.Models.ForumsIndexModel"/>
 <content name="title">Forums Index</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="ForumNavigator"><span>${Model.Config.SiteName + " Forum Index"}</span></div>
+    <div class="ForumNavigator"><span>${Controller.Config.SiteName + " Forum Index"}</span></div>
     <div class="ForumSearch">
      # using (Html.BeginForm("Search", "Forums"))
      # {
@@ -11,7 +11,7 @@
       <input type="submit" name="SearchButton" id="SearchButton" value="Search" />
      # }
     </div>
-    <if condition="Model.CurrentUser != null">
+    <if condition="Controller.CurrentUser != null">
     # using (Html.BeginForm("MarkAllRead", "Forums", FormMethod.Post, new { name = "MarkAllRead" }))
     # {
      <div class="ForumIndexTools">
@@ -44,7 +44,7 @@
      <tr each="var forumInfo in Model.Forums.Where(f => f.Forum.ForumGroupID == group.ForumGroupID)" class="Forum ${"Forum" + (forumInfo.Threads > forumInfo.ThreadsRead ? "Unread" : "Read")}">
       <td><div class="ForumIndicator"></div></td>
       <td class="ForumDescription">
-       <div class="ForumDescriptionTitle">!{Html.ActionLink(forumInfo.Forum.Name, "ViewForum", new { id = forumInfo.Forum.ForumID, title = Model.Controller.CreateUrlTitle(forumInfo.Forum.Name) })}</div>
+       <div class="ForumDescriptionTitle">!{Html.ActionLink(forumInfo.Forum.Name, "ViewForum", new { id = forumInfo.Forum.ForumID, title = Controller.CreateUrlTitle(forumInfo.Forum.Name) })}</div>
        <div class="ForumDescriptionText">${forumInfo.Forum.Description}</div>
       </td>
       <td>${forumInfo.Threads}</td>
@@ -52,7 +52,7 @@
       <td>
        <if condition="forumInfo.Posts == 0">No Posts</if>
        <else>
-       <div class="ForumLastPostDate">${Model.ConvertDateTime(forumInfo.LastPostDate.Value)}</div><div class="ForumLastPostUser">!{Html.ActionLink(forumInfo.LastPostUsername, "ViewProfile", "Account", new { id = forumInfo.LastPostUserID.Value, title = Model.Controller.CreateUrlTitle(forumInfo.LastPostUsername) }, null)}</div>
+       <div class="ForumLastPostDate">${Controller.ConvertDateTime(forumInfo.LastPostDate.Value)}</div><div class="ForumLastPostUser">!{Html.ActionLink(forumInfo.LastPostUsername, "ViewProfile", "Account", new { id = forumInfo.LastPostUserID.Value, title = Controller.CreateUrlTitle(forumInfo.LastPostUsername) }, null)}</div>
        </else>
       </td>
      </tr>

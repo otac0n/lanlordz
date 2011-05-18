@@ -1,14 +1,14 @@
 ﻿    <div class="UserInfoBox">
-    <if condition="Model.CurrentUser != null">
+    <if condition="Controller.CurrentUser != null">
 # using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { name = "LogOff" }))
 # {
      !{Html.AntiForgeryToken()}
      !{Html.Hidden("ReturnUrl", ((object)Model) is LanLordz.Models.LogOnAttemptModel ? ((LanLordz.Models.LogOnAttemptModel)(object)Model).ReturnUrl : Request.Url.ToString())}
-     <div class="UserInfoBoxLoggedOnInfo">Logged on as !{Html.ActionLink(Model.CurrentUser.Username, "ViewProfile", "Account", new { id = Model.CurrentUser.UserID }, null)}.</div>
+     <div class="UserInfoBoxLoggedOnInfo">Logged on as !{Html.ActionLink(Controller.CurrentUser.Username, "ViewProfile", "Account", new { id = Controller.CurrentUser.UserID }, null)}.</div>
      <div class="UserInfoBoxAction"><a href="javascript:document.LogOff.submit()">Log Off</a></div>
      <div class="UserInfoBoxAction">!{Html.ActionLink("Account", "Index", "Account")}</div>
-     <div if="Model.AppManager.Controller.Security.IsUserInRole(Model.CurrentUser, Model.Config.CrewGroup)" class="UserInfoBoxAction">!{Html.ActionLink("Crew", "Index", "Crew")}</div>
-     <div if="Model.AppManager.Controller.Security.IsUserAdministrator(Model.CurrentUser)" class="UserInfoBoxAction">!{Html.ActionLink("Admin", "Index", "Admin")}</div>
+     <div if="Controller.Security.IsUserInRole(Controller.CurrentUser, Controller.Config.CrewGroup)" class="UserInfoBoxAction">!{Html.ActionLink("Crew", "Index", "Crew")}</div>
+     <div if="Controller.Security.IsUserAdministrator(Controller.CurrentUser)" class="UserInfoBoxAction">!{Html.ActionLink("Admin", "Index", "Admin")}</div>
 # }
     <else />
 # using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { name = "LogOn" }))

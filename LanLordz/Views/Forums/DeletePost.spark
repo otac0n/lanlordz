@@ -1,4 +1,4 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.DeletePostModel]]"/> 
+<viewdata model="LanLordz.Models.DeletePostModel"/>
 <content name="title">Delete Post</content>
 <content name="headers"></content>
 <content name="main">

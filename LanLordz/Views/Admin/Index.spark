@@ -1,4 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage"/> 
 <content name="title">Admin Index</content>
 <content name="headers">
 </content>

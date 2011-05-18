@@ -1,4 +1,3 @@
-<use pageBaseType="LanLordz.Views.BasePage"/>
 <content name="title">Email Confirmed</content>
 <content name="headers"></content>
 <content name="main">

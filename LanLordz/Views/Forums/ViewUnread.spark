@@ -1,7 +1,7 @@
-<use pageBaseType="LanLordz.Views.BasePage[[LanLordz.Models.ThreadList]]"/> 
+<viewdata model="LanLordz.Models.ThreadList"/>
 <content name="title">View Unread</content>
 <content name="headers"></content>
 <content name="main">
-    <div class="ForumNavigator"><span>!{Html.ActionLink(Model.Config.SiteName + " Forum Index", "Index")}</span> &gt; <span>View Unread</span></div>
+    <div class="ForumNavigator"><span>!{Html.ActionLink(Controller.Config.SiteName + " Forum Index", "Index")}</span> &gt; <span>View Unread</span></div>
     <ThreadListView Threads="Model.Threads" />
 </content>
