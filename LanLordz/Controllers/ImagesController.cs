@@ -57,7 +57,7 @@ namespace LanLordz.Controllers
                     );
                 }
 
-                string mimeType = this.AppManager.GetImageMimeType(imageData);
+                string mimeType = ImageUtilities.GetImageMimeType(imageData);
 
                 return this.Image(
                     imageData,
@@ -85,11 +85,11 @@ namespace LanLordz.Controllers
 
                     if (thumbnail.HasValue)
                     {
-                        imageData = this.AppManager.ResizeToFit(imageData, new Size(thumbnail.Value, thumbnail.Value), true);
+                        imageData = ImageUtilities.ResizeToFit(imageData, new Size(thumbnail.Value, thumbnail.Value), true);
                     }
                     else
                     {
-                        imageData = this.AppManager.ResizeToFit(imageData, new Size(800, 600), false);
+                        imageData = ImageUtilities.ResizeToFit(imageData, new Size(800, 600), false);
                     }
 
                     string eTag = CalculateMd5(imageData);
@@ -102,7 +102,7 @@ namespace LanLordz.Controllers
                         );
                     }
 
-                    string mimeType = this.AppManager.GetImageMimeType(imageData);
+                    string mimeType = ImageUtilities.GetImageMimeType(imageData);
 
                     return this.Image(
                         imageData,

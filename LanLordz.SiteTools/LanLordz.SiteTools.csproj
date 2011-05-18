@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -57,6 +58,7 @@
     <Compile Include="Converter.cs" />
     <Compile Include="GoogleGeocoder.cs" />
     <Compile Include="ImageResult.cs" />
+    <Compile Include="ImageUtilities.cs" />
     <Compile Include="NotModifiedResult.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="Placemark.cs" />
