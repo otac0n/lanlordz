@@ -75,6 +75,7 @@ namespace LanLordz.Controllers
         {
             var posts = (from p in this.Db.Posts
                          where p.ThreadID == this.Config.NewsThread
+                         where p.IsDeleted == false
                          orderby p.CreateDate descending
                          select p).Take(10).ToList();
 
