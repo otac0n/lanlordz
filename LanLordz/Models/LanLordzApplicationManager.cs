@@ -223,53 +223,6 @@ namespace LanLordz.Models
             }
         }
 
-        public IQueryable<Sponsor> GetSponsors()
-        {
-            return this.db.Sponsors;
-        }
-
-        public Sponsor GetSponsor(long sponsorId)
-        {
-            return this.db.Sponsors.SingleOrDefault(s => s.SponsorID == sponsorId);
-        }
-
-        public void AddSponsor(string name, string info, string url, string imageUrl, int order)
-        {
-            Sponsor s = new Sponsor()
-            {
-                Name = name,
-                Info = info,
-                Url = url,
-                ImageUrl = imageUrl,
-                Order = order
-            };
-
-            this.db.Sponsors.InsertOnSubmit(s);
-            this.db.SubmitChanges();
-        }
-
-        public void UpdateSponsor(long sponsorId, string name, string info, string url, string imageUrl, int order)
-        {
-            Sponsor s = this.GetSponsor(sponsorId);
-            {
-                s.Name = name;
-                s.Info = info;
-                s.Url = url;
-                s.ImageUrl = imageUrl;
-                s.Order = order;
-            }
-
-            this.db.SubmitChanges();
-        }
-
-        public void DeleteSponsor(long sponsorId)
-        {
-            Sponsor s = this.GetSponsor(sponsorId);
-
-            this.db.Sponsors.DeleteOnSubmit(s);
-            this.db.SubmitChanges();
-        }
-
         public bool ConfirmKey(string key)
         {
             Guid keyGuid;

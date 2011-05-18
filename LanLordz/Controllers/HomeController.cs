@@ -63,7 +63,7 @@ namespace LanLordz.Controllers
         {
             return View(new ViewSponsorsModel
             {
-                Sponsors = this.AppManager.GetSponsors().ToList()
+                Sponsors = this.Db.Sponsors.ToList()
             });
         }
 
