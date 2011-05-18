@@ -292,7 +292,7 @@
     <Content Include="Skins\Confused.png" />
     <Content Include="Skins\Dead\AnnouncementRead.png" />
     <Content Include="Skins\Dead\AnnouncementUnread.png" />
-    <Content Include="Skins\Dead\Background.png" />
+    <Content Include="Skins\Dead\Background.jpg" />
     <Content Include="Skins\Dead\Banner.png" />
     <Content Include="Skins\Dead\Banner.txt" />
     <Content Include="Skins\Dead\CodeBG.png" />
