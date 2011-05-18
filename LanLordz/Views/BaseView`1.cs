@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file=".cs" company="LAN Lordz, inc.">
+// <copyright file="BaseView`1.cs" company="LAN Lordz, inc.">
 //  Copyright © 2010 LAN Lordz, inc.
 //
 //  This file is part of The LAN Lordz LAN Party System.
@@ -31,10 +31,6 @@ using LanLordz.Controllers;
 
 namespace LanLordz.Views
 {
-    public abstract class BaseView : BaseView<object>
-    {
-    }
-
     public abstract class BaseView<TModel> : SparkView<TModel>
     {
         public LanLordzBaseController Controller
