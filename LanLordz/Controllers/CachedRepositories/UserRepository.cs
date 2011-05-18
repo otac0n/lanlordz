@@ -65,6 +65,13 @@ namespace LanLordz.Controllers.CachedRepositories
                     select u).SingleOrDefault();
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return (from u in this.db.Users
+                    where u.Username == username
+                    select u).SingleOrDefault();
+        }
+
         public UserInformation GetUserInformation(long userId)
         {
             return this.LoadUserInformation(userId);

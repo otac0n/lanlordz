@@ -131,6 +131,67 @@ namespace LanLordz.Controllers
             return View("SendMailSuccess");
         }
 
+        [CompressFilter]
+        public ActionResult EditGroups()
+        {
+            return View(this.Security.GetAllRoles());
+        }
+
+        [CompressFilter]
+        public ActionResult EditGroup(long id)
+        {
+            var group = this.Security.GetRoleById(id);
+
+            if (group == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(group);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult AddGroupMember(long id, FormCollection values)
+        {
+            var group = this.Security.GetRoleById(id);
+
+            if (group == null)
+            {
+                return View("NotFound");
+            }
+
+            var user = this.Users.GetUserByUsername(values["Username"]);
+            if (user != null)
+            {
+                this.Security.AddUserToRole(user, group);
+            }
+
+            return RedirectToAction("EditGroup", new { id });
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult DeleteGroupMember(long id, FormCollection values)
+        {
+            var group = this.Security.GetRoleById(id);
+
+            if (group == null)
+            {
+                return View("NotFound");
+            }
+
+            long userId;
+            if (long.TryParse(values["UserId"], out userId))
+            {
+                var user = this.Users.GetUserById(userId);
+                if (user != null)
+                {
+                    this.Security.RemoveUserFromRole(user, group);
+                }
+            }
+
+            return RedirectToAction("EditGroup", new { id });
+        }
+
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
         {
             using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))

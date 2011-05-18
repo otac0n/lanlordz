@@ -94,6 +94,60 @@ namespace LanLordz.Controllers.CachedRepositories
             return userRoles.Where(ur => ur.IsAdministrator).Any();
         }
 
+        public UsersRole AddUserToRole(User user, Role role)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (role == null)
+            {
+                throw new ArgumentNullException("role");
+            }
+
+            var userRole = (from ur in this.db.UsersRoles
+                            where ur.UserID == user.UserID
+                            where ur.RoleID == role.RoleID
+                            select ur).SingleOrDefault();
+
+            if (userRole == null)
+            {
+                userRole = new UsersRole
+                {
+                    UserID = user.UserID,
+                    RoleID = role.RoleID
+                };
+                this.db.UsersRoles.InsertOnSubmit(userRole);
+                this.db.SubmitChanges();
+
+                this.InvalidateUserRoles(user.UserID);
+            }
+
+            return userRole;
+        }
+
+        public void RemoveUserFromRole(User user, Role role)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (role == null)
+            {
+                throw new ArgumentNullException("role");
+            }
+
+            this.db.UsersRoles.DeleteAllOnSubmit(from ur in this.db.UsersRoles
+                                                 where ur.UserID == user.UserID
+                                                 where ur.RoleID == role.RoleID
+                                                 select ur);
+            this.db.SubmitChanges();
+
+            this.InvalidateUserRoles(user.UserID);
+        }
+
         public IEnumerable<Role> LoadUserRoles(long userId)
         {
             string dataKey = "UserRoles." + userId;
@@ -120,6 +174,16 @@ namespace LanLordz.Controllers.CachedRepositories
                 }
 
                 return value;
+            }
+        }
+
+        private void InvalidateUserRoles(long userId)
+        {
+            string dataKey = "UserRoles." + userId;
+
+            lock (this.dataCache)
+            {
+                this.dataCache.Remove(dataKey);
             }
         }
 
@@ -292,9 +356,19 @@ namespace LanLordz.Controllers.CachedRepositories
             return this.GetUserAccess(user, acl);
         }
 
+        public List<Role> GetAllRoles()
+        {
+            return this.db.Roles.ToList();
+        }
+
         public Role GetRoleByName(string roleName)
         {
             return this.db.Roles.SingleOrDefault(r => r.Name.Equals(roleName));
+        }
+
+        public Role GetRoleById(long roleId)
+        {
+            return this.db.Roles.SingleOrDefault(r => r.RoleID == roleId);
         }
 
         public IQueryable<User> GetUsersInRole(long roleId)
