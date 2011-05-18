@@ -26,6 +26,7 @@ namespace LanLordz.Controllers
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Net.Mail;
     using System.Web;
     using System.Web.Mvc;
     using LanLordz.Models;
@@ -258,7 +259,7 @@ namespace LanLordz.Controllers
         {
             var key = values["Key"];
 
-            if (this.AppManager.ConfirmKey(key))
+            if (this.ConfirmKey(key))
             {
                 return View("ConfirmSuccess");
             }
@@ -631,7 +632,7 @@ namespace LanLordz.Controllers
                     {
                         if (u.IsEmailConfirmed)
                         {
-                            this.AppManager.CreateSecurityChangeKey(u);
+                            this.CreateSecurityChangeKey(u);
                         }
 
                         return RedirectToAction("ChangePassword", new { id = u.UserID });
@@ -639,6 +640,108 @@ namespace LanLordz.Controllers
                 }
 
                 return View("ChangePassword", cpm);
+            }
+        }
+
+        public void CreateSecurityChangeKey(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            MailAddress from = new MailAddress("admin@example.com");
+            try
+            {
+                from = new MailAddress(this.Config.AdminEmail);
+            }
+            catch
+            {
+            }
+
+            MailAddress to;
+            try
+            {
+                to = new MailAddress(user.Email);
+            }
+            catch
+            {
+                return;
+            }
+
+            this.Db.SecurityKeys.DeleteAllOnSubmit(this.Db.SecurityKeys.Where(s => s.UserID == user.UserID));
+            SecurityKey newKey = new SecurityKey
+            {
+                Key = Guid.NewGuid(),
+                ExpirationDate = DateTime.UtcNow.AddHours(24),
+                UserID = user.UserID
+            };
+            this.Db.SecurityKeys.InsertOnSubmit(newKey);
+            this.Db.SubmitChanges();
+
+            MailMessage message = new MailMessage(from, to);
+            var body = this.Config.SecurityEmailText;
+            var subject = this.Config.SecurityEmailSubject;
+
+            try
+            {
+                message.Subject = subject;
+                message.Body = String.Format(body, newKey.Key);
+                message.IsBodyHtml = true;
+            }
+            catch (FormatException)
+            {
+                return;
+            }
+
+            try
+            {
+                SmtpClient client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort);
+                client.Send(message);
+            }
+            catch
+            {
+            }
+        }
+
+        public bool ConfirmKey(string key)
+        {
+            Guid keyGuid;
+            try
+            {
+                keyGuid = new Guid(key);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+
+            var conf = (from c in this.Db.EmailConfirms
+                        where c.Key == keyGuid
+                        select c).SingleOrDefault();
+
+            if (conf == null)
+            {
+                return false;
+            }
+            else
+            {
+                var user = (from u in this.Db.Users
+                            where u.Email == conf.Email
+                            select u).SingleOrDefault();
+
+                if (user == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    user.IsEmailConfirmed = true;
+                    this.Db.EmailConfirms.DeleteOnSubmit(conf);
+                    this.Db.SubmitChanges();
+
+                    return true;
+                }
             }
         }
     }

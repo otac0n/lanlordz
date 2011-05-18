@@ -21,7 +21,6 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Linq;
 using System.Web;
 using System.IO;
 using System.Net.Mail;
@@ -121,108 +120,6 @@ namespace LanLordz.Models
             }
             catch
             {
-            }
-        }
-
-        public void CreateSecurityChangeKey(User user)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            MailAddress from = new MailAddress("admin@example.com");
-            try
-            {
-                from = new MailAddress(this.controller.Config.AdminEmail);
-            }
-            catch
-            {
-            }
-
-            MailAddress to;
-            try
-            {
-                to = new MailAddress(user.Email);
-            }
-            catch
-            {
-                return;
-            }
-
-            this.DB.SecurityKeys.DeleteAllOnSubmit(this.DB.SecurityKeys.Where(s => s.UserID == user.UserID));
-            SecurityKey newKey = new SecurityKey
-            {
-                Key = Guid.NewGuid(),
-                ExpirationDate = DateTime.UtcNow.AddHours(24),
-                UserID = user.UserID
-            };
-            this.DB.SecurityKeys.InsertOnSubmit(newKey);
-            this.DB.SubmitChanges();
-
-            MailMessage message = new MailMessage(from, to);
-            String body = this.controller.Config.SecurityEmailText;
-            String subject = this.controller.Config.SecurityEmailSubject;
-
-            try
-            {
-                message.Subject = subject;
-                message.Body = String.Format(body, newKey.Key);
-                message.IsBodyHtml = true;
-            }
-            catch (FormatException)
-            {
-                return;
-            }
-
-            try
-            {
-                SmtpClient client = new SmtpClient(this.controller.Config.SmtpHost, this.controller.Config.SmtpPort);
-                client.Send(message);
-            }
-            catch
-            {
-            }
-        }
-
-        public bool ConfirmKey(string key)
-        {
-            Guid keyGuid;
-            try
-            {
-                keyGuid = new Guid(key);
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-
-            var conf = (from c in this.DB.EmailConfirms
-                        where c.Key == keyGuid
-                       select c).SingleOrDefault();
-
-            if (conf == null)
-            {
-                return false;
-            }
-            else
-            {
-                var user = (from u in this.DB.Users
-                           where u.Email == conf.Email
-                           select u).SingleOrDefault();
-
-                if (user == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    user.IsEmailConfirmed = true;
-                    this.DB.EmailConfirms.DeleteOnSubmit(conf);
-                    this.DB.SubmitChanges();
-
-                    return true;
-                }
             }
         }
 
