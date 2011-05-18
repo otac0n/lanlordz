@@ -171,7 +171,7 @@ namespace LanLordz.Controllers
                 var theme = string.Empty;
                 if (this.CurrentUser != null)
                 {
-                    theme = this.AppManager.GetUserInformation(this.CurrentUser.UserID, false).Theme;
+                    theme = this.GetUserInformation(this.CurrentUser.UserID, false).Theme;
                 }
 
                 if (string.IsNullOrEmpty(theme))
@@ -191,7 +191,7 @@ namespace LanLordz.Controllers
 
                 if (this.CurrentUser != null)
                 {
-                    var ui = this.AppManager.GetUserInformation(this.CurrentUser.UserID, false);
+                    var ui = this.GetUserInformation(this.CurrentUser.UserID, false);
                     if (!string.IsNullOrEmpty(ui.TimeZone))
                     {
                         this.userTimeZone = TimeZoneInfo.FindSystemTimeZoneById(ui.TimeZone);
@@ -248,6 +248,16 @@ namespace LanLordz.Controllers
         {
             title = this.invalidUrlCharacters.Replace(title, "-");
             return title.Trim('-').ToLower();
+        }
+
+        public UserInformation GetUserInformation(long userId, bool forceFresh)
+        {
+            if (forceFresh)
+            {
+                this.Users.InvalidateUserInformation(userId);
+            }
+
+            return this.Users.GetUserInformation(userId);
         }
 
         protected static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)

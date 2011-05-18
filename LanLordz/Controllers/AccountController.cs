@@ -275,7 +275,7 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult ViewProfile(long id)
         {
-            var u = this.AppManager.GetUserInformation(id, false);
+            var u = this.GetUserInformation(id, false);
             return View("ViewProfile", new UserInformationModel
             {
                 UserInfo = u
@@ -292,7 +292,7 @@ namespace LanLordz.Controllers
 
             return View("EditProfile", new EditProfileModel
             {
-                UserInfo = this.AppManager.GetUserInformation(CurrentUser.UserID, true),
+                UserInfo = this.GetUserInformation(CurrentUser.UserID, true),
                 AvailableThemes = this.AppManager.GetAvailableThemes(true),
                 AvailableTimezones = this.AppManager.GetAvailableTimezones(true)
             });
@@ -316,7 +316,7 @@ namespace LanLordz.Controllers
                     this.ModelState.AddModelError(violation.PropertyName, violation.ErrorMessage);
                 }
 
-                UserInformation info = this.AppManager.GetUserInformation(CurrentUser.UserID, true);
+                UserInformation info = this.GetUserInformation(CurrentUser.UserID, true);
                 info.Biography = attrs.Biography;
                 info.Interests = attrs.Interests;
                 info.Location = attrs.Location;
@@ -355,7 +355,7 @@ namespace LanLordz.Controllers
                 AppManager.SetUserConfigProperty("Theme", userId, attrs.Theme);
                 AppManager.SetUserConfigProperty("TimeZone", userId, attrs.TimeZone);
 
-                UserInformation info = this.AppManager.GetUserInformation(u.UserID, true);
+                UserInformation info = this.GetUserInformation(u.UserID, true);
 
                 return RedirectToAction("ViewProfile", new { id = CurrentUser.UserID });
             }
@@ -369,7 +369,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
+            var info = this.GetUserInformation(CurrentUser.UserID, false);
 
             return View("ChangeAvatar", new ChangeAvatarModel
             {
@@ -388,7 +388,7 @@ namespace LanLordz.Controllers
             if (Request.Files["NewAvatar"] == null)
             {
                 this.ModelState.AddModelError("Form", "You must choose a file.");
-                var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
+                var info = this.GetUserInformation(CurrentUser.UserID, false);
                 return View("ChangeAvatar", new ChangeAvatarModel
                 {
                     UserInfo = info
@@ -400,7 +400,7 @@ namespace LanLordz.Controllers
                 if (hpf.ContentLength == 0)
                 {
                     this.ModelState.AddModelError("Form", "The file you have chosen is empty.");
-                    var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
+                    var info = this.GetUserInformation(CurrentUser.UserID, false);
                     return View("ChangeAvatar", new ChangeAvatarModel
                     {
                         UserInfo = info
@@ -415,7 +415,7 @@ namespace LanLordz.Controllers
                         {
                             this.ModelState.AddModelError("Form", violation.ErrorMessage);
                         }
-                        var info = this.AppManager.GetUserInformation(CurrentUser.UserID, false);
+                        var info = this.GetUserInformation(CurrentUser.UserID, false);
                         return View("ChangeAvatar", new ChangeAvatarModel
                         {
                             UserInfo = info

@@ -50,7 +50,7 @@ namespace LanLordz.Views
                 var theme = string.Empty;
                 if (this.Controller.CurrentUser != null)
                 {
-                    theme = controller.AppManager.GetUserInformation(controller.CurrentUser.UserID, false).Theme;
+                    theme = controller.GetUserInformation(controller.CurrentUser.UserID, false).Theme;
                 }
 
                 if (string.IsNullOrEmpty(theme))

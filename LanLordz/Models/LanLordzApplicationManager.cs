@@ -532,16 +532,6 @@ namespace LanLordz.Models
             return this.db.Users.SingleOrDefault(u => u.UserID == userId);
         }
 
-        public UserInformation GetUserInformation(long userId, bool forceFresh)
-        {
-            if (forceFresh)
-            {
-                this.Controller.Users.InvalidateUserInformation(userId);
-            }
-
-            return this.Controller.Users.GetUserInformation(userId);
-        }
-
         public string RememberUser(User user)
         {
             if (user == null)

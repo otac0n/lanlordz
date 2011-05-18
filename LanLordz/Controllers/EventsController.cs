@@ -552,7 +552,7 @@ namespace LanLordz.Controllers
                 return View(viewModel);
             }
 
-            var tzi = this.AppManager.GetUserInformation(this.CurrentUser.UserID, false).TimeZoneInfo;
+            var tzi = this.GetUserInformation(this.CurrentUser.UserID, false).TimeZoneInfo;
             if (tzi == null)
             {
                 tzi = this.Config.DefaultTimeZoneInfo;

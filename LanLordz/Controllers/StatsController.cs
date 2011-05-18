@@ -60,8 +60,8 @@ namespace LanLordz.Controllers
                 BiggestEventStats = this.AppManager.GetEventsStats(largestEvents.Take(1)),
                 TotalThreads = this.Db.Threads.Count(),
                 TotalPosts = this.Db.Posts.Count(),
-                MostActivePoster = this.AppManager.GetUserInformation(activeUserId, false),
-                NewestUser = this.AppManager.GetUserInformation(recentUserId, false)
+                MostActivePoster = this.GetUserInformation(activeUserId, false),
+                NewestUser = this.GetUserInformation(recentUserId, false)
             };
         }
 
