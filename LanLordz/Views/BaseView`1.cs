@@ -64,9 +64,11 @@ namespace LanLordz.Views
 
         protected string HashString(string Value)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
             byte[] data = Encoding.UTF8.GetBytes(Value);
-            data = md5.ComputeHash(data);
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                data = md5.ComputeHash(data);
+            }
 
             string ret = "";
             for (int i = 0; i < data.Length; i++)

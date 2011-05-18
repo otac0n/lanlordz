@@ -49,10 +49,12 @@
 
         protected void Session_Start()
         {
-            var db = new LanLordzDataContext();
-            lock (syncRoot)
+            using (var db = new LanLordzDataContext())
             {
-                db.ExecuteCommand("UPDATE dbo.Configuration SET Value = cast(Value as bigint) + 1 WHERE Property = 'Visitors'");
+                lock (syncRoot)
+                {
+                    db.ExecuteCommand("UPDATE dbo.Configuration SET Value = cast(Value as bigint) + 1 WHERE Property = 'Visitors'");
+                }
             }
         }
 

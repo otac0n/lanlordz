@@ -258,8 +258,10 @@ namespace LanLordz.Controllers
 
         public static string ComputeHash(string data)
         {
-            var sha = new SHA512Managed();
-            return Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(data ?? string.Empty)));
+            using (var sha = new SHA512Managed())
+            {
+                return Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(data ?? string.Empty)));
+            }
         }
 
         public string FormatPostText(string postText)
@@ -310,9 +312,11 @@ namespace LanLordz.Controllers
 
         public static string CalculateMd5(byte[] data)
         {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] result = md5.ComputeHash(data);
-            return Convert.ToBase64String(result);
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] result = md5.ComputeHash(data);
+                return Convert.ToBase64String(result);
+            }
         }
 
         protected void AddAuthFailure(long userId, string originatingHostIp)
@@ -487,40 +491,43 @@ namespace LanLordz.Controllers
                 return;
             }
 
-            MailMessage message = new MailMessage(from, to);
-
-            String body = this.Config.ConfirmEmailText;
-
-            String subject = this.Config.ConfirmEmailSubject;
-
-            EmailConfirm confirm = new EmailConfirm
+            using (var message = new MailMessage(from, to))
             {
-                Email = email,
-                Key = Guid.NewGuid()
-            };
-            this.Db.EmailConfirms.InsertOnSubmit(confirm);
-            this.Db.SubmitChanges();
+                String body = this.Config.ConfirmEmailText;
 
-            String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
+                String subject = this.Config.ConfirmEmailSubject;
 
-            try
-            {
-                message.Subject = subject;
-                message.Body = String.Format(body, Link);
-                message.IsBodyHtml = true;
-            }
-            catch (FormatException)
-            {
-                return;
-            }
+                EmailConfirm confirm = new EmailConfirm
+                {
+                    Email = email,
+                    Key = Guid.NewGuid()
+                };
+                this.Db.EmailConfirms.InsertOnSubmit(confirm);
+                this.Db.SubmitChanges();
 
-            try
-            {
-                SmtpClient client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort);
-                client.Send(message);
-            }
-            catch
-            {
+                String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
+
+                try
+                {
+                    message.Subject = subject;
+                    message.Body = String.Format(body, Link);
+                    message.IsBodyHtml = true;
+                }
+                catch (FormatException)
+                {
+                    return;
+                }
+
+                try
+                {
+                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+                    {
+                        client.Send(message);
+                    }
+                }
+                catch
+                {
+                }
             }
         }
 

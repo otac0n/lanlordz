@@ -133,74 +133,80 @@ namespace LanLordz.Controllers
 
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
         {
-            SmtpClient client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort);
-
-            MailAddress from = new MailAddress(fromUser.Email);
-
-            string attachmentData = null;
-
-            if (invitationEventId.HasValue)
+            using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
             {
-                var evt = this.Events.GetEvent(invitationEventId.Value);
-                var vnu = this.Events.GetVenue(evt.VenueID);
+                MailAddress from = new MailAddress(fromUser.Email);
 
-                string address = this.Config.AdminEmail;
+                string attachmentData = null;
 
-                try
+                if (invitationEventId.HasValue)
                 {
-                    address = (new MailAddress(this.Config.AdminEmail, this.Config.SiteName)).ToString();
-                }
-                catch
-                {
-                }
+                    var evt = this.Events.GetEvent(invitationEventId.Value);
+                    var vnu = this.Events.GetVenue(evt.VenueID);
 
-                Appointment apt = new Appointment
-                {
-                    StartTime = this.ConvertDateTime(evt.BeginDateTime, this.Config.DefaultTimeZoneInfo),
-                    EndTime = this.ConvertDateTime(evt.EndDateTime, this.Config.DefaultTimeZoneInfo),
-                    Title = evt.Title,
-                    Description = evt.Info,
-                    Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,
-                    Organizer = address
-                };
+                    string address = this.Config.AdminEmail;
 
-                attachmentData = apt.AsICalendar();
-            }
+                    try
+                    {
+                        address = (new MailAddress(this.Config.AdminEmail, this.Config.SiteName)).ToString();
+                    }
+                    catch
+                    {
+                    }
 
-            foreach (User user in this.Security.GetUsersInRole(toGroupId))
-            {
-                if (!user.ReceiveAdminEmail)
-                {
-                    continue;
-                }
+                    Appointment apt = new Appointment
+                    {
+                        StartTime = this.ConvertDateTime(evt.BeginDateTime, this.Config.DefaultTimeZoneInfo),
+                        EndTime = this.ConvertDateTime(evt.EndDateTime, this.Config.DefaultTimeZoneInfo),
+                        Title = evt.Title,
+                        Description = evt.Info,
+                        Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,
+                        Organizer = address
+                    };
 
-                MailAddress to;
-
-                try
-                {
-                    to = new MailAddress(user.Email);
-                }
-                catch (ArgumentException)
-                {
-                    continue;
-                }
-                catch (FormatException)
-                {
-                    continue;
+                    attachmentData = apt.AsICalendar();
                 }
 
-                MailMessage message = new MailMessage(from, to);
-                message.IsBodyHtml = true;
-                message.Subject = subject;
-                message.Body = body;
-
-                if (!string.IsNullOrEmpty(attachmentData))
+                foreach (User user in this.Security.GetUsersInRole(toGroupId))
                 {
-                    Attachment attachment = new Attachment(new MemoryStream(Encoding.UTF8.GetBytes(attachmentData)), "Invitation.ics", "text/calendar");
-                    message.Attachments.Add(attachment);
-                }
+                    if (!user.ReceiveAdminEmail)
+                    {
+                        continue;
+                    }
 
-                client.Send(message);
+                    MailAddress to;
+
+                    try
+                    {
+                        to = new MailAddress(user.Email);
+                    }
+                    catch (ArgumentException)
+                    {
+                        continue;
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
+
+                    using (var message = new MailMessage(from, to))
+                    {
+                        message.IsBodyHtml = true;
+                        message.Subject = subject;
+                        message.Body = body;
+
+                        if (!string.IsNullOrEmpty(attachmentData))
+                        {
+                            using (var contentStream = new MemoryStream(Encoding.UTF8.GetBytes(attachmentData)))
+                            {
+                                Attachment attachment = new Attachment(contentStream, "Invitation.ics", "text/calendar");
+                                message.Attachments.Add(attachment);
+                            }
+                        }
+
+                        client.Send(message);
+                    }
+                }
             }
         }
     }

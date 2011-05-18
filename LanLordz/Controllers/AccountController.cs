@@ -679,28 +679,32 @@ namespace LanLordz.Controllers
             this.Db.SecurityKeys.InsertOnSubmit(newKey);
             this.Db.SubmitChanges();
 
-            MailMessage message = new MailMessage(from, to);
-            var body = this.Config.SecurityEmailText;
-            var subject = this.Config.SecurityEmailSubject;
+            using (var message = new MailMessage(from, to))
+            {
+                var body = this.Config.SecurityEmailText;
+                var subject = this.Config.SecurityEmailSubject;
 
-            try
-            {
-                message.Subject = subject;
-                message.Body = String.Format(body, newKey.Key);
-                message.IsBodyHtml = true;
-            }
-            catch (FormatException)
-            {
-                return;
-            }
+                try
+                {
+                    message.Subject = subject;
+                    message.Body = String.Format(body, newKey.Key);
+                    message.IsBodyHtml = true;
+                }
+                catch (FormatException)
+                {
+                    return;
+                }
 
-            try
-            {
-                SmtpClient client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort);
-                client.Send(message);
-            }
-            catch
-            {
+                try
+                {
+                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+                    {
+                        client.Send(message);
+                    }
+                }
+                catch
+                {
+                }
             }
         }
 

@@ -240,7 +240,11 @@ namespace LanLordz.Controllers.CachedRepositories
                     Trace.WriteLine(@"Cache Miss: " + dataKey);
 
                     XmlDocument doc = new XmlDocument();
-                    doc.Load(new StreamReader(Path.Combine(this.skinsDirectory, "BBCode.xml")));
+                    using (var reader = new StreamReader(Path.Combine(this.skinsDirectory, "BBCode.xml")))
+                    {
+                        doc.Load(reader);
+                    }
+
                     value = new BBCodeInterpreter(doc);
 
                     this.skinCache.Add(dataKey, value, CacheItemPriority.Normal, null, new AbsoluteTime(new TimeSpan(3, 0, 0)), new SlidingTime(new TimeSpan(1, 0, 0)));
@@ -267,7 +271,11 @@ namespace LanLordz.Controllers.CachedRepositories
                     Trace.WriteLine(@"Cache Miss: " + dataKey);
 
                     XmlDocument doc = new XmlDocument();
-                    doc.Load(new StreamReader(Path.Combine(this.skinsDirectory, "DefaultPager.xml")));
+                    using (var reader = new StreamReader(Path.Combine(this.skinsDirectory, "DefaultPager.xml")))
+                    {
+                        doc.Load(reader);
+                    }
+
                     value = new Pager(doc);
 
                     this.skinCache.Add(dataKey, value, CacheItemPriority.Normal, null, new AbsoluteTime(new TimeSpan(6, 0, 0)), new SlidingTime(new TimeSpan(2, 0, 0)));
@@ -294,7 +302,11 @@ namespace LanLordz.Controllers.CachedRepositories
                     Trace.WriteLine(@"Cache Miss: " + dataKey);
 
                     XmlDocument doc = new XmlDocument();
-                    doc.Load(new StreamReader(Path.Combine(this.skinsDirectory, "DefaultForumPager.xml")));
+                    using (var reader = new StreamReader(Path.Combine(this.skinsDirectory, "DefaultForumPager.xml")))
+                    {
+                        doc.Load(reader);
+                    }
+
                     value = new Pager(doc);
 
                     this.skinCache.Add(dataKey, value, CacheItemPriority.Normal, null, new AbsoluteTime(new TimeSpan(6, 0, 0)), new SlidingTime(new TimeSpan(2, 0, 0)));
@@ -321,7 +333,11 @@ namespace LanLordz.Controllers.CachedRepositories
                     Trace.WriteLine(@"Cache Miss: " + dataKey);
 
                     XmlDocument doc = new XmlDocument();
-                    doc.Load(new StreamReader(Path.Combine(this.skinsDirectory, "Default" + pagerName + "Pager.xml")));
+                    using (var reader = new StreamReader(Path.Combine(this.skinsDirectory, "Default" + pagerName + "Pager.xml")))
+                    {
+                        doc.Load(reader);
+                    }
+
                     value = new Pager(doc);
 
                     this.skinCache.Add(dataKey, value, CacheItemPriority.Normal, null, new AbsoluteTime(new TimeSpan(6, 0, 0)), new SlidingTime(new TimeSpan(2, 0, 0)));
