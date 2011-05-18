@@ -58,6 +58,13 @@ namespace LanLordz.Controllers.CachedRepositories
             this.config = config;
         }
 
+        public User GetUserById(long userId)
+        {
+            return (from u in this.db.Users
+                    where u.UserID == userId
+                    select u).SingleOrDefault();
+        }
+
         public UserInformation GetUserInformation(long userId)
         {
             return this.LoadUserInformation(userId);
@@ -188,6 +195,16 @@ namespace LanLordz.Controllers.CachedRepositories
             this.db.AutoLogins.DeleteAllOnSubmit(from a in this.db.AutoLogins
                                                  where a.Key == keyId
                                                  select a);
+            this.db.SubmitChanges();
+        }
+
+        public void UpdateUserPassword(long userId, string password)
+        {
+            string passwordHash = LanLordzBaseController.ComputeHash(password);
+
+            var u = this.GetUserById(userId);
+            u.PasswordHash = passwordHash;
+
             this.db.SubmitChanges();
         }
     }

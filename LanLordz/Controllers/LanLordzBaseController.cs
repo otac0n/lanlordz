@@ -53,6 +53,7 @@ namespace LanLordz.Controllers
 
         private PluginRepository pluginRepo;
         private SkinRepository skinRepo;
+        private GoogleGeocoder geocoder;
 
         public LanLordzBaseController()
             : base()
@@ -180,6 +181,19 @@ namespace LanLordz.Controllers
                 }
 
                 return theme;
+            }
+        }
+
+        public GoogleGeocoder Geocoder
+        {
+            get
+            {
+                if (this.geocoder == null)
+                {
+                    this.geocoder = new GoogleGeocoder(this.Config.GoogleMapsKey);
+                }
+
+                return this.geocoder;
             }
         }
 

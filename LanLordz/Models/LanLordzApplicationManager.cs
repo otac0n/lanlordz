@@ -39,7 +39,6 @@ namespace LanLordz.Models
     public class LanLordzApplicationManager
     {
         private LanLordzDataContext db;
-        private GoogleGeocoder geocoder;
 
         private LanLordzBaseController controller;
 
@@ -522,11 +521,6 @@ namespace LanLordz.Models
             }
         }
 
-        public User GetUserByUserID(long userId)
-        {
-            return this.db.Users.SingleOrDefault(u => u.UserID == userId);
-        }
-
         public EventsStatistics GetEventsStats(IQueryable<Event> events)
         {
             if (events == null)
@@ -557,16 +551,6 @@ namespace LanLordz.Models
                        Registrations = this.DB.Registrations.Where(r => r.EventID == e.EventID).Count(),
                        CheckIns = this.DB.Registrations.Where(r => r.EventID == e.EventID && r.IsCheckedIn).Count(),
                    };
-        }
-
-        public void UpdateUserPassword(long userId, string password)
-        {
-            string passwordHash = LanLordzBaseController.ComputeHash(password);
-
-            User u = GetUserByUserID(userId);
-            u.PasswordHash = passwordHash;
-
-            this.db.SubmitChanges();
         }
 
         public void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
@@ -640,16 +624,6 @@ namespace LanLordz.Models
 
                 client.Send(message);
             }
-        }
-
-        public Placemark Geocode(string address)
-        {
-            if (this.geocoder == null)
-            {
-                this.geocoder = new GoogleGeocoder(this.controller.Config.GoogleMapsKey);
-            }
-
-            return this.geocoder.Geocode(address);
         }
     }
 }

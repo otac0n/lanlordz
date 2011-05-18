@@ -476,7 +476,7 @@ namespace LanLordz.Controllers
 
             if (u == null && id.HasValue)
             {
-                u = this.AppManager.GetUserByUserID(id.Value);
+                u = this.Users.GetUserById(id.Value);
 
                 if (u == null)
                 {
@@ -517,7 +517,7 @@ namespace LanLordz.Controllers
             {
                 if (u == null)
                 {
-                    u = this.AppManager.GetUserByUserID(id.Value);
+                    u = this.Users.GetUserById(id.Value);
 
                     if (u == null)
                     {
@@ -605,7 +605,7 @@ namespace LanLordz.Controllers
                     return View("ChangePassword", cpm);
                 }
 
-                this.AppManager.UpdateUserPassword(u.UserID, values["Password"]);
+                this.Users.UpdateUserPassword(u.UserID, values["Password"]);
 
                 return View("ChangeSucceeded");
             }
