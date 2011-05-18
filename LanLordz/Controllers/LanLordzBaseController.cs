@@ -26,6 +26,7 @@ namespace LanLordz.Controllers
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Net.Mail;
     using System.Security.Cryptography;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -466,9 +467,69 @@ namespace LanLordz.Controllers
 
             this.Db.SubmitChanges();
 
-            this.AppManager.SendConfirmationEmail(email, request, response);
+            this.SendConfirmationEmail(email, request, response);
 
             return newUser;
+        }
+
+        public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
+        {
+            if (String.IsNullOrEmpty(email))
+                throw new ArgumentNullException("email");
+            MailAddress from = new MailAddress("admin@example.com");
+            try
+            {
+                from = new MailAddress(this.Config.AdminEmail);
+            }
+            catch
+            {
+            }
+
+            MailAddress to;
+            try
+            {
+                to = new MailAddress(email);
+            }
+            catch
+            {
+                return;
+            }
+
+            MailMessage message = new MailMessage(from, to);
+
+            String body = this.Config.ConfirmEmailText;
+
+            String subject = this.Config.ConfirmEmailSubject;
+
+            EmailConfirm confirm = new EmailConfirm
+            {
+                Email = email,
+                Key = Guid.NewGuid()
+            };
+            this.Db.EmailConfirms.InsertOnSubmit(confirm);
+            this.Db.SubmitChanges();
+
+            String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
+
+            try
+            {
+                message.Subject = subject;
+                message.Body = String.Format(body, Link);
+                message.IsBodyHtml = true;
+            }
+            catch (FormatException)
+            {
+                return;
+            }
+
+            try
+            {
+                SmtpClient client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort);
+                client.Send(message);
+            }
+            catch
+            {
+            }
         }
 
         protected User RecallUser(string key, string originatingHostIp)

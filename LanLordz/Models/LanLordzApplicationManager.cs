@@ -21,7 +21,6 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Web;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
@@ -60,66 +59,6 @@ namespace LanLordz.Models
             get
             {
                 return this.db;
-            }
-        }
-
-        public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
-        {
-            if (String.IsNullOrEmpty(email))
-                throw new ArgumentNullException("email");
-            MailAddress from = new MailAddress("admin@example.com");
-            try
-            {
-                from = new MailAddress(this.controller.Config.AdminEmail);
-            }
-            catch
-            {
-            }
-
-            MailAddress to;
-            try
-            {
-                to = new MailAddress(email);
-            }
-            catch
-            {
-                return;
-            }
-
-            MailMessage message = new MailMessage(from, to);
-
-            String body = this.controller.Config.ConfirmEmailText;
-
-            String subject = this.controller.Config.ConfirmEmailSubject;
-
-            EmailConfirm confirm = new EmailConfirm
-            {
-                Email = email,
-                Key = Guid.NewGuid()
-            };
-            this.DB.EmailConfirms.InsertOnSubmit(confirm);
-            this.DB.SubmitChanges();
-
-            String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
-
-            try
-            {
-                message.Subject = subject;
-                message.Body = String.Format(body, Link);
-                message.IsBodyHtml = true;
-            }
-            catch (FormatException)
-            {
-                return;
-            }
-
-            try
-            {
-                SmtpClient client = new SmtpClient(this.controller.Config.SmtpHost, this.controller.Config.SmtpPort);
-                client.Send(message);
-            }
-            catch
-            {
             }
         }
 
