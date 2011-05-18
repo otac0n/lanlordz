@@ -426,7 +426,7 @@ namespace LanLordz.Controllers
                         byte[] newAvatar = new byte[hpf.InputStream.Length];
                         hpf.InputStream.Seek(0, SeekOrigin.Begin);
                         hpf.InputStream.Read(newAvatar, 0, newAvatar.Length);
-                        this.AppManager.UpdateUserAvatar(CurrentUser.UserID, newAvatar);
+                        this.Users.UpdateUserAvatar(CurrentUser.UserID, newAvatar);
                     }
                 }
             }

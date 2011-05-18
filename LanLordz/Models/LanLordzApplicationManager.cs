@@ -285,27 +285,6 @@ namespace LanLordz.Models
             this.db.SubmitChanges();
         }
 
-        public void UpdateUserAvatar(long userId, byte[] newAvatar)
-        {
-            UserAvatar ua = this.DB.UserAvatars.Where(a => a.UserID == userId).SingleOrDefault();
-            if (ua == null)
-            {
-                ua = new UserAvatar
-                {
-                    UserID = userId
-                };
-                this.DB.UserAvatars.InsertOnSubmit(ua);
-            }
-
-            ua.Avatar = newAvatar;
-            this.DB.SubmitChanges();
-        }
-
-        public UserAvatar GetUserAvatar(long userId)
-        {
-            return this.DB.UserAvatars.Where(a => a.UserID == userId).SingleOrDefault();
-        }
-
         public Dictionary<string, string> GetAvailableTimezones(bool includeSiteDefault)
         {
             var timezones = new Dictionary<string, string>();

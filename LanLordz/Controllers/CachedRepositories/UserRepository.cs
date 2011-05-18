@@ -158,6 +158,27 @@ namespace LanLordz.Controllers.CachedRepositories
             }
         }
 
+        public void UpdateUserAvatar(long userId, byte[] newAvatar)
+        {
+            var ua = this.GetUserAvatar(userId);
+            if (ua == null)
+            {
+                ua = new UserAvatar
+                {
+                    UserID = userId
+                };
+                this.db.UserAvatars.InsertOnSubmit(ua);
+            }
+
+            ua.Avatar = newAvatar;
+            this.db.SubmitChanges();
+        }
+
+        public UserAvatar GetUserAvatar(long userId)
+        {
+            return this.db.UserAvatars.Where(a => a.UserID == userId).SingleOrDefault();
+        }
+
         public string RememberUser(User user)
         {
             if (user == null)

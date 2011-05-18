@@ -41,7 +41,7 @@ namespace LanLordz.Controllers
 
         public ActionResult ViewAvatar(long id)
         {
-            UserAvatar avatar = this.AppManager.GetUserAvatar(id);
+            UserAvatar avatar = this.Users.GetUserAvatar(id);
 
             if (avatar != null && true)
             {
