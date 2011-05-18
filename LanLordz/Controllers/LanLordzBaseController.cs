@@ -23,6 +23,7 @@
 namespace LanLordz.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Security.Cryptography;
@@ -226,6 +227,40 @@ namespace LanLordz.Controllers
         {
             TimeSpan ts = sourceTimeZone.GetUtcOffset(utcDateTime);
             return utcDateTime.Subtract(ts);
+        }
+
+        public Dictionary<string, string> GetAvailableTimezones(bool includeSiteDefault)
+        {
+            var timezones = new Dictionary<string, string>();
+
+            if (includeSiteDefault)
+            {
+                timezones.Add("", "(Site Default)");
+            }
+
+            foreach (var timezone in TimeZoneInfo.GetSystemTimeZones())
+            {
+                timezones.Add(timezone.Id, timezone.DisplayName);
+            }
+
+            return timezones;
+        }
+
+        public Dictionary<string, string> GetAvailableThemes(bool includeSiteDefault)
+        {
+            var themes = new Dictionary<string, string>();
+
+            if (includeSiteDefault)
+            {
+                themes.Add("", "(Site Default)");
+            }
+
+            foreach (string theme in this.Skins.GetSkinsList())
+            {
+                themes.Add(theme, theme);
+            }
+
+            return themes;
         }
 
         public static string ComputeHash(string data)

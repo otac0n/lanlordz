@@ -56,8 +56,8 @@ namespace LanLordz.Controllers
 
             var model = new MasterConfigModel
             {
-                AvailableThemes = this.AppManager.GetAvailableThemes(false),
-                AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
+                AvailableThemes = this.GetAvailableThemes(false),
+                AvailableTimezones = this.GetAvailableTimezones(false),
                 Groups = this.Db.Roles.ToList(),
             };
 
@@ -81,8 +81,8 @@ namespace LanLordz.Controllers
 
                 var model = new MasterConfigModel
                 {
-                    AvailableThemes = this.AppManager.GetAvailableThemes(false),
-                    AvailableTimezones = this.AppManager.GetAvailableTimezones(false),
+                    AvailableThemes = this.GetAvailableThemes(false),
+                    AvailableTimezones = this.GetAvailableTimezones(false),
                     Groups = this.Db.Roles.ToList(),
                 };
 

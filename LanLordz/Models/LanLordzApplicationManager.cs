@@ -21,7 +21,6 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
@@ -283,40 +282,6 @@ namespace LanLordz.Models
 
             this.db.Sponsors.DeleteOnSubmit(s);
             this.db.SubmitChanges();
-        }
-
-        public Dictionary<string, string> GetAvailableTimezones(bool includeSiteDefault)
-        {
-            var timezones = new Dictionary<string, string>();
-            
-            if (includeSiteDefault)
-            {
-                timezones.Add("", "(Site Default)");
-            }
-
-            foreach (var timezone in TimeZoneInfo.GetSystemTimeZones())
-            {
-                timezones.Add(timezone.Id, timezone.DisplayName);
-            }
-
-            return timezones;
-        }
-
-        public Dictionary<string, string> GetAvailableThemes(bool includeSiteDefault)
-        {
-            var themes = new Dictionary<string, string>();
-
-            if (includeSiteDefault)
-            {
-                themes.Add("", "(Site Default)");
-            }
-
-            foreach (string theme in this.Controller.Skins.GetSkinsList())
-            {
-                themes.Add(theme, theme);
-            }
-
-            return themes;
         }
 
         public bool ConfirmKey(string key)

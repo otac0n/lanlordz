@@ -293,8 +293,8 @@ namespace LanLordz.Controllers
             return View("EditProfile", new EditProfileModel
             {
                 UserInfo = this.GetUserInformation(CurrentUser.UserID, true),
-                AvailableThemes = this.AppManager.GetAvailableThemes(true),
-                AvailableTimezones = this.AppManager.GetAvailableTimezones(true)
+                AvailableThemes = this.GetAvailableThemes(true),
+                AvailableTimezones = this.GetAvailableTimezones(true)
             });
         }
 
@@ -332,8 +332,8 @@ namespace LanLordz.Controllers
                 return View("EditProfile", new EditProfileModel
                 {
                     UserInfo = info,
-                    AvailableThemes = this.AppManager.GetAvailableThemes(true),
-                    AvailableTimezones = this.AppManager.GetAvailableTimezones(true)
+                    AvailableThemes = this.GetAvailableThemes(true),
+                    AvailableTimezones = this.GetAvailableTimezones(true)
                 });
             }
             else
