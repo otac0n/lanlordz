@@ -274,14 +274,17 @@ namespace LanLordz.Controllers
             return this.Users.GetUserInformation(userId);
         }
 
-        protected static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
+        public static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
         {
-            return LanLordzApplicationManager.CalculateScrapeBuster(scrapeBusterKey, additionalData);
+            var topic = Encoding.ASCII.GetBytes(scrapeBusterKey + "." + (additionalData == null ? string.Empty : additionalData.ToString()));
+            return CalculateMd5(topic).Substring(0, 8);
         }
 
-        protected static string CalculateMd5(byte[] data)
+        public static string CalculateMd5(byte[] data)
         {
-            return LanLordzApplicationManager.CalculateMd5(data);
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] result = md5.ComputeHash(data);
+            return Convert.ToBase64String(result);
         }
 
         protected void AddAuthFailure(long userId, string originatingHostIp)

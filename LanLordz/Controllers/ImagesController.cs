@@ -47,7 +47,7 @@ namespace LanLordz.Controllers
             {
                 byte[] imageData = avatar.Avatar.ToArray();
 
-                string eTag = LanLordzApplicationManager.CalculateMd5(imageData);
+                string eTag = CalculateMd5(imageData);
 
                 if (this.Request.Headers["If-None-Match"] == eTag)
                 {

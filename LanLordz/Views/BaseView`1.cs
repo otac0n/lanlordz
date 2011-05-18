@@ -84,7 +84,7 @@ namespace LanLordz.Views
 
         protected static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
         {
-            return LanLordzApplicationManager.CalculateScrapeBuster(scrapeBusterKey, additionalData);
+            return LanLordzBaseController.CalculateScrapeBuster(scrapeBusterKey, additionalData);
         }
 
         protected MvcHtmlString UserLink(User user)

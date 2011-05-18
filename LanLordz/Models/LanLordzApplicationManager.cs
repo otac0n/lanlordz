@@ -27,7 +27,6 @@ using System.Web;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Drawing;
-using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Text;
 using LanLordz.SiteTools;
@@ -383,19 +382,6 @@ namespace LanLordz.Models
                     return true;
                 }
             }
-        }
-
-        public static string CalculateMd5(byte[] data)
-        {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] result = md5.ComputeHash(data);
-            return Convert.ToBase64String(result);
-        }
-
-        public static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
-        {
-            var topic = Encoding.ASCII.GetBytes(scrapeBusterKey + "." + (additionalData == null ? string.Empty : additionalData.ToString()));
-            return CalculateMd5(topic).Substring(0, 8);
         }
 
         public string GetImageMimeType(byte[] imageData)
