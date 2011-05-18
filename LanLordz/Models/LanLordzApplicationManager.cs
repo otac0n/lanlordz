@@ -24,14 +24,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Drawing;
 using System.Net.Mail;
 using System.Text;
 using LanLordz.SiteTools;
 using LanLordz.Controllers;
-using System.Drawing.Drawing2D;
 
 namespace LanLordz.Models
 {
@@ -382,38 +379,6 @@ namespace LanLordz.Models
                     return true;
                 }
             }
-        }
-
-        public EventsStatistics GetEventsStats(IQueryable<Event> events)
-        {
-            if (events == null)
-            {
-                return null;
-            }
-            else
-            {
-                var registrations = from e in events
-                                    join r in this.DB.Registrations on e.EventID equals r.EventID
-                                    select r;
-
-                return new EventsStatistics
-                {
-                    Count = events.Count(),
-                    Registrations = registrations.Count(),
-                    CheckIns = registrations.Where(r => r.IsCheckedIn).Count()
-                };
-            }
-        }
-
-        public IQueryable<EventStats> GetEventStats()
-        {
-            return from e in this.DB.Events
-                   select new EventStats
-                   {
-                       Event = e,
-                       Registrations = this.DB.Registrations.Where(r => r.EventID == e.EventID).Count(),
-                       CheckIns = this.DB.Registrations.Where(r => r.EventID == e.EventID && r.IsCheckedIn).Count(),
-                   };
         }
 
         public void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)

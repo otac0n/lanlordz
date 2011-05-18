@@ -54,15 +54,47 @@ namespace LanLordz.Controllers
 
             return new SiteStatisticsModel
             {
-                AllEventsStats = this.AppManager.GetEventsStats(previousEvents),
-                RecentEventsStats = this.AppManager.GetEventsStats(previousEvents.Take(5)),
+                AllEventsStats = this.GetEventsStats(previousEvents),
+                RecentEventsStats = this.GetEventsStats(previousEvents.Take(5)),
                 BiggestEvent = largestEvents.FirstOrDefault(),
-                BiggestEventStats = this.AppManager.GetEventsStats(largestEvents.Take(1)),
+                BiggestEventStats = this.GetEventsStats(largestEvents.Take(1)),
                 TotalThreads = this.Db.Threads.Count(),
                 TotalPosts = this.Db.Posts.Count(),
                 MostActivePoster = this.GetUserInformation(activeUserId, false),
                 NewestUser = this.GetUserInformation(recentUserId, false)
             };
+        }
+
+        public EventsStatistics GetEventsStats(IQueryable<Event> events)
+        {
+            if (events == null)
+            {
+                return null;
+            }
+            else
+            {
+                var registrations = from e in events
+                                    join r in this.Db.Registrations on e.EventID equals r.EventID
+                                    select r;
+
+                return new EventsStatistics
+                {
+                    Count = events.Count(),
+                    Registrations = registrations.Count(),
+                    CheckIns = registrations.Where(r => r.IsCheckedIn).Count()
+                };
+            }
+        }
+
+        public IQueryable<EventStats> GetEventStats()
+        {
+            return from e in this.Db.Events
+                   select new EventStats
+                   {
+                       Event = e,
+                       Registrations = this.Db.Registrations.Where(r => r.EventID == e.EventID).Count(),
+                       CheckIns = this.Db.Registrations.Where(r => r.EventID == e.EventID && r.IsCheckedIn).Count(),
+                   };
         }
 
         [CompressFilter]
@@ -77,7 +109,7 @@ namespace LanLordz.Controllers
         {
             int pageSize = 15;
 
-            var events = this.AppManager.GetEventStats();
+            var events = this.GetEventStats();
             var eventsCount = events.Count();
             var pages = Pager.PageCount(eventsCount, pageSize);
 
