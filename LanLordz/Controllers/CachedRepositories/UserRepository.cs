@@ -150,5 +150,45 @@ namespace LanLordz.Controllers.CachedRepositories
                 return value;
             }
         }
+
+        public string RememberUser(User user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+
+            Guid keyId = Guid.NewGuid();
+
+            AutoLogin al = new AutoLogin
+            {
+                UserID = user.UserID,
+                Key = keyId,
+                ExpirationDate = DateTime.UtcNow.AddDays(35)
+            };
+
+            this.db.AutoLogins.InsertOnSubmit(al);
+            this.db.SubmitChanges();
+
+            return keyId.ToString();
+        }
+
+        public void ForgetUser(string key)
+        {
+            Guid keyId;
+            try
+            {
+                keyId = new Guid(key);
+            }
+            catch
+            {
+                return;
+            }
+
+            this.db.AutoLogins.DeleteAllOnSubmit(from a in this.db.AutoLogins
+                                                 where a.Key == keyId
+                                                 select a);
+            this.db.SubmitChanges();
+        }
     }
 }

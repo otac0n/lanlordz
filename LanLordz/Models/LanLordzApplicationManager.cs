@@ -30,12 +30,7 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Text;
-using System.Reflection;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using LanLordz.SiteTools;
-using Tournaments.Plugins;
-using System.Diagnostics;
 using LanLordz.Controllers;
 using System.Drawing.Drawing2D;
 
@@ -530,46 +525,6 @@ namespace LanLordz.Models
         public User GetUserByUserID(long userId)
         {
             return this.db.Users.SingleOrDefault(u => u.UserID == userId);
-        }
-
-        public string RememberUser(User user)
-        {
-            if (user == null)
-            {
-                return null;
-            }
-
-            Guid keyId = Guid.NewGuid();
-
-            AutoLogin al = new AutoLogin
-            {
-                UserID = user.UserID,
-                Key = keyId,
-                ExpirationDate = DateTime.UtcNow.AddDays(35)
-            };
-
-            this.DB.AutoLogins.InsertOnSubmit(al);
-            this.DB.SubmitChanges();
-
-            return keyId.ToString();
-        }
-
-        public void ForgetUser(string key)
-        {
-            Guid keyId;
-            try
-            {
-                keyId = new Guid(key);
-            }
-            catch
-            {
-                return;
-            }
-
-            this.DB.AutoLogins.DeleteAllOnSubmit(from a in this.DB.AutoLogins
-                                                 where a.Key == keyId
-                                                 select a);
-            this.DB.SubmitChanges();
         }
 
         public EventsStatistics GetEventsStats(IQueryable<Event> events)

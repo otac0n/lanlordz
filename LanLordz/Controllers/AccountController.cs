@@ -122,7 +122,7 @@ namespace LanLordz.Controllers
 
             if (attempt.RememberMe)
             {
-                string key = AppManager.RememberUser(this.CurrentUser);
+                string key = this.Users.RememberUser(this.CurrentUser);
                 Response.Cookies["AutoLogOnKey"].Value = key;
                 Response.Cookies["AutoLogOnKey"].Expires = DateTime.Now.AddDays(10);
                 Response.Cookies["AutoLogOnKey"].HttpOnly = true;
@@ -148,7 +148,7 @@ namespace LanLordz.Controllers
 
             if (this.Request.Cookies["AutoLogOnKey"] != null && !string.IsNullOrEmpty(this.Request.Cookies["AutoLogOnKey"].Value))
             {
-                this.AppManager.ForgetUser(this.Request.Cookies["AutoLogOnKey"].Value);
+                this.Users.ForgetUser(this.Request.Cookies["AutoLogOnKey"].Value);
             }
 
             Response.Cookies["AutoLogOnKey"].Value = "";
