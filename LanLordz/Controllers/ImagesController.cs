@@ -123,7 +123,7 @@ namespace LanLordz.Controllers
             }
         }
         
-        [AcceptVerbs(HttpVerbs.Post), ValidateAntiForgeryToken, CompressFilter]
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult TagImage(long id, FormCollection values)
         {
             if (!this.Security.IsUserAdministrator(this.CurrentUser))

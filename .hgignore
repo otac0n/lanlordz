@@ -1,5 +1,9 @@
-glob:**/bin/**
-glob:**/obj/**
-glob:*.suo
-glob:*.user
-glob:StyleCop.Cache
+syntax: glob
+**/bin/**
+**/obj/**
+**/sql/**
+*.suo
+*.user
+*.dbmdl
+*.schemaview
+StyleCop.Cache
