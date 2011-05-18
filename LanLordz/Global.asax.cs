@@ -8,14 +8,7 @@
 
     public class LanLordzApplication : System.Web.HttpApplication
     {
-        private static object locker = new object();
-        public static object Locker
-        {
-            get
-            {
-                return locker;
-            }
-        }
+        private static object syncRoot = new object();
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -57,7 +50,7 @@
         protected void Session_Start()
         {
             var db = new LanLordzDataContext();
-            lock (Locker)
+            lock (syncRoot)
             {
                 db.ExecuteCommand("UPDATE dbo.Configuration SET Value = cast(Value as bigint) + 1 WHERE Property = 'Visitors'");
             }

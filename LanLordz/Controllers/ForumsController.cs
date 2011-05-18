@@ -31,6 +31,8 @@ namespace LanLordz.Controllers
 
     public class ForumsController : LanLordzBaseController
     {
+        private static object syncRoot = new object();
+
         #region Information Attach Methods
         private IQueryable<ThreadInformation> GetThreadInformation(IQueryable<Thread> threads, User user)
         {
@@ -384,7 +386,7 @@ namespace LanLordz.Controllers
                 return View("NotAuthorized");
             }
 
-            lock (LanLordzApplication.Locker)
+            lock (syncRoot)
             {
                 t = this.Forums.GetThread(id.Value);
                 t.Views = t.Views + 1;
