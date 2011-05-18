@@ -291,5 +291,19 @@ namespace LanLordz.Controllers.CachedRepositories
 
             return this.GetUserAccess(user, acl);
         }
+
+        public Role GetRoleByName(string roleName)
+        {
+            return this.db.Roles.SingleOrDefault(r => r.Name.Equals(roleName));
+        }
+
+        public IQueryable<User> GetUsersInRole(long roleId)
+        {
+            return from role in this.db.Roles
+                   join userRole in this.db.UsersRoles on role.RoleID equals userRole.RoleID
+                   join user in this.db.Users on userRole.UserID equals user.UserID
+                   where role.RoleID == roleId
+                   select user;
+        }
     }
 }

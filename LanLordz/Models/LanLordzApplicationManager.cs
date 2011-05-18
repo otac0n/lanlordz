@@ -223,20 +223,6 @@ namespace LanLordz.Models
             }
         }
 
-        public Role GetRoleByName(string roleName)
-        {
-            return this.db.Roles.SingleOrDefault(r => r.Name.Equals(roleName));
-        }
-
-        public IQueryable<User> GetUsersInRole(long roleId)
-        {
-            return from role in this.db.Roles
-                   join userRole in this.db.UsersRoles on role.RoleID equals userRole.RoleID
-                   join user in this.db.Users on userRole.UserID equals user.UserID
-                   where role.RoleID == roleId
-                   select user;
-        }
-
         public IQueryable<Sponsor> GetSponsors()
         {
             return this.db.Sponsors;
@@ -361,7 +347,7 @@ namespace LanLordz.Models
                 attachmentData = apt.AsICalendar();
             }
 
-            foreach (User user in GetUsersInRole(toGroupId))
+            foreach (User user in this.Controller.Security.GetUsersInRole(toGroupId))
             {
                 if (!user.ReceiveAdminEmail)
                 {
