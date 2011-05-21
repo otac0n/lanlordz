@@ -212,6 +212,7 @@
     </Compile>
     <Compile Include="Views\BaseView`1.cs" />
     <Compile Include="Views\BaseView.cs" />
+    <Compile Include="Views\HtmlUserExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SqlServerSpatial.dll">
@@ -468,7 +469,6 @@
     <Content Include="Views\Shared\NotAvailable.spark" />
     <Content Include="Views\Shared\NotFound.spark" />
     <Content Include="Views\Shared\_PaginationView.spark" />
-    <Content Include="Views\Shared\_UserAvatar.spark" />
     <Content Include="Views\Shared\_UserInfoBox.spark" />
     <Content Include="Views\Stats\Events.spark" />
     <Content Include="Views\Stats\Index.spark" />

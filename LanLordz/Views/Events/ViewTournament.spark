@@ -39,7 +39,7 @@
       <div class="EventTournamentTeamName">${Team.TeamName}</div>
       <if condition="Model.Tournament.TeamSize > 1">
       <div class="EventTournamentTeamMembers">
-       <div each="var User in Team.UsersTeams.OrderByDescending(u => u.IsTeamCaptain)" class="EventTournamentTeamMemberName EventTournamentTeamMemberTeamCaptain?{User.IsTeamCaptain}">!{UserLink(User.User.UserID, User.User.Username, string.Format(Team.TeamTagFormat, User.User.Username))}</div>
+       <div each="var User in Team.UsersTeams.OrderByDescending(u => u.IsTeamCaptain)" class="EventTournamentTeamMemberName EventTournamentTeamMemberTeamCaptain?{User.IsTeamCaptain}">!{Html.UserLink(User.User.UserID, User.User.Username, string.Format(Team.TeamTagFormat, User.User.Username))}</div>
       </div>
       </if>
      </div>

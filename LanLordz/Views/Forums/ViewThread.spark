@@ -23,8 +23,8 @@
      # var lastPost = Model.Posts.OrderByDescending(p => p.Post.CreateDate).FirstOrDefault();
      <tr each="var post in Model.Posts.OrderBy(p => p.Post.CreateDate)" class="Post">
       <td class="PostAuthor">
-       !{UserLink(post.UserID, post.Username)}<br />
-       !{UserAvatar(post.UserID, post.Username, post.UserHasAvatar, post.UserEmail)}<br />
+       !{Html.UserLink(post.UserID, post.Username)}<br />
+       !{Html.UserAvatar(post.UserID, post.Username, post.UserHasAvatar, post.UserEmail)}<br />
        Posts: ${post.UserPosts}<br />
        Joined: ${post.UserJoinedDate.ToShortDateString()}
        <div if="!string.IsNullOrEmpty(post.UserTitle)" class="PostAuthorBadge PostAuthorUserBadge">${post.UserTitle}</div>

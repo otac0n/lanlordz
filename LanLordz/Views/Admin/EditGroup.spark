@@ -41,7 +41,7 @@
     <h3>Current Members</h3>
     <table class="EditGroupCurrentMembersTable">
       <tr each="var member in Model.UsersRoles.Select(ur => ur.User)">
-        <td>!{this.UserLink(member.UserID, member.Username)}</td>
+        <td>!{Html.UserLink(member.UserID, member.Username)}</td>
         <td>
           <button type="submit" onclick="$('#UserId').val(${member.UserID})">Remove</button>
         </td>

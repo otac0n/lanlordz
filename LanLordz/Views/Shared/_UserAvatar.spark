@@ -1,2 +1,0 @@
-﻿# string avatarUrl = user.HasAvatar ? Url.Action("ViewAvatar", "Images", new { id = user.UserID }) : ("http://www.gravatar.com/avatar/" + HashString(user.Email) + ".jpg?d=wavatar");
-<img alt="${user.Username}'s Avatar" src="${avatarUrl}" />

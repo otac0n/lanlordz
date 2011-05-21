@@ -56,7 +56,7 @@
         <span>${Model.Registrants.Count()}</span> registrations, <span>${Model.Registrants.Where(r => r.Registration.IsCheckedIn).Count()}</span> checked in.
      </div>
      <ul class="EventRosterList">
-       <li each="var User in Model.Registrants" class="EventRosterListUser EventRosterListUserCheckedIn?{User.Registration.IsCheckedIn}">!{this.UserLink(User.UserID, User.Username)} </li>
+       <li each="var User in Model.Registrants" class="EventRosterListUser EventRosterListUserCheckedIn?{User.Registration.IsCheckedIn}">!{Html.UserLink(User.UserID, User.Username)} </li>
      </ul>
     </div>
     <div class="EventImages">

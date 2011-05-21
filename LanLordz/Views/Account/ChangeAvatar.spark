@@ -9,7 +9,7 @@
      !{Html.ValidationSummary("There was an error processing your upload:", new { @class = "ErrorText" })}
      <if condition="Model.UserInfo.HasAvatar">
      Current avatar:<br />
-     <UserAvatar user="Model.UserInfo" /><br /><br />
+     !{Html.UserAvatar(Model.UserInfo)}<br /><br />
      </if>
      Choose a new avatar:<br />
      <input type="file" name="NewAvatar" id="NewAvatar" /><br /><br />

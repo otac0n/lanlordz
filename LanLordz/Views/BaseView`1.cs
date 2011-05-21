@@ -62,23 +62,6 @@ namespace LanLordz.Views
             }
         }
 
-        protected string HashString(string Value)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(Value);
-            using (var md5 = new MD5CryptoServiceProvider())
-            {
-                data = md5.ComputeHash(data);
-            }
-
-            string ret = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                ret += data[i].ToString("x2").ToLowerInvariant();
-            }
-
-            return ret;
-        }
-
         protected string FormatPostText(string postText)
         {
             return this.Controller.FormatPostText(postText);
@@ -87,55 +70,6 @@ namespace LanLordz.Views
         protected static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
         {
             return LanLordzBaseController.CalculateScrapeBuster(scrapeBusterKey, additionalData);
-        }
-
-        protected MvcHtmlString UserLink(User user)
-        {
-            return this.UserLink(user.UserID, user.Username, user.Username);
-        }
-
-        protected MvcHtmlString UserLink(UserInformation user)
-        {
-            return this.UserLink(user.UserID, user.Username, user.Username);
-        }
-
-        protected MvcHtmlString UserLink(long userId, string username)
-        {
-            return this.UserLink(userId, username, username);
-        }
-
-        protected MvcHtmlString UserLink(long userId, string username, string displayName)
-        {
-            var routeValues = new
-            {
-                id = userId,
-                title = this.Controller.CreateUrlTitle(username)
-            };
-
-            return Html.ActionLink(displayName, "ViewProfile", "Account", routeValues, null);
-        }
-
-        protected string UserAvatar(long userId, string username, bool userHasAvatar, string email)
-        {
-            if (userHasAvatar)
-            {
-                return "<img alt=\"" +
-                    Html.AttributeEncode(username + "'s Avatar") +
-                    "\" src=\"" +
-                    Html.AttributeEncode(Url.Action("ViewAvatar", "Images", new
-                    {
-                        id = userId
-                    })) +
-                    "\" />";
-            }
-            else
-            {
-                return "<img alt=\"" +
-                    Html.AttributeEncode(username + "'s Avatar") +
-                    "\" src=\"" +
-                    "http://www.gravatar.com/avatar/" + HashString(email) + ".jpg?d=wavatar" +
-                    "\" />";
-            }
         }
     }
 }

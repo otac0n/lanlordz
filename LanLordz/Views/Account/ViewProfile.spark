@@ -4,8 +4,7 @@
 <content name="main">
     <div class="UserProfile">
         <div class="UserProfileAvatar">
-          # var user = Model.UserInfo;
-          <UserAvatar />
+          !{Html.UserAvatar(Model.UserInfo)}
         </div>
         <div class="UserProfileUsername">${Model.UserInfo.Username}</div>
         <div if="Model.UserInfo.ShowGender" class="UserProfileGender"><div class="UserProfileGenderLabel">Gender:</div><div class="UserProfileGenderValue">${Model.UserInfo.Gender}</div></div>

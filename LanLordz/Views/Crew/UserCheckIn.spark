@@ -54,7 +54,7 @@
      !{Html.Hidden("Action")}
      <table>
       <tr each="var reg in Model.Registrations">
-       <td>!{this.UserLink(reg.UserID, reg.Username)}</td>
+       <td>!{Html.UserLink(reg.UserID, reg.Username)}</td>
        <td><button !{reg.Registration.IsCheckedIn ? "disabled=\"disabled\"" : "onclick=\"CheckIn(" + reg.UserID + ", 1)\""}>Check In</button></td>
        <td><button !{!reg.Registration.IsCheckedIn ? "disabled=\"disabled\"" : "onclick=\"CheckIn(" + reg.UserID + ", 0)\""}>Cancel Check In</button></td>
       </tr>

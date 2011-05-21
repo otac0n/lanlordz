@@ -31,7 +31,7 @@
       </div>
       <div class="StatsItem">
         <div class="StatsItemTitle">Newest User:</div>
-        <div class="StatsItemValue">!{UserLink(Model.NewestUser)}</div>
+        <div class="StatsItemValue">!{Html.UserLink(Model.NewestUser)}</div>
         <div class="StatsItemDetail">Joined ${Controller.ConvertDateTime(Model.NewestUser.CreateDate).ToShortDateString()}.</div>
       </div>
     </div>
@@ -41,7 +41,7 @@
       </div>
       <div class="StatsItem">
         <div class="StatsItemTitle">Most Active Poster:</div>
-        <div class="StatsItemValue">!{UserLink(Model.MostActivePoster)}</div>
+        <div class="StatsItemValue">!{Html.UserLink(Model.MostActivePoster)}</div>
         <div class="StatsItemDetail">${Model.MostActivePoster.Posts} posts.</div>
       </div>
       <div class="StatsItem">

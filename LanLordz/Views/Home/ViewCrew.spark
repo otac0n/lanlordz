@@ -5,7 +5,7 @@
     <h2>${Controller.Config.SiteName} Crew</h2>
     <div each="var user in Model.Members" class="EventCrewMember">
         <div class="EventCrewMemberAvatar">
-         <UserAvatar />
+         !{Html.UserAvatar(user)}
         </div>
         <div class="EventCrewMemberName">!{Html.ActionLink(user.Username, "ViewProfile", "Account", new { id = user.UserID, title = Controller.CreateUrlTitle(user.Username) }, null)}</div>
         <div class="EventCrewMemberRegisterDate">Joined: ${Controller.ConvertDateTime(user.CreateDate).ToShortDateString()}</div>

@@ -7,7 +7,7 @@
     <table class="UserStatsTable">
      <tr class="UserStatsTableHeader"><th>Username</th><th>Joined Date</th><th>Posts</th><th>Locations</th><th>Events Registered</th><th>Events Attended</th></tr>
      <tr each="var u in Model.Users" class="UserStatsTableRow">
-      <td class="UserStatsTableRowUsername">!{UserLink(u)}</td>
+      <td class="UserStatsTableRowUsername">!{Html.UserLink(u)}</td>
       <td class="UserStatsTableRowJoinedDate">${Controller.ConvertDateTime(u.CreateDate).ToShortDateString()}</td>
       <td class="UserStatsTableRowPosts">${u.Posts}</td>
       <td class="UserStatsTableRowLocation">${u.Location}</td>
