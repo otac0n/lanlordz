@@ -475,6 +475,7 @@
     <Content Include="Views\Stats\Users.spark" />
     <Content Include="Views\Admin\EditGroups.spark" />
     <Content Include="Views\Admin\EditGroup.spark" />
+    <Content Include="Views\Admin\EditTitles.spark" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

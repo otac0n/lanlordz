@@ -1,0 +1,22 @@
+<viewdata model="List[[LanLordz.Models.Title]]"/>
+<content name="title">Edit Group</content>
+<content name="headers"/>
+<content name="main">
+  <h2>Edit Titles</h2>
+
+  <table>
+    <tr><th>Title Text</th><th>Criterion</th></tr>
+    <tr if="!Model.Any()"><td colspan="2">Thre are currently no titles configured.</td></tr>
+    <tr each="var title in Model"><td>${title.TitleText}</td>
+      <td>
+        # if (title.RoleID.HasValue) {
+        Role: ${title.Role.Name}
+        # } else if (title.UserID.HasValue) {
+        User: ${title.User.Username}
+        # } else {
+        Posts: ${title.PostCountThreshold}
+        # }
+      </td>
+    </tr>
+  </table>
+</content>

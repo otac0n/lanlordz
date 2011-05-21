@@ -192,6 +192,12 @@ namespace LanLordz.Controllers
             return RedirectToAction("EditGroup", new { id });
         }
 
+        public ActionResult EditTitles()
+        {
+            var model = this.Db.Titles.ToList();
+            return View(model);
+        }
+
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
         {
             using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
