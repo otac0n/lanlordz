@@ -569,56 +569,6 @@ namespace LanLordz.Controllers
             }
         }
 
-        #region New View() implementations.
-        protected new ViewResult View()
-        {
-            ViewBag.Controller = this;
-            return base.View();
-        }
-
-        protected new ViewResult View(IView view)
-        {
-            ViewBag.Controller = this;
-            return base.View(view);
-        }
-
-        protected new ViewResult View(object model)
-        {
-            ViewBag.Controller = this;
-            return base.View(model);
-        }
-
-        protected new ViewResult View(string viewName)
-        {
-            ViewBag.Controller = this;
-            return base.View(viewName);
-        }
-
-        protected new ViewResult View(IView view, object model)
-        {
-            ViewBag.Controller = this;
-            return base.View(view, model);
-        }
-
-        protected new ViewResult View(string viewName, object model)
-        {
-            ViewBag.Controller = this;
-            return base.View(viewName, model);
-        }
-
-        protected new ViewResult View(string viewName, string masterName)
-        {
-            ViewBag.Controller = this;
-            return base.View(viewName, masterName);
-        }
-
-        protected new ViewResult View(string viewName, string masterName, object model)
-        {
-            ViewBag.Controller = this;
-            return base.View(viewName, masterName, model);
-        }
-        #endregion
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

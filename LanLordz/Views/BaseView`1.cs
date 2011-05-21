@@ -37,7 +37,7 @@ namespace LanLordz.Views
         {
             get
             {
-                return ViewBag.Controller;
+                return this.ViewContext.Controller as LanLordzBaseController;
             }
         }
 
@@ -48,7 +48,7 @@ namespace LanLordz.Views
                 var controller = this.Controller;
 
                 var theme = string.Empty;
-                if (this.Controller.CurrentUser != null)
+                if (controller.CurrentUser != null)
                 {
                     theme = controller.GetUserInformation(controller.CurrentUser.UserID, false).Theme;
                 }
