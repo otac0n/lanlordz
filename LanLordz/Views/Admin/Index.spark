@@ -7,6 +7,7 @@
      <dt>Site Administration</dt>
      <dd>!{Html.ActionLink("Master Configuration", "EditConfig")}</dd>
      <dd>!{Html.ActionLink("Edit Groups / Memberships", "EditGroups")}</dd>
+     <dd>!{Html.ActionLink("Edit Titles", "EditTitles")}</dd>
      <dd>!{Html.ActionLink("Edit Sponsors", "EditSponsors")}</dd>
      <dt>Forum Management</dt>
      <dd>!{Html.ActionLink("Edit Forum ACLs", "EditForumAccess")}</dd>

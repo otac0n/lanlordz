@@ -195,7 +195,73 @@ namespace LanLordz.Controllers
         public ActionResult EditTitles()
         {
             var model = this.Db.Titles.ToList();
+            ViewBag.Roles = this.Security.GetAllRoles();
             return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult AddTitle(FormCollection values)
+        {
+            var text = values["TitleText"];
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                Title title = null;
+
+                var type = values["Type"];
+                switch (type)
+                {
+                    case "user":
+                        var user = this.Users.GetUserByUsername(values["Username"]);
+                        if (user != null)
+                        {
+                            title = new Title { User = user };
+                        }
+                        break;
+
+                    case "role":
+                        long roleId;
+                        if (long.TryParse(values["RoleId"], out roleId))
+                        {
+                            title = new Title { RoleID = roleId };
+                        }
+                        break;
+
+                    case "count":
+                        int count;
+                        if (int.TryParse(values["PostCountThreshold"], out count))
+                        {
+                            title = new Title { PostCountThreshold = count };
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                if (title != null)
+                {
+                    title.TitleText = text;
+                    this.Db.Titles.InsertOnSubmit(title);
+                    this.Db.SubmitChanges();
+                }
+            }
+
+            return RedirectToAction("EditTitles");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult DeleteTitle(FormCollection values)
+        {
+            long titleId;
+            if (long.TryParse(values["TitleId"], out titleId))
+            {
+                this.Db.Titles.DeleteAllOnSubmit(from t in this.Db.Titles
+                                                 where t.TitleID == titleId
+                                                 select t);
+                this.Db.SubmitChanges();
+            }
+
+            return RedirectToAction("EditTitles");
         }
 
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
