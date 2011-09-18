@@ -99,6 +99,12 @@ namespace LanLordz.Controllers
         }
 
         [CompressFilter]
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [CompressFilter]
         public ActionResult SendMail()
         {
             var roles = this.Db.Roles.ToList();

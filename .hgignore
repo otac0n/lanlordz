@@ -3,6 +3,7 @@ syntax: glob
 **/obj/**
 **/sql/**
 *.suo
+*.docstates
 *.user
 *.dbmdl
 *.schemaview
