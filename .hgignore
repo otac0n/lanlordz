@@ -8,3 +8,4 @@ syntax: glob
 *.dbmdl
 *.schemaview
 StyleCop.Cache
+*.Publish.xml
