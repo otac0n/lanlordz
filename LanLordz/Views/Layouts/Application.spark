@@ -15,6 +15,8 @@
   </if>
   <script type="text/javascript" src="${Controller.ApplyCoralCdn(Response.ApplyAppPathModifier("~/Scripts/jquery-1.4.1.min.js"))}"></script>
   <script type="text/javascript" src="${Controller.ApplyCoralCdn(Response.ApplyAppPathModifier("~/Scripts/jquery-ui-1.8.16.min.js"))}"></script>
+  <script type="text/javascript" src="${Controller.ApplyCoralCdn(Response.ApplyAppPathModifier("~/Scripts/jquery-lanlordz-extensions.js"))}"></script>
+  <script type="text/javascript">site.baseUrl = '!{Url.Content("~/")}';</script>
   <use content="headers" />
  </head>
  <body id="body">

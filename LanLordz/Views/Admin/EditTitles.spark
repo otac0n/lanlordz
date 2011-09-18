@@ -1,35 +1,5 @@
 <viewdata model="List[[LanLordz.Models.Title]]"/>
 <content name="title">Edit Titles</content>
-<content name="headers">
-  <script type="text/javascript" language="javascript">
-    //<![CDATA[
-    function searchUsers() {
-      var username = $("#input_username").val();
-
-      if(username == '') {
-        $("#searchResults li").remove();
-        return;
-      }
-
-      var url = '!{(new Uri(Url.RequestContext.HttpContext.Request.Url, Url.Action("SearchUsers", "Account"))).AbsoluteUri}?q=' + escape(username);
-
-      $.getJSON(url,
-        function(data){
-          $("#searchResults li").remove();
-          $.each(data, function(i, item){
-            var li = document.createElement('li');
-            var text = document.createTextNode(item.username);
-            li.appendChild(text);
-            $("#searchResults").append(li);
-            $(li).click(function() {
-              $("#input_username").val(item.username);
-            });
-          });
-        });
-    }
-    //]]>
-  </script>
-</content>
 <content name="main">
   <h2>Edit Titles</h2>
 
@@ -78,9 +48,7 @@
       <option value="count">Post Count</option>
     </select><br /><br />
     <div id="userEditor">
-      User: <input id="input_username" name="Username" onkeyup="searchUsers();" style="width : 200px; color : black; margin : 0; border : 1px solid black;" />
-      <br/>
-      <ul id="searchResults" style="width : 200px; height : 100px; overflow-y : scroll; overflow-x : hidden; color : black; background : white; margin : 0; border : 1px solid black;"></ul>
+      User: <input id="input_username" name="Username" class="UserLookup" />
     </div>
     <div id="roleEditor" style="display:none;">
       <var roles="ViewBag.Roles as IEnumerable[[LanLordz.Models.Role]]" />

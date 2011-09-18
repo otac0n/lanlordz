@@ -80,8 +80,8 @@
   });
   
   function beginTagging() {
-    $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" onkeyup="searchUsers()" /><ul id="searchResults" class="ImageTagsNewTagSearchResults"></ul><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
-    
+    $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" /><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
+    #(.ImageTagsNewTagSearchBox).userLookup();
       var img = $('.ViewImageImage img')[0];
       var width = img.offsetWidth;
       var height = img.offsetHeight;
@@ -106,32 +106,6 @@
           $("#input_x2").val(coords.x2 / width);
           $("#input_y2").val(coords.y2 / height);
       };
-  }
-  
-  function searchUsers() {
-    var username = $("#input_username").val();
-    
-    if(username == '') {
-      $("#searchResults li").remove();
-      return;
-    }
-    
-    var url = '!{(new Uri(Url.RequestContext.HttpContext.Request.Url, Url.Action("SearchUsers", "Account"))).AbsoluteUri}' + '?q=' + escape(username);
-    
-    $.getJSON(url,
-        function(data){
-          $("#searchResults li").remove();
-          $.each(data, function(i, item){
-            var li = document.createElement('li');
-            li.className = 'ImageTagsNewTagSearchResultsItem';
-            var text = document.createTextNode(item.username);
-            li.appendChild(text);
-      $("#searchResults").append(li);
-          });
-          $("#searchResults li").click(function() {
-            $("#input_username").val(this.innerHTML);
-          });
-        });
   }
   //]]>
   </script>

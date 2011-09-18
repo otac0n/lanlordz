@@ -32,7 +32,7 @@
                                                                          Value = p,
                                                                          Selected = (Model.PairingsGenerator == p)
                                                                      })}</td></tr>
-      <tr><td>Tournament Director:</td><td>!{Html.TextBox("TDUsername", Model.TDUsername)}</td></tr>
+      <tr><td>Tournament Director:</td><td>!{Html.TextBox("TDUsername", Model.TDUsername, new { @class = "UserLookup" })}</td></tr>
       <tr><td>Game Info:</td><td>!{Html.TextArea("GameInfo", Model.GameInfo)}</td></tr>
       <tr><td>Server Settings:</td><td>!{Html.TextArea("ServerSettings", Model.ServerSettings)}</td></tr>
       <tr><td></td><td><input type="submit" value="Create" /></td></tr>
