@@ -30,6 +30,7 @@ namespace LanLordz.Controllers
     using System.Web.Mvc;
     using LanLordz.Models;
     using LanLordz.SiteTools;
+    using System.Data;
 
     public class AdminController : LanLordzBaseController
     {
@@ -101,6 +102,45 @@ namespace LanLordz.Controllers
         [CompressFilter]
         public ActionResult ResetPassword()
         {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult ResetPassword(FormCollection values)
+        {
+            var user = this.GetUser(values["Username"]);
+            if (user == null)
+            {
+                ModelState.AddModelError("Username", "That user could not be found.");
+            }
+
+            var password = values["Password"];
+            if (string.IsNullOrEmpty(password))
+            {
+                ModelState.AddModelError("Password", "The password cannot be blank.");
+            }
+
+            if (password != values["PasswordConfirm"])
+            {
+                ModelState.AddModelError("PasswordConfirm", "The passwords must match.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var passwordHash = ComputeHash(password);
+                user.PasswordHash = passwordHash;
+
+                try
+                {
+                    this.Db.SubmitChanges();
+                    ModelState.AddModelError("", "The user's password has been successfully changed.");
+                }
+                catch (DataException ex)
+                {
+                    ModelState.AddModelError("", ex.GetBaseException().Message);
+                }
+            }
+
             return View();
         }
 
