@@ -81,7 +81,7 @@
   
   function beginTagging() {
     $('.ImageTagsAddTag').replaceWith('<div class="ImageTagsNewTag"><form autocomplete="off" action="${Url.Action("TagImage", "Images", new { id = Model.Image.EventImageID })}" method="post">!{Html.AntiForgeryToken()}<input type="hidden" id="input_x1" name="x1" /><input type="hidden" id="input_x2" name="x2" /><input type="hidden" id="input_y1" name="y1" /><input type="hidden" id="input_y2" name="y2" /><input class="ImageTagsNewTagSearchBox" id="input_username" name="username" /><button onclick="submitTag(); return false;">Submit Tag</button></form></div>');
-    #('.ImageTagsNewTagSearchBox').userLookup();
+    $('.ImageTagsNewTagSearchBox').userLookup();
       var img = $('.ViewImageImage img')[0];
       var width = img.offsetWidth;
       var height = img.offsetHeight;
