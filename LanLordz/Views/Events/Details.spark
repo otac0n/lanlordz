@@ -49,6 +49,7 @@
      <ul class="EventTournamentsList">
        <li each="var ti in Model.Tournaments" class="EventTournamentsListTournament">!{Html.ActionLink(ti.Title, "ViewTournament", new { id = ti.TournamentID, title = Controller.CreateUrlTitle(ti.Title) })}</li>
      </ul>
+      <if condition="Model.Event.EndDateTime > DateTime.UtcNow && Controller.CurrentUser != null && Controller.Security.IsUserAdministrator(Controller.CurrentUser)">!{Html.ActionLink("Create Tournament", "CreateTournament")}</if>
     </div>
     <div class="EventRoster">
      <div class="EventRosterTitle">Roster</div>

@@ -416,7 +416,9 @@
     <Content Include="Views\Account\RegistrationSuccessful.spark" />
     <Content Include="Views\Account\ViewProfile.spark" />
     <Content Include="Views\Admin\EditConfig.spark" />
-    <Content Include="Views\Admin\Index.spark" />
+    <Content Include="Views\Admin\Index.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Admin\SendMail.spark" />
     <Content Include="Views\Admin\SendMailSuccess.spark" />
     <Content Include="Views\Crew\ChooseEvent.spark" />
@@ -475,7 +477,9 @@
     <Content Include="Views\Stats\Index.spark" />
     <Content Include="Views\Stats\Users.spark" />
     <Content Include="Views\Admin\EditGroups.spark" />
-    <Content Include="Views\Admin\EditGroup.spark" />
+    <Content Include="Views\Admin\EditGroup.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Admin\EditTitles.spark" />
   </ItemGroup>
   <ItemGroup>
