@@ -29,9 +29,34 @@ namespace LanLordz.Views
     using System.Web.Mvc.Html;
     using LanLordz.Controllers;
     using LanLordz.Models;
+    using LanLordz.Controllers.CachedRepositories;
+    using System.Web;
 
     public static class HtmlUserExtensions
     {
+        public static LanLordzBaseController GetController(this HtmlHelper html)
+        {
+            return html.ViewContext.Controller as LanLordzBaseController;
+        }
+
+        public static ConfigurationRepository GetConfig(this HtmlHelper html)
+        {
+            var controller = html.GetController();
+            return controller.Config;
+        }
+
+        public static MvcHtmlString LocalContent(this HtmlHelper html, string virtualPath)
+        {
+            var controller = html.GetController();
+            return new MvcHtmlString(controller.ApplyCoralCdn(VirtualPathUtility.ToAbsolute(virtualPath)));
+        }
+
+        public static MvcHtmlString BBCode(this HtmlHelper html, string postText)
+        {
+            var controller = html.GetController();
+            return new MvcHtmlString(controller.FormatPostText(postText));
+        }
+
         public static MvcHtmlString UserLink(this HtmlHelper html, User user)
         {
             return html.UserLink(user.UserID, user.Username, user.Username);

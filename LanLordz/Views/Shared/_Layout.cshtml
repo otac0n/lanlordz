@@ -1,0 +1,87 @@
+﻿@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+
+    var theme = string.Empty;
+    if (controller.CurrentUser != null)
+    {
+        theme = controller.GetUserInformation(controller.CurrentUser.UserID, false).Theme;
+    }
+
+    if (string.IsNullOrEmpty(theme))
+    {
+        theme = controller.Config.DefaultTheme;
+    }
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <title>@ViewBag.Title | @controller.Config.SiteName</title>
+  @{ var skin = controller.Skins.GetSkin(theme); }
+  @if (skin != null)
+  {
+      foreach (var ss in skin.Stylesheets)
+      {
+  <link type="text/css" href="@Html.LocalContent(ss)" rel="stylesheet" />
+      }
+
+      if (!string.IsNullOrEmpty(skin.PngFixSelector))
+      {
+          <text>
+  <!--[if lt IE 7]>
+  <style type="text/css">
+  @((skin.PngFixSelector)){behavior:url(@Html.LocalContent("~/PngFix.htc"));}
+  </style>
+  <![endif]-->
+          </text>
+      }
+  }
+  <script type="text/javascript" src="@Html.LocalContent("~/Scripts/jquery-1.4.1.min.js")"></script>
+  <script type="text/javascript" src="@Html.LocalContent("~/Scripts/jquery-ui-1.8.16.min.js")"></script>
+  <script type="text/javascript" src="@Html.LocalContent("~/Scripts/jquery-lanlordz-extensions.js")"></script>
+  <script type="text/javascript">      site.baseUrl = '@Url.Content("~/")';</script>
+  @RenderSection("headers", required: false)
+ </head>
+ <body id="body">
+  <div id="surround">
+   <div id="header">
+    <div if="skin != null && !string.IsNullOrEmpty(skin.Banner)" class="HeaderBanner"><img class="HeaderBannerImage" src="@Html.LocalContent(skin.Banner)" alt="Banner" /></div>
+    <div class="HeaderSiteTagline">@controller.Config.SiteTagline</div>
+   </div>
+   <div id="menu">
+    <ul class="Menu">
+     <li class="MenuItem">@Html.ActionLink("Home", "Index", "Home")</li>
+     <li class="MenuItem">@Html.ActionLink("Events", "Index", "Events")</li>
+     <li class="MenuItem">@Html.ActionLink("Crew", "ViewCrew", "Home")</li>
+     <li class="MenuItem">@Html.ActionLink("Sponsors", "ViewSponsors", "Home")</li>
+     <li class="MenuItem">@Html.ActionLink("News", "ViewNews", "Home")</li>
+     <li class="MenuItem">@Html.ActionLink("Forums", "Index", "Forums")</li>
+     <li class="MenuItem">@Html.ActionLink("Stats", "Index", "Stats")</li>
+    </ul>
+   </div>
+   <div id="userinfo">
+    @Html.Partial("UserInfoBox")
+   </div>
+   <div id="main">
+    @RenderBody()
+   </div>
+   <div id="footer">
+    <div class="FooterCopyright">@controller.Config.SiteCopyright</div><div class="FooterVisitors">@(controller.Config.ShowVisitors ? "" + controller.Config.Visitors + " Visitors" : "")</div>
+   </div>
+  </div>
+  @if (skin != null)
+  {
+      foreach (var js in skin.Scripts)
+      {
+  <script type="text/javascript" src="@Html.LocalContent(js)"></script>
+      }
+  }
+  <if condition="Controller.Config.UseGoogleAnalytics">
+  <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+      try { var pageTracker = _gat._getTracker('@controller.Config.GoogleAnalyticsAccount'); pageTracker._trackPageview(); } catch (err) { }
+  </script>
+  </if>
+ </body>
+</html>

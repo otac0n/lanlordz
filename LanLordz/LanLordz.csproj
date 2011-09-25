@@ -570,6 +570,9 @@
     </Content>
     <Content Include="Views\Admin\EditTitles.spark" />
     <Content Include="Views\Admin\ResetPassword.spark" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\UserInfoBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
