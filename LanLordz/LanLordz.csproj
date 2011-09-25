@@ -533,7 +533,6 @@
     <Content Include="Views\Events\RollBackRound.spark" />
     <Content Include="Views\Events\StartNextRound.spark" />
     <Content Include="Views\Events\UnlockTeams.spark" />
-    <Content Include="Views\Events\ViewTournament.spark" />
     <Content Include="Views\Forums\CreatePost.spark" />
     <Content Include="Views\Forums\DeletePost.spark" />
     <Content Include="Views\Forums\EditPost.spark" />
@@ -573,6 +572,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\UserInfoBox.cshtml" />
+    <Content Include="Views\Events\ViewTournament.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
