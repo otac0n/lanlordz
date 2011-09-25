@@ -528,11 +528,11 @@
     <Content Include="Views\Events\InputScoresPickRound.spark" />
     <Content Include="Views\Events\JoinTeam.spark" />
     <Content Include="Views\Events\LeaveTeam.spark" />
-    <Content Include="Views\Events\LockTeams.spark" />
+    <None Include="Views\Events\LockTeams.cshtml" />
     <Content Include="Views\Events\ManageTeam.spark" />
     <Content Include="Views\Events\RollBackRound.spark" />
     <Content Include="Views\Events\StartNextRound.spark" />
-    <Content Include="Views\Events\UnlockTeams.spark" />
+    <None Include="Views\Events\UnlockTeams.cshtml" />
     <Content Include="Views\Forums\CreatePost.spark" />
     <Content Include="Views\Forums\DeletePost.spark" />
     <Content Include="Views\Forums\EditPost.spark" />
