@@ -29,6 +29,7 @@ namespace LanLordz.Controllers
     using System.ServiceModel.Syndication;
     using System;
     using System.Collections.Generic;
+    using System.Net.Mail;
 
     public class HomeController : LanLordzBaseController
     {
@@ -116,6 +117,65 @@ namespace LanLordz.Controllers
                     Posts = posts
                 });
             }
+        }
+
+        [CompressFilter]
+        public ActionResult ContactUs()
+        {
+            var model = new ContactUsModel();
+
+            if (this.CurrentUser != null)
+            {
+                model.Email = this.CurrentUser.Email;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult ContactUs(ContactUsModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var admins = (from u in this.Db.Users
+                          where u.UsersRoles.Any(ur => ur.Role.IsAdministrator)
+                          select u).ToList();
+
+            if (admins.Count == 0)
+            {
+                this.ModelState.AddModelError("", "There are no administrators configured for this website.  An email cannot be sent.");
+                return View(model);
+            }
+
+            var message = new MailMessage
+            {
+                From = new MailAddress(model.Email),
+                Body = model.Message,
+                IsBodyHtml = false,
+            };
+
+            foreach (var admin in admins)
+            {
+                message.To.Add(admin.Email);
+            }
+
+            try
+            {
+                using (var smpt = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+                {
+                    smpt.Send(message);
+                }
+            }
+            catch (SmtpException ex)
+            {
+                this.ModelState.AddModelError("", ex.GetBaseException().Message);
+                return View(model);
+            }
+
+            return View("ContactUsSuccess");
         }
     }
 }

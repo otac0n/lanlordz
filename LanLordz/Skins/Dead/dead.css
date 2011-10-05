@@ -17,7 +17,7 @@ a:hover{color:Red;text-decoration:underline;}
 #userinfo{position:relative;height:40px;top:-81px;padding:20px 0 0 0;}
 #main{background:url(MainBG.png) repeat-y;padding:10px 20px;width:960px;text-align:left;}
 #footer{background:url(FooterBG.png) no-repeat center bottom;padding:10px 20px;width:960px;text-align:left;}
-.Menu{margin:0 auto 0 auto;padding:0;height:81px;width:840px;}
+.Menu{margin:0 auto 0 auto;padding:0;height:81px;width:965px;}
 .MenuItem{padding:0;margin:0 20px 0 0;list-style-type:none;float:left;width:100px;height:81px;font-family:TwentyEightDaysLater;font-size:18pt;font-weight:bold;color:White;background:url(NavButton.png) no-repeat center top;}
 .MenuItem a:link,.MenuItem a:visited,.MenuItem a:active{color:White;text-decoration:none;}
 .MenuItem a:hover{color:Red;text-decoration:none;}

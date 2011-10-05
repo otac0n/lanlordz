@@ -129,6 +129,7 @@
     <Compile Include="Models\CachedModels\CachedPoll.cs" />
     <Compile Include="Models\CachedModels\CachedTournament.cs" />
     <Compile Include="Models\CachedModels\CachedVenue.cs" />
+    <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventImageUserTag.cs" />
     <Compile Include="Models\EventRegistrationInformation.cs" />
@@ -573,6 +574,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\UserInfoBox.cshtml" />
     <Content Include="Views\Events\ViewTournament.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\ContactUsSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

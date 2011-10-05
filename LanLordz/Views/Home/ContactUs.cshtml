@@ -1,0 +1,44 @@
+﻿@model LanLordz.Models.ContactUsModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@section headers
+{
+    <style>
+        .multi-line { width: 100%; height: 300px; }
+        .single-line { width: 50%; }
+        .editor-label { margin-top: 1em; }
+    </style>
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Contact Us</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Message)
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <p>
+            <input type="submit" value="Send" />
+        </p>
+    </fieldset>
+}
