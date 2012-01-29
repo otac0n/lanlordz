@@ -502,7 +502,7 @@
     <Content Include="Views\Account\Register.spark" />
     <Content Include="Views\Account\RegistrationSuccessful.spark" />
     <Content Include="Views\Account\ViewProfile.spark" />
-    <Content Include="Views\Admin\EditConfig.spark" />
+    <None Include="Views\Admin\EditConfig.cshtml" />
     <Content Include="Views\Admin\Index.spark">
       <SubType>Designer</SubType>
     </Content>

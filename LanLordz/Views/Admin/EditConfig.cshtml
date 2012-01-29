@@ -1,0 +1,76 @@
+@model LanLordz.Models.MasterConfigModel
+@{
+    ViewBag.Title = "Master Configuration";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary("There was an error updating the configuration.", new { @class = "ErrorText" })
+     <table class="AdminEditConfiguration">
+      <tr class="AdminEditConfigurationHeading"><th colspan="2">Site Settings</th></tr>
+      <tr class="AdminEditConfigurationItem"><td>Site Name:</td><td>@Html.TextBox("SiteName", controller.Config.SiteName)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Site Tagline:</td><td>@Html.TextBox("SiteTagline", controller.Config.SiteTagline)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Require Email Confirmation:</td><td>@Html.CheckBox("ConfirmEmail", controller.Config.ConfirmEmail)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Log User On After Registration:</td><td>@Html.CheckBox("LoginAfterRegister", controller.Config.LoginAfterRegister)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Site Copyright:</td><td>@Html.TextBox("SiteCopyright", controller.Config.SiteCopyright)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Show Visitor Count:</td><td>@Html.CheckBox("ShowVisitors", controller.Config.ShowVisitors)</td></tr>
+      <tr class="AdminEditConfigurationItem">
+       <td>Default Theme:</td>
+       <td>
+         @Html.DropDownList("DefaultTheme", from theme in Model.AvailableThemes.Keys
+                                            select new SelectListItem
+                                            {
+                                                Text = Model.AvailableThemes[theme],
+                                                Value = theme,
+                                                Selected = controller.Config.DefaultTheme == theme
+                                            })
+       </td>
+      </tr>
+      <tr class="AdminEditConfigurationItem">
+       <td>Default Time Zone:</td>
+       <td>
+         @Html.DropDownList("DefaultTimeZone", from timezone in Model.AvailableTimezones.Keys
+                                               select new SelectListItem
+                                               {
+                                                   Text = Model.AvailableTimezones[timezone],
+                                                   Value = timezone,
+                                                   Selected = controller.Config.DefaultTimeZone == timezone
+                                               })
+       </td>
+      </tr>
+      <tr class="AdminEditConfigurationItem"><td>Use Google Analytics:</td><td>@Html.CheckBox("UseGoogleAnalytics", controller.Config.UseGoogleAnalytics)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Google Analytics Account:</td><td>@Html.TextBox("GoogleAnalyticsAccount", controller.Config.GoogleAnalyticsAccount)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Use CoralCDN for Static Content:</td><td>@Html.CheckBox("UseCoralCdn", controller.Config.UseCoralCdn)</td></tr>
+      <tr class="AdminEditConfigurationHeading"><th colspan="2">Mail Settings</th></tr>
+      <tr class="AdminEditConfigurationItem"><td>Admin Email:</td><td>@Html.TextBox("AdminEmail", controller.Config.AdminEmail)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>SMTP Host Name:</td><td>@Html.TextBox("SmtpHost", controller.Config.SmtpHost)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>SMTP Port:</td><td>@Html.TextBox("SmtpPort", controller.Config.SmtpPort)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Confirmation Email Subject:</td><td>@Html.TextBox("ConfirmEmailSubject", controller.Config.ConfirmEmailSubject)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Confirmation Email Body:</td><td>@Html.TextArea("ConfirmEmailText", controller.Config.ConfirmEmailText)<br />Use '{0}' to place the confirmation URL.</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Security Key Email Subject:</td><td>@Html.TextBox("SecurityEmailSubject", controller.Config.SecurityEmailSubject)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Security Key Email Body:</td><td>@Html.TextArea("SecurityEmailText", controller.Config.SecurityEmailText)<br />Use '{0}' to place the security key.</td></tr>
+      <tr class="AdminEditConfigurationHeading"><th colspan="2">Page Settings</th></tr>
+      <tr class="AdminEditConfigurationItem"><td>Main Page HTML:</td><td>@Html.TextArea("MainPageHtml", controller.Config.MainPageHtml)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Google Maps API Key:</td><td>@Html.TextBox("GoogleMapsKey", controller.Config.GoogleMapsKey)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Use Recaptcha:</td><td>@Html.CheckBox("UseRecaptcha", controller.Config.UseRecaptcha)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Recaptcha Public Key:</td><td>@Html.TextBox("RecaptchaPublicKey", controller.Config.RecaptchaPublicKey)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>Recaptcha Private Key:</td><td>@Html.TextBox("RecaptchaPrivateKey", controller.Config.RecaptchaPrivateKey)</td></tr>
+      <tr class="AdminEditConfigurationItem"><td>News Page Thread ID:</td><td>@Html.TextBox("NewsThread", controller.Config.NewsThread)</td></tr>
+      <tr class="AdminEditConfigurationItem">
+       <td>Crew Group:</td>
+       <td>
+         @Html.DropDownList("CrewGroup", from @group in Model.Groups
+                                         select new SelectListItem
+                                         {
+                                             Text = @group.Name,
+                                             Value = @group.RoleID.ToString(),
+                                             Selected = controller.Config.CrewGroup == @group.RoleID
+                                         })
+       </td>
+      </tr>
+      <tr class="AdminEditConfigurationItem"><td></td><td><input type="submit" value="Save" /></td></tr>
+     </table>
+    }
