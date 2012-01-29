@@ -153,6 +153,7 @@ namespace LanLordz.Controllers
             var message = new MailMessage
             {
                 From = new MailAddress(model.Email),
+                Subject = "[" + this.Config.SiteName + "] Contact us form.",
                 Body = model.Message,
                 IsBodyHtml = false,
             };
