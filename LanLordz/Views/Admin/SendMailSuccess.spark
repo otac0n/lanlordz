@@ -1,7 +1,0 @@
-<content name="title">Send Mail</content>
-<content name="headers">
-</content>
-<content name="main">
-    <h2>Mail Sent Successfully</h2>
-    <p>The mail you submitted has been sent successfully.</p>
-</content>

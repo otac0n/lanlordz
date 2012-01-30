@@ -1,0 +1,18 @@
+@{
+    ViewBag.Title = "Admin Index";
+}
+    <h2>@ViewBag.Title</h2>
+    <dl>
+     <dt>Site Administration</dt>
+     <dd>@Html.ActionLink("Master Configuration", "EditConfig")</dd>
+     <dd>@Html.ActionLink("Edit Groups / Memberships", "EditGroups")</dd>
+     <dd>@Html.ActionLink("Edit Titles", "EditTitles")</dd>
+     <dd>@Html.ActionLink("Edit Sponsors", "EditSponsors")</dd>
+     <dd>@Html.ActionLink("Reset User Passwords", "ResetPassword")</dd>
+     <dt>Forum Management</dt>
+     <dd>@Html.ActionLink("Edit Forum ACLs", "EditForumAccess")</dd>
+     <dt>Event Management</dt>
+     <dd>@Html.ActionLink("Edit Events", "EditEvents")</dd>
+     <dt>Send Mail</dt>
+     <dd>@Html.ActionLink("Send Mail To Users", "SendMail")</dd>
+    </dl>

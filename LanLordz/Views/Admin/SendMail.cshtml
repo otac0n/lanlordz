@@ -1,0 +1,31 @@
+@model LanLordz.Models.SendMailModel
+@{
+    ViewBag.Title = "Send Mail";
+}
+    <h2>Send Mail</h2>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     <table>
+      <tr><td>To:</td><td>Members of @Html.DropDownList("Role", from role in Model.Roles
+                                                                 select new SelectListItem
+                                                                 {
+                                                                     Text = role.Name,
+                                                                     Value = role.RoleID.ToString(),
+                                                                 })</td></tr>
+      <tr><td>Subject:</td><td>@Html.TextBox("Subject", "", new { @class = "EditPostTitleBox" })</td></tr>
+      @if (Model.UpcomingEvents.Any())
+      {
+      <tr><td>Invitation:</td><td>@Html.DropDownList("Event", from evt in Model.UpcomingEvents
+                                                              orderby evt.BeginDateTime
+                                                              select new SelectListItem
+                                                              {
+                                                                  Text = evt.Title,
+                                                                  Value = evt.EventID.ToString(),
+                                                                  Selected = false,
+                                                              }, "(Don't send an invitation.)")</td></tr>
+      }
+      <tr><td>Body:</td><td><textarea name="Body" id="Body" rows="2" cols="20" class="EditPostBodyBox"></textarea></td></tr>
+      <tr><td></td><td><input type="submit" value="Send" /></td></tr>
+     </table>
+    }

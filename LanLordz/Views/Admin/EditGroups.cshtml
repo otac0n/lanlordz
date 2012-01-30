@@ -1,0 +1,24 @@
+@model List<LanLordz.Models.Role>
+@{
+    ViewBag.Title = "Edit Groups";
+}
+  <h2>@ViewBag.Title</h2>
+  <table class="EditGroupsTable">
+    <tr>
+      <th>Group / Role Name</th>
+      <th></th>
+    </tr>
+    @foreach (var group in Model)
+    {
+    <tr>
+      <td>@group.Name</td>
+      <td>@Html.ActionLink("Edit", "EditGroup", new { id = group.RoleID })</td>
+    </tr>
+    }
+    @if (!Model.Any())
+    {
+    <tr class="EditGroupsTableEmptyRow">
+      <td colspan="2">There are no groups to display in this view.</td>
+    </tr>
+    }
+  </table>

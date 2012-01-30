@@ -1,0 +1,73 @@
+@model List<LanLordz.Models.Title>
+@{
+    ViewBag.Title = "Edit Titles";
+    var roles = ViewBag.Roles as IEnumerable<LanLordz.Models.Role>;
+}
+  <h2>@ViewBag.Title</h2>
+
+  <div class="EditTitles">
+    @using (Html.BeginForm("DeleteTitle", "Admin"))
+    {
+    @Html.AntiForgeryToken()
+    @Html.Hidden("TitleId")
+    <h3>Current Titles</h3>
+    <table class="EditTitlesCurrentTitlesTable">
+      <tr>
+        <th>Title Text</th>
+        <th>Criterion</th>
+        <th></th>
+      </tr>
+      @if (!Model.Any())
+      {
+      <tr>
+        <td colspan="3">There are currently no titles configured.</td>
+      </tr>
+      }
+      @foreach (var title in Model)
+      {
+      <tr>
+        <td>@title.TitleText</td>
+        <td>
+          @if (title.RoleID.HasValue) {
+            <text>Role: @title.Role.Name</text>
+          } else if (title.UserID.HasValue) {
+            <text>User: @title.User.Username</text>
+          } else {
+            <text>Posts: @title.PostCountThreshold</text>
+          }
+        </td>
+        <td>
+          <button type="submit" onclick="$('#TitleId').val(@title.TitleID)">Remove</button>
+        </td>
+      </tr>
+      }
+    </table>
+    }
+  </div>
+
+  <div class="AddTitle">
+    @using (Html.BeginForm("AddTitle", "Admin", null, FormMethod.Post, new { autocomplete = "off" }))
+    {
+    <text>
+    @Html.AntiForgeryToken()
+    <h3>Add A Title</h3>
+    Type: <select name="Type" onchange="$('.AddTitle div').hide();$('#'+$(this).val()+'Editor').show();">
+      <option value="user" selected="selected">User</option>
+      <option value="role">Role / Group</option>
+      <option value="count">Post Count</option>
+    </select><br /><br />
+    <div id="userEditor">
+      User: <input id="input_username" name="Username" class="UserLookup" />
+    </div>
+    <div id="roleEditor" style="display:none;">
+      Role: @Html.DropDownList("RoleId", from r in roles select new SelectListItem { Text = r.Name, Value = r.RoleID.ToString() })
+    </div>
+    <div id="countEditor" style="display:none;">
+      Post Count: <input type="text" name="PostCountThreshold" />
+    </div>
+    <br />
+    Text: <input type="text" name="TitleText" /><br /><br />
+    <input type="submit" value="Add" />
+    </text>
+    }
+  </div>

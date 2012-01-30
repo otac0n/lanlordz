@@ -13,10 +13,7 @@
     <RootNamespace>LanLordz</RootNamespace>
     <AssemblyName>LanLordz</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -502,12 +499,10 @@
     <Content Include="Views\Account\Register.spark" />
     <Content Include="Views\Account\RegistrationSuccessful.spark" />
     <Content Include="Views\Account\ViewProfile.spark" />
-    <None Include="Views\Admin\EditConfig.cshtml" />
-    <Content Include="Views\Admin\Index.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Admin\SendMail.spark" />
-    <Content Include="Views\Admin\SendMailSuccess.spark" />
+    <Content Include="Views\Admin\EditConfig.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\SendMail.cshtml" />
+    <Content Include="Views\Admin\SendMailSuccess.cshtml" />
     <Content Include="Views\Crew\ChooseEvent.spark" />
     <Content Include="Views\Crew\DoorPrizes.spark" />
     <Content Include="Views\Crew\EditImages.spark" />
@@ -564,12 +559,10 @@
     <Content Include="Views\Stats\Events.spark" />
     <Content Include="Views\Stats\Index.spark" />
     <Content Include="Views\Stats\Users.spark" />
-    <Content Include="Views\Admin\EditGroups.spark" />
-    <Content Include="Views\Admin\EditGroup.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Admin\EditTitles.spark" />
-    <Content Include="Views\Admin\ResetPassword.spark" />
+    <Content Include="Views\Admin\EditGroups.cshtml" />
+    <Content Include="Views\Admin\EditGroup.cshtml" />
+    <Content Include="Views\Admin\EditTitles.cshtml" />
+    <Content Include="Views\Admin\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\UserInfoBox.cshtml" />
@@ -600,15 +593,27 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
   </Target> -->
-  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62320</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

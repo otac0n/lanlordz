@@ -1,6 +1,6 @@
 syntax: glob
-**/bin/**
-**/obj/**
+**/[Bb]in/**
+**/[Oo]bj/**
 **/sql/**
 *.suo
 *.docstates

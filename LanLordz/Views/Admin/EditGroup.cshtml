@@ -1,0 +1,40 @@
+@model LanLordz.Models.Role
+@{
+    ViewBag.Title = "Edit " + Model.Name + " Group";
+}
+  <h2>@ViewBag.Title</h2>
+
+  <div class="EditGroupCurrentMembers">
+  @using (Html.BeginForm("DeleteGroupMember", "Admin", new { id = Model.RoleID }, FormMethod.Post, null))
+  {
+    @Html.AntiForgeryToken()
+    @Html.Hidden("UserId")
+    <h3>Current Members</h3>
+    <table class="EditGroupCurrentMembersTable">
+      @foreach (var member in Model.UsersRoles.Select(ur => ur.User))
+      {
+      <tr>
+        <td>@Html.UserLink(member.UserID, member.Username)</td>
+        <td>
+          <button type="submit" onclick="$('#UserId').val(${member.UserID})">Remove</button>
+        </td>
+      </tr>
+      }
+    </table>
+  }
+  </div>
+
+  <div class="EditGroupCurrentMembers">
+  @using (Html.BeginForm("AddGroupMember", "Admin", new { id = Model.RoleID }, FormMethod.Post, new { autocomplete = "off" }))
+  {
+    @Html.AntiForgeryToken()
+    <h3>Add a Member</h3>
+    <div>
+      <p>Add an existing user:</p>
+      <input id="input_username" name="Username" class="UserLookup" />
+      <input type="submit" value="Add" />
+    </div>
+  }
+  </div>
+
+  @Html.ActionLink("Back to List", "EditGroups")
