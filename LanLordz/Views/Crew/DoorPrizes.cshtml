@@ -47,12 +47,12 @@
        <td>
        @if (prize.WinnerUserId == null)
        {
-        <button onclick="Draw(${prize.PrizeId})">Draw</button>
-        <button onclick="Delete(${prize.PrizeId})">Delete</button>
+        <button onclick="Draw(@prize.PrizeId)">Draw</button>
+        <button onclick="Delete(@prize.PrizeId)">Delete</button>
        }
        else
        {
-        <button onclick="Revoke(${prize.PrizeId})">Revoke</button>
+        <button onclick="Revoke(@prize.PrizeId)">Revoke</button>
        }
        </td>
       </tr>

@@ -16,7 +16,7 @@
       <tr>
         <td>@Html.UserLink(member.UserID, member.Username)</td>
         <td>
-          <button type="submit" onclick="$('#UserId').val(${member.UserID})">Remove</button>
+          <button type="submit" onclick="$('#UserId').val(@member.UserID)">Remove</button>
         </td>
       </tr>
       }
