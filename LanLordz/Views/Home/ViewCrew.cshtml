@@ -1,0 +1,17 @@
+﻿@model LanLordz.Models.CrewDetailsModel
+@{
+    ViewBag.Title = "Crew";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+    <h2>@controller.Config.SiteName Crew</h2>
+    @foreach (var user in Model.Members)
+    {
+    <div class="EventCrewMember">
+        <div class="EventCrewMemberAvatar">
+         @Html.UserAvatar(user)
+        </div>
+        <div class="EventCrewMemberName">@Html.ActionLink(user.Username, "ViewProfile", "Account", new { id = user.UserID, title = controller.CreateUrlTitle(user.Username) }, null)</div>
+        <div class="EventCrewMemberRegisterDate">Joined: @controller.ConvertDateTime(user.CreateDate).ToShortDateString()</div>
+        <div class="EventCrewMemberBiography">@user.Biography</div>
+    </div>
+    }

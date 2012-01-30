@@ -1,0 +1,5 @@
+﻿@{
+    ViewBag.Title = "Home";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+@Html.Raw(controller.Config.MainPageHtml)

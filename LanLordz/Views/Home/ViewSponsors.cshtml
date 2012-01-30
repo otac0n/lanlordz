@@ -1,0 +1,36 @@
+﻿@model LanLordz.Models.ViewSponsorsModel
+@{
+    ViewBag.Title = "Sponsors";
+}
+    <h2>@ViewBag.Title</h2>
+    @foreach (var sponsor in Model.Sponsors.OrderBy(s => s.Order))
+    {
+     var cacheBuster = (DateTime.UtcNow - (new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+     var sponsorUrl = (sponsor.Url ?? string.Empty).Replace("#CACHEBUSTER#", cacheBuster);
+     var sponsorImageUrl = (sponsor.ImageUrl ?? string.Empty).Replace("#CACHEBUSTER#", cacheBuster);
+    <div class="Sponsor">
+     <div class="SponsorName">
+     @if (!string.IsNullOrEmpty(sponsorUrl))
+     {
+      <a href="@sponsorUrl">@sponsor.Name</a>
+     }
+     else
+     {
+      @sponsor.Name
+     }
+     </div>
+     @if (!string.IsNullOrEmpty(sponsor.ImageUrl))
+     {
+     <div class="SponsorImage">
+     @if (!string.IsNullOrEmpty(sponsorUrl))
+     {
+      <a href="@sponsorUrl"><img src="@sponsorImageUrl" alt="@sponsor.Name" /></a>
+     }
+     else
+     {
+      <img src="@sponsorImageUrl" alt="@sponsor.Name" />
+     }
+     </div>
+     }
+    </div>
+    }

@@ -536,10 +536,10 @@
     <Content Include="Views\Forums\ViewThread.spark" />
     <Content Include="Views\Forums\ViewUnread.spark" />
     <Content Include="Views\Forums\_ThreadListView.spark" />
-    <Content Include="Views\Home\Index.spark" />
-    <Content Include="Views\Home\ViewCrew.spark" />
-    <Content Include="Views\Home\ViewNews.spark" />
-    <Content Include="Views\Home\ViewSponsors.spark" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ViewCrew.cshtml" />
+    <Content Include="Views\Home\ViewNews.cshtml" />
+    <Content Include="Views\Home\ViewSponsors.cshtml" />
     <Content Include="Views\Images\Gallery.spark" />
     <Content Include="Views\Images\ViewImage.spark" />
     <Content Include="Views\Layouts\Application.spark" />

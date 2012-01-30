@@ -1,5 +1,0 @@
-﻿<content name="title">Home</content>
-<content name="headers"></content>
-<content name="main">
-!{Controller.Config.MainPageHtml}
-</content>

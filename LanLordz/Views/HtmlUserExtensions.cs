@@ -92,7 +92,7 @@ namespace LanLordz.Views
 
         public static MvcHtmlString UserAvatar<TModel>(this HtmlHelper<TModel> html, long userId, string username, bool userHasAvatar, string email)
         {
-            var url = ((BaseView<TModel>)html.ViewContext.View).Url;
+            var url = new UrlHelper(html.ViewContext.RequestContext);
 
             string imgUrl;
 
