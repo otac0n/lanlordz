@@ -124,5 +124,16 @@ namespace LanLordz.Views
 
             return ret;
         }
+
+        public static MvcHtmlString EventImage(this HtmlHelper html, EventImage image, int size)
+        {
+            var url = new UrlHelper(html.ViewContext.RequestContext);
+
+            var imgUrl = url.Action("Image", "Images", new { id = image.EventImageID, thumbnail = size, hash = LanLordzBaseController.CalculateScrapeBuster(image.ScrapeBusterKey, size) });
+
+            return new MvcHtmlString(string.Format(
+                "<img src=\"{0}\" />",
+                html.AttributeEncode(imgUrl)));
+        }
     }
 }

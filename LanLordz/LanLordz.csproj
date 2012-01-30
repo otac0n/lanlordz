@@ -503,13 +503,11 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\SendMail.cshtml" />
     <Content Include="Views\Admin\SendMailSuccess.cshtml" />
-    <Content Include="Views\Crew\ChooseEvent.spark" />
-    <Content Include="Views\Crew\DoorPrizes.spark" />
-    <Content Include="Views\Crew\EditImages.spark" />
-    <Content Include="Views\Crew\Index.spark" />
-    <Content Include="Views\Crew\UserCheckIn.spark">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Views\Crew\ChooseEvent.cshtml" />
+    <Content Include="Views\Crew\DoorPrizes.cshtml" />
+    <Content Include="Views\Crew\EditImages.cshtml" />
+    <Content Include="Views\Crew\Index.cshtml" />
+    <Content Include="Views\Crew\UserCheckIn.cshtml" />
     <Content Include="Views\Events\CreateEvent.spark" />
     <Content Include="Views\Events\CreateTeam.spark" />
     <Content Include="Views\Events\CreateTournament.spark" />

@@ -1,0 +1,18 @@
+@model LanLordz.Models.ChooseEventModel
+@{
+    ViewBag.Title = "Choose Event";
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     <p>Choose an event:</p>
+     @Html.DropDownList("Event", from evt in Model.Events
+                                 orderby DateTime.UtcNow - evt.BeginDateTime
+                                 select new SelectListItem
+                                 {
+                                     Text = evt.Title,
+                                     Value = evt.EventID.ToString(),
+                                 })
+     <input type="submit" value="Continue" />
+    }

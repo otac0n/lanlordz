@@ -1,18 +1,20 @@
-<viewdata model="LanLordz.Models.EditImagesModel"/>
-<content name="title">Edit Event Images</content>
-<content name="headers">
-</content>
-<content name="main">
-    <h2>Edit Event Images</h2>
-    # using (Html.BeginForm(Html.BeginForm("EditImages", "Crew", FormMethod.Post, new { enctype = "multipart/form-data" })))
-    # {
-     !{Html.AntiForgeryToken()}
+@model LanLordz.Models.EditImagesModel
+@{
+    ViewBag.Title = "Edit Event Images";
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm(Html.BeginForm("EditImages", "Crew", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    {
+     @Html.AntiForgeryToken()
      <p>Delete Images:</p>
      <div class="EditImagesList">
-       <div class="EditImagesListItem" each="var image in Model.Images">
-        <input type="checkbox" name="${"delete-" + image.EventImageID}" />
-        <div class="EditImagesListItemImage"><img src="${Url.Action("Image", "Images", new { id = image.EventImageID, thumbnail = 100, hash = CalculateScrapeBuster(image.ScrapeBusterKey, 100) })}" /></div>
+     @foreach (var image in Model.Images)
+     {
+       <div class="EditImagesListItem">
+        <input type="checkbox" name="delete-@image.EventImageID" />
+        <div class="EditImagesListItemImage">@Html.EventImage(image, 100)</div>
        </div>
+     }
      </div>
      <br style="clear : both" />
      <br />
@@ -28,5 +30,4 @@
      </table>
      <br />
      <input type="submit" value="Save" />
-    # }
-</content>
+    }

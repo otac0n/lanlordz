@@ -1,6 +1,9 @@
-<viewdata model="LanLordz.Models.DoorPrizesModel"/>
-<content name="title">Door Prizes</content>
-<content name="headers">
+@model LanLordz.Models.DoorPrizesModel
+@{
+    ViewBag.Title = "Door Prizes";
+}
+@section headers
+{
   <script type="text/javascript" language="javascript">
       //<![CDATA[
       function Draw(prizeId) {
@@ -28,22 +31,34 @@
       }
       //]]>
   </script>
-</content>
-<content name="main">
-    <h2>Assign Door Prizes</h2>
-    # using (Html.BeginForm())
-    # {
-     !{Html.AntiForgeryToken()}
-     !{Html.Hidden("Action")}
-     !{Html.Hidden("Value")}
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.Hidden("Action")
+     @Html.Hidden("Value")
      <p>Door Prizes:</p>
      <table>
-      <tr each="var prize in Model.Prizes">
-       <td>${prize.Name}</td><td>${prize.WinnerUserId.HasValue ? prize.User.Username : "(unassigned)"}</td><td><button if="!prize.WinnerUserId.HasValue" onclick="Draw(${prize.PrizeId})">Draw</button><button if="!prize.WinnerUserId.HasValue" onclick="Delete(${prize.PrizeId})">Delete</button><button if="prize.WinnerUserId.HasValue" onclick="Revoke(${prize.PrizeId})">Revoke</button></td>
+      @foreach (var prize in Model.Prizes)
+      {
+      <tr>
+       <td>@prize.Name</td><td>@(prize.WinnerUserId.HasValue ? prize.User.Username : "(unassigned)")</td>
+       <td>
+       @if (prize.WinnerUserId == null)
+       {
+        <button onclick="Draw(${prize.PrizeId})">Draw</button>
+        <button onclick="Delete(${prize.PrizeId})">Delete</button>
+       }
+       else
+       {
+        <button onclick="Revoke(${prize.PrizeId})">Revoke</button>
+       }
+       </td>
       </tr>
+      }
      </table>
-    # }
+    }
   <div>
      <input id="NewPrizeName" type="text" /> <button onclick="Add($('#NewPrizeName').val())">Add Prize</button>
   </div>
-</content>
