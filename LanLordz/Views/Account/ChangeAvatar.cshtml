@@ -1,0 +1,18 @@
+@model LanLordz.Models.ChangeAvatarModel
+@{
+    ViewBag.Title = "Change Avatar";
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm("ChangeAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary("There was an error processing your upload:", new { @class = "ErrorText" })
+     if (Model.UserInfo.HasAvatar)
+     {
+     <text>Current avatar:</text><br />
+     @Html.UserAvatar(Model.UserInfo)<br /><br />
+     }
+     <text>Choose a new avatar:</text><br />
+     <input type="file" name="NewAvatar" id="NewAvatar" /><br /><br />
+     <input type="submit" value="Upload" />
+    }

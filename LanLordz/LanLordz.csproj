@@ -488,17 +488,17 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Account\ChangeAvatar.spark" />
-    <Content Include="Views\Account\ChangePassword.spark" />
-    <Content Include="Views\Account\ChangeSucceeded.spark" />
-    <Content Include="Views\Account\ConfirmEmail.spark" />
-    <Content Include="Views\Account\ConfirmSuccess.spark" />
-    <Content Include="Views\Account\EditProfile.spark" />
-    <Content Include="Views\Account\Index.spark" />
-    <Content Include="Views\Account\LogOn.spark" />
-    <Content Include="Views\Account\Register.spark" />
-    <Content Include="Views\Account\RegistrationSuccessful.spark" />
-    <Content Include="Views\Account\ViewProfile.spark" />
+    <Content Include="Views\Account\ChangeAvatar.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangeSucceeded.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ConfirmSuccess.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegistrationSuccessful.cshtml" />
+    <Content Include="Views\Account\ViewProfile.cshtml" />
     <Content Include="Views\Admin\EditConfig.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\SendMail.cshtml" />

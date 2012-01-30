@@ -1,0 +1,41 @@
+﻿@model LanLordz.Models.UserInformationModel
+@{
+    ViewBag.Title = Model.UserInfo.Username + " | View Profile";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+    <div class="UserProfile">
+        <div class="UserProfileAvatar">
+          @Html.UserAvatar(Model.UserInfo)
+        </div>
+        <div class="UserProfileUsername">@Model.UserInfo.Username</div>
+        @if (Model.UserInfo.ShowGender)
+        {
+        <div class="UserProfileGender"><div class="UserProfileGenderLabel">Gender:</div><div class="UserProfileGenderValue">@Model.UserInfo.Gender</div></div>
+        }
+        @if (Model.UserInfo.ShowEmail)
+        {
+        <div class="UserProfileEmail"><div class="UserProfileEmailLabel">Email:</div><div class="UserProfileEmailAddress"><a href="mailto:<%=Html.AttributeEncode(Model.UserInfo.Email)%>">@(Model.UserInfo.Email + (Model.UserInfo.IsEmailConfirmed ? "" : " (unconfirmed)"))</a></div></div>
+        }
+        <div class="UserProfileJoined"><div class="UserProfileJoinedLabel">Joined:</div><div class="UserProfileJoinedDate">@controller.ConvertDateTime(Model.UserInfo.CreateDate).ToShortDateString()</div></div>
+        <div class="UserProfilePosts"><div class="UserProfilePostsLabel">Posts:</div><div class="UserProfilePostsCount">@Model.UserInfo.Posts</div></div>
+        @if (!string.IsNullOrEmpty(Model.UserInfo.Location))
+        {
+        <div class="UserProfileLocation"><div class="UserProfileLocationLabel">Location:</div><div class="UserProfileLocationText">@Model.UserInfo.Location</div></div>
+        }
+        @if (!string.IsNullOrEmpty(Model.UserInfo.Website))
+        {
+        <div class="UserProfileWebsite"><div class="UserProfileWebsiteLabel">Website:</div><div class="UserProfileWebsiteAddress"><a href="@LanLordz.SiteTools.AntiXss.SanitizeUrl(Model.UserInfo.Website)" rel="nofollow">@Model.UserInfo.Website</a></div></div>
+        }
+        @if (!string.IsNullOrEmpty(Model.UserInfo.Occupation))
+        {
+        <div class="UserProfileOccupation"><div class="UserProfileOccupationLabel">Occupation:</div><div class="UserProfileOccupationText">@Model.UserInfo.Occupation</div></div>
+        }
+        @if (!string.IsNullOrEmpty(Model.UserInfo.Interests))
+        {
+        <div class="UserProfileInterests"><div class="UserProfileInterestsLabel">Interests:</div><div class="UserProfileInterestsText">@Model.UserInfo.Interests</div></div>
+        }
+        @if (!string.IsNullOrEmpty(Model.UserInfo.Biography))
+        {
+        <div class="UserProfileBiography"><div class="UserProfileBiographyLabel">Biography:</div><div class="UserProfileBiographyText">@Model.UserInfo.Biography</div></div>
+        }
+    </div>

@@ -1,0 +1,11 @@
+@model LanLordz.Models.ConfirmEmailModel
+@{
+    ViewBag.Title = "Confirm Email";
+}
+    <h2>@ViewBag.Title</h2>
+    @Html.ValidationSummary("Confirmation Failed.", new { @class = "ErrorText" })
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     <text>Key: @Html.TextBox("Key", Model.Key) <input type="submit" value="Confirm" /></text>
+    }

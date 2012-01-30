@@ -1,0 +1,24 @@
+@{
+    ViewBag.Title = "Account Tools";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+    <h2>@ViewBag.Title</h2>
+    @if (controller.CurrentUser == null)
+    {
+    <ul>
+     <li>@Html.ActionLink("Forgot Password", "ChangePassword")</li>
+     <li>@Html.ActionLink("Forgot Username", "ForgotUsername")</li>
+     <li>@Html.ActionLink("Change Email Address", "ChangeEmail")</li>
+     <li>@Html.ActionLink("Resend Confirmation Email", "ResendConfirmation")</li>
+    </ul>
+    }
+    else
+    {
+    <ul>
+     <li>@Html.ActionLink("Edit Profile", "EditProfile")</li>
+     <li>@Html.ActionLink("Change Avatar", "ChangeAvatar")</li>
+     <li>@Html.ActionLink("Change Password", "ChangePassword")</li>
+     <li>@Html.ActionLink("Change Email Address", "ChangeEmail")</li>
+     <li>@Html.ActionLink("Change Security Question", "ChangeQuestion")</li>
+    </ul>
+    }

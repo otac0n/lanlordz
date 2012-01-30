@@ -1,0 +1,10 @@
+@{
+    ViewBag.Title = "Registration Successful";
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+}
+    <h2>@ViewBag.Title</h2>
+    <p>You have successfully registered with the site.  An email has been sent to the address you specified.  Confirming your address will help keep you account more secure.</p>
+    @if (controller.Config.ConfirmEmail)
+    {
+    <p>The administrators have chosen to require you to confirm your address before you are allowed to log in to the site.  Please check your email.</p>
+    }
