@@ -1,0 +1,19 @@
+@model LanLordz.Models.PaginationInformation
+@{
+    System.Web.Routing.RouteValueDictionary newValuesPageLast;
+    if (Model.RouteValues != null)
+    {
+        newValuesPageLast = new System.Web.Routing.RouteValueDictionary(Model.RouteValues);
+    }
+    else
+    {
+        newValuesPageLast = new System.Web.Routing.RouteValueDictionary();
+    }
+    string pagerText = Model.Pager.CreatePager(Model.CurrentPage, Model.Items, Model.ItemsPerPage, i =>
+    {
+        System.Web.Routing.RouteValueDictionary newValues = new System.Web.Routing.RouteValueDictionary(newValuesPageLast);
+        newValues[Model.PageAttribute] = i;
+        return Url.Action(Model.ActionName, Model.ControllerName, newValues);
+    });
+}
+@Html.Raw(pagerText)

@@ -1,0 +1,40 @@
+﻿@model LanLordz.Models.ImageGalleryModel
+@{
+    ViewBag.Title = "Image Gallery";
+}
+    <div class="GalleryNavigator">
+    @if (Model.Event == null && Model.User == null)
+    {
+        <text>Image Gallery &gt; All Images</text>
+    }
+    else if (Model.Event != null && Model.User == null)
+    {
+        <text>@Html.ActionLink("Image Gallery", "Gallery") &gt; @(Model.Event.Title + " Images")</text>
+    }
+    else if (Model.Event != null && Model.User != null)
+    {
+        <text>@Html.ActionLink("Image Gallery", "Gallery") &gt; @Html.ActionLink(Model.Event.Title + " Images", "Gallery", new { @event = Model.Event.EventID }) &gt; @("Images of " + Model.User.Username)</text>
+    }
+    else if (Model.Event == null && Model.User != null)
+    {
+        <text>@Html.ActionLink("Image Gallery", "Gallery") &gt; @("Images of " + Model.User.Username)</text>
+    }
+  </div>
+    <h2>Image Gallery</h2>
+    <div class="GalleryPagination">
+        @Html.Partial("PaginationView", Model.PageInfo)
+    </div>
+    <div class="GalleryImagesList">
+    @{
+        var i = (Model.PageInfo.CurrentPage - 1) * Model.PageInfo.ItemsPerPage + 1;
+    }
+    @foreach (var image in Model.Images)
+    {
+     <div class="GalleryImagesListItem">
+      <div class="GalleryImagesListItemImage"><a href="@Url.Action("ViewImage", "Images", new { id = i++, @event = Model.Event == null ? (long?)null : Model.Event.EventID, user = Model.User == null ? (long?)null : Model.User.UserID })">@Html.EventImage(image, 100)</a></div>
+     </div>
+    }
+    </div>
+    <div class="GalleryPagination">
+        @Html.Partial("PaginationView", Model.PageInfo)
+    </div>

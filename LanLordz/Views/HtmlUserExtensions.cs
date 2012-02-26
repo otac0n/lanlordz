@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="BaseView.cs" company="LAN Lordz, inc.">
+// <copyright file="HtmlUserExtensions.cs" company="LAN Lordz, inc.">
 //  Copyright © 2010 LAN Lordz, inc.
 //
 //  This file is part of The LAN Lordz LAN Party System.
@@ -22,15 +22,14 @@
 
 namespace LanLordz.Views
 {
-    using System;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using LanLordz.Controllers;
-    using LanLordz.Models;
     using LanLordz.Controllers.CachedRepositories;
-    using System.Web;
+    using LanLordz.Models;
 
     public static class HtmlUserExtensions
     {
@@ -125,11 +124,11 @@ namespace LanLordz.Views
             return ret;
         }
 
-        public static MvcHtmlString EventImage(this HtmlHelper html, EventImage image, int size)
+        public static MvcHtmlString EventImage(this HtmlHelper html, EventImage image, int? size)
         {
             var url = new UrlHelper(html.ViewContext.RequestContext);
 
-            var imgUrl = url.Action("Image", "Images", new { id = image.EventImageID, thumbnail = size, hash = LanLordzBaseController.CalculateScrapeBuster(image.ScrapeBusterKey, size) });
+            var imgUrl = url.EventImage(image, size);
 
             return new MvcHtmlString(string.Format(
                 "<img src=\"{0}\" />",
