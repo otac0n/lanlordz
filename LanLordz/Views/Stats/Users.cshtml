@@ -1,0 +1,22 @@
+@model LanLordz.Models.StatsUsersModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Users Stats";
+}
+    <h2>Users Stats</h2>
+    @Html.Partial("PaginationView", Model.PageInfo)
+    <table class="UserStatsTable">
+     <tr class="UserStatsTableHeader"><th>Username</th><th>Joined Date</th><th>Posts</th><th>Locations</th><th>Events Registered</th><th>Events Attended</th></tr>
+     @foreach (var u in Model.Users)
+     {
+     <tr class="UserStatsTableRow">
+      <td class="UserStatsTableRowUsername">@Html.UserLink(u)</td>
+      <td class="UserStatsTableRowJoinedDate">@controller.ConvertDateTime(u.CreateDate).ToShortDateString()</td>
+      <td class="UserStatsTableRowPosts">@u.Posts</td>
+      <td class="UserStatsTableRowLocation">@u.Location</td>
+      <td class="UserStatsTableRowEventsRegistered">@u.EventsRegistered</td>
+      <td class="UserStatsTableRowEventsAttended">@u.EventsCheckedIn</td>
+     </tr>
+     }
+    </table>
+    @Html.Partial("PaginationView", Model.PageInfo)

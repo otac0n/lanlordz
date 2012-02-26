@@ -1,0 +1,22 @@
+@model LanLordz.Models.StatsEventsModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Events Stats";
+}
+    <h2>Events Stats</h2>
+    @Html.Partial("PaginationView", Model.PageInfo)
+    <table class="EventStatsTable">
+     <tr class="EventStatsTableHeader"><th>Title</th><th>Start Date</th><th>Venue</th><th>Seats</th><th>Registrations</th><th>Attendees</th></tr>
+     @foreach (var e in Model.Events)
+     {
+     <tr class="EventStatsTableRow">
+      <td class="EventStatsTableRowTitle">@Html.ActionLink(e.Event.Title, "Details", "Events", new { id = e.Event.EventID, title = controller.CreateUrlTitle(e.Event.Title) }, null)</td>
+      <td class="EventStatsTableRowStartDate">@controller.ConvertDateTime(e.Event.BeginDateTime)</td>
+      <td class="EventStatsTableRowVenue">@e.Event.Venue.Name</td>
+      <td class="EventStatsTableRowSeats">@e.Event.Seats</td>
+      <td class="EventStatsTableRowRegistrations">@e.Registrations</td>
+      <td class="EventStatsTableRowAttendees">@e.CheckIns</td>
+     </tr>
+     }
+    </table>
+    @Html.Partial("PaginationView", Model.PageInfo)

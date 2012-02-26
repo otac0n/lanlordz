@@ -556,9 +556,9 @@
     <Content Include="Views\Shared\PaginationView.cshtml" />
     <Content Include="Views\Shared\_PaginationView.spark" />
     <Content Include="Views\Shared\_UserInfoBox.spark" />
-    <Content Include="Views\Stats\Events.spark" />
-    <Content Include="Views\Stats\Index.spark" />
-    <Content Include="Views\Stats\Users.spark" />
+    <Content Include="Views\Stats\Events.cshtml" />
+    <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Stats\Users.cshtml" />
     <Content Include="Views\Admin\EditGroups.cshtml" />
     <Content Include="Views\Admin\EditGroup.cshtml" />
     <Content Include="Views\Admin\EditTitles.cshtml" />
