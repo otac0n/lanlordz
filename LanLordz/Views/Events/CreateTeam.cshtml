@@ -3,7 +3,6 @@
     var controller = this.ViewContext.Controller as LanLordzBaseController;
     ViewBag.Title = Model.Tournament.TeamSize > 1 ? "Create Team" : "Join Tournament";
 }
-<content name="main">
     <div class="EventsNavigator">@Html.ActionLink(controller.Config.SiteName + " Events", "Index") &gt; @Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID }) &gt; @Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID }) &gt; @ViewBag.Title</div>
     <h2>@ViewBag.Title - @Model.Event.Title</h2>
     @using (Html.BeginForm())
@@ -39,4 +38,3 @@
      }
      </text>
     }
-</content>
