@@ -1,0 +1,64 @@
+﻿@model LanLordz.Models.Sponsor
+
+@{
+    ViewBag.Title = Model == null ? "Create Sponsor" : "Edit Sponsor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Name)
+            </td>
+            <td class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Info)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Info)
+                @Html.ValidationMessageFor(model => model.Info)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Url)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Url)
+                @Html.ValidationMessageFor(model => model.Url)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.ImageUrl)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ImageUrl)
+                @Html.ValidationMessageFor(model => model.ImageUrl)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Order)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Order)
+                @Html.ValidationMessageFor(model => model.Order)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="@(Model == null ? "Create" : "Save")" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "EditSponsors")
+</div>

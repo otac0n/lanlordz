@@ -141,6 +141,7 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RuleViolation.cs" />
     <Compile Include="Models\SiteTheme.cs" />
+    <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\ThreadInformation.cs" />
     <Compile Include="Models\Tournament.cs" />
@@ -554,6 +555,8 @@
     <Content Include="Views\Events\ViewTournament.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\ContactUsSuccess.cshtml" />
+    <Content Include="Views\Admin\EditSponsors.cshtml" />
+    <Content Include="Views\Admin\EditSponsor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

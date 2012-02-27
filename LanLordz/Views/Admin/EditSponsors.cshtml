@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LanLordz.Models.Sponsor>
+
+@{
+    ViewBag.Title = "Edit Sponsors";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateSponsor")
+</p>
+<table style="width: 100%;">
+    <tr>
+        <th></th>
+        <th>
+            Sponsor
+        </th>
+        <th>
+            Order
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "EditSponsor", new { id=item.SponsorID })
+        </td>
+        <td>
+            @item.Name<br />
+            <a href="@item.Url">@item.Url</a>
+        </td>
+        <td>
+            @item.Order
+        </td>
+    </tr>
+}
+
+</table>

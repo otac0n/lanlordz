@@ -23,6 +23,8 @@
 namespace LanLordz.Controllers
 {
     using System;
+    using System.Data;
+    using System.Data.Common;
     using System.IO;
     using System.Linq;
     using System.Net.Mail;
@@ -30,7 +32,6 @@ namespace LanLordz.Controllers
     using System.Web.Mvc;
     using LanLordz.Models;
     using LanLordz.SiteTools;
-    using System.Data;
 
     public class AdminController : LanLordzBaseController
     {
@@ -135,7 +136,7 @@ namespace LanLordz.Controllers
                     this.Db.SubmitChanges();
                     ModelState.AddModelError("", "The user's password has been successfully changed.");
                 }
-                catch (DataException ex)
+                catch (DbException ex)
                 {
                     ModelState.AddModelError("", ex.GetBaseException().Message);
                 }
@@ -308,6 +309,85 @@ namespace LanLordz.Controllers
             }
 
             return RedirectToAction("EditTitles");
+        }
+
+        [CompressFilter]
+        public ActionResult EditSponsors()
+        {
+            var sponsors = (from s in this.Db.Sponsors
+                            orderby s.Order
+                            select s).ToList();
+
+            return View(sponsors);
+        }
+
+        [CompressFilter]
+        public ActionResult CreateSponsor()
+        {
+            return View("EditSponsor");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult CreateSponsor(Sponsor sponsor)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View("EditSponsor");
+            }
+
+            try
+            {
+                this.Db.Sponsors.InsertOnSubmit(sponsor);
+                this.Db.SubmitChanges();
+            }
+            catch (DbException ex)
+            {
+                ModelState.AddModelError("", ex.GetBaseException().Message);
+                return View("EditSponsor");
+            }
+
+            return RedirectToAction("EditSponsors");
+        }
+
+        [CompressFilter]
+        public ActionResult EditSponsor(long id)
+        {
+            var sponsor = this.Db.Sponsors.SingleOrDefault(s => s.SponsorID == id);
+
+            if (sponsor == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(sponsor);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult EditSponsor(long id, FormCollection form)
+        {
+            var sponsor = this.Db.Sponsors.SingleOrDefault(s => s.SponsorID == id);
+
+            if (sponsor == null)
+            {
+                return View("NotFound");
+            }
+
+            if (!this.TryUpdateModel(sponsor) || !this.ModelState.IsValid)
+            {
+                return View(sponsor);
+            }
+
+            try
+            {
+                this.Db.SubmitChanges();
+            }
+            catch (DataException ex)
+            {
+                ModelState.AddModelError("", ex.GetBaseException().Message);
+                return View(sponsor);
+            }
+
+            return RedirectToAction("EditSponsors");
         }
 
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
