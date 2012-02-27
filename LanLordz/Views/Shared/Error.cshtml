@@ -1,0 +1,11 @@
+﻿@model LanLordz.Models.ErrorInfoModel
+@{
+    ViewBag.Title = "Error";
+}
+<content name="headers"></content>
+<content name="main">
+    <h2>Error</h2>
+    <p if="Model == null || string.IsNullOrEmpty(Model.ErrorMessage)">There was an error processing your request.</p>
+    <p if="Model != null && !string.IsNullOrEmpty(Model.ErrorMessage)">@(Model.ErrorMessage)</p>
+    <p if="Model != null && Model.Exception != null">@(Model.Exception.ToString())</p>
+</content>

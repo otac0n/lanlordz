@@ -1,0 +1,10 @@
+﻿@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Not Authorized";
+}
+    <h2>@ViewBag.Title</h2>
+    <p>You are not authorized to view this resource.</p>
+@if (controller.CurrentUser == null)
+{
+    <p>You may need to @Html.ActionLink("register", "Register", "Account") or log on before you can proceed.</p>
+}
