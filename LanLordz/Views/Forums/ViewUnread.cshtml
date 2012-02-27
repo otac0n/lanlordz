@@ -1,0 +1,7 @@
+@model LanLordz.Models.ThreadList
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "View Unread";
+}
+    <div class="ForumNavigator"><span>@Html.ActionLink(controller.Config.SiteName + " Forum Index", "Index")</span> &gt; <span>View Unread</span></div>
+    @Html.Partial("ThreadListView", Model.Threads)

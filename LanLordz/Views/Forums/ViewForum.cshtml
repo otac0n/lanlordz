@@ -1,0 +1,17 @@
+@model LanLordz.Models.ForumDetailsModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = this.Model.Forum.Name + " | View Forum";
+}
+    <div class="ForumNavigator"><span>@(Html.ActionLink(controller.Config.SiteName + " Forum Index", "Index"))</span> &gt; <span>@this.Model.Forum.Name</span></div>
+    @if (Model.UserAccess.CanPost)
+    {
+    <div class="ForumTools">
+     <div class="ForumToolsNewThread">
+      @(Html.ActionLink("New Thread", "CreatePost", new { forum = Model.Forum.ForumID }))
+     </div>
+    </div>
+    }
+    <div class="ForumPagination">@Html.Partial("PaginationView", Model.PageInfo)</div>
+    @Html.Partial("ThreadListView", Model.Threads.Threads)
+    <div class="ForumPagination">@Html.Partial("PaginationView", Model.PageInfo)</div>

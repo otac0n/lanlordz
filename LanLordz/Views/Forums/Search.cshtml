@@ -1,0 +1,7 @@
+@model LanLordz.Models.ThreadList
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Forum Search";
+}
+    <div class="ForumNavigator"><span>@Html.ActionLink(controller.Config.SiteName + " Forum Index", "Index")</span> &gt; <span>Search</span></div>
+    @Html.Partial("ThreadListView", Model.Threads)

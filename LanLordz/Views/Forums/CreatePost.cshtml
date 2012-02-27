@@ -1,0 +1,82 @@
+@model LanLordz.Models.CreatePostModel
+@{
+    ViewBag.Title = "Create Post";
+}
+@section headers
+{
+  <script type="text/javascript">
+   //<![CDATA[
+   function AddTags(tagName, parameter, innerData) {
+    var textarea = document.getElementById("BodyText");
+    textarea.focus();
+    textarea.value = textarea.value + "[" + tagName + (parameter ? "=" + parameter : "") + "]" + (innerData ? innerData : "") + "[/" + tagName + "]";
+   }
+   function AddEmoticon(emoticon) {
+   }
+   //]]>
+  </script>
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm("Post", "Forums"))
+    {
+     @Html.AntiForgeryToken()
+     if (Model.Post != null)
+     {
+     <input name="ReplyTo" type="hidden" value="@Model.Post.PostID" />
+     }
+     if (Model.Post == null && Model.Thread != null)
+     {
+     <input name="Thread" type="hidden" value="@Model.Thread.ThreadID" />
+     }
+     if (Model.Post == null && Model.Thread == null)
+     {
+     <input name="Forum" type="hidden" value="@Model.Forum.ForumID" />
+     }
+     <table class="CreatePostTable">
+      <tr><td>Subject:</td><td><input name="Title" type="text" class="EditPostTitleBox" value="@Model.Title" /> (60 Character Limit)</td></tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="button" onclick="AddTags('b');" value="B" style="font-weight : bold;" />
+        <input type="button" onclick="AddTags('i');" value="I" style="font-style : italic;" />
+        <input type="button" onclick="AddTags('u');" value="U" style="text-decoration : underline;" />
+        <input type="button" onclick="AddTags('s');" value="S" style="text-decoration : line-through;" />
+        <input type="button" onclick="AddTags('code');" value="Code" style="" />
+        <input type="button" onclick="AddTags('quote', 'Author');" value="&quot;Quote&quot;" style="" />
+        <input type="button" onclick="AddTags('link', 'http://', 'Link Caption');" value="Link" style="" />
+        <input type="button" onclick="AddTags('img', 'Alt Text', 'http://');" value="Image" style="" />
+        <input type="button" onclick="AddTags('spoiler');" value="Spoiler" style="" />
+        <input type="button" onclick="AddTags('youtube', 'videoid', 'Caption');" value="YouTube" style="" />
+       </td>
+      </tr>
+      <tr>
+       <td>Body:</td>
+       <td>
+        <textarea name="Text" id="BodyText" rows="2" cols="20" class="EditPostBodyBox">@Model.Text</textarea>
+       </td>
+      </tr>
+      @if (Model.UserAccess.CanModerate)
+      {
+      <tr>
+       <td>Thread Level:</td>
+       <td>
+        @Html.DropDownList("Level", from level in Model.AvailableThreadLevels
+                                    select new SelectListItem
+                                    {
+                                        Text = level.Name,
+                                        Value = level.Level.ToString(),
+                                        Selected = Model.Thread != null && Model.Thread.Level == level.Level
+                                    }, new { @class = "EditThreadLevelBox" })
+       </td>
+      </tr>
+      <tr>
+       <td>Lock Thread:</td>
+       <td><input name="Locked" type="checkbox" class="EditThreadLockedBox" @(Model.Thread != null && Model.Thread.IsLocked ? "checked=\"checked\" " : "")/></td>
+      </tr>
+      }
+      <tr>
+       <td></td>
+       <td><input type="submit" value="Post" class="EditPostSubmitButton" /></td>
+      </tr>
+     </table>
+    }

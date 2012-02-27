@@ -1,0 +1,16 @@
+@model LanLordz.Models.DeletePostModel
+@{
+    ViewBag.Title = "Delete Post";
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+     <text>
+     @Html.AntiForgeryToken()
+     Are you sure you want to delete this post?<br /><br />
+     <input type="submit" value="Yes, Delete" />
+     @if (Model.UserAccess.CanModerate) {
+     <input name="DeleteThread" type="checkbox" @(Model.FirstPost ? "checked=\"checked\" " : "")/><label for="DeleteThread">Delete Entire Thread</label><br />
+     }
+     </text>
+    }

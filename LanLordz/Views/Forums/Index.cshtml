@@ -1,0 +1,72 @@
+@model LanLordz.Models.ForumsIndexModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Forums Index";
+}
+    <div class="ForumNavigator"><span>@controller.Config.SiteName Forum Index</span></div>
+    <div class="ForumSearch">
+     @using (Html.BeginForm("Search", "Forums"))
+     {
+      @Html.AntiForgeryToken()
+      <input type="text" name="SearchTerms" id="SearchTerms" />
+      <input type="submit" name="SearchButton" id="SearchButton" value="Search" />
+     }
+    </div>
+    @if (controller.CurrentUser != null) {
+    using (Html.BeginForm("MarkAllRead", "Forums", FormMethod.Post, new { name = "MarkAllRead" }))
+    {
+     <div class="ForumIndexTools">
+      <div class="ForumIndexToolsViewUnread">
+       @Html.ActionLink("View Unread", "ViewUnread")
+      </div>
+      <div class="ForumIndexToolsMarkAllRead">
+       @Html.AntiForgeryToken()
+       @Html.Hidden("ReadDate", DateTime.UtcNow)
+       <a href="javascript:document.MarkAllRead.submit()">Mark All Read</a>
+      </div>
+     </div>
+    }
+    }
+    <table class="ForumsTable" cellspacing="0">
+     <tr>
+      <th>&nbsp;</th>
+      <th>Forum</th>
+      <th>Threads</th>
+      <th>Posts</th>
+      <th>Last Post</th>
+     </tr>
+     @if (Model.ForumGroups.Count() == 0)
+     {
+     <tr>
+      <td colspan="5">You do not have access to view any forums, or no forums exist.</td>
+     </tr>
+     }
+     @foreach (var group in Model.ForumGroups)
+     {
+     <tr class="ForumGroup">
+      <td colspan="5"><div>@group.Name</div></td>
+     </tr>
+     foreach (var forumInfo in Model.Forums.Where(f => f.Forum.ForumGroupID == group.ForumGroupID))
+     {
+     <tr class="Forum @("Forum" + (forumInfo.Threads > forumInfo.ThreadsRead ? "Unread" : "Read"))">
+      <td><div class="ForumIndicator"></div></td>
+      <td class="ForumDescription">
+       <div class="ForumDescriptionTitle">@Html.ActionLink(forumInfo.Forum.Name, "ViewForum", new { id = forumInfo.Forum.ForumID, title = controller.CreateUrlTitle(forumInfo.Forum.Name) })</div>
+       <div class="ForumDescriptionText">@forumInfo.Forum.Description</div>
+      </td>
+      <td>@forumInfo.Threads</td>
+      <td>@forumInfo.Posts</td>
+      <td>
+       @if (forumInfo.Posts == 0)
+       {
+           <text>No Posts</text>
+       }
+       else
+       {
+       <div class="ForumLastPostDate">@controller.ConvertDateTime(forumInfo.LastPostDate.Value)</div><div class="ForumLastPostUser">@Html.ActionLink(forumInfo.LastPostUsername, "ViewProfile", "Account", new { id = forumInfo.LastPostUserID.Value, title = controller.CreateUrlTitle(forumInfo.LastPostUsername) }, null)</div>
+       }
+      </td>
+     </tr>
+     }
+     }
+    </table>
