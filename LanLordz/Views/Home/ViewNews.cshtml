@@ -23,7 +23,7 @@
     <div class="NewsPost">
      <div class="NewsPostTitle">@(string.IsNullOrEmpty(post.Title) ? "(no title)" : post.Title)</div>
      <div class="NewsPostDate">@controller.ConvertDateTime(post.CreateDate).ToShortDateString()</div>
-     <div class="NewsPostText">@Html.Raw(controller.FormatPostText(post.Text))</div>
+     <div class="NewsPostText">@Html.BBCode(post.Text)</div>
      <div class="NewsPostAuthor">- @post.User.Username</div>
     </div>
         }

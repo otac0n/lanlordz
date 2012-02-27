@@ -71,11 +71,11 @@
         </div>
        </div>
        <div class="PostText">
-@Html.Raw(controller.FormatPostText(post.Post.Text))
+@Html.BBCode(post.Post.Text)
 @if (!string.IsNullOrEmpty(post.UserSignature))
 {
 <hr/>
-@Html.Raw(controller.FormatPostText(post.UserSignature))
+@Html.BBCode(post.UserSignature)
 }
        </div>
       </td>

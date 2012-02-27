@@ -6,7 +6,7 @@
                                                          group ur by ur.UserId into g
                                                          select g.Key).Count();
 }
-<div class="PollDetails">@controller.FormatPostText(Model.Poll.Text)</div>
+<div class="PollDetails">@Html.BBCode(Model.Poll.Text)</div>
 @using (Html.BeginForm("Vote", "Polls", new { id = Model.Poll.PollId }))
 {
  @Html.AntiForgeryToken()

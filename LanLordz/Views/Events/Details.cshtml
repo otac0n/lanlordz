@@ -19,7 +19,7 @@
     <div class="EventsNavigator">@Html.ActionLink(controller.Config.SiteName + " Events", "Index") &gt; @Model.Event.Title</div>
     <div class="EventInfo">
      <h2 class="EventInfoName">@Model.Event.Title</h2>
-     <p class="EventInfoInfo">@Html.Raw(controller.FormatPostText(Model.Event.Info))</p>
+     <p class="EventInfoInfo">@Html.BBCode(Model.Event.Info)</p>
      <p class="EventInfoStart">Start: @controller.ConvertDateTime(Model.Event.BeginDateTime)</p>
      <p class="EventInfoEnd">End: @controller.ConvertDateTime(Model.Event.EndDateTime)</p>
      <p class="EventInfoSeats">Seats: @Model.Event.Seats</p>
