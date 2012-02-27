@@ -509,24 +509,20 @@
     <Content Include="Views\Crew\EditImages.cshtml" />
     <Content Include="Views\Crew\Index.cshtml" />
     <Content Include="Views\Crew\UserCheckIn.cshtml" />
-    <Content Include="Views\Events\CreateEvent.spark" />
-    <Content Include="Views\Events\CreateTeam.spark" />
-    <Content Include="Views\Events\CreateTournament.spark" />
-    <Content Include="Views\Events\Details.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Events\EditTournament.spark" />
-    <Content Include="Views\Events\Index.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Events\InputScores.spark" />
-    <Content Include="Views\Events\InputScoresPickRound.spark" />
-    <Content Include="Views\Events\JoinTeam.spark" />
-    <Content Include="Views\Events\LeaveTeam.spark" />
+    <Content Include="Views\Events\CreateEvent.cshtml" />
+    <Content Include="Views\Events\CreateTeam.cshtml" />
+    <Content Include="Views\Events\CreateTournament.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\EditTournament.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\InputScores.cshtml" />
+    <Content Include="Views\Events\InputScoresPickRound.cshtml" />
+    <Content Include="Views\Events\JoinTeam.cshtml" />
+    <Content Include="Views\Events\LeaveTeam.cshtml" />
     <Content Include="Views\Events\LockTeams.cshtml" />
-    <Content Include="Views\Events\ManageTeam.spark" />
-    <Content Include="Views\Events\RollBackRound.spark" />
-    <Content Include="Views\Events\StartNextRound.spark" />
+    <Content Include="Views\Events\ManageTeam.cshtml" />
+    <Content Include="Views\Events\RollBackRound.cshtml" />
+    <Content Include="Views\Events\StartNextRound.cshtml" />
     <Content Include="Views\Events\UnlockTeams.cshtml" />
     <Content Include="Views\Forums\CreatePost.cshtml" />
     <Content Include="Views\Forums\DeletePost.cshtml" />

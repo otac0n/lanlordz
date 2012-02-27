@@ -1,0 +1,40 @@
+@model LanLordz.Models.CreateTournamentModel
+@{
+    ViewBag.Title = "Create Tournament";
+}
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary("There was an error creating the tournament:", new { @class = "ErrorText" })
+     <table>
+      <tr><td>Event:</td><td>@Html.DropDownList("Event", from e in Model.Events.OrderBy(e => Math.Abs((DateTime.UtcNow - e.BeginDateTime).TotalMinutes))
+                                                         select new SelectListItem
+                                                         {
+                                                             Text = e.Title,
+                                                             Value = e.EventID.ToString(),
+                                                             Selected = (Model.Event == e.EventID)
+                                                         })</td></tr>
+      <tr><td>Title:</td><td>@Html.TextBox("Title", Model.Title)</td></tr>
+      <tr><td>Game:</td><td>@Html.TextBox("Game", Model.Game)</td></tr>
+      <tr><td>Team Size:</td><td>@Html.TextBox("TeamSize", Model.TeamSize)</td></tr>
+      <tr><td>Score Mode:</td><td>@Html.DropDownList("ScoreMode", from s in Model.ScoreModes
+                                                                  select new SelectListItem
+                                                                  {
+                                                                      Text = s.Value,
+                                                                      Value = s.Key,
+                                                                      Selected = (Model.ScoreMode == s.Key)
+                                                                  })</td></tr>
+      <tr><td>Type:</td><td>@Html.DropDownList("PairingsGenerator", from p in Model.PairingsGenerators
+                                                                    select new SelectListItem
+                                                                    {
+                                                                        Text = p,
+                                                                        Value = p,
+                                                                        Selected = (Model.PairingsGenerator == p)
+                                                                    })</td></tr>
+      <tr><td>Tournament Director:</td><td>@Html.TextBox("TDUsername", Model.TDUsername, new { @class = "UserLookup" })</td></tr>
+      <tr><td>Game Info:</td><td>@Html.TextArea("GameInfo", Model.GameInfo)</td></tr>
+      <tr><td>Server Settings:</td><td>@Html.TextArea("ServerSettings", Model.ServerSettings)</td></tr>
+      <tr><td></td><td><input type="submit" value="Create" /></td></tr>
+     </table>
+    }

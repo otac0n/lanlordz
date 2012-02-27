@@ -1,0 +1,60 @@
+@model LanLordz.Models.ManageTeamModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Manage Team";
+    var members = Model.Team.UsersTeams.Where(ut => ut.UserID != controller.CurrentUser.UserID);
+}
+@section headers
+{
+  <script type="text/javascript" language="javascript">
+      //<![CDATA[
+      function Manage(userId, action) {
+          $("#User").val(userId);
+          $("#Action").val(action);
+          $("#User").parents("form:first").submit();
+      }
+      //]]>
+  </script>
+}
+    <div class="EventsNavigator">@Html.ActionLink(controller.Config.SiteName + " Events", "Index") &gt; @Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID }) &gt; @Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID }) &gt; Manage Team</div>
+    <h2>Manage Team</h2>
+    @if (members.Any()) {
+    <h3>Team Members</h3>
+    using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.Hidden("User")
+     @Html.Hidden("Action")
+     <table class="EventTournamentManageTeamTeamsTable">
+      <tr class="EventTournamentManageTeamTeamsTableHeader">
+       <th class="EventTournamentManageTeamTeamsTableHeaderUsername">Username</th>
+       <th class="EventTournamentManageTeamTeamsTableHeaderTeamCaptain">Team Captain</th>
+       <th class="EventTournamentManageTeamTeamsTableHeaderKick">Kick</th>
+      </tr>
+      @foreach (var member in members)
+      {
+      <tr class="EventTournamentManageTeamTeamsTableMember">
+       <td class="EventTournamentManageTeamTeamsTableMemberUsername">@member.User.Username</td>
+       <td class="EventTournamentManageTeamTeamsTableMemberTeamCaptain">
+        <button @(member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Grant');">Grant</button> 
+        <button @(!member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Revoke');">Revoke</button>
+       </td>
+       <td class="EventTournamentManageTeamTeamsTableMemberKick">
+        <button onclick="Manage(@member.User.UserID, 'Kick');">Kick</button>
+       </td>
+      </tr>
+      }
+     </table>
+    }
+    }
+    <h3>Team Appearance</h3>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary("There was an error editing your team:", new { @class = "ErrorText" })
+     <table>
+      <tr><td>Team Name:</td><td>@Html.TextBox("TeamName", Model.Team.TeamName)</td></tr>
+      <tr><td>Tag Format:</td><td>@Html.TextBox("TeamTagFormat", Model.Team.TeamTagFormat) Use '{0}' as a placeholder for the username.</td></tr>
+      <tr><td></td><td><input type="submit" value="Save" /></td></tr>
+     </table>
+    }

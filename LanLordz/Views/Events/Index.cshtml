@@ -1,0 +1,53 @@
+@model LanLordz.Models.EventsIndexModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Events";
+}
+    <div class="EventsNavigator">@controller.Config.SiteName Events</div>
+    @if (controller.CurrentUser != null && controller.Security.IsUserAdministrator(controller.CurrentUser)) {
+        @Html.ActionLink("Create an Event", "CreateEvent")
+    }
+    @if (Model.Current.Count() > 0) {
+    <h2>Current Events</h2>
+    <ol class="EventList">
+    @foreach (var item in Model.Current.OrderBy(e => e.BeginDateTime))
+    {
+        var venue = Model.Venues.Where(v => v.VenueID == item.VenueID).Single();
+     <li class="EventListItem">
+      <div class="EventListEventName">@Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = controller.CreateUrlTitle(item.Title) })</div>
+      <div class="EventListVenue"><span class="EventListVenueName">@venue.Name</span><span class="EventListVenueAddress">@venue.Address</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">@controller.ConvertDateTime(item.BeginDateTime)</span><span class="EventListTimesEnd"> to @controller.ConvertDateTime(item.EndDateTime)</span></div>
+     </li>
+    }
+    </ol>
+    }
+    @if (Model.Upcoming.Count() > 0)
+    {
+    <h2>Upcoming Events</h2>
+    <ol class="EventList">
+    @foreach (var item in Model.Upcoming.OrderBy(e => e.BeginDateTime))
+    {
+        var venue = Model.Venues.Where(v => v.VenueID == item.VenueID).Single();
+     <li class="EventListItem">
+      <div class="EventListEventName">@Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = controller.CreateUrlTitle(item.Title) })</div>
+      <div class="EventListVenue"><span class="EventListVenueName">@venue.Name</span><span class="EventListVenueAddress">@venue.Address</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">@controller.ConvertDateTime(item.BeginDateTime)</span><span class="EventListTimesEnd"> to @controller.ConvertDateTime(item.EndDateTime)</span></div>
+     </li>
+    }
+    </ol>
+    }
+    @if (Model.Past.Count() > 0)
+    {
+    <h2>Past Events</h2>
+    <ol class="EventList">
+    @foreach (var item in Model.Past.OrderByDescending(e => e.BeginDateTime))
+    {
+        var venue = Model.Venues.Where(v => v.VenueID == item.VenueID).Single();
+     <li class="EventListItem">
+      <div class="EventListEventName">@Html.ActionLink(item.Title, "Details", new { id = item.EventID, title = controller.CreateUrlTitle(item.Title) })</div>
+      <div class="EventListVenue"><span class="EventListVenueName">@venue.Name</span><span class="EventListVenueAddress">@venue.Address</span></div>
+      <div class="EventListTimes"><span class="EventListTimesBegin">@controller.ConvertDateTime(item.BeginDateTime)</span><span class="EventListTimesEnd"> to @controller.ConvertDateTime(item.EndDateTime)</span></div>
+     </li>
+    }
+    </ol>
+    }

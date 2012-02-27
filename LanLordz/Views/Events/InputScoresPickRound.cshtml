@@ -1,0 +1,20 @@
+@model LanLordz.Models.TournamentActionModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Input Scores";
+}
+    <div class="EventsNavigator">@Html.ActionLink(controller.Config.SiteName + " Events", "Index") &gt; @Html.ActionLink(Model.Event.Title, "Details", new { id = Model.Event.EventID }) &gt; @Html.ActionLink(Model.Tournament.Title, "ViewTournament", new { id = Model.Tournament.TournamentID }) &gt; Input Scores</div>
+    <h2>Input Scores</h2>
+    <p>Pick a round for which to input scores:</p>
+    @using (Html.BeginForm())
+    {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary("There was an error picking the round:", new { @class = "ErrorText" })
+     @Html.DropDownList("Round", from round in Model.Rounds.OrderByDescending(r => r.RoundNumber)
+                                 select new SelectListItem
+                                 {
+                                     Value = round.RoundNumber.ToString(),
+                                     Text = "Round " + round.RoundNumber,
+                                 })
+     <input type="submit" value="Continue" /> @Html.ActionLink("Cancel", "ViewTournament", new { id = Model.Tournament.TournamentID })
+   }
