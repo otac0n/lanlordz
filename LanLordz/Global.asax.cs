@@ -1,10 +1,8 @@
 ﻿namespace LanLordz
 {
-    using System;
     using System.Web.Mvc;
     using System.Web.Routing;
     using LanLordz.Models;
-    using Spark.Web.Mvc;
 
     public class LanLordzApplication : System.Web.HttpApplication
     {
@@ -60,8 +58,6 @@
 
         protected void Application_Start()
         {
-            ViewEngines.Engines.Add(new SparkViewFactory());
-
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
