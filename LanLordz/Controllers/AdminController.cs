@@ -146,6 +146,57 @@ namespace LanLordz.Controllers
         }
 
         [CompressFilter]
+        public ActionResult RenameUser()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, CompressFilter]
+        public ActionResult RenameUser(FormCollection values)
+        {
+            ViewBag.Username = values["Username"];
+            var user = this.GetUser(values["Username"]);
+            if (user == null)
+            {
+                ModelState.AddModelError("Username", "That user could not be found.");
+                return View();
+            }
+
+            var newUsername = values["NewUsername"];
+            if (string.IsNullOrEmpty(newUsername))
+            {
+                ModelState.AddModelError("NewUsername", "The new username cannot be blank.");
+            }
+
+            if (newUsername != values["NewUsernameConfirm"])
+            {
+                ModelState.AddModelError("NewUsernameConfirm", "The usernames must match.");
+            }
+
+            user.Username = newUsername;
+            foreach (var violation in user.GetRuleViolations())
+            {
+                ModelState.AddModelError("", violation.ErrorMessage);
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    this.Db.SubmitChanges();
+                    ModelState.AddModelError("", "The user's name has been successfully changed.");
+                    ViewBag.Username = user.Username;
+                }
+                catch (DbException ex)
+                {
+                    ModelState.AddModelError("", ex.GetBaseException().Message);
+                }
+            }
+
+            return View();
+        }
+
+        [CompressFilter]
         public ActionResult SendMail()
         {
             var roles = this.Db.Roles.ToList();

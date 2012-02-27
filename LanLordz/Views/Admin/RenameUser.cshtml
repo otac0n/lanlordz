@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Rename User";
+}
+  <h2>@ViewBag.Title</h2>
+
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <table>
+      <tr><td>Username:</td><td><input name="Username" class="UserLookup" value="@ViewBag.Username" /></td></tr>
+      <tr><td>New Username:</td><td><input name="NewUsername" /></td></tr>
+      <tr><td>Confirm:</td><td><input name="NewUsernameConfirm" /></td></tr>
+      <tr><td></td><td><input type="submit" value="Change Name" /></td></tr>
+    </table>
+  }
+
+  @Html.ActionLink("Back to Index", "Index")

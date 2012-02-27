@@ -557,6 +557,7 @@
     <Content Include="Views\Home\ContactUsSuccess.cshtml" />
     <Content Include="Views\Admin\EditSponsors.cshtml" />
     <Content Include="Views\Admin\EditSponsor.cshtml" />
+    <Content Include="Views\Admin\RenameUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
