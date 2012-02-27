@@ -1,0 +1,6 @@
+@model LanLordz.Models.PollDetailsModel
+@{
+    ViewBag.Title = Model.Poll.Title + " | Poll Details";
+}
+    <h2>@ViewBag.Title</h2>
+    @Html.Partial("PollDetails")

@@ -544,11 +544,11 @@
     <Content Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Images\ViewImage.cshtml" />
     <Content Include="Views\Layouts\Application.spark" />
-    <Content Include="Views\Polls\Create.spark" />
-    <Content Include="Views\Polls\Details.spark" />
-    <Content Include="Views\Polls\DetailsPartial.spark" />
-    <Content Include="Views\Polls\Index.spark" />
-    <Content Include="Views\Polls\_PollDetails.spark" />
+    <Content Include="Views\Polls\Create.cshtml" />
+    <Content Include="Views\Polls\Details.cshtml" />
+    <Content Include="Views\Polls\DetailsPartial.cshtml" />
+    <Content Include="Views\Polls\Index.cshtml" />
+    <Content Include="Views\Polls\PollDetails.cshtml" />
     <Content Include="Views\Shared\Error.spark" />
     <Content Include="Views\Shared\NotAuthorized.spark" />
     <Content Include="Views\Shared\NotAvailable.spark" />

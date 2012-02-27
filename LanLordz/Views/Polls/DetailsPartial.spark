@@ -1,3 +1,0 @@
-<viewdata model="LanLordz.Models.PollDetailsModel"/>
-<div class="PollTitle">${Model.Poll.Title}</div>
-<PollDetails/>

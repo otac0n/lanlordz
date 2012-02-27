@@ -1,0 +1,52 @@
+@model LanLordz.Models.PollDetailsModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    bool showYourVote = Model.CurrentUserResponses != null;
+    int usersVoted = Model.UsersResponses == null ? 0 : (from ur in Model.UsersResponses
+                                                         group ur by ur.UserId into g
+                                                         select g.Key).Count();
+}
+<div class="PollDetails">@controller.FormatPostText(Model.Poll.Text)</div>
+@using (Html.BeginForm("Vote", "Polls", new { id = Model.Poll.PollId }))
+{
+ @Html.AntiForgeryToken()
+ <table class="PollResponsesTable">
+  <tr>
+    <th>Response</th>
+    @if (showYourVote)
+    {
+    <th>Your Vote</th>
+    }
+    @if (usersVoted != 0)
+    {
+    <th>Results</th>
+    }
+  </tr>
+  @foreach (var r in Model.Responses)
+  {
+  <tr>
+    <td>@r.Label</td>
+    @if (showYourVote)
+    {
+    <td><input type="@(Model.Poll.IsMultiAnswer ? "checkbox" : "radio")" name="Response" value="@r.PollResponseId"@(Model.CurrentUserResponses.Where(ur => ur.PollResponseId == r.PollResponseId && ur.IsSelected).Any() ? " checked=\"checked\"" : "") /></td>
+    }
+    @if (usersVoted != 0)
+    {
+        var votes = Model.UsersResponses.Where(ur => ur.IsSelected && ur.PollResponseId == r.PollResponseId).Count();
+    <td><div class="PollResponseResultBar"><div class="PollResponseResultBarFill" style="width : @Math.Round((100 * (decimal)votes) / usersVoted, 1)%;"></div><div class="PollResponseResultBarValue">@Math.Round((100 * (decimal)votes) / usersVoted, 1)%</div></div><div class="PollResponseResultDetails">@votes user@(votes != 1 ? "s" : "")</div></td>
+    }
+  </tr>
+  }
+  @if (showYourVote)
+  {
+  <tr>
+    <td></td>
+    <td><input type="submit" value="Save" /></td>
+    @if (usersVoted != 0)
+    {
+    <td></td>
+    }
+  </tr>
+  }
+ </table>
+}

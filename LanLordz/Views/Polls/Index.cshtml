@@ -1,0 +1,12 @@
+﻿@model LanLordz.Models.PollsIndexModel
+@{
+    var controller = this.ViewContext.Controller as LanLordzBaseController;
+    ViewBag.Title = "Polls";
+}
+    <h2>@ViewBag.Title</h2>
+    @foreach (var poll in Model.Polls)
+    {
+    <div>
+     @Html.ActionLink(poll.Title, "Details", new { id = poll.PollId, title = controller.CreateUrlTitle(poll.Title) })
+    </div>
+    }
