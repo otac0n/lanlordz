@@ -33,8 +33,16 @@
      {
       <tr>
        <td>@Html.UserLink(reg.UserID, reg.Username)</td>
-       <td><button @(reg.Registration.IsCheckedIn ? "disabled=\"disabled\"" : "onclick=\"CheckIn(" + reg.UserID + ", 1)\"")>Check In</button></td>
-       <td><button @(!reg.Registration.IsCheckedIn ? "disabled=\"disabled\"" : "onclick=\"CheckIn(" + reg.UserID + ", 0)\"")>Cancel Check In</button></td>
+       @if (!reg.Registration.IsCheckedIn)
+       {
+       <td><button onclick="CheckIn(@reg.UserID, 1)">Check In</button></td>
+       <td><button disabled="disabled">Cancel Check In</button></td>
+       }
+       else
+       {
+       <td><button disabled="disabled">Check In</button></td>
+       <td><button onclick="CheckIn(@reg.UserID, 0)">Cancel Check In</button></td>
+       }
       </tr>
      }
      </table>
