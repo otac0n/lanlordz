@@ -36,8 +36,8 @@
       <tr class="EventTournamentManageTeamTeamsTableMember">
        <td class="EventTournamentManageTeamTeamsTableMemberUsername">@member.User.Username</td>
        <td class="EventTournamentManageTeamTeamsTableMemberTeamCaptain">
-        <button @(member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Grant');">Grant</button> 
-        <button @(!member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Revoke');">Revoke</button>
+        <button @Html.Raw(member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Grant');">Grant</button> 
+        <button @Html.Raw(!member.IsTeamCaptain ? "disabled=\"disabled\" " : "")onclick="Manage(@member.User.UserID, 'Revoke');">Revoke</button>
        </td>
        <td class="EventTournamentManageTeamTeamsTableMemberKick">
         <button onclick="Manage(@member.User.UserID, 'Kick');">Kick</button>

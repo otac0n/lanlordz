@@ -71,7 +71,7 @@
       </tr>
       <tr>
        <td>Lock Thread:</td>
-       <td><input name="Locked" type="checkbox" class="EditThreadLockedBox" @(Model.Thread != null && Model.Thread.IsLocked ? "checked=\"checked\" " : "")/></td>
+       <td><input name="Locked" type="checkbox" class="EditThreadLockedBox" @Html.Raw(Model.Thread != null && Model.Thread.IsLocked ? "checked=\"checked\" " : "")/></td>
       </tr>
       }
       <tr>

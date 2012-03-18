@@ -28,7 +28,7 @@
     <td>@r.Label</td>
     @if (showYourVote)
     {
-    <td><input type="@(Model.Poll.IsMultiAnswer ? "checkbox" : "radio")" name="Response" value="@r.PollResponseId"@(Model.CurrentUserResponses.Where(ur => ur.PollResponseId == r.PollResponseId && ur.IsSelected).Any() ? " checked=\"checked\"" : "") /></td>
+    <td><input type="@(Model.Poll.IsMultiAnswer ? "checkbox" : "radio")" name="Response" value="@r.PollResponseId"@Html.Raw(Model.CurrentUserResponses.Where(ur => ur.PollResponseId == r.PollResponseId && ur.IsSelected).Any() ? " checked=\"checked\"" : "") /></td>
     }
     @if (usersVoted != 0)
     {

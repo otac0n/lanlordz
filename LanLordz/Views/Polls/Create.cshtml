@@ -27,7 +27,7 @@
      <table class="CreatePollTable">
       <tr><td>Title:</td><td><input name="Title" type="text" class="CreatePollTitleBox" value="@Model.Title" /> (60 Character Limit)</td></tr>
       <tr><td>Description:</td><td><textarea name="Description" class="CreatPollDescriptionBox">@Model.Description</textarea></td>
-      <tr><td>Options:</td><td><input name="IsPrivate" id="IsPrivate" type="checkbox"@(Model.IsPrivate ? " checked=\"checked\"" : "") /><label for="IsPrivate">Private (Answers visible to you and Administrators only)</label><br/><input name="IsMultiAnswer" id="IsMultiAnswer" type="checkbox"@(Model.IsMultiAnswer ? " checked=\"checked\"" : "") /><label for="IsMultiAnswer">Multiple Answers Allowed</label></td>
+      <tr><td>Options:</td><td><input name="IsPrivate" id="IsPrivate" type="checkbox"@Html.Raw(Model.IsPrivate ? " checked=\"checked\"" : "") /><label for="IsPrivate">Private (Answers visible to you and Administrators only)</label><br/><input name="IsMultiAnswer" id="IsMultiAnswer" type="checkbox"@Html.Raw(Model.IsMultiAnswer ? " checked=\"checked\"" : "") /><label for="IsMultiAnswer">Multiple Answers Allowed</label></td>
       <tr>
        <td>Respones:</td>
        <td id="ResponseList">
@@ -36,7 +36,7 @@
          int count = Math.Max(5, modelCount);
          for (int i = 1; i <= count; i++)
          {
-        <text><input name="Response@(i)" type="text"@(i <= modelCount ? " value=\"" + Html.Encode(Model.Responses[i - 1]) + "\"" : "") />@(i == 1 ? " (60 Character Limit)" : "")<br/></text>
+        <text><input name="Response@(i)" type="text"@Html.Raw(i <= modelCount ? " value=\"" + Html.Encode(Model.Responses[i - 1]) + "\"" : "") />@(i == 1 ? " (60 Character Limit)" : "")<br/></text>
          }
        }
        </td>
