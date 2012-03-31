@@ -443,47 +443,25 @@ namespace LanLordz.Controllers
 
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
         {
-            using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+            using (var message = new MailMessage())
             {
-                MailAddress from = new MailAddress(fromUser.Email);
+                message.From = new MailAddress(fromUser.Email, fromUser.Username);
+                message.Subject = subject;
+                message.Body = body;
+                message.IsBodyHtml = true;
 
-                string attachmentData = null;
+                var users = from ur in this.Db.UsersRoles
+                            where ur.RoleID == toGroupId
+                            let u = ur.User
+                            where u.ReceiveAdminEmail
+                            select new
+                            {
+                                u.Username,
+                                u.Email,
+                            };
 
-                if (invitationEventId.HasValue)
+                foreach (var user in users)
                 {
-                    var evt = this.Events.GetEvent(invitationEventId.Value);
-                    var vnu = this.Events.GetVenue(evt.VenueID);
-
-                    string address = this.Config.AdminEmail;
-
-                    try
-                    {
-                        address = (new MailAddress(this.Config.AdminEmail, this.Config.SiteName)).ToString();
-                    }
-                    catch
-                    {
-                    }
-
-                    Appointment apt = new Appointment
-                    {
-                        StartTime = this.ConvertDateTime(evt.BeginDateTime, this.Config.DefaultTimeZoneInfo),
-                        EndTime = this.ConvertDateTime(evt.EndDateTime, this.Config.DefaultTimeZoneInfo),
-                        Title = evt.Title,
-                        Description = evt.Info,
-                        Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,
-                        Organizer = address
-                    };
-
-                    attachmentData = apt.AsICalendar();
-                }
-
-                foreach (User user in this.Security.GetUsersInRole(toGroupId))
-                {
-                    if (!user.ReceiveAdminEmail)
-                    {
-                        continue;
-                    }
-
                     MailAddress to;
 
                     try
@@ -499,25 +477,62 @@ namespace LanLordz.Controllers
                         continue;
                     }
 
-                    using (var message = new MailMessage(from, to))
+                    message.Bcc.Add(to);
+                }
+
+                Stream attachmentStream = null;
+
+                try
+                {
+                    if (invitationEventId.HasValue)
                     {
-                        message.IsBodyHtml = true;
-                        message.Subject = subject;
-                        message.Body = body;
+                        var attachmentData = CreateICalEvent(invitationEventId.Value);
+                        attachmentStream = new MemoryStream(Encoding.UTF8.GetBytes(attachmentData));
+                        Attachment attachment = new Attachment(attachmentStream, "Invitation.ics", "text/calendar");
+                        message.Attachments.Add(attachment);
+                    }
 
-                        if (!string.IsNullOrEmpty(attachmentData))
-                        {
-                            using (var contentStream = new MemoryStream(Encoding.UTF8.GetBytes(attachmentData)))
-                            {
-                                Attachment attachment = new Attachment(contentStream, "Invitation.ics", "text/calendar");
-                                message.Attachments.Add(attachment);
-                            }
-                        }
-
+                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+                    {
                         client.Send(message);
                     }
                 }
+                finally
+                {
+                    if (attachmentStream != null)
+                    {
+                        attachmentStream.Dispose();
+                    }
+                }
             }
+        }
+
+        private string CreateICalEvent(long invitationEventId)
+        {
+            var evt = this.Events.GetEvent(invitationEventId.Value);
+            var vnu = this.Events.GetVenue(evt.VenueID);
+
+            string address = this.Config.AdminEmail;
+
+            try
+            {
+                address = (new MailAddress(this.Config.AdminEmail, this.Config.SiteName)).ToString();
+            }
+            catch
+            {
+            }
+
+            Appointment apt = new Appointment
+            {
+                StartTime = this.ConvertDateTime(evt.BeginDateTime, this.Config.DefaultTimeZoneInfo),
+                EndTime = this.ConvertDateTime(evt.EndDateTime, this.Config.DefaultTimeZoneInfo),
+                Title = evt.Title,
+                Description = evt.Info,
+                Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,
+                Organizer = address
+            };
+
+            return apt.AsICalendar();
         }
     }
 }
