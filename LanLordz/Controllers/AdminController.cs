@@ -509,7 +509,7 @@ namespace LanLordz.Controllers
 
         private string CreateICalEvent(long invitationEventId)
         {
-            var evt = this.Events.GetEvent(invitationEventId.Value);
+            var evt = this.Events.GetEvent(invitationEventId);
             var vnu = this.Events.GetVenue(evt.VenueID);
 
             string address = this.Config.AdminEmail;
