@@ -23,45 +23,22 @@
 namespace LanLordz.SiteTools
 {
     using System;
+    using System.Net.Mail;
     using System.Text;
 
     public class Appointment
     {
-        public string Title
-        {
-            get;
-            set;
-        }
+        public string Title { get; set; }
 
-        public DateTime StartTime
-        {
-            get;
-            set;
-        }
+        public DateTime StartTime { get; set; }
 
-        public DateTime EndTime
-        {
-            get;
-            set;
-        }
+        public DateTime EndTime { get; set; }
 
-        public string Organizer
-        {
-            get;
-            set;
-        }
+        public MailAddress Organizer { get; set; }
 
-        public string Location
-        {
-            get;
-            set;
-        }
+        public string Location { get; set; }
 
-        public string Description
-        {
-            get;
-            set;
-        }
+        public string Description { get; set; }
 
         public string AsICalendar()
         {
@@ -76,9 +53,15 @@ namespace LanLordz.SiteTools
             o.Append("DTSTART:" + FormatDateTime(this.StartTime) + "\r\n");
             o.Append("DTEND:" + FormatDateTime(this.EndTime) + "\r\n");
 
-            if (!string.IsNullOrEmpty(this.Organizer))
+            if (this.Organizer != null)
             {
-                o.Append("ORGANIZER:" + FormatText(this.Organizer) + "\r\n");
+                o.Append("ORGANIZER:");
+                if (string.IsNullOrEmpty(this.Organizer.DisplayName))
+                {
+                    o.Append("CN=" + FormatText(this.Organizer.DisplayName) + ":");
+                }
+
+                o.Append("MAILTO:" + FormatText(this.Organizer.Address) + "\r\n");
             }
 
             if (!string.IsNullOrEmpty(this.Location))

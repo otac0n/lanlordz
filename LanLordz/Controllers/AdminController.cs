@@ -512,16 +512,6 @@ namespace LanLordz.Controllers
             var evt = this.Events.GetEvent(invitationEventId);
             var vnu = this.Events.GetVenue(evt.VenueID);
 
-            string address = this.Config.AdminEmail;
-
-            try
-            {
-                address = (new MailAddress(this.Config.AdminEmail, this.Config.SiteName)).ToString();
-            }
-            catch
-            {
-            }
-
             Appointment apt = new Appointment
             {
                 StartTime = this.ConvertDateTime(evt.BeginDateTime, this.Config.DefaultTimeZoneInfo),
@@ -529,7 +519,7 @@ namespace LanLordz.Controllers
                 Title = evt.Title,
                 Description = evt.Info,
                 Location = string.IsNullOrEmpty(vnu.Address) ? vnu.Name : vnu.Address,
-                Organizer = address
+                Organizer = new MailAddress(this.Config.AdminEmail, this.Config.SiteName)
             };
 
             return apt.AsICalendar();
