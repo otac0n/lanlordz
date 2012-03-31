@@ -25,9 +25,14 @@
      @Html.AntiForgeryToken()
      @Html.ValidationSummary("There was an error creating your poll:", new { @class = "ErrorText" })
      <table class="CreatePollTable">
-      <tr><td>Title:</td><td><input name="Title" type="text" class="CreatePollTitleBox" value="@Model.Title" /> (60 Character Limit)</td></tr>
-      <tr><td>Description:</td><td><textarea name="Description" class="CreatPollDescriptionBox">@Model.Description</textarea></td>
-      <tr><td>Options:</td><td><input name="IsPrivate" id="IsPrivate" type="checkbox"@Html.Raw(Model.IsPrivate ? " checked=\"checked\"" : "") /><label for="IsPrivate">Private (Answers visible to you and Administrators only)</label><br/><input name="IsMultiAnswer" id="IsMultiAnswer" type="checkbox"@Html.Raw(Model.IsMultiAnswer ? " checked=\"checked\"" : "") /><label for="IsMultiAnswer">Multiple Answers Allowed</label></td>
+      <tr><td>Title:</td><td>@Html.TextBox("Title", Model.Title, new { @class = "CreatePollTitleBox" }) (60 Character Limit)</td></tr>
+      <tr><td>Description:</td><td>@Html.TextArea("Description", Model.Description, new { @class = "CreatPollDescriptionBox" })</td>
+      <tr><td>Options:</td>
+       <td>
+        @Html.CheckBox("IsPrivate", Model.IsPrivate) @Html.Label("IsPrivate", "Private (Answers visible to you and Administrators only)")<br/>
+        @Html.CheckBox("IsMultiAnswer", Model.IsMultiAnswer) @Html.Label("IsMultiAnswer", "Multiple Answers Allowed")
+       </td>
+      </tr>
       <tr>
        <td>Respones:</td>
        <td id="ResponseList">
@@ -36,7 +41,12 @@
          int count = Math.Max(5, modelCount);
          for (int i = 1; i <= count; i++)
          {
-        <text><input name="Response@(i)" type="text"@Html.Raw(i <= modelCount ? " value=\"" + Html.Encode(Model.Responses[i - 1]) + "\"" : "") />@(i == 1 ? " (60 Character Limit)" : "")<br/></text>
+             @Html.TextBox("Response" + i, i <= modelCount ? Model.Responses[i - 1] : "")
+             if (i == 1)
+             {
+                 <text> (60 Character Limit)</text>
+             }
+             <br/>
          }
        }
        </td>

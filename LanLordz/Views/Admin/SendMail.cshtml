@@ -25,7 +25,7 @@
                                                                   Selected = false,
                                                               }, "(Don't send an invitation.)")</td></tr>
       }
-      <tr><td>Body:</td><td><textarea name="Body" id="Body" rows="2" cols="20" class="EditPostBodyBox"></textarea></td></tr>
+      <tr><td>Body:</td><td>@Html.TextArea("Body", "", 2, 20, new { @class = "EditPostBodyBox" })</td></tr>
       <tr><td></td><td><input type="submit" value="Send" /></td></tr>
      </table>
     }

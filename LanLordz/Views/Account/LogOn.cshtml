@@ -11,16 +11,16 @@
      @Html.Hidden("ReturnUrl", Model.ReturnUrl)
      <table>
       <tr>
-       <td><label for="Username">Username:</label></td>
-       <td><input name="Username" type="text" id="Username" value="@Model.Username" /></td>
+       <td>@Html.Label("Username", "Username:")</td>
+       <td>@Html.TextBox("Username", Model.Username)</td>
       </tr>
       <tr>
-       <td><label for="PasswordHash">Password:</label></td>
-       <td><input name="Password" type="password" id="Password" value="@Model.Password" /></td>
+       <td>@Html.Label("PasswordHash", "Password:")</td>
+       <td>@Html.Password("Password", Model.Password)</td>
       </tr>
       <tr>
        <td></td>
-       <td><input name="RememberMe" type="checkbox" id="RememberMe" checked="@(Model.RememberMe ? "checked" : "")" /><label for="RememberMe">Remember Me</label></td>
+       <td>@Html.CheckBox("RememberMe", Model.RememberMe) @Html.Label("RememberMe", "Remember Me")</td>
       </tr>
       @if (Model.RequireCaptcha)
       {

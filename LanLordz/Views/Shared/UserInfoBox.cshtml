@@ -28,9 +28,9 @@ else
     {
      @Html.AntiForgeryToken()
      @Html.Hidden("ReturnUrl", ((object)Model) is LanLordz.Models.LogOnAttemptModel ? ((LanLordz.Models.LogOnAttemptModel)(object)Model).ReturnUrl : Request.Url.ToString())
-     <div class="UserInfoBoxInput"><label for="Username">Username:</label><input type="text" name="Username" id="Username" /></div>
-     <div class="UserInfoBoxInput"><label for="Password">Password:</label><input type="password" name="Password" id="Password" /></div>
-     <div class="UserInfoBoxInput"><input type="checkbox" name="RememberMe" id="RememberMe" /><label for="RememberMe">Remember Me</label></div>
+     <div class="UserInfoBoxInput">@Html.Label("Username", "Username:") @Html.TextBox("Username")</div>
+     <div class="UserInfoBoxInput">@Html.Label("Password", "Password:") @Html.Password("Password")</div>
+     <div class="UserInfoBoxInput">@Html.CheckBox("RememberMe") @Html.Label("RememberMe", "Remember Me")</div>
      <div class="UserInfoBoxInput"><input type="submit" value="Log On" /></div>
      <div class="UserInfoBoxAction">@Html.ActionLink("Register", "Register", "Account")</div>
      <div class="UserInfoBoxAction">@Html.ActionLink("Help", "Index", "Account")</div>

@@ -63,10 +63,10 @@
       Role: @Html.DropDownList("RoleId", from r in roles select new SelectListItem { Text = r.Name, Value = r.RoleID.ToString() })
     </div>
     <div id="countEditor" style="display:none;">
-      Post Count: <input type="text" name="PostCountThreshold" />
+      Post Count: @Html.TextBox("PostCountThreshold")
     </div>
     <br />
-    Text: <input type="text" name="TitleText" /><br /><br />
+    Text: @Html.TextBox("TitleText")<br /><br />
     <input type="submit" value="Add" />
     </text>
     }

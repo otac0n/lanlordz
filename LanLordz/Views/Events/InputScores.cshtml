@@ -16,7 +16,7 @@
      {
       <tr>
        <td>@teamPairing.Team.TeamName</td>
-       <td><input name="@("score-" + pairing.PairingID + "-" + teamPairing.TeamID)" type="text" value="@teamPairing.Score" style="width : 60px;" /></td>
+       <td>@Html.TextBox("score-" + pairing.PairingID + "-" + teamPairing.TeamID, teamPairing.Score, new { style = "width : 60px;" })</td>
       </tr>
      }
      </table>

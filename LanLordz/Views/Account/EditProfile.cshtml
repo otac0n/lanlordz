@@ -8,14 +8,14 @@
      @Html.AntiForgeryToken()
      @Html.ValidationSummary("There was an error updating your profile.", new { @class = "ErrorText" })
      <table>
-      <tr><td>Display Email:</td><td><input id="ShowEmail" type="checkbox" name="ShowEmail" checked="@(Model.UserInfo.ShowEmail ? "checked" : "")" /></td></tr>
-      <tr><td>Display Gender:</td><td><input id="ShowGender" type="checkbox" name="ShowGender" checked="@(Model.UserInfo.ShowGender ? "checked" : "")" /></td></tr>
-      <tr><td>Receive Admin Email:</td><td><input id="ReceiveAdminEmail" type="checkbox" name="ReceiveAdminEmail" checked="@(Model.UserInfo.ReceiveAdminEmail ? "checked" : "")" /></td></tr>
+      <tr><td>Display Email:</td><td>@Html.CheckBox("ShowEmail", Model.UserInfo.ShowEmail)</td></tr>
+      <tr><td>Display Gender:</td><td>@Html.CheckBox("ShowGender", Model.UserInfo.ShowGender)</td></tr>
+      <tr><td>Receive Admin Email:</td><td>@Html.CheckBox("ReceiveAdminEmail", Model.UserInfo.ReceiveAdminEmail)</td></tr>
       <tr><td colspan="2"><hr /></td></tr>
-      <tr><td>Location:</td><td><input type="text" name="Location" id="Location" style="width:150px;" value="@Model.UserInfo.Location" /></td></tr>
-      <tr><td>Website:</td><td><input type="text" name="Website" id="Website" style="width:150px;" value="@Model.UserInfo.Website" /></td></tr>
-      <tr><td>Occupation:</td><td><input type="text" name="Occupation" id="Occupation" style="width:150px;" value="@Model.UserInfo.Occupation" /></td></tr>
-      <tr><td>Interests:</td><td><input type="text" name="Interests" id="Interests" style="width:150px;" value="@Model.UserInfo.Interests" /></td></tr>
+      <tr><td>Location:</td><td>@Html.TextBox("Location", Model.UserInfo.Location, new { style = "width: 150px;" })</td></tr>
+      <tr><td>Website:</td><td>@Html.TextBox("Website", Model.UserInfo.Website, new { style = "width: 150px;" })</td></tr>
+      <tr><td>Occupation:</td><td>@Html.TextBox("Occupation", Model.UserInfo.Occupation, new { style = "width: 150px;" })</td></tr>
+      <tr><td>Interests:</td><td>@Html.TextBox("Interests", Model.UserInfo.Interests, new { style = "width: 150px;" })</td></tr>
       <tr><td></td><td>50 Character Limit</td></tr>
       <tr><td colspan="2"><hr /></td></tr>
       <tr>
@@ -42,8 +42,8 @@
                                     })
        </td>
       </tr>
-      <tr><td>Signature:<br />500 Character Limit</td><td><textarea name="Signature" style="height:150px;width:300px;">@Model.UserInfo.Signature</textarea></td></tr>
-      <tr><td>Short Biography:<br />1500 Character Limit</td><td><textarea name="Biography" style="height:300px;width:300px;">@Model.UserInfo.Biography</textarea></td></tr>
+      <tr><td>Signature:<br />500 Character Limit</td><td>@Html.TextArea("Signature", Model.UserInfo.Signature, new { style = "height: 150px; width: 300px;" })</td></tr>
+      <tr><td>Short Biography:<br />1500 Character Limit</td><td>@Html.TextArea("Biography", Model.UserInfo.Biography, new { style = "height: 300px; width: 300px;" })</td></tr>
       <tr><td colspan="2"><hr /></td></tr>
       <tr><td></td><td><input type="submit" value="Save" /></td></tr>
      </table>

@@ -8,7 +8,7 @@
      @using (Html.BeginForm("Search", "Forums"))
      {
       @Html.AntiForgeryToken()
-      <input type="text" name="SearchTerms" id="SearchTerms" />
+      @Html.TextBox("SearchTerms")
       <input type="submit" name="SearchButton" id="SearchButton" value="Search" />
      }
     </div>

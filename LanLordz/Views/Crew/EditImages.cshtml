@@ -11,7 +11,7 @@
      @foreach (var image in Model.Images)
      {
        <div class="EditImagesListItem">
-        <input type="checkbox" name="delete-@image.EventImageID" />
+        @Html.CheckBox("delete-" + image.EventImageID)
         <div class="EditImagesListItemImage">@Html.EventImage(image, 100)</div>
        </div>
      }
