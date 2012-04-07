@@ -33,7 +33,7 @@
         @Html.Hidden("Forum", Model.Forum.ForumID)
      }
      <table class="CreatePostTable">
-      <tr><td>Subject:</td><td>@Html.TextBox("Title", Model.Post.Title, new { @class = "EditPostTitleBox" }) (60 Character Limit)</td></tr>
+      <tr><td>Subject:</td><td>@Html.TextBox("Title", Model.Title, new { @class = "EditPostTitleBox" }) (60 Character Limit)</td></tr>
       <tr>
        <td></td>
        <td>
