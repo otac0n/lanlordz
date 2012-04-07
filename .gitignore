@@ -1,0 +1,10 @@
+[Bb]in/
+[Oo]bj/
+sql/
+*.suo
+*.docstates
+*.user
+*.dbmdl
+*.schemaview
+StyleCop.Cache
+*.Publish.xml
