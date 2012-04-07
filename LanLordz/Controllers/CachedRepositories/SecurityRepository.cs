@@ -177,16 +177,6 @@ namespace LanLordz.Controllers.CachedRepositories
             }
         }
 
-        private void InvalidateUserRoles(long userId)
-        {
-            string dataKey = "UserRoles." + userId;
-
-            lock (this.dataCache)
-            {
-                this.dataCache.Remove(dataKey);
-            }
-        }
-
         public IEnumerable<AccessControlItem> LoadForumACL(long forumId, string accessType)
         {
             string dataKey = "ForumsAccesses." + forumId + "-" + accessType;
@@ -349,13 +339,6 @@ namespace LanLordz.Controllers.CachedRepositories
             return false;
         }
 
-        private bool GetUserForumAccess(User user, Forum forum, string accessType)
-        {
-            var acl = this.LoadForumACL(forum.ForumID, accessType);
-
-            return this.GetUserAccess(user, acl);
-        }
-
         public List<Role> GetAllRoles()
         {
             return this.db.Roles.ToList();
@@ -378,6 +361,23 @@ namespace LanLordz.Controllers.CachedRepositories
                    join user in this.db.Users on userRole.UserID equals user.UserID
                    where role.RoleID == roleId
                    select user;
+        }
+
+        private void InvalidateUserRoles(long userId)
+        {
+            string dataKey = "UserRoles." + userId;
+
+            lock (this.dataCache)
+            {
+                this.dataCache.Remove(dataKey);
+            }
+        }
+
+        private bool GetUserForumAccess(User user, Forum forum, string accessType)
+        {
+            var acl = this.LoadForumACL(forum.ForumID, accessType);
+
+            return this.GetUserAccess(user, acl);
         }
     }
 }

@@ -20,30 +20,34 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Text.RegularExpressions;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class RegistrationModel
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string PasswordConfirm { get; set; }
-        public string Email { get; set; }
-        public string SecurityQuestion { get; set; }
-        public string SecurityAnswer { get; set; }
-        public char Gender { get; set; }
-        public bool ShowEmail { get; set; }
-        public bool ShowGender { get; set; }
-
         Regex validEmail = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         Regex whiteSpace = new Regex(@"\s");
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public string PasswordConfirm { get; set; }
+
+        public string Email { get; set; }
+
+        public string SecurityQuestion { get; set; }
+
+        public string SecurityAnswer { get; set; }
+
+        public char Gender { get; set; }
+
+        public bool ShowEmail { get; set; }
+
+        public bool ShowGender { get; set; }
 
         public bool IsValid
         {
@@ -84,6 +88,5 @@ namespace LanLordz.Models
 
             yield break;
         }
-
     }
 }

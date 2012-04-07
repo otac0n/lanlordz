@@ -20,23 +20,23 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.Models.CachedModels;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class ViewImageModel
     {
         public bool AllowTagging { get; set; }
+
         public UserInformation User { get; set; }
+
         public CachedEvent Event { get; set; }
+
         public EventImage Image { get; set; }
+
         public IList<EventImage> Images { get; set; }
+
         public IEnumerable<UserTag> UserTags { get; set; }
     }
 }

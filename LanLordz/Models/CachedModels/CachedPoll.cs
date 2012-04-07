@@ -20,20 +20,10 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace LanLordz.Models
 {
     public class CachedPoll
     {
-        public long PollId { get; private set; }
-        public bool IsPrivate { get; private set; }
-        public string Title { get; private set; }
-        public string Text { get; private set; }
-
         public CachedPoll(Poll p)
         {
             this.PollId = p.PollId;
@@ -41,5 +31,13 @@ namespace LanLordz.Models
             this.Title = p.Title;
             this.Text = p.Text;
         }
+
+        public long PollId { get; private set; }
+
+        public bool IsPrivate { get; private set; }
+
+        public string Title { get; private set; }
+
+        public string Text { get; private set; }
     }
 }

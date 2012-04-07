@@ -33,176 +33,6 @@ namespace LanLordz.Controllers
     {
         private static object syncRoot = new object();
 
-        #region Information Attach Methods
-        private IQueryable<ThreadInformation> GetThreadInformation(IQueryable<Thread> threads, User user)
-        {
-            var userposts = from p in this.Db.Posts
-                            join u in this.Db.Users on p.UserID equals u.UserID
-                            select new
-                            {
-                                p.PostID,
-                                p.UserID,
-                                p.CreateDate,
-                                u.Username
-                            };
-
-
-            var threadposts = from t in this.Db.Threads
-                              select new
-                              {
-                                  t.ThreadID,
-                                  FirstPostID = (from p in t.Posts
-                                                 where p.IsDeleted == false
-                                                 orderby p.CreateDate
-                                                 select (long?)p.PostID).FirstOrDefault(),
-                                  LastPostID = (from p in t.Posts
-                                                where p.IsDeleted == false
-                                                orderby p.CreateDate descending
-                                                select (long?)p.PostID).FirstOrDefault(),
-                              };
-
-            var results = from t in threads
-                          join tp in threadposts on t.ThreadID equals tp.ThreadID
-                          join fp in userposts on tp.FirstPostID equals fp.PostID into joinedFirstPost
-                          join lp in userposts on tp.LastPostID equals lp.PostID into joinedLastPost
-                          from firstPost in joinedFirstPost.DefaultIfEmpty()
-                          from lastPost in joinedLastPost.DefaultIfEmpty()
-                          select new
-                          {
-                              Thread = t,
-                              Level = t.ThreadLevel.Name,
-                              PostCount = t.Posts.Where(p => p.IsDeleted == false).Count(),
-                              FirstPost = firstPost,
-                              LastPost = lastPost,
-                          };
-
-            if (user == null)
-            {
-                return from r in results
-                       select new ThreadInformation
-                       {
-                           Thread = r.Thread,
-                           Level = r.Level,
-                           Posts = r.PostCount,
-                           Read = true,
-                           ReadCount = 0,
-                           FirstUnreadID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
-                           FirstPostUserID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
-                           FirstPostUsername = r.FirstPost == null ? null : r.FirstPost.Username,
-                           LastPostUserID = r.LastPost == null ? (long?)null : r.LastPost.UserID,
-                           LastPostUsername = r.LastPost == null ? null : r.LastPost.Username,
-                           LastPostDate = r.LastPost == null ? r.Thread.CreateDate : r.LastPost.CreateDate,
-                       };
-            }
-            else
-            {
-                return from r in results
-                       let dateRead = (from tr in r.Thread.ThreadReads
-                                       where tr.UserID == user.UserID
-                                       select (DateTime?)tr.DateRead).SingleOrDefault()
-                       let readPosts = from p in r.Thread.Posts
-                                       where p.IsDeleted == false
-                                       where dateRead.HasValue && dateRead > p.CreateDate
-                                       select p
-                       let unreadPosts = from p in r.Thread.Posts
-                                         where p.IsDeleted == false
-                                         where !dateRead.HasValue || dateRead <= p.CreateDate
-                                         select p
-                       select new ThreadInformation
-                       {
-                           Thread = r.Thread,
-                           Level = r.Level,
-                           Posts = r.PostCount,
-                           Read = !unreadPosts.Any(),
-                           ReadCount = readPosts.Count(),
-                           FirstUnreadID = (from p in unreadPosts
-                                            where p.IsDeleted == false
-                                            orderby p.CreateDate descending
-                                            select (long?)p.PostID).FirstOrDefault(),
-                           FirstPostUserID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
-                           FirstPostUsername = r.FirstPost == null ? null : r.FirstPost.Username,
-                           LastPostUserID = r.LastPost == null ? (long?)null : r.LastPost.UserID,
-                           LastPostUsername = r.LastPost == null ? null : r.LastPost.Username,
-                           LastPostDate = r.LastPost == null ? r.Thread.CreateDate : r.LastPost.CreateDate,
-                       };
-            }
-        }
-
-        private ThreadInformation GetThreadInformation(Thread thread, User user)
-        {
-            long userId = 0;
-            if (user != null)
-            {
-                userId = user.UserID;
-            }
-
-            var r = from p in this.Db.Posts
-                    where p.IsDeleted == false
-                    group p by p.ThreadID into g
-                    where g.Key == thread.ThreadID
-                    let firstPostUser = g.OrderBy(p => p.CreateDate).FirstOrDefault().User
-                    let lastPost = g.OrderByDescending(p => p.CreateDate).FirstOrDefault()
-                    let lastPostUser = lastPost.User
-                    select new ThreadInformation
-                    {
-                        Thread = thread,
-                        Read = userId == 0 ? true : this.Db.ThreadReads.Where(thr => thr.ThreadID == thread.ThreadID && thr.UserID == userId).Any(),
-                        Level = thread.ThreadLevel.Name,
-                        Posts = g.Count(),
-                        FirstPostUserID = firstPostUser.UserID,
-                        FirstPostUsername = firstPostUser.Username,
-                        LastPostUserID = lastPostUser.UserID,
-                        LastPostUsername = lastPostUser.Username,
-                        LastPostDate = lastPost.CreateDate
-                    };
-
-            return r.SingleOrDefault();
-        }
-
-        private IEnumerable<PostInformation> GetPostsInformation(Thread t)
-        {
-            return (from p in this.Db.Posts
-                    where !p.IsDeleted
-                    where p.ThreadID == t.ThreadID
-                    orderby p.CreateDate
-                    let author = p.User
-                    let authorPostCount = this.Db.Posts.Where(pc => pc.UserID == p.UserID).Count()
-                    let userTitle = this.Db.Titles.Where(ti => ti.UserID.HasValue && ti.UserID == p.UserID).FirstOrDefault()
-                    let groupTitle = this.Db.Titles.Where(ti => ti.RoleID.HasValue && this.Db.UsersRoles.Where(ur => ur.RoleID == ti.RoleID && ur.UserID == p.UserID).Any()).FirstOrDefault()
-                    let postsTitle = this.Db.Titles.Where(ti => ti.PostCountThreshold.HasValue && authorPostCount >= ti.PostCountThreshold).OrderByDescending(ti => ti.PostCountThreshold).FirstOrDefault()
-                    select new PostInformation
-                    {
-                        Post = p,
-                        UserID = author.UserID,
-                        Username = author.Username,
-                        UserEmail = author.Email,
-                        UserPosts = authorPostCount,
-                        UserTitle = userTitle != null ? userTitle.TitleText : null,
-                        GroupTitle = groupTitle != null ? groupTitle.TitleText : null,
-                        PostCountTitle = postsTitle != null ? postsTitle.TitleText : null,
-                        UserJoinedDate = author.CreateDate,
-                        UserSignature = this.Db.UserAttributes.Where(a => a.UserID == p.UserID && a.Attribute == "Signature").SingleOrDefault().Value,
-                        UserHasAvatar = this.Db.UserAvatars.Where(ua => ua.UserID == author.UserID).Any()
-                    }).ToList();
-        }
-        #endregion
-
-        private void MarkForumThreadsRead(long forumId, long userId)
-        {
-            // TODO: Implement this function
-            throw new NotImplementedException();
-        }
-
-        private IQueryable<Thread> GetAllUnreadThreads(long userId)
-        {
-            var threads = from t in this.Db.Threads
-                          where !t.IsDeleted
-                          where !this.Db.ThreadReads.Where(tr => tr.UserID == userId && tr.ThreadID == t.ThreadID && tr.DateRead > t.Posts.Where(p => p.IsDeleted == false).Max(p => p.CreateDate)).Any()
-                          select t;
-
-            return threads;
-        }
-
         [CompressFilter]
         public ActionResult Index()
         {
@@ -229,7 +59,7 @@ namespace LanLordz.Controllers
             {
                 p = this.Forums.GetPost(replyTo.Value);
 
-                if (p == null  || p.IsDeleted)
+                if (p == null || p.IsDeleted)
                 {
                     return View("NotFound");
                 }
@@ -599,70 +429,6 @@ namespace LanLordz.Controllers
                 }) + "#" + newPost.PostID);
         }
 
-        private IEnumerable<ThreadInformation> GetUnreadThreads(User user)
-        {
-            if (user == null)
-            {
-                return null;
-            }
-
-            var threads = GetAllUnreadThreads(user.UserID);
-
-            var threadInfo = GetThreadInformation(threads, user);
-
-            return GetViewableThreads(threadInfo, user);
-        }
-
-        private IEnumerable<ThreadInformation> GetViewableThreads(IEnumerable<ThreadInformation> threadInfo, User user)
-        {
-            List<long> forums = new List<long>(from t in threadInfo
-                                               group t by t.Thread.ForumID into g
-                                               select g.Key);
-
-            // Check the access of each forum.
-            List<long> inaccessableForums = new List<long>();
-            foreach (var forum in forums)
-            {
-                Forum f = this.Db.Forums.Where(fo => fo.ForumID == forum).Single();
-                if (!this.Security.GetUserForumGroupAccess(user, f.ForumGroup) || !this.Security.GetUserForumAccess(user, f).CanView)
-                {
-                    inaccessableForums.Add(forum);
-                }
-            }
-
-            return new List<ThreadInformation>(from t in threadInfo
-                                               where !inaccessableForums.Where(fo => fo == t.Thread.ForumID).Any()
-                                               select t);
-        }
-
-        #region Mark All Read
-        private void MarkAllThreadsRead(long userId, DateTime asOfDate)
-        {
-            // TODO: Make Faster.
-            var threads = GetAllUnreadThreads(userId);
-
-            foreach (var thread in threads)
-            {
-                ThreadRead tr = this.Db.ThreadReads.Where(thr => thr.UserID == userId && thr.ThreadID == thread.ThreadID).SingleOrDefault();
-
-                if (tr == null)
-                {
-                    tr = new ThreadRead
-                    {
-                        ThreadID = thread.ThreadID,
-                        UserID = userId,
-                        DateRead = asOfDate
-                    };
-
-                    this.Db.ThreadReads.InsertOnSubmit(tr);
-                }
-
-                tr.DateRead = (tr.DateRead > asOfDate ? tr.DateRead : asOfDate);
-            }
-
-            this.Db.SubmitChanges();
-        }
-
         [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult MarkAllRead(FormCollection values)
         {
@@ -685,93 +451,13 @@ namespace LanLordz.Controllers
 
             return RedirectToAction("Index");
         }
-        #endregion
 
-        #region Search
         [CompressFilter]
         public ActionResult Search()
         {
             // TODO:  Must update the search view to handle a blank search.
             return View("Search");
         }
-
-        private IEnumerable<ThreadInformation> GetSearchResults(User user, string terms, bool isInclusive)
-        {
-            string[] splitTerms = terms.Split(" \r\n\t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
-            List<string> termsList = new List<string>();
-            foreach (string t in splitTerms)
-            {
-                if (t.Length < 3)
-                {
-                    throw new Exception("The search term \"" + t + "\" is too short. All search terms must be at least 3 characters long.");
-                }
-
-                string term = t.ToUpperInvariant();
-
-                if (term.Length > 15)
-                {
-                    term = term.Substring(0, 15);
-                }
-
-                if (!termsList.Contains(term))
-                {
-                    termsList.Add(term);
-                }
-
-                if (termsList.Count >= 6)
-                {
-                    break;
-                }
-            }
-
-            if (termsList.Count == 0)
-                return null;
-
-            var threads = new List<ThreadInformation>(GetThreadInformation(GetSearchTermResults(termsList[0]), user));
-
-            for (int i = 1; i < termsList.Count; i++)
-            {
-                var newResults = new List<ThreadInformation>(GetThreadInformation(GetSearchTermResults(termsList[i]), user));
-
-                if (isInclusive)
-                {
-                    foreach (ThreadInformation newRow in newResults)
-                    {
-                        long threadId = newRow.Thread.ThreadID;
-                        if (!threads.Any(t => t.Thread.ThreadID == threadId))
-                        {
-                            threads.Add(newRow);
-                        }
-                    }
-                }
-                else
-                {
-                    List<ThreadInformation> newThreads = new List<ThreadInformation>();
-
-                    foreach (ThreadInformation newRow in newResults)
-                    {
-                        long threadId = newRow.Thread.ThreadID;
-                        if (threads.Any(t => t.Thread.ThreadID == threadId))
-                        {
-                            newThreads.Add(newRow);
-                        }
-                    }
-
-                    threads = newThreads;
-                }
-            }
-
-            return GetViewableThreads(threads, user);
-        }
-
-        private IQueryable<Thread> GetSearchTermResults(string term)
-        {
-            return from thread in this.Db.Threads
-                   where thread.Title.Contains(term) || thread.Posts.Any(post => post.Title.Contains(term) || post.Text.Contains(term))
-                   select thread;
-        }
-        #endregion
 
         [CompressFilter]
         public ActionResult DeletePost(long? id)
@@ -797,8 +483,8 @@ namespace LanLordz.Controllers
 
             long firstPostId = t.Posts.Where(post => post.IsDeleted == false).OrderBy(post => post.CreateDate).FirstOrDefault().PostID;
             long lastPostId = t.Posts.Where(post => post.IsDeleted == false).OrderByDescending(post => post.CreateDate).FirstOrDefault().PostID;
-            
-            Forum f = t.Forum; 
+
+            Forum f = t.Forum;
 
             ForumAccess access = this.Security.GetUserForumAccess(CurrentUser, f);
 
@@ -1016,6 +702,313 @@ namespace LanLordz.Controllers
             {
                 return Search();
             }
+        }
+
+        private IQueryable<ThreadInformation> GetThreadInformation(IQueryable<Thread> threads, User user)
+        {
+            var userposts = from p in this.Db.Posts
+                            join u in this.Db.Users on p.UserID equals u.UserID
+                            select new
+                            {
+                                p.PostID,
+                                p.UserID,
+                                p.CreateDate,
+                                u.Username
+                            };
+
+            var threadposts = from t in this.Db.Threads
+                              select new
+                              {
+                                  t.ThreadID,
+                                  FirstPostID = (from p in t.Posts
+                                                 where p.IsDeleted == false
+                                                 orderby p.CreateDate
+                                                 select (long?)p.PostID).FirstOrDefault(),
+                                  LastPostID = (from p in t.Posts
+                                                where p.IsDeleted == false
+                                                orderby p.CreateDate descending
+                                                select (long?)p.PostID).FirstOrDefault(),
+                              };
+
+            var results = from t in threads
+                          join tp in threadposts on t.ThreadID equals tp.ThreadID
+                          join fp in userposts on tp.FirstPostID equals fp.PostID into joinedFirstPost
+                          join lp in userposts on tp.LastPostID equals lp.PostID into joinedLastPost
+                          from firstPost in joinedFirstPost.DefaultIfEmpty()
+                          from lastPost in joinedLastPost.DefaultIfEmpty()
+                          select new
+                          {
+                              Thread = t,
+                              Level = t.ThreadLevel.Name,
+                              PostCount = t.Posts.Where(p => p.IsDeleted == false).Count(),
+                              FirstPost = firstPost,
+                              LastPost = lastPost,
+                          };
+
+            if (user == null)
+            {
+                return from r in results
+                       select new ThreadInformation
+                       {
+                           Thread = r.Thread,
+                           Level = r.Level,
+                           Posts = r.PostCount,
+                           Read = true,
+                           ReadCount = 0,
+                           FirstUnreadID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
+                           FirstPostUserID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
+                           FirstPostUsername = r.FirstPost == null ? null : r.FirstPost.Username,
+                           LastPostUserID = r.LastPost == null ? (long?)null : r.LastPost.UserID,
+                           LastPostUsername = r.LastPost == null ? null : r.LastPost.Username,
+                           LastPostDate = r.LastPost == null ? r.Thread.CreateDate : r.LastPost.CreateDate,
+                       };
+            }
+            else
+            {
+                return from r in results
+                       let dateRead = (from tr in r.Thread.ThreadReads
+                                       where tr.UserID == user.UserID
+                                       select (DateTime?)tr.DateRead).SingleOrDefault()
+                       let readPosts = from p in r.Thread.Posts
+                                       where p.IsDeleted == false
+                                       where dateRead.HasValue && dateRead > p.CreateDate
+                                       select p
+                       let unreadPosts = from p in r.Thread.Posts
+                                         where p.IsDeleted == false
+                                         where !dateRead.HasValue || dateRead <= p.CreateDate
+                                         select p
+                       select new ThreadInformation
+                       {
+                           Thread = r.Thread,
+                           Level = r.Level,
+                           Posts = r.PostCount,
+                           Read = !unreadPosts.Any(),
+                           ReadCount = readPosts.Count(),
+                           FirstUnreadID = (from p in unreadPosts
+                                            where p.IsDeleted == false
+                                            orderby p.CreateDate descending
+                                            select (long?)p.PostID).FirstOrDefault(),
+                           FirstPostUserID = r.FirstPost == null ? (long?)null : r.FirstPost.UserID,
+                           FirstPostUsername = r.FirstPost == null ? null : r.FirstPost.Username,
+                           LastPostUserID = r.LastPost == null ? (long?)null : r.LastPost.UserID,
+                           LastPostUsername = r.LastPost == null ? null : r.LastPost.Username,
+                           LastPostDate = r.LastPost == null ? r.Thread.CreateDate : r.LastPost.CreateDate,
+                       };
+            }
+        }
+
+        private ThreadInformation GetThreadInformation(Thread thread, User user)
+        {
+            long userId = 0;
+            if (user != null)
+            {
+                userId = user.UserID;
+            }
+
+            var r = from p in this.Db.Posts
+                    where p.IsDeleted == false
+                    group p by p.ThreadID into g
+                    where g.Key == thread.ThreadID
+                    let firstPostUser = g.OrderBy(p => p.CreateDate).FirstOrDefault().User
+                    let lastPost = g.OrderByDescending(p => p.CreateDate).FirstOrDefault()
+                    let lastPostUser = lastPost.User
+                    select new ThreadInformation
+                    {
+                        Thread = thread,
+                        Read = userId == 0 ? true : this.Db.ThreadReads.Where(thr => thr.ThreadID == thread.ThreadID && thr.UserID == userId).Any(),
+                        Level = thread.ThreadLevel.Name,
+                        Posts = g.Count(),
+                        FirstPostUserID = firstPostUser.UserID,
+                        FirstPostUsername = firstPostUser.Username,
+                        LastPostUserID = lastPostUser.UserID,
+                        LastPostUsername = lastPostUser.Username,
+                        LastPostDate = lastPost.CreateDate
+                    };
+
+            return r.SingleOrDefault();
+        }
+
+        private IEnumerable<PostInformation> GetPostsInformation(Thread t)
+        {
+            return (from p in this.Db.Posts
+                    where !p.IsDeleted
+                    where p.ThreadID == t.ThreadID
+                    orderby p.CreateDate
+                    let author = p.User
+                    let authorPostCount = this.Db.Posts.Where(pc => pc.UserID == p.UserID).Count()
+                    let userTitle = this.Db.Titles.Where(ti => ti.UserID.HasValue && ti.UserID == p.UserID).FirstOrDefault()
+                    let groupTitle = this.Db.Titles.Where(ti => ti.RoleID.HasValue && this.Db.UsersRoles.Where(ur => ur.RoleID == ti.RoleID && ur.UserID == p.UserID).Any()).FirstOrDefault()
+                    let postsTitle = this.Db.Titles.Where(ti => ti.PostCountThreshold.HasValue && authorPostCount >= ti.PostCountThreshold).OrderByDescending(ti => ti.PostCountThreshold).FirstOrDefault()
+                    select new PostInformation
+                    {
+                        Post = p,
+                        UserID = author.UserID,
+                        Username = author.Username,
+                        UserEmail = author.Email,
+                        UserPosts = authorPostCount,
+                        UserTitle = userTitle != null ? userTitle.TitleText : null,
+                        GroupTitle = groupTitle != null ? groupTitle.TitleText : null,
+                        PostCountTitle = postsTitle != null ? postsTitle.TitleText : null,
+                        UserJoinedDate = author.CreateDate,
+                        UserSignature = this.Db.UserAttributes.Where(a => a.UserID == p.UserID && a.Attribute == "Signature").SingleOrDefault().Value,
+                        UserHasAvatar = this.Db.UserAvatars.Where(ua => ua.UserID == author.UserID).Any()
+                    }).ToList();
+        }
+
+        private void MarkForumThreadsRead(long forumId, long userId)
+        {
+            // TODO: Implement this function
+            throw new NotImplementedException();
+        }
+
+        private IQueryable<Thread> GetAllUnreadThreads(long userId)
+        {
+            var threads = from t in this.Db.Threads
+                          where !t.IsDeleted
+                          where !this.Db.ThreadReads.Where(tr => tr.UserID == userId && tr.ThreadID == t.ThreadID && tr.DateRead > t.Posts.Where(p => p.IsDeleted == false).Max(p => p.CreateDate)).Any()
+                          select t;
+
+            return threads;
+        }
+
+        private IEnumerable<ThreadInformation> GetUnreadThreads(User user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+
+            var threads = GetAllUnreadThreads(user.UserID);
+
+            var threadInfo = GetThreadInformation(threads, user);
+
+            return GetViewableThreads(threadInfo, user);
+        }
+
+        private IEnumerable<ThreadInformation> GetViewableThreads(IEnumerable<ThreadInformation> threadInfo, User user)
+        {
+            List<long> forums = new List<long>(from t in threadInfo
+                                               group t by t.Thread.ForumID into g
+                                               select g.Key);
+
+            // Check the access of each forum.
+            List<long> inaccessableForums = new List<long>();
+            foreach (var forum in forums)
+            {
+                Forum f = this.Db.Forums.Where(fo => fo.ForumID == forum).Single();
+                if (!this.Security.GetUserForumGroupAccess(user, f.ForumGroup) || !this.Security.GetUserForumAccess(user, f).CanView)
+                {
+                    inaccessableForums.Add(forum);
+                }
+            }
+
+            return new List<ThreadInformation>(from t in threadInfo
+                                               where !inaccessableForums.Where(fo => fo == t.Thread.ForumID).Any()
+                                               select t);
+        }
+
+        private void MarkAllThreadsRead(long userId, DateTime asOfDate)
+        {
+            // TODO: Make Faster.
+            var threads = GetAllUnreadThreads(userId);
+
+            foreach (var thread in threads)
+            {
+                ThreadRead tr = this.Db.ThreadReads.Where(thr => thr.UserID == userId && thr.ThreadID == thread.ThreadID).SingleOrDefault();
+
+                if (tr == null)
+                {
+                    tr = new ThreadRead
+                    {
+                        ThreadID = thread.ThreadID,
+                        UserID = userId,
+                        DateRead = asOfDate
+                    };
+
+                    this.Db.ThreadReads.InsertOnSubmit(tr);
+                }
+
+                tr.DateRead = (tr.DateRead > asOfDate ? tr.DateRead : asOfDate);
+            }
+
+            this.Db.SubmitChanges();
+        }
+
+        private IEnumerable<ThreadInformation> GetSearchResults(User user, string terms, bool isInclusive)
+        {
+            string[] splitTerms = terms.Split(" \r\n\t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            List<string> termsList = new List<string>();
+            foreach (string t in splitTerms)
+            {
+                if (t.Length < 3)
+                {
+                    throw new Exception("The search term \"" + t + "\" is too short. All search terms must be at least 3 characters long.");
+                }
+
+                string term = t.ToUpperInvariant();
+
+                if (term.Length > 15)
+                {
+                    term = term.Substring(0, 15);
+                }
+
+                if (!termsList.Contains(term))
+                {
+                    termsList.Add(term);
+                }
+
+                if (termsList.Count >= 6)
+                {
+                    break;
+                }
+            }
+
+            if (termsList.Count == 0)
+                return null;
+
+            var threads = new List<ThreadInformation>(GetThreadInformation(GetSearchTermResults(termsList[0]), user));
+
+            for (int i = 1; i < termsList.Count; i++)
+            {
+                var newResults = new List<ThreadInformation>(GetThreadInformation(GetSearchTermResults(termsList[i]), user));
+
+                if (isInclusive)
+                {
+                    foreach (ThreadInformation newRow in newResults)
+                    {
+                        long threadId = newRow.Thread.ThreadID;
+                        if (!threads.Any(t => t.Thread.ThreadID == threadId))
+                        {
+                            threads.Add(newRow);
+                        }
+                    }
+                }
+                else
+                {
+                    List<ThreadInformation> newThreads = new List<ThreadInformation>();
+
+                    foreach (ThreadInformation newRow in newResults)
+                    {
+                        long threadId = newRow.Thread.ThreadID;
+                        if (threads.Any(t => t.Thread.ThreadID == threadId))
+                        {
+                            newThreads.Add(newRow);
+                        }
+                    }
+
+                    threads = newThreads;
+                }
+            }
+
+            return GetViewableThreads(threads, user);
+        }
+
+        private IQueryable<Thread> GetSearchTermResults(string term)
+        {
+            return from thread in this.Db.Threads
+                   where thread.Title.Contains(term) || thread.Posts.Any(post => post.Title.Contains(term) || post.Text.Contains(term))
+                   select thread;
         }
     }
 }

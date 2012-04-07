@@ -46,7 +46,6 @@ namespace LanLordz.SiteTools
         private readonly IEnumerable<SyndicationItem> items;
         private readonly string title;
         private readonly string description;
-
         private Uri currentUrl;
 
         public AtomResult(string title, string description, IEnumerable<SyndicationItem> items)

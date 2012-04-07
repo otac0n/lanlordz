@@ -22,14 +22,14 @@
 
 namespace LanLordz.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Net.Mail;
+    using System.ServiceModel.Syndication;
     using System.Web.Mvc;
     using LanLordz.Models;
     using LanLordz.SiteTools;
-    using System.ServiceModel.Syndication;
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Mail;
 
     public class HomeController : LanLordzBaseController
     {

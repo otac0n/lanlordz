@@ -56,35 +56,15 @@ namespace LanLordz.SiteTools
         {
         }
 
-        public byte[] ImageData
-        {
-            get;
-            set;
-        }
+        public byte[] ImageData { get; set; }
 
-        public string MimeType
-        {
-            get;
-            set;
-        }
+        public string MimeType { get; set; }
 
-        public HttpCacheability Cacheability
-        {
-            get;
-            set;
-        }
+        public HttpCacheability Cacheability { get; set; }
 
-        public string ETag
-        {
-            get;
-            set;
-        }
+        public string ETag { get; set; }
 
-        public DateTime? Expires
-        {
-            get;
-            set;
-        }
+        public DateTime? Expires { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {

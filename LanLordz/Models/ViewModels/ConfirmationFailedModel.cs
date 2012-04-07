@@ -22,14 +22,8 @@
 
 namespace LanLordz.Models
 {
-    using LanLordz.Controllers;
-
     public class ConfirmationFailedModel
     {
-        public string Key
-        {
-            get;
-            set;
-        }
+        public string Key { get; set; }
     }
 }

@@ -23,81 +23,32 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
     using LanLordz.Models.CachedModels;
 
     public class CreateTournamentModel
     {
-        public IEnumerable<CachedEvent> Events
-        {
-            get;
-            set;
-        }
+        public IEnumerable<CachedEvent> Events { get; set; }
 
-        public IDictionary<string, string> ScoreModes
-        {
-            get;
-            set;
-        }
+        public IDictionary<string, string> ScoreModes { get; set; }
 
-        public IList<string> PairingsGenerators
-        {
-            get;
-            set;
-        }
+        public IList<string> PairingsGenerators { get; set; }
 
-        public string Title
-        {
-            get;
-            set;
-        }
+        public string Title { get; set; }
 
-        public long Event
-        {
-            get;
-            set;
-        }
+        public long Event { get; set; }
 
-        public int TeamSize
-        {
-            get;
-            set;
-        }
+        public int TeamSize { get; set; }
 
-        public string Game
-        {
-            get;
-            set;
-        }
+        public string Game { get; set; }
 
-        public string GameInfo
-        {
-            get;
-            set;
-        }
+        public string GameInfo { get; set; }
 
-        public string ServerSettings
-        {
-            get;
-            set;
-        }
+        public string ServerSettings { get; set; }
 
-        public string ScoreMode
-        {
-            get;
-            set;
-        }
+        public string ScoreMode { get; set; }
 
-        public string PairingsGenerator
-        {
-            get;
-            set;
-        }
+        public string PairingsGenerator { get; set; }
 
-        public string TDUsername
-        {
-            get;
-            set;
-        }
+        public string TDUsername { get; set; }
     }
 }

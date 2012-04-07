@@ -20,18 +20,10 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace LanLordz.Models
 {
     public class RuleViolation
     {
-        public string ErrorMessage { get; private set; }
-        public string PropertyName { get; private set; }
-
         public RuleViolation(string errorMessage)
         {
             this.ErrorMessage = errorMessage;
@@ -42,5 +34,9 @@ namespace LanLordz.Models
             this.ErrorMessage = errorMessage;
             this.PropertyName = propertyName;
         }
+
+        public string ErrorMessage { get; private set; }
+
+        public string PropertyName { get; private set; }
     }
 }

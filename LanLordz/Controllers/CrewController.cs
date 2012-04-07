@@ -45,8 +45,8 @@ namespace LanLordz.Controllers
         private void DeleteEventImage(long eventImageId)
         {
             var i = (from image in this.Db.EventImages
-                    where image.EventImageID == eventImageId
-                    select image).Single();
+                     where image.EventImageID == eventImageId
+                     select image).Single();
             var eventId = i.EventID;
             this.Db.EventImages.DeleteOnSubmit(i);
             this.Db.SubmitChanges();
@@ -291,7 +291,7 @@ namespace LanLordz.Controllers
                              where r.EventID == id.Value
                              where r.IsCheckedIn
                              select r.UserID).ToList();
-                
+
                 var rand = new SecureRandom();
 
                 var winnerUserId = users[rand.Next(users.Count)];
@@ -379,7 +379,7 @@ namespace LanLordz.Controllers
                 {
                     return RedirectToAction("EditImages", new { id = eventId });
                 }
-                
+
                 return this.RedirectToAction("EditImages");
             }
 

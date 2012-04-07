@@ -20,10 +20,6 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Microsoft.SqlServer.Types;
 
 namespace LanLordz.Models
@@ -31,7 +27,9 @@ namespace LanLordz.Models
     public class UserTag
     {
         public long UserId { get; set; }
+
         public string Username { get; set; }
+
         public SqlGeometry TagRegion { get; set; }
     }
 }

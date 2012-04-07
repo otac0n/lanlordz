@@ -23,14 +23,9 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class CrewDetailsModel
     {
-        public IEnumerable<UserInformation> Members
-        {
-            get;
-            set;
-        }
+        public IEnumerable<UserInformation> Members { get; set; }
     }
 }

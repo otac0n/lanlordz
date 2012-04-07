@@ -22,20 +22,10 @@
 
 namespace LanLordz.Models
 {
-    using LanLordz.Controllers;
-
     public class ChangePasswordModel
     {
-        public User User
-        {
-            get;
-            set;
-        }
+        public User User { get; set; }
 
-        public bool RequireCaptcha
-        {
-            get;
-            set;
-        }
+        public bool RequireCaptcha { get; set; }
     }
 }

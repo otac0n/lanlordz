@@ -22,26 +22,12 @@
 
 namespace LanLordz.Models
 {
-    using LanLordz.Controllers;
-
     public class DeletePostModel
     {
-        public Post Post
-        {
-            get;
-            set;
-        }
+        public Post Post { get; set; }
 
-        public ForumAccess UserAccess
-        {
-            get;
-            set;
-        }
+        public ForumAccess UserAccess { get; set; }
 
-        public bool FirstPost
-        {
-            get;
-            set;
-        }
+        public bool FirstPost { get; set; }
     }
 }

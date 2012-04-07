@@ -20,21 +20,19 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.Models.CachedModels;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class EventsIndexModel
     {
         public IEnumerable<CachedVenue> Venues { get; set; }
+
         public IEnumerable<CachedEvent> Upcoming { get; set; }
+
         public IEnumerable<CachedEvent> Current { get; set; }
+
         public IEnumerable<CachedEvent> Past { get; set; }
     }
 }

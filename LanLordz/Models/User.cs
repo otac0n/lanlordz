@@ -22,15 +22,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Linq;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace LanLordz.Models
 {
     public partial class User
     {
+        Regex validEmail = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+        Regex whiteSpace = new Regex(@"\s");
+
         public bool IsValid
         {
             get
@@ -38,9 +40,6 @@ namespace LanLordz.Models
                 return (this.GetRuleViolations().Count() == 0);
             }
         }
-
-        Regex validEmail = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-        Regex whiteSpace = new Regex(@"\s");
 
         public IEnumerable<RuleViolation> GetRuleViolations()
         {
@@ -55,16 +54,16 @@ namespace LanLordz.Models
 
             if (this.Username != null && (this.Username.Contains("]") || this.Username.Contains("[")))
                 yield return new RuleViolation("Usernames may not contain square brackets. Brackets will interfere with BBCode.");
-            
+
             if (string.IsNullOrEmpty(this.PasswordHash))
                 yield return new RuleViolation("Passwords must be specified.", "PasswordHash");
-            
+
             if (string.IsNullOrEmpty(this.Email) || !validEmail.IsMatch(this.Email))
                 yield return new RuleViolation("The email address you entered is invalid.", "Email");
-            
+
             if (!string.IsNullOrEmpty(this.Email) && this.Email.Length > 50)
                 yield return new RuleViolation("Email addresses must be less than fifty characters.", "Email");
-            
+
             if (string.IsNullOrEmpty(this.SecurityQuestion) || this.SecurityQuestion.Length < 3)
                 yield return new RuleViolation("Security questions must be at least three characters.", "SecurityQuestion");
 
@@ -73,13 +72,13 @@ namespace LanLordz.Models
 
             if (string.IsNullOrEmpty(this.SecurityAnswer) || this.SecurityAnswer.Length < 3)
                 yield return new RuleViolation("Security answers must be at least three characters.", "SecurityAnswer");
-            
+
             if (!string.IsNullOrEmpty(this.SecurityAnswer) && this.SecurityAnswer.Length > 50)
                 yield return new RuleViolation("Security answers must be less than fifty characters.", "SecurityAnswer");
-            
+
             if (!this.Gender.Equals('M') && !this.Gender.Equals('F'))
                 yield return new RuleViolation("Genders must be 'M' or 'F'.", "Gender");
-            
+
             yield break;
         }
 

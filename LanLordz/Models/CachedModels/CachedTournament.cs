@@ -21,28 +21,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 
 namespace LanLordz.Models.CachedModels
 {
     public class CachedTournament
     {
-        public long TournamentID { get; private set; }
-        public long EventID { get; private set; }
-        public string Title { get; private set; }
-        public string Game { get; private set; }
-        public string PairingsGenerator { get; private set; }
-        public int TeamSize { get; private set; }
-        public bool AllowLateEntry { get; private set; }
-        public System.Nullable<long> TournamentDirectorUserID { get; private set; }
-        public bool IsLocked { get; private set; }
-        public string GameInfo { get; private set; }
-        public string ServerSettings { get; private set; }
-        public string ScoreMode { get; private set; }
-
         public CachedTournament(Tournament baseTournament)
         {
             if (baseTournament == null)
@@ -63,5 +46,29 @@ namespace LanLordz.Models.CachedModels
             this.ServerSettings = baseTournament.ServerSettings;
             this.ScoreMode = baseTournament.ScoreMode;
         }
+
+        public long TournamentID { get; private set; }
+
+        public long EventID { get; private set; }
+
+        public string Title { get; private set; }
+
+        public string Game { get; private set; }
+
+        public string PairingsGenerator { get; private set; }
+
+        public int TeamSize { get; private set; }
+
+        public bool AllowLateEntry { get; private set; }
+
+        public System.Nullable<long> TournamentDirectorUserID { get; private set; }
+
+        public bool IsLocked { get; private set; }
+
+        public string GameInfo { get; private set; }
+
+        public string ServerSettings { get; private set; }
+
+        public string ScoreMode { get; private set; }
     }
 }

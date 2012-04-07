@@ -20,17 +20,14 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace LanLordz.Models
 {
     public class TournamentStandingInformation
     {
         public double Rank { get; set; }
+
         public Team Team { get; set; }
+
         public string Details { get; set; }
     }
 }

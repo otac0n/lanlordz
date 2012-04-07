@@ -23,14 +23,9 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class DoorPrizesModel
     {
-        public IEnumerable<Prize> Prizes
-        {
-            get;
-            set;
-        }
+        public IEnumerable<Prize> Prizes { get; set; }
     }
 }

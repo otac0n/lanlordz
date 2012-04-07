@@ -35,13 +35,10 @@ namespace LanLordz.Controllers.CachedRepositories
     {
         private const string ConfigKey = "Configuration";
         private readonly ICacheManager dataCache;
-
         private LanLordzDataContext db;
-
         private Dictionary<string, Configuration> config;
         private bool isFromCache = true;
         private bool isInCache;
-
         private TimeZoneInfo defaultTimeZoneInfo;
 
         public ConfigurationRepository(LanLordzDataContext db, ICacheManager dataCache)

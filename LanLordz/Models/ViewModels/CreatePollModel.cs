@@ -23,38 +23,17 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class CreatePollModel
     {
-        public string Title
-        {
-            get;
-            set;
-        }
+        public string Title { get; set; }
 
-        public string Description
-        {
-            get;
-            set;
-        }
+        public string Description { get; set; }
 
-        public bool IsPrivate
-        {
-            get;
-            set;
-        }
+        public bool IsPrivate { get; set; }
 
-        public bool IsMultiAnswer
-        {
-            get;
-            set;
-        }
+        public bool IsMultiAnswer { get; set; }
 
-        public IList<string> Responses
-        {
-            get;
-            set;
-        }
+        public IList<string> Responses { get; set; }
     }
 }

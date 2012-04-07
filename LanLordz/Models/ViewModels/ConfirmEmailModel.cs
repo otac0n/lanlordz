@@ -22,18 +22,8 @@
 
 namespace LanLordz.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using LanLordz.Controllers;
-
     public class ConfirmEmailModel
     {
-        public string Key
-        {
-            get;
-            set;
-        }
+        public string Key { get; set; }
     }
 }

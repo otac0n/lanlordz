@@ -20,17 +20,14 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace LanLordz.Models
 {
     public class EventStats
     {
         public Event Event { get; set; }
+
         public int Registrations { get; set; }
+
         public int CheckIns { get; set; }
     }
 }

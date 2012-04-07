@@ -20,41 +20,18 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
-
 namespace LanLordz.Models
 {
     public class LogOnAttemptModel
     {
-        public string ReturnUrl
-        {
-            get;
-            set;
-        }
-        public string Username
-        {
-            get;
-            set;
-        }
-        public string Password
-        {
-            get;
-            set;
-        }
-        public bool RememberMe
-        {
-            get;
-            set;
-        }
-        public bool RequireCaptcha
-        {
-            get;
-            set;
-        }
+        public string ReturnUrl { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
+
+        public bool RequireCaptcha { get; set; }
     }
 }

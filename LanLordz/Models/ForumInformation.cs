@@ -21,54 +21,23 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LanLordz.Models
 {
     public class ForumInformation
     {
-        public Forum Forum
-        {
-            get;
-            set;
-        }
+        public Forum Forum { get; set; }
 
-        public DateTime? LastPostDate
-        {
-            get;
-            set;
-        }
+        public DateTime? LastPostDate { get; set; }
 
-        public long? LastPostUserID
-        {
-            get;
-            set;
-        }
+        public long? LastPostUserID { get; set; }
 
-        public string LastPostUsername
-        {
-            get;
-            set;
-        }
+        public string LastPostUsername { get; set; }
 
-        public int Threads
-        {
-            get;
-            set;
-        }
+        public int Threads { get; set; }
 
-        public int Posts
-        {
-            get;
-            set;
-        }
+        public int Posts { get; set; }
 
-        public int ThreadsRead
-        {
-            get;
-            set;
-        }
+        public int ThreadsRead { get; set; }
     }
 }

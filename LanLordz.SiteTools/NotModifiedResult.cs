@@ -46,17 +46,9 @@ namespace LanLordz.SiteTools
 
     public class NotModifiedResult : ActionResult
     {
-        public HttpCacheability Cacheability
-        {
-            get;
-            set;
-        }
+        public HttpCacheability Cacheability { get; set; }
 
-        public DateTime? Expires
-        {
-            get;
-            set;
-        }
+        public DateTime? Expires { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {

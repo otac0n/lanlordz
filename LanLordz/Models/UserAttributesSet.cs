@@ -20,22 +20,27 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace LanLordz.Models
 {
     public class UserAttributesSet
     {
         public string Location { get; set; }
+
         public string Website { get; set; }
+
         public string Occupation { get; set; }
+
         public string Interests { get; set; }
+
         public string Signature { get; set; }
+
         public string Biography { get; set; }
+
         public string Theme { get; set; }
+
         public string TimeZone { get; set; }
 
         public bool IsValid

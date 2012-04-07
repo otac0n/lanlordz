@@ -21,23 +21,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 
 namespace LanLordz.Models.CachedModels
 {
     public class CachedEvent
     {
-        public long EventID { get; private set; }
-        public long VenueID { get; private set; }
-        public string Title { get; private set; }
-        public string Info { get; private set; }
-        public System.DateTime BeginDateTime { get; private set; }
-        public System.DateTime EndDateTime { get; private set; }
-        public long Seats { get; private set; }
-
         public CachedEvent(Event baseEvent)
         {
             if (baseEvent == null)
@@ -53,5 +41,19 @@ namespace LanLordz.Models.CachedModels
             this.Seats = baseEvent.Seats;
             this.Title = baseEvent.Title;
         }
+
+        public long EventID { get; private set; }
+
+        public long VenueID { get; private set; }
+
+        public string Title { get; private set; }
+
+        public string Info { get; private set; }
+
+        public System.DateTime BeginDateTime { get; private set; }
+
+        public System.DateTime EndDateTime { get; private set; }
+
+        public long Seats { get; private set; }
     }
 }

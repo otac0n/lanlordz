@@ -21,79 +21,31 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LanLordz.Models
 {
     public class ThreadInformation
     {
-        public Thread Thread
-        {
-            get;
-            set;
-        }
+        public Thread Thread { get; set; }
 
-        public bool Read
-        {
-            get;
-            set;
-        }
+        public bool Read { get; set; }
 
-        public int ReadCount
-        {
-            get;
-            set;
-        }
+        public int ReadCount { get; set; }
 
-        public long? FirstUnreadID
-        {
-            get;
-            set;
-        }
+        public long? FirstUnreadID { get; set; }
 
-        public string Level
-        {
-            get;
-            set;
-        }
+        public string Level { get; set; }
 
-        public long? LastPostUserID
-        {
-            get;
-            set;
-        }
+        public long? LastPostUserID { get; set; }
 
-        public string LastPostUsername
-        {
-            get;
-            set;
-        }
+        public string LastPostUsername { get; set; }
 
-        public long? FirstPostUserID
-        {
-            get;
-            set;
-        }
+        public long? FirstPostUserID { get; set; }
 
-        public DateTime LastPostDate
-        {
-            get;
-            set;
-        }
+        public DateTime LastPostDate { get; set; }
 
-        public string FirstPostUsername
-        {
-            get;
-            set;
-        }
+        public string FirstPostUsername { get; set; }
 
-        public int Posts
-        {
-            get;
-            set;
-        }
-
+        public int Posts { get; set; }
     }
 }

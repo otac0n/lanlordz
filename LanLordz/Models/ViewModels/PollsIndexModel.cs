@@ -20,20 +20,12 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class PollsIndexModel
     {
-        public IEnumerable<CachedPoll> Polls
-        {
-            get;
-            set;
-        }
+        public IEnumerable<CachedPoll> Polls { get; set; }
     }
 }

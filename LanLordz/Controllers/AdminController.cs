@@ -35,19 +35,6 @@ namespace LanLordz.Controllers
 
     public class AdminController : LanLordzBaseController
     {
-        protected override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            if (!this.UserIsAuthorized())
-            {
-                filterContext.Result = this.View("NotAuthorized");
-            }
-        }
-
-        private bool UserIsAuthorized()
-        {
-            return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
-        }
-
         [CompressFilter]
         public ActionResult Index()
         {
@@ -314,6 +301,7 @@ namespace LanLordz.Controllers
                         {
                             title = new Title { User = user };
                         }
+
                         break;
 
                     case "role":
@@ -322,6 +310,7 @@ namespace LanLordz.Controllers
                         {
                             title = new Title { RoleID = roleId };
                         }
+
                         break;
 
                     case "count":
@@ -330,6 +319,7 @@ namespace LanLordz.Controllers
                         {
                             title = new Title { PostCountThreshold = count };
                         }
+
                         break;
 
                     default:
@@ -439,6 +429,19 @@ namespace LanLordz.Controllers
             }
 
             return RedirectToAction("EditSponsors");
+        }
+
+        protected override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            if (!this.UserIsAuthorized())
+            {
+                filterContext.Result = this.View("NotAuthorized");
+            }
+        }
+
+        private bool UserIsAuthorized()
+        {
+            return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
         }
 
         private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)

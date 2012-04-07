@@ -28,8 +28,11 @@ namespace LanLordz
     public class UserNotFoundException : Exception
     {
         public UserNotFoundException() { }
+
         public UserNotFoundException(string message) : base(message) { }
+
         public UserNotFoundException(string message, Exception inner) : base(message, inner) { }
+
         protected UserNotFoundException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
@@ -40,8 +43,11 @@ namespace LanLordz
     public class UserAlreadyRegisteredException : Exception
     {
         public UserAlreadyRegisteredException() { }
+
         public UserAlreadyRegisteredException(string message) : base(message) { }
+
         public UserAlreadyRegisteredException(string message, Exception inner) : base(message, inner) { }
+
         protected UserAlreadyRegisteredException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
@@ -52,8 +58,11 @@ namespace LanLordz
     public class EmailNotConfirmedException : Exception
     {
         public EmailNotConfirmedException() { }
+
         public EmailNotConfirmedException(string message) : base(message) { }
+
         public EmailNotConfirmedException(string message, Exception inner) : base(message, inner) { }
+
         protected EmailNotConfirmedException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
@@ -64,8 +73,11 @@ namespace LanLordz
     public class HostLockedOutException : Exception
     {
         public HostLockedOutException() { }
+
         public HostLockedOutException(string message) : base(message) { }
+
         public HostLockedOutException(string message, Exception inner) : base(message, inner) { }
+
         protected HostLockedOutException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
@@ -76,8 +88,11 @@ namespace LanLordz
     public class UserLockedOutException : Exception
     {
         public UserLockedOutException() { }
+
         public UserLockedOutException(string message) : base(message) { }
+
         public UserLockedOutException(string message, Exception inner) : base(message, inner) { }
+
         protected UserLockedOutException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)

@@ -21,64 +21,31 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LanLordz.Models
 {
     public class PostInformation
     {
-        public Post Post
-        {
-            get;
-            set;
-        }
+        public Post Post { get; set; }
 
-        public long UserID
-        {
-            get;
-            set;
-        }
+        public long UserID { get; set; }
 
-        public string Username
-        {
-            get;
-            set;
-        }
+        public string Username { get; set; }
 
-        public string UserEmail
-        {
-            get;
-            set;
-        }
+        public string UserEmail { get; set; }
 
-        public long UserPosts
-        {
-            get;
-            set;
-        }
+        public long UserPosts { get; set; }
 
-        public DateTime UserJoinedDate
-        {
-            get;
-            set;
-        }
+        public DateTime UserJoinedDate { get; set; }
 
         public string UserTitle { get; set; }
+
         public string GroupTitle { get; set; }
+
         public string PostCountTitle { get; set; }
 
-        public string UserSignature
-        {
-            get;
-            set;
-        }
+        public string UserSignature { get; set; }
 
-        public bool UserHasAvatar
-        {
-            get;
-            set;
-        }
+        public bool UserHasAvatar { get; set; }
     }
 }

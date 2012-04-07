@@ -20,47 +20,21 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.SiteTools;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.Models.CachedModels;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class EventDetailsModel
     {
-        public CachedEvent Event
-        {
-            get;
-            set;
-        }
+        public CachedEvent Event { get; set; }
 
-        public IEnumerable<EventRegistrationInformation> Registrants
-        {
-            get;
-            set;
-        }
+        public IEnumerable<EventRegistrationInformation> Registrants { get; set; }
 
-        public IEnumerable<EventImage> Images
-        {
-            get;
-            set;
-        }
+        public IEnumerable<EventImage> Images { get; set; }
 
-        public IEnumerable<CachedTournament> Tournaments
-        {
-            get;
-            set;
-        }
+        public IEnumerable<CachedTournament> Tournaments { get; set; }
 
-        public CachedVenue Venue
-        {
-            get;
-            set;
-        }
+        public CachedVenue Venue { get; set; }
     }
 }

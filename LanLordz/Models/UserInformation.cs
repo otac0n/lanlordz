@@ -21,65 +21,50 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LanLordz.Models
 {
     public class UserInformation
     {
         public long UserID { get; set; }
+
         public string Username { get; set; }
+
         public string Email { get; set; }
+
         public char Gender { get; set; }
+
         public DateTime CreateDate { get; set; }
+
         public bool IsEmailConfirmed { get; set; }
+
         public bool ReceiveAdminEmail { get; set; }
+
         public bool ShowEmail { get; set; }
+
         public bool ShowGender { get; set; }
+
         public bool HasAvatar { get; set; }
+
         public int Posts { get; set; }
+
         public int EventsRegistered { get; set; }
+
         public int EventsCheckedIn { get; set; }
 
         public string Biography { get; set; }
 
-        public string Location
-        {
-            get;
-            set;
-        }
+        public string Location { get; set; }
 
-        public string Occupation
-        {
-            get;
-            set;
-        }
+        public string Occupation { get; set; }
 
-        public string Interests
-        {
-            get;
-            set;
-        }
+        public string Interests { get; set; }
 
-        public string Website
-        {
-            get;
-            set;
-        }
+        public string Website { get; set; }
 
-        public string Theme
-        {
-            get;
-            set;
-        }
+        public string Theme { get; set; }
 
-        public string TimeZone
-        {
-            get;
-            set;
-        }
+        public string TimeZone { get; set; }
 
         public TimeZoneInfo TimeZoneInfo
         {
@@ -89,10 +74,6 @@ namespace LanLordz.Models
             }
         }
 
-        public string Signature
-        {
-            get;
-            set;
-        }
+        public string Signature { get; set; }
     }
 }

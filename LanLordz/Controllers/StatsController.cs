@@ -51,7 +51,6 @@ namespace LanLordz.Controllers
                                    select u.UserID;
             long activeUserId = usersByPostCount.FirstOrDefault();
 
-
             return new SiteStatisticsModel
             {
                 AllEventsStats = this.GetEventsStats(previousEvents),

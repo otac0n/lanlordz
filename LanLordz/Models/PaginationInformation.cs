@@ -20,64 +20,27 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Routing;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.SiteTools;
 
 namespace LanLordz.Models
 {
     public class PaginationInformation
     {
-        public Pager Pager
-        {
-            get;
-            set;
-        }
+        public Pager Pager { get; set; }
 
-        public int? CurrentPage
-        {
-            get;
-            set;
-        }
+        public int? CurrentPage { get; set; }
 
-        public int Items
-        {
-            get;
-            set;
-        }
+        public int Items { get; set; }
 
-        public int ItemsPerPage
-        {
-            get;
-            set;
-        }
+        public int ItemsPerPage { get; set; }
 
-        public string ActionName
-        {
-            get;
-            set;
-        }
+        public string ActionName { get; set; }
 
-        public string ControllerName
-        {
-            get;
-            set;
-        }
+        public string ControllerName { get; set; }
 
-        public string PageAttribute
-        {
-            get;
-            set;
-        }
+        public string PageAttribute { get; set; }
 
-        public RouteValueDictionary RouteValues
-        {
-            get;
-            set;
-        }
+        public RouteValueDictionary RouteValues { get; set; }
     }
 }

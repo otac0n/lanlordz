@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using LanLordz.SiteTools;
 using System.Xml.Linq;
-using System.Xml;
+using LanLordz.SiteTools;
+using NUnit.Framework;
 
 namespace LanLordzTests
 {
@@ -34,7 +31,7 @@ namespace LanLordzTests
             Assert.That((new AcceptList("gzip;q=0,deflate", supported)).First(), Is.EqualTo("deflate"));
             Assert.That((new AcceptList("gzip,deflate;q=0", supported)).First(), Is.EqualTo("gzip"));
         }
-        
+
         [Test]
         public void AcceptParserFollowsQValueOrders()
         {
@@ -137,7 +134,7 @@ namespace LanLordzTests
             Pager pg2 = new Pager(config2);
             Pager pg3 = new Pager(config3);
 
-            expected = "Page 1 of 10 <a class=\"PagerLink\" href=\"/Forums/ViewForum/4?page=2\">&gt;</a> <a class=\"PagerLink\" href=\"/Forums/ViewForum/4?page=10\">&gt;&gt;</a>"; 
+            expected = "Page 1 of 10 <a class=\"PagerLink\" href=\"/Forums/ViewForum/4?page=2\">&gt;</a> <a class=\"PagerLink\" href=\"/Forums/ViewForum/4?page=10\">&gt;&gt;</a>";
             result = pg1.CreatePager(1, 236, 25, i => "/Forums/ViewForum/4?page=" + i);
             Assert.That(result, Is.EqualTo(expected));
 

@@ -47,6 +47,53 @@ namespace LanLordz.SiteTools
             LoadConfiguration(configuration);
         }
 
+        public static int ClampPage(int? page, int pageCount)
+        {
+            int pages = Math.Max(1, pageCount);
+
+            if (!page.HasValue || page.Value <= 0)
+            {
+                return 1;
+            }
+
+            if (page.Value >= pages)
+            {
+                return pages;
+            }
+
+            return page.Value;
+        }
+
+        public static int PageCount(int itemCount, int pageSize)
+        {
+            return Math.Max(1, (int)Math.Ceiling((float)itemCount / pageSize));
+        }
+
+        public string CreatePager(int? currentPage, int itemCount, int pageSize, GeneratePageLinkDelegate urlGenerator)
+        {
+            return this.CreatePager(currentPage, itemCount, pageSize, x => x.ToString(), urlGenerator);
+        }
+
+        public string CreatePager(int? currentPage, int itemCount, int pageSize, GenerateItemDelegate itemGenerator, GeneratePageLinkDelegate urlGenerator)
+        {
+            int pageCount = PageCount(itemCount, pageSize);
+            int? page = currentPage;
+
+            if (page.HasValue)
+            {
+                page = ClampPage(page, pageCount);
+            }
+
+            StringBuilder result = new StringBuilder();
+
+            foreach (PagerElement element in this.Elements)
+            {
+                result.Append(element.Build(currentPage, pageCount, itemCount, itemGenerator, urlGenerator));
+            }
+
+            return result.ToString();
+        }
+
         private void LoadConfiguration(XDocument configuration)
         {
             XElement documentElement = configuration.Elements().First();
@@ -264,53 +311,6 @@ namespace LanLordz.SiteTools
             return new ItemCountElement(format);
         }
 
-        public string CreatePager(int? currentPage, int itemCount, int pageSize, GeneratePageLinkDelegate urlGenerator)
-        {
-            return this.CreatePager(currentPage, itemCount, pageSize, x => x.ToString(), urlGenerator);
-        }
-
-        public string CreatePager(int? currentPage, int itemCount, int pageSize, GenerateItemDelegate itemGenerator, GeneratePageLinkDelegate urlGenerator)
-        {
-            int pageCount = PageCount(itemCount, pageSize);
-            int? page = currentPage;
-
-            if (page.HasValue)
-            {
-                page = ClampPage(page, pageCount);
-            }
-
-            StringBuilder result = new StringBuilder();
-
-            foreach (PagerElement element in this.Elements)
-            {
-                result.Append(element.Build(currentPage, pageCount, itemCount, itemGenerator, urlGenerator));
-            }
-
-            return result.ToString();
-        }
-
-        public static int ClampPage(int? page, int pageCount)
-        {
-            int pages = Math.Max(1, pageCount);
-
-            if (!page.HasValue || page.Value <= 0)
-            {
-                return 1;
-            }
-
-            if (page.Value >= pages)
-            {
-                return pages;
-            }
-
-            return page.Value;
-        }
-
-        public static int PageCount(int itemCount, int pageSize)
-        {
-            return Math.Max(1, (int)Math.Ceiling((float)itemCount / pageSize));
-        }
-
         public abstract class PagerElement
         {
             public abstract string Build(int? currentPage, int pageCount, int itemCount, GenerateItemDelegate itemGenerator, GeneratePageLinkDelegate urlGenerator);
@@ -478,64 +478,6 @@ namespace LanLordz.SiteTools
 
         private class NumberRunElement : PagerElement
         {
-            public enum FillMode
-            {
-                Linear, Exponential, OrderOfMagnitude
-            };
-
-            private class NumberRange
-            {
-                int min;
-                int max;
-                string seperatorBefore;
-                string seperatorAfter;
-
-                public NumberRange(int min, int max, string seperatorBefore, string seperatorAfter)
-                {
-                    if (min > max)
-                    {
-                        throw new InvalidOperationException();
-                    }
-
-                    this.min = min;
-                    this.max = max;
-                    this.seperatorBefore = seperatorBefore;
-                    this.seperatorAfter = seperatorAfter;
-                }
-
-                public int Min
-                {
-                    get
-                    {
-                        return this.min;
-                    }
-                }
-
-                public int Max
-                {
-                    get
-                    {
-                        return this.max;
-                    }
-                }
-
-                public string SeperatorBefore
-                {
-                    get
-                    {
-                        return this.seperatorBefore;
-                    }
-                }
-
-                public string SeperatorAfter
-                {
-                    get
-                    {
-                        return this.seperatorAfter;
-                    }
-                }
-            }
-
             string currentFormat;
             string otherFormat;
             string seperatorFormat;
@@ -568,6 +510,11 @@ namespace LanLordz.SiteTools
                 this.lastSeperator = lastSeperator;
                 this.lastNumber = lastNumber;
             }
+
+            public enum FillMode
+            {
+                Linear, Exponential, OrderOfMagnitude
+            };
 
             public override string Build(int? currentPage, int pageCount, int itemCount, GenerateItemDelegate itemGenerator, GeneratePageLinkDelegate urlGenerator)
             {
@@ -735,7 +682,6 @@ namespace LanLordz.SiteTools
                         }
                     }
 
-
                     for (int i = range.Min; i <= range.Max; i++)
                     {
                         if (!seperated)
@@ -782,6 +728,59 @@ namespace LanLordz.SiteTools
                 }
 
                 return output.ToString();
+            }
+
+            private class NumberRange
+            {
+                int min;
+                int max;
+                string seperatorBefore;
+                string seperatorAfter;
+
+                public NumberRange(int min, int max, string seperatorBefore, string seperatorAfter)
+                {
+                    if (min > max)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this.min = min;
+                    this.max = max;
+                    this.seperatorBefore = seperatorBefore;
+                    this.seperatorAfter = seperatorAfter;
+                }
+
+                public int Min
+                {
+                    get
+                    {
+                        return this.min;
+                    }
+                }
+
+                public int Max
+                {
+                    get
+                    {
+                        return this.max;
+                    }
+                }
+
+                public string SeperatorBefore
+                {
+                    get
+                    {
+                        return this.seperatorBefore;
+                    }
+                }
+
+                public string SeperatorAfter
+                {
+                    get
+                    {
+                        return this.seperatorAfter;
+                    }
+                }
             }
         }
     }

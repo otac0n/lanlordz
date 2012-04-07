@@ -30,7 +30,6 @@ namespace LanLordz.SiteTools
     public class AcceptList : IEnumerable<string>
     {
         private readonly Regex parser = new Regex(@"(?<name>[^;,\r\n]+)(?:;q=(?<value>[\d.]+))?", RegexOptions.Compiled);
-
         private readonly IEnumerable<string> encodings;
 
         public AcceptList(string acceptHeaderValue, IEnumerable<string> supportedEncodings)

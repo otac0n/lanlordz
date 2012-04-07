@@ -20,45 +20,20 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class EditPostModel
     {
-        public ForumAccess UserAccess
-        {
-            get;
-            set;
-        }
+        public ForumAccess UserAccess { get; set; }
 
-        public Forum Forum
-        {
-            get;
-            set;
-        }
+        public Forum Forum { get; set; }
 
-        public Thread Thread
-        {
-            get;
-            set;
-        }
+        public Thread Thread { get; set; }
 
-        public Post Post
-        {
-            get;
-            set;
-        }
+        public Post Post { get; set; }
 
-        public IEnumerable<ThreadLevel> AvailableThreadLevels
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ThreadLevel> AvailableThreadLevels { get; set; }
     }
 }

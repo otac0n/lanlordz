@@ -23,32 +23,15 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class EditTournamentModel
     {
-        public Tournament Tournament
-        {
-            get;
-            set;
-        }
+        public Tournament Tournament { get; set; }
 
-        public IDictionary<string, string> ScoreModes
-        {
-            get;
-            set;
-        }
+        public IDictionary<string, string> ScoreModes { get; set; }
 
-        public IList<string> PairingsGenerators
-        {
-            get;
-            set;
-        }
+        public IList<string> PairingsGenerators { get; set; }
 
-        public string TDUsername
-        {
-            get;
-            set;
-        }
+        public string TDUsername { get; set; }
     }
 }

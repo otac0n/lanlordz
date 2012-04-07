@@ -22,14 +22,8 @@
 
 namespace LanLordz.Models
 {
-    using LanLordz.Controllers;
-
     public class ChangeAvatarModel
     {
-        public UserInformation UserInfo
-        {
-            get;
-            set;
-        }
+        public UserInformation UserInfo { get; set; }
     }
 }

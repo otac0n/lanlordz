@@ -42,17 +42,13 @@ namespace LanLordz.Controllers
     {
         private const string UserKey = "User";
         private const string AutoLogOnKey = "AutoLogOnKey";
-
         private static ICacheManager pluginCache = CacheFactory.GetCacheManager("PluginFactories");
         private static ICacheManager skinsCache = CacheFactory.GetCacheManager("SiteSkins");
         private static ICacheManager dataCache = CacheFactory.GetCacheManager("DataCache");
-
         private bool userLoaded;
         private User currentUser;
         private TimeZoneInfo userTimeZone;
-
         private Regex invalidUrlCharacters = new Regex(@"[^\w]+", RegexOptions.Compiled);
-
         private PluginRepository pluginRepo;
         private SkinRepository skinRepo;
         private GoogleGeocoder geocoder;
@@ -71,41 +67,17 @@ namespace LanLordz.Controllers
             this.Forums = new ForumRepository(this.Db, cache, this.Config, this.Security);
         }
 
-        public ConfigurationRepository Config
-        {
-            get;
-            private set;
-        }
+        public ConfigurationRepository Config { get; private set; }
 
-        public SecurityRepository Security
-        {
-            get;
-            private set;
-        }
+        public SecurityRepository Security { get; private set; }
 
-        public EventRepository Events
-        {
-            get;
-            private set;
-        }
+        public EventRepository Events { get; private set; }
 
-        public PollRepository Polls
-        {
-            get;
-            private set;
-        }
+        public PollRepository Polls { get; private set; }
 
-        public ForumRepository Forums
-        {
-            get;
-            private set;
-        }
+        public ForumRepository Forums { get; private set; }
 
-        public UserRepository Users
-        {
-            get;
-            private set;
-        }
+        public UserRepository Users { get; private set; }
 
         public PluginRepository Plugins
         {
@@ -153,11 +125,20 @@ namespace LanLordz.Controllers
             }
         }
 
-        protected LanLordzDataContext Db
+        public GoogleGeocoder Geocoder
         {
-            get;
-            private set;
+            get
+            {
+                if (this.geocoder == null)
+                {
+                    this.geocoder = new GoogleGeocoder(this.Config.GoogleMapsKey);
+                }
+
+                return this.geocoder;
+            }
         }
+
+        protected LanLordzDataContext Db { get; private set; }
 
         protected string Theme
         {
@@ -178,16 +159,26 @@ namespace LanLordz.Controllers
             }
         }
 
-        public GoogleGeocoder Geocoder
+        public static string ComputeHash(string data)
         {
-            get
+            using (var sha = new SHA512Managed())
             {
-                if (this.geocoder == null)
-                {
-                    this.geocoder = new GoogleGeocoder(this.Config.GoogleMapsKey);
-                }
+                return Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(data ?? string.Empty)));
+            }
+        }
 
-                return this.geocoder;
+        public static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
+        {
+            var topic = Encoding.ASCII.GetBytes(scrapeBusterKey + "." + (additionalData == null ? string.Empty : additionalData.ToString()));
+            return CalculateMd5(topic).Substring(0, 8);
+        }
+
+        public static string CalculateMd5(byte[] data)
+        {
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] result = md5.ComputeHash(data);
+                return Convert.ToBase64String(result);
             }
         }
 
@@ -256,14 +247,6 @@ namespace LanLordz.Controllers
             return themes;
         }
 
-        public static string ComputeHash(string data)
-        {
-            using (var sha = new SHA512Managed())
-            {
-                return Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(data ?? string.Empty)));
-            }
-        }
-
         public string FormatPostText(string postText)
         {
             var bbi = this.Skins.GetBBCodeInterpreter();
@@ -304,18 +287,66 @@ namespace LanLordz.Controllers
             return this.Users.GetUserInformation(userId);
         }
 
-        public static string CalculateScrapeBuster(string scrapeBusterKey, object additionalData)
+        public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
         {
-            var topic = Encoding.ASCII.GetBytes(scrapeBusterKey + "." + (additionalData == null ? string.Empty : additionalData.ToString()));
-            return CalculateMd5(topic).Substring(0, 8);
-        }
-
-        public static string CalculateMd5(byte[] data)
-        {
-            using (var md5 = new MD5CryptoServiceProvider())
+            if (String.IsNullOrEmpty(email))
+                throw new ArgumentNullException("email");
+            MailAddress from = new MailAddress("admin@example.com");
+            try
             {
-                byte[] result = md5.ComputeHash(data);
-                return Convert.ToBase64String(result);
+                from = new MailAddress(this.Config.AdminEmail);
+            }
+            catch
+            {
+            }
+
+            MailAddress to;
+            try
+            {
+                to = new MailAddress(email);
+            }
+            catch
+            {
+                return;
+            }
+
+            using (var message = new MailMessage(from, to))
+            {
+                String body = this.Config.ConfirmEmailText;
+
+                String subject = this.Config.ConfirmEmailSubject;
+
+                EmailConfirm confirm = new EmailConfirm
+                {
+                    Email = email,
+                    Key = Guid.NewGuid()
+                };
+                this.Db.EmailConfirms.InsertOnSubmit(confirm);
+                this.Db.SubmitChanges();
+
+                String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
+
+                try
+                {
+                    message.Subject = subject;
+                    message.Body = String.Format(body, Link);
+                    message.IsBodyHtml = true;
+                }
+                catch (FormatException)
+                {
+                    return;
+                }
+
+                try
+                {
+                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+                    {
+                        client.Send(message);
+                    }
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -466,69 +497,6 @@ namespace LanLordz.Controllers
             this.SendConfirmationEmail(email, request, response);
 
             return newUser;
-        }
-
-        public void SendConfirmationEmail(string email, HttpRequestBase request, HttpResponseBase response)
-        {
-            if (String.IsNullOrEmpty(email))
-                throw new ArgumentNullException("email");
-            MailAddress from = new MailAddress("admin@example.com");
-            try
-            {
-                from = new MailAddress(this.Config.AdminEmail);
-            }
-            catch
-            {
-            }
-
-            MailAddress to;
-            try
-            {
-                to = new MailAddress(email);
-            }
-            catch
-            {
-                return;
-            }
-
-            using (var message = new MailMessage(from, to))
-            {
-                String body = this.Config.ConfirmEmailText;
-
-                String subject = this.Config.ConfirmEmailSubject;
-
-                EmailConfirm confirm = new EmailConfirm
-                {
-                    Email = email,
-                    Key = Guid.NewGuid()
-                };
-                this.Db.EmailConfirms.InsertOnSubmit(confirm);
-                this.Db.SubmitChanges();
-
-                String Link = request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Authority + response.ApplyAppPathModifier("~/Account/Confirm?key=" + confirm.Key);
-
-                try
-                {
-                    message.Subject = subject;
-                    message.Body = String.Format(body, Link);
-                    message.IsBodyHtml = true;
-                }
-                catch (FormatException)
-                {
-                    return;
-                }
-
-                try
-                {
-                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
-                    {
-                        client.Send(message);
-                    }
-                }
-                catch
-                {
-                }
-            }
         }
 
         protected User RecallUser(string key, string originatingHostIp)

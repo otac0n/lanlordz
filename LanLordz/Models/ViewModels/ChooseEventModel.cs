@@ -23,15 +23,10 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
     using LanLordz.Models.CachedModels;
 
     public class ChooseEventModel
     {
-        public IEnumerable<CachedEvent> Events
-        {
-            get;
-            set;
-        }
+        public IEnumerable<CachedEvent> Events { get; set; }
     }
 }

@@ -21,20 +21,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 
 namespace LanLordz.Models.CachedModels
 {
     public class CachedEventRegistration
     {
-        public long EventID { get; private set; }
-        public long UserID { get; private set; }
-        public System.DateTime RegistrationDate { get; private set; }
-        public bool IsCheckedIn { get; private set; }
-
         public CachedEventRegistration(Registration baseRegistration)
         {
             if (baseRegistration == null)
@@ -47,5 +38,13 @@ namespace LanLordz.Models.CachedModels
             this.RegistrationDate = baseRegistration.RegistrationDate;
             this.UserID = baseRegistration.UserID;
         }
+
+        public long EventID { get; private set; }
+
+        public long UserID { get; private set; }
+
+        public System.DateTime RegistrationDate { get; private set; }
+
+        public bool IsCheckedIn { get; private set; }
     }
 }

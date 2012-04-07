@@ -23,56 +23,23 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class CreateEventModel
     {
-        public string BeginDateTime
-        {
-            get;
-            set;
-        }
+        public string BeginDateTime { get; set; }
 
-        public string EndDateTime
-        {
-            get;
-            set;
-        }
+        public string EndDateTime { get; set; }
 
-        public string Info
-        {
-            get;
-            set;
-        }
+        public string Info { get; set; }
 
-        public string Title
-        {
-            get;
-            set;
-        }
+        public string Title { get; set; }
 
-        public string Seats
-        {
-            get;
-            set;
-        }
+        public string Seats { get; set; }
 
-        public long VenueId
-        {
-            get;
-            set;
-        }
+        public long VenueId { get; set; }
 
-        public bool RegisterCrew
-        {
-            get;
-            set;
-        }
+        public bool RegisterCrew { get; set; }
 
-        public IEnumerable<Venue> AvailableVenues
-        {
-            get;
-            set;
-        }
+        public IEnumerable<Venue> AvailableVenues { get; set; }
     }
 }

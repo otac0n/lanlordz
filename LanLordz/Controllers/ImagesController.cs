@@ -122,7 +122,7 @@ namespace LanLordz.Controllers
                 return this.HttpError(404, this.View("NotFound"));
             }
         }
-        
+
         [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult TagImage(long id, FormCollection values)
         {
@@ -177,7 +177,6 @@ namespace LanLordz.Controllers
                 images = from i in images
                          where i.UserTags.Where(ut => ut.TaggedUserUserId == userId.Value).Any()
                          select i;
-
             }
 
             if (eventId.HasValue)
@@ -185,7 +184,6 @@ namespace LanLordz.Controllers
                 images = from i in images
                          where i.EventID == eventId.Value
                          select i;
-
             }
 
             return from i in images

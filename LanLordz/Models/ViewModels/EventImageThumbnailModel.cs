@@ -20,27 +20,12 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
-
 namespace LanLordz.Models
 {
     public class EventImageThumbnailModel
     {
-        public EventImage Image
-        {
-            get;
-            set;
-        }
+        public EventImage Image { get; set; }
 
-        public int? ThumbnailSize
-        {
-            get;
-            set;
-        }
+        public int? ThumbnailSize { get; set; }
     }
 }

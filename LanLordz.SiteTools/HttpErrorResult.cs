@@ -23,9 +23,6 @@
 namespace LanLordz.SiteTools
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
 
     public static class HttpErrorResultHelper
@@ -50,17 +47,9 @@ namespace LanLordz.SiteTools
 
     public sealed class HttpErrorResult : ActionResult
     {
-        public int StatusCode
-        {
-            get;
-            set;
-        }
+        public int StatusCode { get; set; }
 
-        public ActionResult ChainedAction
-        {
-            get;
-            set;
-        }
+        public ActionResult ChainedAction { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {

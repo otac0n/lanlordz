@@ -21,21 +21,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 
 namespace LanLordz.Models.CachedModels
 {
     public class CachedVenue
     {
-        public long VenueID { get; private set; }
-        public string Name { get; private set; }
-        public string Address { get; private set; }
-        public System.Nullable<decimal> Latitude { get; private set; }
-        public System.Nullable<decimal> Longitude { get; private set; }
-
         public CachedVenue(Venue baseVenue)
         {
             if (baseVenue == null)
@@ -49,5 +39,15 @@ namespace LanLordz.Models.CachedModels
             this.Latitude = baseVenue.Latitude;
             this.Longitude = baseVenue.Longitude;
         }
+
+        public long VenueID { get; private set; }
+
+        public string Name { get; private set; }
+
+        public string Address { get; private set; }
+
+        public System.Nullable<decimal> Latitude { get; private set; }
+
+        public System.Nullable<decimal> Longitude { get; private set; }
     }
 }

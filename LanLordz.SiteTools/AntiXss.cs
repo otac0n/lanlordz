@@ -22,7 +22,6 @@
 
 namespace LanLordz.SiteTools
 {
-    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -30,7 +29,7 @@ namespace LanLordz.SiteTools
     {
         public static string SanitizeUrl(string url)
         {
-            var validUrlSchemes = new Regex("^(http|https|ftp)://"); 
+            var validUrlSchemes = new Regex("^(http|https|ftp)://");
             var ret = url.TrimStart();
 
             if (!validUrlSchemes.IsMatch(ret))

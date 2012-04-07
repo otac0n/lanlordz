@@ -20,72 +20,30 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Xml;
 using System.Drawing;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.Models.CachedModels;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class TournamentDetailsModel
     {
-        public Event Event
-        {
-            get;
-            set;
-        }
+        public Event Event { get; set; }
 
-        public CachedTournament Tournament
-        {
-            get;
-            set;
-        }
+        public CachedTournament Tournament { get; set; }
 
-        public IEnumerable<Round> Rounds
-        {
-            get;
-            set;
-        }
+        public IEnumerable<Round> Rounds { get; set; }
 
-        public IEnumerable<Team> Teams
-        {
-            get;
-            set;
-        }
+        public IEnumerable<Team> Teams { get; set; }
 
-        public TournamentAccess UserAccess
-        {
-            get;
-            set;
-        }
+        public TournamentAccess UserAccess { get; set; }
 
-        public bool TournamentFinished
-        {
-            get;
-            set;
-        }
+        public bool TournamentFinished { get; set; }
 
-        public IEnumerable<TournamentStandingInformation> Standings
-        {
-            get;
-            set;
-        }
+        public IEnumerable<TournamentStandingInformation> Standings { get; set; }
 
-        public bool CanRenderView
-        {
-            get;
-            set;
-        }
+        public bool CanRenderView { get; set; }
 
-        public Size? RenderedSize
-        {
-            get;
-            set;
-        }
+        public Size? RenderedSize { get; set; }
     }
 }

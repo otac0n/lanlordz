@@ -377,7 +377,7 @@ namespace LanLordz.Controllers
                 UserInfo = info
             });
         }
-        
+
         [HttpPost, ValidateAntiForgeryToken, CompressFilter]
         public ActionResult ChangeAvatar(FormCollection values)
         {
@@ -435,37 +435,6 @@ namespace LanLordz.Controllers
             return RedirectToAction("ViewProfile", new { id = CurrentUser.UserID });
         }
 
-        private IEnumerable<RuleViolation> CheckAvatar(Stream avatarStream)
-        {
-            System.Drawing.Image i = null;
-
-            if (avatarStream.Length > 153600)
-            {
-                yield return new RuleViolation("The file you uploaded was too large. (Max 150KB)");
-            }
-
-            var valid = false;
-            try
-            {
-                i = System.Drawing.Image.FromStream(avatarStream);
-                valid = true;
-            }
-            catch (ArgumentException)
-            {
-            }
-
-            if (!valid)
-            {
-                yield return new RuleViolation("The file you uploaded was not a valid image.");
-            }
-            else if (i.Width > 100 || i.Height > 100)
-            {
-                yield return new RuleViolation("The image you uploaded was too large. (Max 100x100)");
-            }
-
-            yield break;
-        }
-
         [CompressFilter]
         public ActionResult ChangePassword(long? id)
         {
@@ -507,7 +476,7 @@ namespace LanLordz.Controllers
             var hasFailedTooMuch = !IsLogOnAttemptUnderThreshold(ip);
 
             var u = this.CurrentUser;
-            
+
             var cpm = new ChangePasswordModel
             {
                 User = u,
@@ -747,6 +716,37 @@ namespace LanLordz.Controllers
                     return true;
                 }
             }
+        }
+
+        private IEnumerable<RuleViolation> CheckAvatar(Stream avatarStream)
+        {
+            System.Drawing.Image i = null;
+
+            if (avatarStream.Length > 153600)
+            {
+                yield return new RuleViolation("The file you uploaded was too large. (Max 150KB)");
+            }
+
+            var valid = false;
+            try
+            {
+                i = System.Drawing.Image.FromStream(avatarStream);
+                valid = true;
+            }
+            catch (ArgumentException)
+            {
+            }
+
+            if (!valid)
+            {
+                yield return new RuleViolation("The file you uploaded was not a valid image.");
+            }
+            else if (i.Width > 100 || i.Height > 100)
+            {
+                yield return new RuleViolation("The image you uploaded was too large. (Max 100x100)");
+            }
+
+            yield break;
         }
     }
 }

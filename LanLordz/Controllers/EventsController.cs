@@ -175,7 +175,7 @@ namespace LanLordz.Controllers
 
             var g = new SvgNet.SvgGdi.SvgGraphics();
             viz.Render(g, new TournamentNameTable(teams));
-            
+
             var xml = g.WriteSVGString(false, true);
 
             // This was preferred over the loading of the XML document, due to the huge performance hit (on the order of 5 seconds) of loading it in.
@@ -640,9 +640,9 @@ namespace LanLordz.Controllers
             public static string GetDescription(Enum obj)
             {
                 var t = obj.GetType();
-                
+
                 var mi = t.GetMember(obj.ToString());
-                
+
                 if (mi == null || mi.Length == 0)
                 {
                     return obj.ToString();
@@ -669,7 +669,7 @@ namespace LanLordz.Controllers
                 var teams = (from team in this.Db.Teams
                              where team.TournamentID == tmt.TournamentID
                              select new TournamentTeam(team.TeamID, (int)team.UsersTeams.Average(ut => ut.Rating))).ToList();
-                
+
                 var rounds = new List<TournamentRound>();
                 foreach (var round in from r in this.Db.Rounds
                                       where r.TournamentID == tmt.TournamentID
@@ -691,7 +691,7 @@ namespace LanLordz.Controllers
 
                 return pg;
             }
-            
+
             return null;
         }
 
@@ -1118,7 +1118,7 @@ namespace LanLordz.Controllers
                                              UserTeam = userTeam
                                          });
             }
-            
+
             this.Db.UsersTeams.DeleteOnSubmit(userTeam);
             this.Db.SubmitChanges();
 
@@ -1443,7 +1443,7 @@ namespace LanLordz.Controllers
                         Event = evt
                     });
                 }
-                
+
                 maxPairings = mp;
             }
 

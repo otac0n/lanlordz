@@ -22,9 +22,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Linq;
+using System.Linq;
 
 namespace LanLordz.Models
 {
@@ -43,7 +42,7 @@ namespace LanLordz.Models
             if (string.IsNullOrEmpty(this.TeamName))
                 yield return new RuleViolation("Team names must be at least one characters.", "TeamName");
 
-            if (string.IsNullOrEmpty(this.TeamTagFormat) || this.TeamTagFormat.Length < 3 )
+            if (string.IsNullOrEmpty(this.TeamTagFormat) || this.TeamTagFormat.Length < 3)
                 yield return new RuleViolation("Team tags must be at least three characters.", "TeamTagFormat");
 
             bool formatValid = false;
@@ -59,7 +58,7 @@ namespace LanLordz.Models
 
                     formatValid = true;
                 }
-                catch(FormatException)
+                catch (FormatException)
                 {
                 }
 

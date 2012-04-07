@@ -20,39 +20,16 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
-
 namespace LanLordz.Models
 {
     public class ForumDetailsModel
     {
-        public Forum Forum
-        {
-            get;
-            set;
-        }
+        public Forum Forum { get; set; }
 
-        public ForumAccess UserAccess
-        {
-            get;
-            set;
-        }
+        public ForumAccess UserAccess { get; set; }
 
-        public ThreadList Threads
-        {
-            get;
-            set;
-        }
+        public ThreadList Threads { get; set; }
 
-        public PaginationInformation PageInfo
-        {
-            get;
-            set;
-        }
+        public PaginationInformation PageInfo { get; set; }
     }
 }

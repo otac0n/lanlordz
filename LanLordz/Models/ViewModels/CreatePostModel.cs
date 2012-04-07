@@ -23,50 +23,21 @@
 namespace LanLordz.Models
 {
     using System.Collections.Generic;
-    using LanLordz.Controllers;
 
     public class CreatePostModel
     {
-        public ForumAccess UserAccess
-        {
-            get;
-            set;
-        }
+        public ForumAccess UserAccess { get; set; }
 
-        public string Title
-        {
-            get;
-            set;
-        }
+        public string Title { get; set; }
 
-        public string Text
-        {
-            get;
-            set;
-        }
+        public string Text { get; set; }
 
-        public Forum Forum
-        {
-            get;
-            set;
-        }
+        public Forum Forum { get; set; }
 
-        public Thread Thread
-        {
-            get;
-            set;
-        }
+        public Thread Thread { get; set; }
 
-        public Post Post
-        {
-            get;
-            set;
-        }
+        public Post Post { get; set; }
 
-        public IEnumerable<ThreadLevel> AvailableThreadLevels
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ThreadLevel> AvailableThreadLevels { get; set; }
     }
 }

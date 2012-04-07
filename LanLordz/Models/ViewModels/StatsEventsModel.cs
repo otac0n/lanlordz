@@ -20,27 +20,14 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class StatsEventsModel
     {
-        public IEnumerable<EventStats> Events
-        {
-            get;
-            set;
-        }
+        public IEnumerable<EventStats> Events { get; set; }
 
-        public PaginationInformation PageInfo
-        {
-            get;
-            set;
-        }
+        public PaginationInformation PageInfo { get; set; }
     }
 }

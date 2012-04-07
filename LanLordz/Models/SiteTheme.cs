@@ -20,7 +20,6 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,35 +29,15 @@ namespace LanLordz.Models
 {
     public class SiteTheme
     {
-        public string Name
-        {
-            get;
-            set;
-        }
+        public string Name { get; set; }
 
-        public string PngFixSelector
-        {
-            get;
-            set;
-        }
+        public string PngFixSelector { get; set; }
 
-        public string Banner
-        {
-            get;
-            set;
-        }
+        public string Banner { get; set; }
 
-        public IList<string> Stylesheets
-        {
-            get;
-            set;
-        }
+        public IList<string> Stylesheets { get; set; }
 
-        public IList<string> Scripts
-        {
-            get;
-            set;
-        }
+        public IList<string> Scripts { get; set; }
 
         public XNode AsXNode(HttpResponseBase response)
         {

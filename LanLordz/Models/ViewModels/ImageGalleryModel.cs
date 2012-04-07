@@ -20,21 +20,19 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using LanLordz.Controllers.CachedRepositories;
 using LanLordz.Models.CachedModels;
-using LanLordz.Controllers;
 
 namespace LanLordz.Models
 {
     public class ImageGalleryModel
     {
         public UserInformation User { get; set; }
+
         public CachedEvent Event { get; set; }
+
         public IEnumerable<EventImage> Images { get; set; }
+
         public PaginationInformation PageInfo { get; set; }
     }
 }

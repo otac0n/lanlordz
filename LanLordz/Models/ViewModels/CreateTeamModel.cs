@@ -22,20 +22,10 @@
 
 namespace LanLordz.Models
 {
-    using LanLordz.Controllers;
-
     public class CreateTeamModel : TournamentActionModel
     {
-        public string TeamName
-        {
-            get;
-            set;
-        }
+        public string TeamName { get; set; }
 
-        public string TeamTagFormat
-        {
-            get;
-            set;
-        }
+        public string TeamTagFormat { get; set; }
     }
 }
