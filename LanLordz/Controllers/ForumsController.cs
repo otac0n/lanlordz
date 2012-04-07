@@ -382,17 +382,9 @@ namespace LanLordz.Controllers
 
             if (access.CanModerate)
             {
-                string locked = Converter.Convert<string>(values["Locked"]);
                 long? level = Converter.Convert<long?>(values["Level"]);
 
-                if (string.Equals(locked, "on"))
-                {
-                    t.IsLocked = true;
-                }
-                else
-                {
-                    t.IsLocked = false;
-                }
+                t.IsLocked = values["Locked"].StartsWith("true");
 
                 if (level.HasValue)
                 {
@@ -590,17 +582,9 @@ namespace LanLordz.Controllers
 
             if (access.CanModerate)
             {
-                string locked = Converter.Convert<string>(values["Locked"]);
                 long? level = Converter.Convert<long?>(values["Level"]);
 
-                if (string.Equals(locked, "on"))
-                {
-                    t.IsLocked = true;
-                }
-                else
-                {
-                    t.IsLocked = false;
-                }
+                t.IsLocked = values["Locked"].StartsWith("true");
 
                 if (level.HasValue)
                 {
@@ -652,16 +636,7 @@ namespace LanLordz.Controllers
 
             if (access.CanModerate)
             {
-                string del = Converter.Convert<string>(values["DeleteThread"]);
-
-                if (string.Equals(del, "on"))
-                {
-                    deleteThread = true;
-                }
-                else
-                {
-                    deleteThread = false;
-                }
+                deleteThread = values["DeleteThread"].StartsWith("true");
             }
 
             if (deleteThread)

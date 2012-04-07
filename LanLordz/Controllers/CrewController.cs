@@ -42,54 +42,6 @@ namespace LanLordz.Controllers
             return View("Index");
         }
 
-        private void DeleteEventImage(long eventImageId)
-        {
-            var i = (from image in this.Db.EventImages
-                     where image.EventImageID == eventImageId
-                     select image).Single();
-            var eventId = i.EventID;
-            this.Db.EventImages.DeleteOnSubmit(i);
-            this.Db.SubmitChanges();
-
-            this.Events.InvalidateEventImages(eventId);
-        }
-
-        private void AddEventImage(long eventId, byte[] imageData)
-        {
-            var image = new EventImage
-            {
-                EventID = eventId,
-                Image = imageData,
-                ScrapeBusterKey = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLowerInvariant().Substring(0, 10)
-            };
-
-            this.Db.EventImages.InsertOnSubmit(image);
-
-            this.Db.SubmitChanges();
-
-            this.Events.InvalidateEventImages(eventId);
-        }
-
-        private void CheckUserIn(long eventId, long userId)
-        {
-            var reg = this.Db.Registrations.SingleOrDefault(r => r.EventID == eventId && r.UserID == userId);
-            reg.IsCheckedIn = true;
-
-            this.Db.SubmitChanges();
-
-            this.Events.InvalidateEventRegistrations(eventId);
-        }
-
-        private void CancelUserCheckIn(long eventId, long userId)
-        {
-            var reg = this.Db.Registrations.SingleOrDefault(r => r.EventID == eventId && r.UserID == userId);
-            reg.IsCheckedIn = false;
-
-            this.Db.SubmitChanges();
-
-            this.Events.InvalidateEventRegistrations(eventId);
-        }
-
         [CompressFilter]
         public ActionResult UserCheckIn(long? id)
         {
@@ -385,7 +337,7 @@ namespace LanLordz.Controllers
 
             var deletions = from k in values.AllKeys
                             where k.IndexOf("delete-") == 0
-                            where values[k] == "on"
+                            where values[k].StartsWith("true")
                             let split = k.Split("-".ToCharArray())
                             select new
                             {
@@ -415,6 +367,54 @@ namespace LanLordz.Controllers
             }
 
             return RedirectToAction("EditImages", new { id = id.Value });
+        }
+
+        private void DeleteEventImage(long eventImageId)
+        {
+            var i = (from image in this.Db.EventImages
+                     where image.EventImageID == eventImageId
+                     select image).Single();
+            var eventId = i.EventID;
+            this.Db.EventImages.DeleteOnSubmit(i);
+            this.Db.SubmitChanges();
+
+            this.Events.InvalidateEventImages(eventId);
+        }
+
+        private void AddEventImage(long eventId, byte[] imageData)
+        {
+            var image = new EventImage
+            {
+                EventID = eventId,
+                Image = imageData,
+                ScrapeBusterKey = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLowerInvariant().Substring(0, 10)
+            };
+
+            this.Db.EventImages.InsertOnSubmit(image);
+
+            this.Db.SubmitChanges();
+
+            this.Events.InvalidateEventImages(eventId);
+        }
+
+        private void CheckUserIn(long eventId, long userId)
+        {
+            var reg = this.Db.Registrations.SingleOrDefault(r => r.EventID == eventId && r.UserID == userId);
+            reg.IsCheckedIn = true;
+
+            this.Db.SubmitChanges();
+
+            this.Events.InvalidateEventRegistrations(eventId);
+        }
+
+        private void CancelUserCheckIn(long eventId, long userId)
+        {
+            var reg = this.Db.Registrations.SingleOrDefault(r => r.EventID == eventId && r.UserID == userId);
+            reg.IsCheckedIn = false;
+
+            this.Db.SubmitChanges();
+
+            this.Events.InvalidateEventRegistrations(eventId);
         }
     }
 }

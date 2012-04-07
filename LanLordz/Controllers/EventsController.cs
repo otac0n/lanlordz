@@ -37,6 +37,21 @@ namespace LanLordz.Controllers
 
     public class EventsController : LanLordzBaseController
     {
+        private enum ScoreMode
+        {
+            [Description("Highest Points Wins")]
+            HighestPoints,
+
+            [Description("Lowest Points Wins")]
+            LowestPoints,
+
+            [Description("Highest Time Wins")]
+            HighestTime,
+
+            [Description("Lowest Time Wins")]
+            LowestTime,
+        }
+
         [CompressFilter]
         public ActionResult Index()
         {
@@ -608,161 +623,6 @@ namespace LanLordz.Controllers
             return RedirectToAction("Details", "Events", new { id = evt.EventID });
         }
 
-        private IPairingsGenerator GetTournamentPairingsGenerator(CachedTournament tournament)
-        {
-            return this.Plugins.GetPairingsGenerator(tournament.PairingsGenerator);
-        }
-
-        private enum ScoreMode
-        {
-            [Description("Highest Points Wins")]
-            HighestPoints,
-
-            [Description("Lowest Points Wins")]
-            LowestPoints,
-
-            [Description("Highest Time Wins")]
-            HighestTime,
-
-            [Description("Lowest Time Wins")]
-            LowestTime,
-        }
-
-        private class Description : Attribute
-        {
-            private string text;
-
-            public Description(string text)
-            {
-                this.text = text;
-            }
-
-            public static string GetDescription(Enum obj)
-            {
-                var t = obj.GetType();
-
-                var mi = t.GetMember(obj.ToString());
-
-                if (mi == null || mi.Length == 0)
-                {
-                    return obj.ToString();
-                }
-
-                var a = mi[0].GetCustomAttributes(typeof(Description), false);
-
-                if (a == null || a.Length == 0)
-                {
-                    return obj.ToString();
-                }
-
-                return ((Description)a[0]).text;
-            }
-        }
-
-        private IPairingsGenerator GetInitializedTournamentPairingsGenerator(CachedTournament tmt)
-        {
-            var pg = this.GetTournamentPairingsGenerator(tmt);
-            var mode = (ScoreMode)Enum.Parse(typeof(ScoreMode), tmt.ScoreMode);
-
-            if (pg != null)
-            {
-                var teams = (from team in this.Db.Teams
-                             where team.TournamentID == tmt.TournamentID
-                             select new TournamentTeam(team.TeamID, (int)team.UsersTeams.Average(ut => ut.Rating))).ToList();
-
-                var rounds = new List<TournamentRound>();
-                foreach (var round in from r in this.Db.Rounds
-                                      where r.TournamentID == tmt.TournamentID
-                                      orderby r.RoundNumber
-                                      select r)
-                {
-                    var pairings = (from p in round.Pairings
-                                    orderby p.PairingID
-                                    select new TournamentPairing(
-                                        (from tp in p.TeamsPairings
-                                         orderby tp.TeamPairingID
-                                         select new TournamentTeamScore(
-                                             teams.Where(t => t.TeamId == tp.Team.TeamID).Single(),
-                                             ParseScore(mode, tp.Score))).ToList())).ToList();
-                    rounds.Add(new TournamentRound(pairings));
-                }
-
-                pg.LoadState(teams, rounds);
-
-                return pg;
-            }
-
-            return null;
-        }
-
-        private static Score ParseScore(ScoreMode mode, string score)
-        {
-            if (string.IsNullOrEmpty(score))
-            {
-                return null;
-            }
-
-            try
-            {
-                switch (mode)
-                {
-                    case ScoreMode.HighestPoints:
-                        return new HighestPointsScore(double.Parse(score));
-                    case ScoreMode.LowestPoints:
-                        return new LowestPointsScore(double.Parse(score));
-                    case ScoreMode.HighestTime:
-                        return new HighestTimeScore(ParseTime(score));
-                    case ScoreMode.LowestTime:
-                        return new LowestTimeScore(ParseTime(score));
-                    default:
-                        throw new InvalidOperationException();
-                }
-            }
-            catch (FormatException)
-            {
-                return null;
-            }
-        }
-
-        private static Dictionary<string, string> GetScoreModes()
-        {
-            var modes = new Dictionary<string, string>();
-
-            var values = Enum.GetValues(typeof(ScoreMode));
-            foreach (var value in values)
-            {
-                var name = Enum.GetName(typeof(ScoreMode), value);
-
-                modes.Add(name, Description.GetDescription((ScoreMode)value));
-            }
-
-            return modes;
-        }
-
-        private static long ParseTime(string value)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentNullException("value");
-            }
-
-            var rxp = new Regex(@"\A\s*(?:(?:(?<hours>[0-9]+):)?(?:(?<minutes>[0-5]?[0-9]):))?(?<seconds>[0-5]?[0-9](?:\.[0-9]*)?)\s*\Z", RegexOptions.Compiled);
-            var match = rxp.Match(value);
-            if (!match.Success)
-            {
-                throw new FormatException();
-            }
-
-            long hours;
-            long minutes;
-            long.TryParse(match.Groups["hours"].Value, out hours);
-            long.TryParse(match.Groups["minutes"].Value, out minutes);
-            var s = decimal.Parse(match.Groups["seconds"].Value);
-            var milliseconds = (long)(s * 1000);
-
-            return milliseconds + (1000 * (60 * (minutes + (60 * hours))));
-        }
-
         [CompressFilter]
         public ActionResult CreateTeam(long? id)
         {
@@ -1090,7 +950,7 @@ namespace LanLordz.Controllers
             var disband = false;
             if (team.UsersTeams.Count() > 1 && userTeam.IsTeamCaptain)
             {
-                disband = values["Disband"] == "on";
+                disband = values["Disband"].StartsWith("true");
             }
             else if (team.UsersTeams.Count() == 1)
             {
@@ -1705,6 +1565,146 @@ namespace LanLordz.Controllers
             }
 
             return RedirectToAction("Details", new { id = id.Value });
+        }
+
+        private static Score ParseScore(ScoreMode mode, string score)
+        {
+            if (string.IsNullOrEmpty(score))
+            {
+                return null;
+            }
+
+            try
+            {
+                switch (mode)
+                {
+                    case ScoreMode.HighestPoints:
+                        return new HighestPointsScore(double.Parse(score));
+                    case ScoreMode.LowestPoints:
+                        return new LowestPointsScore(double.Parse(score));
+                    case ScoreMode.HighestTime:
+                        return new HighestTimeScore(ParseTime(score));
+                    case ScoreMode.LowestTime:
+                        return new LowestTimeScore(ParseTime(score));
+                    default:
+                        throw new InvalidOperationException();
+                }
+            }
+            catch (FormatException)
+            {
+                return null;
+            }
+        }
+
+        private static Dictionary<string, string> GetScoreModes()
+        {
+            var modes = new Dictionary<string, string>();
+
+            var values = Enum.GetValues(typeof(ScoreMode));
+            foreach (var value in values)
+            {
+                var name = Enum.GetName(typeof(ScoreMode), value);
+
+                modes.Add(name, Description.GetDescription((ScoreMode)value));
+            }
+
+            return modes;
+        }
+
+        private static long ParseTime(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            var rxp = new Regex(@"\A\s*(?:(?:(?<hours>[0-9]+):)?(?:(?<minutes>[0-5]?[0-9]):))?(?<seconds>[0-5]?[0-9](?:\.[0-9]*)?)\s*\Z", RegexOptions.Compiled);
+            var match = rxp.Match(value);
+            if (!match.Success)
+            {
+                throw new FormatException();
+            }
+
+            long hours;
+            long minutes;
+            long.TryParse(match.Groups["hours"].Value, out hours);
+            long.TryParse(match.Groups["minutes"].Value, out minutes);
+            var s = decimal.Parse(match.Groups["seconds"].Value);
+            var milliseconds = (long)(s * 1000);
+
+            return milliseconds + (1000 * (60 * (minutes + (60 * hours))));
+        }
+
+        private IPairingsGenerator GetTournamentPairingsGenerator(CachedTournament tournament)
+        {
+            return this.Plugins.GetPairingsGenerator(tournament.PairingsGenerator);
+        }
+
+        private IPairingsGenerator GetInitializedTournamentPairingsGenerator(CachedTournament tmt)
+        {
+            var pg = this.GetTournamentPairingsGenerator(tmt);
+            var mode = (ScoreMode)Enum.Parse(typeof(ScoreMode), tmt.ScoreMode);
+
+            if (pg != null)
+            {
+                var teams = (from team in this.Db.Teams
+                             where team.TournamentID == tmt.TournamentID
+                             select new TournamentTeam(team.TeamID, (int)team.UsersTeams.Average(ut => ut.Rating))).ToList();
+
+                var rounds = new List<TournamentRound>();
+                foreach (var round in from r in this.Db.Rounds
+                                      where r.TournamentID == tmt.TournamentID
+                                      orderby r.RoundNumber
+                                      select r)
+                {
+                    var pairings = (from p in round.Pairings
+                                    orderby p.PairingID
+                                    select new TournamentPairing(
+                                        (from tp in p.TeamsPairings
+                                         orderby tp.TeamPairingID
+                                         select new TournamentTeamScore(
+                                             teams.Where(t => t.TeamId == tp.Team.TeamID).Single(),
+                                             ParseScore(mode, tp.Score))).ToList())).ToList();
+                    rounds.Add(new TournamentRound(pairings));
+                }
+
+                pg.LoadState(teams, rounds);
+
+                return pg;
+            }
+
+            return null;
+        }
+
+        private class Description : Attribute
+        {
+            private string text;
+
+            public Description(string text)
+            {
+                this.text = text;
+            }
+
+            public static string GetDescription(Enum obj)
+            {
+                var t = obj.GetType();
+
+                var mi = t.GetMember(obj.ToString());
+
+                if (mi == null || mi.Length == 0)
+                {
+                    return obj.ToString();
+                }
+
+                var a = mi[0].GetCustomAttributes(typeof(Description), false);
+
+                if (a == null || a.Length == 0)
+                {
+                    return obj.ToString();
+                }
+
+                return ((Description)a[0]).text;
+            }
         }
     }
 }

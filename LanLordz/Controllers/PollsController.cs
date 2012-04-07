@@ -214,8 +214,8 @@ namespace LanLordz.Controllers
             {
                 Title = values["Title"],
                 Text = values["Description"],
-                IsPrivate = values["IsPrivate"] == "on",
-                IsMultiAnswer = values["IsMultiAnswer"] == "on",
+                IsPrivate = values["IsPrivate"].StartsWith("true"),
+                IsMultiAnswer = values["IsMultiAnswer"].StartsWith("true"),
                 CreatorUserId = this.CurrentUser.UserID,
             };
 

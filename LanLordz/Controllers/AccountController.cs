@@ -68,7 +68,7 @@ namespace LanLordz.Controllers
                 ReturnUrl = values["ReturnUrl"],
                 Username = values["Username"],
                 Password = values["Password"],
-                RememberMe = values["RememberMe"] == "on",
+                RememberMe = values["RememberMe"].StartsWith("true"),
                 RequireCaptcha = hasFailedTooMuch && this.Config.UseRecaptcha,
             };
 
@@ -194,8 +194,8 @@ namespace LanLordz.Controllers
                 SecurityQuestion = values["SecurityQuestion"],
                 SecurityAnswer = values["SecurityAnswer"],
                 Gender = values["Gender"] != null ? values["Gender"][0] : '\0',
-                ShowEmail = values["ShowEmail"] == "on",
-                ShowGender = values["ShowGender"] == "on",
+                ShowEmail = values["ShowEmail"].StartsWith("true"),
+                ShowGender = values["ShowGender"].StartsWith("true"),
             };
 
             if (!registration.IsValid)
@@ -326,9 +326,9 @@ namespace LanLordz.Controllers
                 info.Theme = attrs.Theme;
                 info.TimeZone = attrs.TimeZone;
                 info.Website = attrs.Website;
-                info.ShowEmail = (values["ShowEmail"] == "on");
-                info.ShowGender = (values["ShowGender"] == "on");
-                info.ReceiveAdminEmail = (values["ReceiveAdminEmail"] == "on");
+                info.ShowEmail = values["ShowEmail"].StartsWith("true");
+                info.ShowGender = values["ShowGender"].StartsWith("true");
+                info.ReceiveAdminEmail = values["ReceiveAdminEmail"].StartsWith("true");
 
                 return View("EditProfile", new EditProfileModel
                 {
@@ -340,9 +340,9 @@ namespace LanLordz.Controllers
             else
             {
                 User u = this.GetUser(CurrentUser.UserID);
-                u.ShowEmail = (values["ShowEmail"] == "on");
-                u.ShowGender = (values["ShowGender"] == "on");
-                u.ReceiveAdminEmail = (values["ReceiveAdminEmail"] == "on");
+                u.ShowEmail = values["ShowEmail"].StartsWith("true");
+                u.ShowGender = values["ShowGender"].StartsWith("true");
+                u.ReceiveAdminEmail = values["ReceiveAdminEmail"].StartsWith("true");
 
                 this.Db.SubmitChanges();
 
