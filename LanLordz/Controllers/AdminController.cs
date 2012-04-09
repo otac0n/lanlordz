@@ -32,6 +32,7 @@ namespace LanLordz.Controllers
     using System.Web.Mvc;
     using LanLordz.Models;
     using LanLordz.SiteTools;
+    using System.Collections.Generic;
 
     public class AdminController : LanLordzBaseController
     {
@@ -211,9 +212,9 @@ namespace LanLordz.Controllers
                 eventId = long.Parse(values["Event"]);
             }
 
-            this.SendMail(CurrentUser, roleId, subject, body, eventId);
+            var exceptions = this.SendMail(CurrentUser, roleId, subject, body, eventId);
 
-            return View("SendMailSuccess");
+            return View("SendMailSuccess", exceptions);
         }
 
         [CompressFilter]
@@ -444,70 +445,86 @@ namespace LanLordz.Controllers
             return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
         }
 
-        private void SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
+        private List<Exception> SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)
         {
-            using (var message = new MailMessage())
+            var exceptions = new List<Exception>();
+
+            var users = from ur in this.Db.UsersRoles
+                        where ur.RoleID == toGroupId
+                        let u = ur.User
+                        where u.ReceiveAdminEmail
+                        select new
+                        {
+                            u.Username,
+                            u.Email,
+                        };
+
+            var recipients = new List<MailAddress>();
+            foreach (var user in users)
             {
-                message.From = new MailAddress(fromUser.Email, fromUser.Username);
-                message.Subject = subject;
-                message.Body = body;
-                message.IsBodyHtml = true;
-
-                var users = from ur in this.Db.UsersRoles
-                            where ur.RoleID == toGroupId
-                            let u = ur.User
-                            where u.ReceiveAdminEmail
-                            select new
-                            {
-                                u.Username,
-                                u.Email,
-                            };
-
-                foreach (var user in users)
-                {
-                    MailAddress to;
-
-                    try
-                    {
-                        to = new MailAddress(user.Email);
-                    }
-                    catch (ArgumentException)
-                    {
-                        continue;
-                    }
-                    catch (FormatException)
-                    {
-                        continue;
-                    }
-
-                    message.Bcc.Add(to);
-                }
-
-                Stream attachmentStream = null;
+                MailAddress to;
 
                 try
                 {
-                    if (invitationEventId.HasValue)
-                    {
-                        var attachmentData = CreateICalEvent(invitationEventId.Value);
-                        attachmentStream = new MemoryStream(Encoding.UTF8.GetBytes(attachmentData));
-                        Attachment attachment = new Attachment(attachmentStream, "Invitation.ics", "text/calendar");
-                        message.Attachments.Add(attachment);
-                    }
-
-                    using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
-                    {
-                        client.Send(message);
-                    }
+                    to = new MailAddress(user.Email);
+                    recipients.Add(to);
                 }
-                finally
+                catch (ArgumentException ex)
                 {
-                    if (attachmentStream != null)
+                    exceptions.Add(ex);
+                }
+                catch (FormatException ex)
+                {
+                    exceptions.Add(ex);
+                }
+            }
+
+            var attachmentData = (string)null;
+            if (invitationEventId.HasValue)
+            {
+                attachmentData = CreateICalEvent(invitationEventId.Value);
+            }
+
+            using (var client = new SmtpClient(this.Config.SmtpHost, this.Config.SmtpPort))
+            {
+                foreach (var recipient in recipients)
+                {
+                    using (var message = new MailMessage())
                     {
-                        attachmentStream.Dispose();
+                        message.From = new MailAddress(fromUser.Email, fromUser.Username);
+                        message.To.Add(recipient);
+                        message.Subject = subject;
+                        message.Body = body;
+                        message.IsBodyHtml = true;
+
+                        Stream attachmentStream = null;
+                        try
+                        {
+                            if (attachmentData != null)
+                            {
+                                attachmentStream = new MemoryStream(Encoding.UTF8.GetBytes(attachmentData));
+                                Attachment attachment = new Attachment(attachmentStream, "Invitation.ics", "text/calendar");
+                                message.Attachments.Add(attachment);
+                            }
+
+                            client.Send(message);
+                        }
+                        catch (SmtpException ex)
+                        {
+                            exceptions.Add(ex);
+                        }
+                        finally
+                        {
+                            if (attachmentStream != null)
+                            {
+                                attachmentStream.Dispose();
+                            }
+                        }
                     }
                 }
             }
+
+            return exceptions;
         }
 
         private string CreateICalEvent(long invitationEventId)

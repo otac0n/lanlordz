@@ -1,5 +1,17 @@
+@model IList<Exception>
 @{
     ViewBag.Title = "Mail Sent Successfully";
 }
     <h2>@ViewBag.Title</h2>
     <p>The mail you submitted has been sent successfully.</p>
+
+@if (Model.Count > 0)
+{
+    <p>However, some errors were encountered while sending the message:</p>
+    <ul>
+    @foreach (var error in Model)
+    {
+        <li>@error.Message</li>
+    }
+    </ul>
+}
