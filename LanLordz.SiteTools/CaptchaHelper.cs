@@ -29,7 +29,7 @@ namespace LanLordz.SiteTools
 
     public static class CaptchaHelper
     {
-        public static string Captcha(this HtmlHelper helper, string publicKey, string privateKey, string id, string theme)
+        public static MvcHtmlString Captcha(this HtmlHelper helper, string publicKey, string privateKey, string id, string theme)
         {
             var captcha = new RecaptchaControl
             {
@@ -43,10 +43,10 @@ namespace LanLordz.SiteTools
 
             captcha.RenderControl(htmlWriter);
 
-            return htmlWriter.InnerWriter.ToString();
+            return new MvcHtmlString(htmlWriter.InnerWriter.ToString());
         }
 
-        public static string Captcha(this HtmlHelper helper, string publicKey, string privateKey)
+        public static MvcHtmlString Captcha(this HtmlHelper helper, string publicKey, string privateKey)
         {
             return Captcha(helper, publicKey, privateKey, "recaptcha", "blackglass");
         }
