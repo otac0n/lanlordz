@@ -34,7 +34,7 @@ namespace LanLordz.Controllers
     using LanLordz.SiteTools;
     using System.Collections.Generic;
 
-    public class AdminController : LanLordzBaseController
+    public class AdminController : AdminControllerBase
     {
         [CompressFilter]
         public ActionResult Index()
@@ -430,19 +430,6 @@ namespace LanLordz.Controllers
             }
 
             return RedirectToAction("EditSponsors");
-        }
-
-        protected override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            if (!this.UserIsAuthorized())
-            {
-                filterContext.Result = this.View("NotAuthorized");
-            }
-        }
-
-        private bool UserIsAuthorized()
-        {
-            return this.CurrentUser != null && this.Security.IsUserAdministrator(this.CurrentUser);
         }
 
         private List<Exception> SendMail(User fromUser, long toGroupId, string subject, string body, long? invitationEventId)

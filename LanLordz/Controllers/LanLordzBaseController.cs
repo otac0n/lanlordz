@@ -38,7 +38,7 @@ namespace LanLordz.Controllers
     using Microsoft.Practices.EnterpriseLibrary.Caching;
 
     [ValidateInput(enableValidation: false)]
-    public class LanLordzBaseController : Controller
+    public abstract class LanLordzBaseController : Controller
     {
         private const string UserKey = "User";
         private const string AutoLogOnKey = "AutoLogOnKey";
@@ -558,8 +558,20 @@ namespace LanLordz.Controllers
 
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
-            this.ValidateRequest = false;
-            base.OnAuthorization(filterContext);
+            if (!this.UserIsAuthorized())
+            {
+                filterContext.Result = this.View("NotAuthorized");
+            }
+            else
+            {
+                this.ValidateRequest = false;
+                base.OnAuthorization(filterContext);
+            }
+        }
+
+        protected virtual bool UserIsAuthorized()
+        {
+            return true;
         }
 
         private User Login(long userId, string originatingHostIp)
