@@ -30,20 +30,19 @@
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @item.Name
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            @item.Address
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
+            @item.Latitude
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
+            @item.Longitude
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VenueID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VenueID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.VenueID })
         </td>
     </tr>
 }
