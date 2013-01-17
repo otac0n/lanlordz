@@ -111,6 +111,7 @@
     <Compile Include="Controllers\PollsController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Exceptions\Exceptions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -559,6 +560,8 @@
     <Content Include="Views\Admin\EditSponsors.cshtml" />
     <Content Include="Views\Admin\EditSponsor.cshtml" />
     <Content Include="Views\Admin\RenameUser.cshtml" />
+    <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Venues\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
