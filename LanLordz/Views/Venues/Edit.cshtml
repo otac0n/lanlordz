@@ -11,6 +11,7 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="editor-label">
         @Html.LabelFor(model => model.Name)
@@ -44,7 +45,7 @@
         @Html.ValidationMessageFor(model => model.Longitude)
     </div>
 
-    <input type="submit" value="Create" />
+    <input type="submit" value="Save" />
 }
 
 <div>
